@@ -221,4 +221,101 @@
   .video-analysis {
     padding: 15px; /* Reduce container padding on mobile */
   }
+}
+
+/* Tab styles */
+.claim-tabs {
+  display: flex;
+  margin: 15px 0 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.video-analysis.dark .claim-tabs {
+  border-bottom-color: #4a5568;
+}
+
+.tab-button {
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tab-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.video-analysis.dark .tab-button:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tab-button.active {
+  border-bottom-color: #4299e1;
+  font-weight: 600;
+}
+
+.tab-icon {
+  font-size: 0.8rem;
+}
+
+/* Deep search panel styles */
+.deep-search-panel {
+  padding: 15px 0;
+  min-height: 150px;
+}
+
+.deep-search-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.deep-search-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(66, 153, 225, 0.3);
+  border-radius: 50%;
+  border-top-color: #4299e1;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.deep-search-result {
+  background-color: rgba(66, 153, 225, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.deep-search-result h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #4299e1;
+}
+
+.deep-search-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.video-analysis.dark .deep-search-placeholder {
+  background-color: rgba(255, 255, 255, 0.03);
 } 
