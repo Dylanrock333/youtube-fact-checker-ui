@@ -1,5 +1,6 @@
 import React from 'react';
 import './VideoAnalysis.css';
+import { FaInfoCircle } from 'react-icons/fa';
 
 const VideoAnalysis = ({ analysisData, isDarkMode }) => {
   if (!analysisData) return null;
@@ -26,11 +27,18 @@ const VideoAnalysis = ({ analysisData, isDarkMode }) => {
             
             <div className="claim-context">
               <p><strong>Context:</strong> {claim.context}</p>
-              <p><strong>Search Query:</strong> {claim.internet_search_query}</p>
+              <p><strong>Search Query:</strong> {claim.search_query}</p>
               
               <div className="claim-details">
+
                 <div className="score-container">
-                  <span className="score-label">Controversy Score:</span>
+                  <span className="score-label">
+                    <FaInfoCircle 
+                      className="info-icon" 
+                      title="How much this claim contradicts established consensus or presents information in a potentially misleading way"
+                    />                  
+                    Controversy Level:
+                  </span>
                   <div className="score-bar">
                     <div 
                       className="score-fill" 
@@ -40,17 +48,43 @@ const VideoAnalysis = ({ analysisData, isDarkMode }) => {
                 </div>
                 
                 <div className="score-container">
-                  <span className="score-label">Search Score:</span>
+                  <span className="score-label">
+                    <FaInfoCircle 
+                      className="info-icon" 
+                      title="How important this claim is to the overall message and how much it might influence viewers' understanding of the topic"
+                    />                  
+                    Verification Priority:
+                  </span>
                   <div className="score-bar">
                     <div 
                       className="score-fill" 
-                      style={{ width: `${(claim.internet_searchability / 5) * 100}%` }}
+                      style={{ width: `${(claim.verification_importance / 5) * 100}%` }}
                     ></div>
                   </div>
                 </div>
+
+                <div className="score-container">
+                  <span className="score-label">
+                    <FaInfoCircle 
+                      className="info-icon" 
+                      title="How detailed and precisely verifiable the claim is, with higher scores indicating claims that can be clearly checked against evidence"
+                    />                    
+                    Claim Specificity:
+                  </span>
+                  <div className="score-bar">
+                    <div 
+                      className="score-fill" 
+                      style={{ width: `${(claim.factual_precision / 5) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+              
               </div>
+
             </div>
+
           </div>
+
         ))}
       </div>
     </div>
