@@ -58,13 +58,12 @@
 .claim-card {
   border-radius: 8px;
   padding: 20px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   max-width: 100%;
   overflow: hidden;
-  min-height: 450px; /* Set minimum height */
-  
+  min-height: 450px;
+  transition: all 0.3s ease;
 }
 
 .claim-card:hover {
@@ -268,8 +267,9 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
   
-  .claim-card {
-    padding: 12px; /* Reduce padding on smaller screens */
+  .claim-card,
+  .video-analysis {
+    padding: 12px;
   }
 }
 
@@ -280,10 +280,6 @@
   
   .video-info h2 {
     font-size: 1.5rem;
-  }
-  
-  .video-analysis {
-    padding: 15px; /* Reduce container padding on mobile */
   }
   
   .claim-card {

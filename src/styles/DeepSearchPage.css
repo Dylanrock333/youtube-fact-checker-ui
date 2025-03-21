@@ -6,18 +6,98 @@
   border-radius: 10px;
   transition: all 0.3s ease;
   width: 95%;
-}
-
-.deep-search-page.light {
-  background-color: #f8f9fa;
-  color: #333;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  --bg-color: #f8f9fa;
+  --text-color: #333;
+  --box-shadow: rgba(0, 0, 0, 0.1);
+  --box-bg: white;
+  --border-color: #e2e8f0;
+  --accent-color: #4299e1;
+  --accent-hover: #3182ce;
+  --overlay-bg: rgba(0, 0, 0, 0.03);
 }
 
 .deep-search-page.dark {
-  background-color: #2d3748;
-  color: #e2e8f0;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+  --bg-color: #2d3748;
+  --text-color: #e2e8f0;
+  --box-shadow: rgba(0, 0, 0, 0.3);
+  --box-bg: #1a202c;
+  --border-color: #4a5568;
+  --accent-color: #63b3ed;
+  --accent-hover: #90cdf4;
+  --overlay-bg: rgba(255, 255, 255, 0.03);
+}
+
+/* Update component styles to use variables */
+.deep-search-page {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  box-shadow: 0 2px 15px var(--box-shadow);
+}
+
+/* Combine box styles */
+.claim-box, .query-box, .results-box, .context-box {
+  background-color: var(--box-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 5px var(--box-shadow);
+}
+
+/* Combine citation styles */
+.citations-toggle {
+  background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
+  color: var(--accent-color);
+}
+
+.citations-toggle:hover {
+  background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+}
+
+.citations-list {
+  background-color: var(--overlay-bg);
+}
+
+.citations-list a {
+  color: var(--accent-color);
+}
+
+.citations-list a:hover {
+  color: var(--accent-hover);
+}
+
+/* Remove redundant media query styles */
+@media (max-width: 768px) {
+  .deep-search-page {
+    padding: 20px;
+    margin: 0 10px;
+  }
+  
+  .claim-box, .query-box, .results-box, .context-box {
+    padding: 15px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .deep-search-page {
+    padding: 15px;
+  }
+  
+  .claim-box, .query-box, .results-box, .context-box {
+    padding: 12px;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+}
+
+/* Remove duplicate info-row box styles */
+.info-row .context-box,
+.info-row .query-box {
+  min-height: 100px;
 }
 
 /* Back button styles */
@@ -62,7 +142,7 @@
 }
 
 /* Box containers */
-.claim-box, .query-box, .results-box {
+.claim-box, .query-box, .results-box, .context-box {
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 25px;
@@ -71,7 +151,8 @@
 
 .deep-search-page.light .claim-box,
 .deep-search-page.light .query-box,
-.deep-search-page.light .results-box {
+.deep-search-page.light .results-box,
+.deep-search-page.light .context-box {
   background-color: white;
   border: 1px solid #e2e8f0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -79,14 +160,15 @@
 
 .deep-search-page.dark .claim-box,
 .deep-search-page.dark .query-box,
-.deep-search-page.dark .results-box {
+.deep-search-page.dark .results-box,
+.deep-search-page.dark .context-box {
   background-color: #1a202c;
   border: 1px solid #4a5568;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Box headers */
-.claim-box h3, .query-box h3, .results-box h3 {
+.claim-box h3, .query-box h3, .results-box h3, .context-box h3 {
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 1.2rem;
@@ -102,10 +184,13 @@
 }
 
 /* Content paragraphs */
-.claim-box p, .query-box p {
+.claim-box p, .query-box p, .context-box p {
   margin: 0;
   line-height: 1.6;
   font-size: 1rem;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: inherit !important;
 }
 
 /* Loading spinner */
@@ -161,42 +246,6 @@
   background-color: rgba(99, 179, 237, 0.1);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .deep-search-page {
-    padding: 20px;
-    margin: 0 10px;
-  }
-  
-  .claim-box, .query-box, .results-box {
-    padding: 15px;
-  }
-  
-  .deep-search-page h2 {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .deep-search-page {
-    padding: 15px;
-  }
-  
-  .back-button {
-    padding: 8px 12px;
-    font-size: 0.8rem;
-  }
-  
-  .claim-box, .query-box, .results-box {
-    padding: 12px;
-  }
-  
-  .deep-search-page h2 {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-  }
-} 
-
 /* Claim text styling to match VideoAnalysis */
 .claim-box p {
     font-size: 1.1rem;
@@ -206,66 +255,26 @@
     font-style: italic;
     display: inline-block;
     width: 100%;
-  }
-  
-  .claim-box p::before {
+}
+
+.claim-box p::before {
     content: '"';
     font-size: 1.4rem;
     font-style: normal;
     font-weight: bold;
     margin-right: 2px;
     display: inline;
-  }
-  
-  .claim-box p::after {
+}
+
+.claim-box p::after {
     content: '"';
     font-size: 1.4rem;
     font-style: normal;
     font-weight: bold;
     margin-left: 2px;
     display: inline;
-  }
+}
   
-/* Context box styling */
-.context-box {
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 25px;
-  transition: all 0.3s ease;
-}
-
-.deep-search-page.light .context-box {
-  background-color: white;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.deep-search-page.dark .context-box {
-  background-color: #1a202c;
-  border: 1px solid #4a5568;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.context-box h3 {
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.context-box p {
-  margin: 0;
-  line-height: 1.6;
-  font-size: 1rem;
-  background-color: rgba(0, 0, 0, 0.03);
-  padding: 10px;
-  border-radius: 6px;
-}
-
-.deep-search-page.dark .context-box p {
-  background-color: rgba(255, 255, 255, 0.03);
-}
-
 /* Error message styling */
 .error-message {
   color: #e53e3e;
@@ -432,22 +441,6 @@
   background-color: #2d2d2d;
   border: 1px solid #404040;
   color: #e2e8f0;
-}
-
-/* Consistent paragraph styles with explicit background */
-.context-box p, .query-box p {
-  margin: 0;
-  line-height: 1.6;
-  font-size: 1rem;
-  background-color: inherit;
-  padding: 8px;
-  border-radius: 4px;
-}
-
-/* Ensure no conflicting styles from other components */
-.deep-search-page .context-box p,
-.deep-search-page .query-box p {
-  background-color: inherit !important;
 }
 
 /* Handle empty context case */
