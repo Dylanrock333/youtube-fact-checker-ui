@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './VideoAnalysis.css';
 import { FaInfoCircle, FaSearch } from 'react-icons/fa';
+import YouTubeVideo from './YouTubeVideo';
 
-const VideoAnalysis = ({ analysisData, isDarkMode }) => {
+const VideoAnalysis = ({ analysisData, isDarkMode, videoUrl }) => {
   // Move all useState hooks to the top level, before any conditional logic
   const [activeTabs, setActiveTabs] = useState({});
   const [searchQueries, setSearchQueries] = useState({});
@@ -59,6 +60,7 @@ const VideoAnalysis = ({ analysisData, isDarkMode }) => {
         <h2>{analysisData.video_title || 'Video Analysis Results'}</h2>
         <p className="claim-count">Total Claims Analyzed: {analysisData.claim_count}</p>
         <p className="video-id">Video ID: {analysisData.video_id}</p>
+        <YouTubeVideo url={videoUrl} />
       </div>
 
       {/* Claims Section */}

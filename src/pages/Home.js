@@ -98,7 +98,11 @@ function Home() {
           {analysisData.error ? (
             <div className="error-message">{analysisData.error}</div>
           ) : (
-            <VideoAnalysis analysisData={analysisData} isDarkMode={isDarkMode} />
+            <VideoAnalysis 
+              analysisData={analysisData} 
+              isDarkMode={isDarkMode}
+              videoUrl={inputText}
+            />
           )}
         </div>
       )}
