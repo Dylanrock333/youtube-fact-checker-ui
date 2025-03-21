@@ -1,4 +1,5 @@
 import { API_ENDPOINTS } from '../config/constants';
+
 export const analyzeVideo = async (url) => {
   try {
     let request_url = `${API_ENDPOINTS.LOCAL_URL}/execute`
@@ -49,3 +50,30 @@ export const checkApiHealth = async () => {
     return { success: false, message: `API connection failed: ${error.message}` };
   }
 };
+
+
+export const performDeepSearch = async (query) => {
+  try {
+    console.log(query);
+    const searchUrl = `${API_ENDPOINTS.LOCAL_URL}/deepsearch`;
+
+    const response = await fetch(searchUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ search_prompt: query })
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error('Error performing deep search:', error);
+    return `Error performing deep search: ${error.message}`;
+  }
+};    

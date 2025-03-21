@@ -46,6 +46,7 @@ const VideoAnalysis = ({ analysisData, isDarkMode }) => {
         query, 
         claimId, 
         claimText: claim.claim,
+        context: claim.context,
         isDarkMode 
       } 
     });
