@@ -1,0 +1,109 @@
+.deep-search-page {
+  min-height: 100vh;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.deep-search-page.light {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.deep-search-page.dark {
+  background-color: #2d3748;
+  color: #e2e8f0;
+}
+
+.deep-search-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.deep-search-page.dark .deep-search-container {
+  background-color: #1a202c;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #4299e1;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.deep-search-page.dark .back-button {
+  color: #63b3ed;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
+.deep-search-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.claim-box, .query-box, .results-box {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.deep-search-page.dark .claim-box,
+.deep-search-page.dark .query-box,
+.deep-search-page.dark .results-box {
+  background-color: #2d3748;
+}
+
+.claim-box h3, .query-box h3, .results-box h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #4a5568;
+}
+
+.deep-search-page.dark .claim-box h3,
+.deep-search-page.dark .query-box h3,
+.deep-search-page.dark .results-box h3 {
+  color: #a0aec0;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(66, 153, 225, 0.3);
+  border-radius: 50%;
+  border-top-color: #4299e1;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.result-content {
+  line-height: 1.6;
+  font-size: 1.1rem;
+} 

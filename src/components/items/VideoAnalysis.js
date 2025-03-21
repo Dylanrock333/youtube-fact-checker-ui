@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './VideoAnalysis.css';
 import { FaInfoCircle, FaSearch } from 'react-icons/fa';
 
 const VideoAnalysis = ({ analysisData, isDarkMode }) => {
   // Move all useState hooks to the top level, before any conditional logic
   const [activeTabs, setActiveTabs] = useState({});
-  const [deepSearchResults, setDeepSearchResults] = useState({});
-  const [deepSearchLoading, setDeepSearchLoading] = useState({});
+  const [searchQueries, setSearchQueries] = useState({});
+  const navigate = useNavigate();
 
   // Early return after hooks are defined
   if (!analysisData) return null;
@@ -17,47 +18,37 @@ const VideoAnalysis = ({ analysisData, isDarkMode }) => {
       ...prev,
       [claimId]: tabName
     }));
-
-    // If switching to deep search tab and no results exist yet, trigger the search
-    if (tabName === 'deepSearch' && !deepSearchResults[claimId]) {
-      handleDeepSearch(claimId, analysisData.claims.find(c => c.id === claimId).search_query);
+    
+    // Initialize search query from claim when first switching to deep search
+    if (tabName === 'deepSearch' && !searchQueries[claimId]) {
+      const claim = analysisData.claims.find(c => c.id === claimId);
+      setSearchQueries(prev => ({
+        ...prev,
+        [claimId]: claim.search_query
+      }));
     }
   };
 
-  // Function to handle deep search
-  const handleDeepSearch = async (claimId, searchQuery) => {
-    // Set loading state for this specific claim
-    setDeepSearchLoading(prev => ({
+  // Function to handle search query changes
+  const handleSearchQueryChange = (claimId, value) => {
+    setSearchQueries(prev => ({
       ...prev,
-      [claimId]: true
+      [claimId]: value
     }));
+  };
 
-    try {
-      // This is where you would call your Perplexity API
-      // For now, we'll simulate a delay and return a mock result
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Mock result - replace with actual API call
-      const result = `Based on a comprehensive search, this claim appears to be ${Math.random() > 0.5 ? 'supported' : 'contradicted'} by multiple sources. The search query "${searchQuery}" returned information from reliable sources that ${Math.random() > 0.5 ? 'confirms' : 'challenges'} the key assertions made in this claim.`;
-      
-      // Store the result
-      setDeepSearchResults(prev => ({
-        ...prev,
-        [claimId]: result
-      }));
-    } catch (error) {
-      // Handle error
-      setDeepSearchResults(prev => ({
-        ...prev,
-        [claimId]: `Error performing deep search: ${error.message}`
-      }));
-    } finally {
-      // Clear loading state
-      setDeepSearchLoading(prev => ({
-        ...prev,
-        [claimId]: false
-      }));
-    }
+  // Function to navigate to deep search page
+  const handleStartDeepSearch = (claimId) => {
+    const query = searchQueries[claimId];
+    const claim = analysisData.claims.find(c => c.id === claimId);
+    navigate('/deep-search', { 
+      state: { 
+        query, 
+        claimId, 
+        claimText: claim.claim,
+        isDarkMode 
+      } 
+    });
   };
 
   return (
@@ -80,94 +71,101 @@ const VideoAnalysis = ({ analysisData, isDarkMode }) => {
             
             <p className="claim-text">{claim.claim}</p>
             
-            <div className="claim-context">
-              <p><strong>Context:</strong> {claim.context}</p>
-              
-              <div className="claim-tabs">
-                <button 
-                  className={`tab-button ${activeTabs[claim.id] !== 'deepSearch' ? 'active' : ''}`}
-                  onClick={() => handleTabChange(claim.id, 'metrics')}
-                >
-                  Claim Metrics
-                </button>
-                <button 
-                  className={`tab-button ${activeTabs[claim.id] === 'deepSearch' ? 'active' : ''}`}
-                  onClick={() => handleTabChange(claim.id, 'deepSearch')}
-                >
-                  <FaSearch className="tab-icon" /> Deep Verification
-                </button>
+            <div className={`claim-context ${activeTabs[claim.id] === 'deepSearch' ? 'expanded' : ''}`}>
+              {/* Context is only visible when not in deep search mode */}
+              <div className="context-content">
+                <p><strong>Context:</strong> {claim.context}</p>
               </div>
               
-              <div className="tab-content">
-                {activeTabs[claim.id] !== 'deepSearch' ? (
-                  <div className="claim-details">
-                    <div className="score-container">
-                      <span className="score-label">
-                        <FaInfoCircle 
-                          className="info-icon" 
-                          title="How much this claim contradicts established consensus or presents information in a potentially misleading way"
-                        />                  
-                        Controversy Level:
-                      </span>
-                      <div className="score-bar">
-                        <div 
-                          className="score-fill" 
-                          style={{ width: `${(claim.controversy_score / 5) * 100}%` }}
-                        ></div>
+              <div className="claim-tabs-container">
+                <div className="claim-tabs">
+                  <button 
+                    className={`tab-button ${activeTabs[claim.id] !== 'deepSearch' ? 'active' : ''}`}
+                    onClick={() => handleTabChange(claim.id, 'metrics')}
+                  >
+                    Claim Metrics
+                  </button>
+                  <button 
+                    className={`tab-button ${activeTabs[claim.id] === 'deepSearch' ? 'active' : ''}`}
+                    onClick={() => handleTabChange(claim.id, 'deepSearch')}
+                  >
+                    <FaSearch className="tab-icon" /> Deep Verification
+                  </button>
+                </div>
+                
+                <div className="tab-content">
+                  {activeTabs[claim.id] !== 'deepSearch' ? (
+                    <div className="claim-details">
+                      <div className="score-container">
+                        <span className="score-label">
+                          <FaInfoCircle 
+                            className="info-icon" 
+                            title="How much this claim contradicts established consensus or presents information in a potentially misleading way"
+                          />                  
+                          Controversy Level:
+                        </span>
+                        <div className="score-bar">
+                          <div 
+                            className="score-fill" 
+                            style={{ width: `${(claim.controversy_score / 5) * 100}%` }}
+                          ></div>
+                        </div>
                       </div>
-                    </div>
-                    
-                    <div className="score-container">
-                      <span className="score-label">
-                        <FaInfoCircle 
-                          className="info-icon" 
-                          title="How important this claim is to the overall message and how much it might influence viewers' understanding of the topic"
-                        />                  
-                        Verification Priority:
-                      </span>
-                      <div className="score-bar">
-                        <div 
-                          className="score-fill" 
-                          style={{ width: `${(claim.verification_importance / 5) * 100}%` }}
-                        ></div>
+                      
+                      <div className="score-container">
+                        <span className="score-label">
+                          <FaInfoCircle 
+                            className="info-icon" 
+                            title="How important this claim is to the overall message and how much it might influence viewers' understanding of the topic"
+                          />                  
+                          Verification Priority:
+                        </span>
+                        <div className="score-bar">
+                          <div 
+                            className="score-fill" 
+                            style={{ width: `${(claim.verification_importance / 5) * 100}%` }}
+                          ></div>
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="score-container">
-                      <span className="score-label">
-                        <FaInfoCircle 
-                          className="info-icon" 
-                          title="How detailed and precisely verifiable the claim is, with higher scores indicating claims that can be clearly checked against evidence"
-                        />                    
-                        Claim Specificity:
-                      </span>
-                      <div className="score-bar">
-                        <div 
-                          className="score-fill" 
-                          style={{ width: `${(claim.factual_precision / 5) * 100}%` }}
-                        ></div>
+                      <div className="score-container">
+                        <span className="score-label">
+                          <FaInfoCircle 
+                            className="info-icon" 
+                            title="How detailed and precisely verifiable the claim is, with higher scores indicating claims that can be clearly checked against evidence"
+                          />                    
+                          Claim Specificity:
+                        </span>
+                        <div className="score-bar">
+                          <div 
+                            className="score-fill" 
+                            style={{ width: `${(claim.factual_precision / 5) * 100}%` }}
+                          ></div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ) : (
-                  <div className="deep-search-panel">
-                    {deepSearchLoading[claim.id] ? (
-                      <div className="deep-search-loading">
-                        <div className="deep-search-spinner"></div>
-                        <p>Performing deep verification...</p>
+                  ) : (
+                    <div className="deep-search-panel">
+                      <div className="search-query-container expanded">
+                        <label htmlFor={`search-query-${claim.id}`}>Search Query:</label>
+                        <textarea
+                          id={`search-query-${claim.id}`}
+                          className="search-query-input"
+                          value={searchQueries[claim.id] || ''}
+                          onChange={(e) => handleSearchQueryChange(claim.id, e.target.value)}
+                          rows={5}
+                          placeholder="Enter your search query..."
+                        />
+                        <button 
+                          className="start-search-button"
+                          onClick={() => handleStartDeepSearch(claim.id)}
+                        >
+                          Start Deep Search
+                        </button>
                       </div>
-                    ) : deepSearchResults[claim.id] ? (
-                      <div className="deep-search-result">
-                        <h4>Verification Results</h4>
-                        <p>{deepSearchResults[claim.id]}</p>
-                      </div>
-                    ) : (
-                      <div className="deep-search-placeholder">
-                        <p>Click the Deep Verification tab to verify this claim using Perplexity AI.</p>
-                      </div>
-                    )}
-                  </div>
-                )}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

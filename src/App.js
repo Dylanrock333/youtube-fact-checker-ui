@@ -6,6 +6,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
+import DeepSearchPage from './pages/DeepSearchPage';
 import './styles/App.css';
 
 function AppContent() {
@@ -19,6 +20,7 @@ function AppContent() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/deep-search" element={<DeepSearchPage />} />
           </Routes>
         </main>
         <Footer />
