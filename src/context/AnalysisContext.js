@@ -1,29 +1,44 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const AnalysisContext = createContext();
 
 export function AnalysisProvider({ children }) {
-  // Get initial state from localStorage if available
-  const [analysisData, setAnalysisData] = useState(() => {
-    const savedData = localStorage.getItem('analysisData');
-    return savedData ? JSON.parse(savedData) : null;
-  });
+  const [analysisData, setAnalysisData] = useState(null);
+  const [videoUrl, setVideoUrl] = useState('');
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
-  // Save to localStorage whenever analysisData changes
-  useEffect(() => {
+  // You could add persistence to localStorage here if you want a hybrid approach
+  // that survives page refreshes
+  React.useEffect(() => {
+    // Load from localStorage on initial mount
+    const savedData = localStorage.getItem('analysisData');
+    const savedUrl = localStorage.getItem('analyzedVideoUrl');
+    
+    if (savedData) setAnalysisData(JSON.parse(savedData));
+    if (savedUrl) setVideoUrl(savedUrl);
+  }, []);
+
+  // Save to localStorage when data changes
+  React.useEffect(() => {
     if (analysisData) {
       localStorage.setItem('analysisData', JSON.stringify(analysisData));
     }
-  }, [analysisData]);
-
-  // Function to clear analysis data
-  const clearAnalysisData = () => {
-    localStorage.removeItem('analysisData');
-    setAnalysisData(null);
-  };
+    if (videoUrl) {
+      localStorage.setItem('analyzedVideoUrl', videoUrl);
+    }
+  }, [analysisData, videoUrl]);
 
   return (
-    <AnalysisContext.Provider value={{ analysisData, setAnalysisData, clearAnalysisData }}>
+    <AnalysisContext.Provider 
+      value={{ 
+        analysisData, 
+        setAnalysisData, 
+        videoUrl, 
+        setVideoUrl,
+        isAnalyzing,
+        setIsAnalyzing
+      }}
+    >
       {children}
     </AnalysisContext.Provider>
   );
@@ -31,4 +46,4 @@ export function AnalysisProvider({ children }) {
 
 export function useAnalysis() {
   return useContext(AnalysisContext);
-} 
+}

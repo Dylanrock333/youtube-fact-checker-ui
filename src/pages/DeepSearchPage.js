@@ -4,12 +4,15 @@ import { FaArrowLeft, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import '../styles/DeepSearchPage.css';
 import { useTheme } from '../context/ThemeContext';
 import { performDeepSearch } from '../api/youtubeApi';
+import { useAnalysis } from '../context/AnalysisContext';
+import YouTubeVideo from '../components/items/YouTubeVideo';
 
 const DeepSearchPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { query, claimId, claimText, context } = location.state || {};
+    const { query, claimId, claimText, context, timestamp } = location.state || {};
     const { isDarkMode } = useTheme();
+    const { videoUrl } = useAnalysis();
     
     const [isLoading, setIsLoading] = useState(true);
     const [searchResult, setSearchResult] = useState(null);
@@ -87,45 +90,52 @@ const DeepSearchPage = () => {
             <h2>Deep Verification</h2>
             
             <div className="claim-box">
-            <h3>Claim:</h3>
-            <p>{claimText || 'No claim provided'}</p>
+                <div className="claim-header">
+                    {timestamp && <span className="timestamp">Timestamp: {timestamp}</span>}
+                </div>
+                <p>{claimText || 'No claim provided'}</p>
+                {videoUrl && (
+                    <div className="video-container">
+                        <YouTubeVideo url={videoUrl} />
+                    </div>
+                )}
             </div>
             
             <div className="info-row">
-            {context && (
-                <div className="context-box">
-                <h3>Context:</h3>
-                <p>{context}</p>
+                {context && (
+                    <div className="context-box">
+                        <h3>Context:</h3>
+                        <p>{context}</p>
+                    </div>
+                )}
+                
+                <div className="query-box">
+                    <h3>Search Query:</h3>
+                    <p>{query || 'No query provided'}</p>
                 </div>
-            )}
-            
-            <div className="query-box">
-                <h3>Search Query:</h3>
-                <p>{query || 'No query provided'}</p>
-            </div>
             </div>
             
             <div className="results-box">
-            <h3>Verification Results:</h3>
-            
-            {isLoading ? (
-                <div className="loading-container">
-                <div className="loading-spinner"></div>
-                <p>Performing deep verification...</p>
-                </div>
-            ) : error ? (
-                <div className="error-message">
-                {error}
-                </div>
-            ) : (
-                <div className="result-content">
-                    <div className="sonar-result">
-                        <div className="sonar-content">
-                            {searchResult.choices[0].message.content}
+                <h3>Verification Results:</h3>
+                
+                {isLoading ? (
+                    <div className="loading-container">
+                        <div className="loading-spinner"></div>
+                        <p>Performing deep verification...</p>
+                    </div>
+                ) : error ? (
+                    <div className="error-message">
+                        {error}
+                    </div>
+                ) : (
+                    <div className="result-content">
+                        <div className="sonar-result">
+                            <div className="sonar-content">
+                                {searchResult.choices[0].message.content}
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )}
             </div>
         </div>
     );

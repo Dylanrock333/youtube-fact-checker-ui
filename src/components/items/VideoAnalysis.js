@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './VideoAnalysis.css';
 import { FaInfoCircle, FaSearch } from 'react-icons/fa';
 import YouTubeVideo from './YouTubeVideo';
+import { useAnalysis } from '../../context/AnalysisContext';
 
-const VideoAnalysis = ({ analysisData, isDarkMode, videoUrl }) => {
-  const [persistentVideoUrl, setPersistentVideoUrl] = useState('');
+const VideoAnalysis = ({ analysisData, isDarkMode }) => {
+  const { videoUrl } = useAnalysis();
   const [activeTabs, setActiveTabs] = useState({});
   const [searchQueries, setSearchQueries] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
-  // Only update the video URL when we have complete analysis data
-  useEffect(() => {
-    if (videoUrl && analysisData && analysisData.claims) {
-      setPersistentVideoUrl(videoUrl);
-    }
-  }, [videoUrl, analysisData]);
 
   // Add more thorough checks for analysisData
   if (!analysisData || !analysisData.claims) {
@@ -27,7 +21,6 @@ const VideoAnalysis = ({ analysisData, isDarkMode, videoUrl }) => {
           {isLoading ? (
             <div className="loading-spinner">Loading...</div>
           ) : (
-            // Don't show video until we have analysis data
             <div className="placeholder-video">
               Waiting for analysis...
             </div>
@@ -73,6 +66,7 @@ const VideoAnalysis = ({ analysisData, isDarkMode, videoUrl }) => {
         claimId, 
         claimText: claim.claim,
         context: claim.context,
+        timestamp: claim.timestamp,
         isDarkMode 
       } 
     });
@@ -88,7 +82,7 @@ const VideoAnalysis = ({ analysisData, isDarkMode, videoUrl }) => {
         {isLoading ? (
           <div className="loading-spinner">Loading...</div>
         ) : (
-          <YouTubeVideo url={persistentVideoUrl} />
+          <YouTubeVideo url={videoUrl} />
         )}
       </div>
 
