@@ -96,7 +96,7 @@ const DeepSearchPage = () => {
                 <p>{claimText || 'No claim provided'}</p>
                 {videoUrl && (
                     <div className="video-container">
-                        <YouTubeVideo url={videoUrl} />
+                        <YouTubeVideo url={videoUrl} timestamp={timestamp} />
                     </div>
                 )}
             </div>
