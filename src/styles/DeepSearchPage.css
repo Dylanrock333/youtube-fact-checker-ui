@@ -410,31 +410,11 @@
   margin-bottom: 20px;
 }
 
-/* Consistent styling for both boxes */
+/* Updated styles to match other components */
 .context-box, .query-box {
   flex: 1;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   min-height: 100px;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-}
-
-/* Light mode styling - identical for both boxes */
-.deep-search-page.light .context-box,
-.deep-search-page.light .query-box {
-  background-color: #ffffff;
-  border: 1px solid #e9ecef;
-  color: #2d3748;
-}
-
-/* Dark mode styling - identical for both boxes */
-.deep-search-page.dark .context-box,
-.deep-search-page.dark .query-box {
-  background-color: #2d2d2d;
-  border: 1px solid #404040;
-  color: #e2e8f0;
+  /* The styling will come from the shared box styles defined earlier */
 }
 
 /* Handle empty context case */
