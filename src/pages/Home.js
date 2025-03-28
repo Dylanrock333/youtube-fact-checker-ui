@@ -7,10 +7,16 @@ import '../styles/Home.css';
 
 function Home() {
   const [inputText, setInputText] = useState('');
-  const { isDarkMode } = useTheme();
-  const { analysisData, setAnalysisData } = useAnalysis();
+  const { theme } = useTheme();
+  const { 
+    analysisData, 
+    setAnalysisData, 
+    videoUrl, 
+    setVideoUrl, 
+    isAnalyzing, 
+    setIsAnalyzing 
+  } = useAnalysis();
   const [apiStatus, setApiStatus] = useState({ loading: true, success: null });
-  const [analyzing, setAnalyzing] = useState(false);
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
@@ -19,15 +25,17 @@ function Home() {
   const handleAnalyzeClick = async () => {
     if (!inputText.trim()) return;
     
-    setAnalyzing(true);
+    setIsAnalyzing(true);
+    setVideoUrl(inputText);
+    
     try {
       const response = await analyzeVideo(inputText);
-      setAnalysisData(response); // This will also save to localStorage
+      setAnalysisData(response);
     } catch (error) {
       console.error('Error analyzing video:', error);
       setAnalysisData({ error: error.message });
     } finally {
-      setAnalyzing(false);
+      setIsAnalyzing(false);
     }
   };
 
@@ -42,19 +50,6 @@ function Home() {
     };
     
     checkHealth();
-  }, []);
-
-  // Add event listener for beforeunload to clear localStorage on page refresh
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      localStorage.removeItem('analysisData');
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
   }, []);
 
   return (
@@ -76,29 +71,37 @@ function Home() {
           value={inputText}
           onChange={handleInputChange}
           placeholder="Enter YouTube video URL here ..."
-          className={`main-input ${isDarkMode ? 'dark' : 'light'}`}
-          disabled={analyzing}
+          className={`main-input ${theme}`}
+          disabled={isAnalyzing}
         />
       </div>
       <div className="button-container">
         <button 
           onClick={handleAnalyzeClick}
-          className={`analyze-button ${isDarkMode ? 'dark' : 'light'}`}
-          disabled={analyzing || !apiStatus.success}
+          className={`analyze-button ${theme} ${isAnalyzing ? 'disabled' : ''}`}
+          disabled={isAnalyzing || !apiStatus.success}
         >
-          {analyzing ? (
-            <span className="loading-spinner"></span>
-          ) : (
-            'Analyze Video'
-          )}
+          Analyze Video
         </button>
       </div>
-      {analysisData && (
-        <div className={`result-container ${isDarkMode ? 'dark' : 'light'}`}>
-          {analysisData.error ? (
-            <div className="error-message">{analysisData.error}</div>
+      {(isAnalyzing || analysisData) && (
+        <div className={`result-container ${theme}`}>
+          {isAnalyzing ? (
+            <div className="analysis-loading">
+              <div className="loading-spinner-large"></div>
+              <p>Analyzing video...</p>
+            </div>
           ) : (
-            <VideoAnalysis analysisData={analysisData} isDarkMode={isDarkMode} />
+            analysisData && (
+              analysisData.error ? (
+                <div className="error-message">{analysisData.error}</div>
+              ) : (
+                <VideoAnalysis 
+                  analysisData={analysisData}
+                  videoUrl={videoUrl}
+                />
+              )
+            )
           )}
         </div>
       )}

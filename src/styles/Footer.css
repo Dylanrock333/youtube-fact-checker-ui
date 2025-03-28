@@ -5,10 +5,10 @@
 
 .light-mode .main-footer {
   background-color: #e0e0e0;
-  color: #333333;
+  color: var(--light-text-color);
 }
 
 .dark-mode .main-footer {
   background-color: #282c34;
-  color: #ffffff;
+  color: var(--text-color);
 } 

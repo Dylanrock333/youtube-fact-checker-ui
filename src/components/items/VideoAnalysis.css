@@ -5,18 +5,20 @@
   margin-bottom: 20px;
   transition: all 0.3s ease;
   overflow: hidden; /* Prevent overflow */
+  max-width: 1800px; 
+  width: 100%; 
 }
 
 .video-analysis.light {
-  background-color: #f8f9fa;
-  color: #333;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--light-main-bg);
+  color: var(--light-text-color);
+  box-shadow: 0 2px 10px var(--light-box-shadow);
 }
 
 .video-analysis.dark {
-  background-color: #2d3748;
-  color: #e2e8f0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  background-color: var(--main-bg);
+  color: var(--text-color);
+  box-shadow: 0 2px 10px var(--box-shadow);
 }
 
 /* Video info section */
@@ -27,11 +29,11 @@
 }
 
 .video-info.light {
-  border-color: #e2e8f0;
+  border-color: var(--light-border-color);
 }
 
 .video-info.dark {
-  border-color: #4a5568;
+  border-color: var(--border-color);
 }
 
 .video-info h2 {
@@ -48,23 +50,22 @@
 .claims-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  column-gap: 20px;
-  row-gap: 60px;
+  column-gap: 25px;
+  row-gap: 30px;
   width: 100%;
-  margin-bottom: 20px; /* Add bottom margin */
-  padding-bottom: 10px; /* Add bottom padding */
+  margin-bottom: 30px;
 }
 
 /* Claim card styles */
 .claim-card {
   border-radius: 8px;
-  padding: 16px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  height: 100%;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  max-width: 100%; /* Ensure cards don't exceed container width */
-  overflow: hidden; /* Prevent content overflow */
+  max-width: 100%;
+  overflow: hidden;
+  min-height: 400px;
+  transition: all 0.3s ease;
 }
 
 .claim-card:hover {
@@ -72,8 +73,8 @@
 }
 
 .claim-card.light {
-  background-color: white;
-  border: 1px solid #e2e8f0;
+  background-color: var(--light-component-bg);
+  border: 1px solid var(--light-border-color);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
@@ -82,8 +83,8 @@
 }
 
 .claim-card.dark {
-  background-color: #1a202c;
-  border: 1px solid #4a5568;
+  background-color: var(--component-bg);
+  border: 1px solid var(--border-color);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -91,17 +92,28 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+
 /* Claim header */
 .claim-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .timestamp {
-  font-size: 0.85rem;
-  opacity: 0.8;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background-color: rgba(66, 153, 225, 0.1);
+  color: var(--accent-color);
+  transition: all 0.2s ease;
+}
+
+.video-analysis.dark .timestamp {
+  background-color: rgba(66, 153, 225, 0.2);
+  color: var(--accent-color);
 }
 
 .category {
@@ -109,16 +121,16 @@
   font-weight: 600;
   padding: 4px 8px;
   border-radius: 12px;
-  background-color: #4299e1;
+  background-color: var(--accent-color);
   color: white;
 }
 
 /* Claim text */
 .claim-text {
   font-size: 1.1rem;
-  margin-bottom: 16px;
-  line-height: 1.5;
-  flex-grow: 1;
+  margin-bottom: 20px; /* Fixed margin */
+  line-height: 1.6;
+  flex-grow: 0;
   position: relative;
   font-style: italic;
   display: inline-block;
@@ -149,13 +161,13 @@
 }
 
 .score-container {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .score-label {
   display: block;
-  margin-bottom: 5px;
-  font-size: 0.9rem;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
   font-weight: 500;
 }
 
@@ -172,7 +184,7 @@
 
 .score-fill {
   height: 100%;
-  background-color: #4299e1;
+  background-color: var(--accent-color);
   border-radius: 4px;
   transition: width 0.5s ease;
 }
@@ -182,43 +194,369 @@
   font-size: 0.9rem;
   padding-top: 12px;
   border-top: 1px solid;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%; /* Ensure full height */
+  overflow: hidden;
 }
 
 .claim-context.light {
-  border-color: #e2e8f0;
+  border-color: var(--light-border-color);
 }
 
 .claim-context.dark {
-  border-color: #4a5568;
+  border-color: var(--border-color);
 }
 
 .claim-context p {
   margin: 8px 0;
 }
 
+/* Context content transition */
+.context-content {
+  max-height: none; /* Increase max height for context */
+  opacity: 1;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, margin 0.3s ease-in-out;
+  overflow: hidden;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.claim-context.expanded .context-content {
+  max-height: 0;
+  opacity: 0;
+  margin: 0;
+}
+
+/* Expanded search query container */
+.search-query-container.expanded {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.search-query-container.expanded .search-query-input {
+  flex-grow: 1;
+  min-height: 100px;
+  height: auto;
+  resize: none;
+  margin: 10px 0;
+}
+
+/* Tab content transition */
+.tab-content {
+  transition: all 0.3s ease-in-out;
+}
+
+.claim-context.expanded .tab-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+/* Ensure claim card height adjusts smoothly */
+.claim-card {
+  transition: height 0.3s ease-in-out, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .claims-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    row-gap: 30px; /* Slightly reduce row gap on smaller screens */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
   
-  .claim-card {
-    padding: 12px; /* Reduce padding on smaller screens */
+  .claim-card,
+  .video-analysis {
+    padding: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .claims-grid {
     grid-template-columns: 1fr;
-    row-gap: 25px; /* Further reduce row gap on mobile */
   }
   
   .video-info h2 {
     font-size: 1.5rem;
   }
   
-  .video-analysis {
-    padding: 15px; /* Reduce container padding on mobile */
+  .claim-card {
+    min-height: 300px;
   }
-} 
+}
+
+/* Tab styles */
+.claim-tabs {
+  margin-top: auto;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.video-analysis.dark .claim-tabs {
+  border-bottom-color: var(--border-color);
+}
+
+.tab-button {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-color);
+}
+
+.video-analysis.dark .tab-button {
+  color: var(--text-color);
+}
+
+.tab-button:hover {
+  background-color: rgba(66, 153, 225, 0.1);
+  color: var(--accent-color);
+}
+
+.video-analysis.dark .tab-button:hover {
+  background-color: rgba(66, 153, 225, 0.2);
+  color: var(--accent-color);
+}
+
+.tab-button.active {
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.video-analysis.dark .tab-button.active {
+  color: var(--accent-color);
+}
+
+.tab-icon {
+  font-size: 0.8rem;
+}
+
+/* Deep search panel styles */
+.deep-search-panel {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.deep-search-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.deep-search-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(66, 153, 225, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--accent-color);
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.deep-search-result {
+  background-color: rgba(66, 153, 225, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.deep-search-result h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #4299e1;
+}
+
+.deep-search-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.video-analysis.dark .deep-search-placeholder {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Search query input styles */
+.search-query-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px 0;
+  width: 100%;
+}
+
+.search-query-container label {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.search-query-input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  font-family: inherit;
+  font-size: 0.90rem;
+  resize: vertical;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 #f8fafc;
+  min-height: 120px; /* Set minimum height */
+  line-height: 1.5;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* Hover state for better UX */
+.search-query-input:hover {
+  border-color: #a0aec0;
+  cursor: text;
+}
+
+/* Focus state with more prominent highlight */
+.search-query-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
+}
+
+/* Custom scrollbar for webkit browsers */
+.search-query-input::-webkit-scrollbar {
+  width: 8px;
+}
+
+.search-query-input::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-radius: 6px;
+}
+
+.search-query-input::-webkit-scrollbar-thumb {
+  background-color: #cbd5e0;
+  border-radius: 6px;
+  border: 2px solid #f8fafc;
+}
+
+/* Dark mode styles for the textarea */
+.video-analysis.dark .search-query-input {
+  background-color: var(--light-text-color);
+  border-color: #4a5568;
+  color: #e2e8f0;
+  scrollbar-color: #4a5568 #1a202c;
+}
+
+.video-analysis.dark .search-query-input:hover {
+  border-color: #718096;
+}
+
+.video-analysis.dark .search-query-input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.3);
+}
+
+.start-search-button {
+  align-self: center; 
+  padding: 12px 20px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px; 
+  font-size: 0.95rem;
+}
+
+.start-search-button:hover {
+  background-color: var(--accent-color);
+}
+
+.video-analysis.dark .start-search-button {
+  background-color: var(--accent-color);
+  color: #1a1a1a;
+}
+
+.video-analysis.dark .start-search-button:hover {
+  background-color: #1b90a0;
+}
+
+/* Create a container for tabs and tab content at the bottom */
+.claim-tabs-container {
+  margin-top: auto; /* Push to bottom of claim-context */
+  transition: all 0.3s ease-in-out;
+}
+
+/* When deep verification is active */
+.claim-context.expanded .claim-tabs-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+/* Add this class to your VideoAnalysis.js component */
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.2em;
+  color: #666;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.placeholder-video {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--overlay-bg);
+  border-radius: 8px;
+  font-size: 1.1em;
+  color: var(--neutral-color);
+}
+
+.dark .placeholder-video {
+  background-color: var(--overlay-bg);
+  color: var(--neutral-color);
+}

@@ -4,7 +4,7 @@ import { useTheme } from '../../context/ThemeContext';
 import '../../styles/Header.css';
 
 function Header() {
-  const { isDarkMode, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="main-header">
@@ -15,7 +15,7 @@ function Header() {
         </ul>
       </nav>
       <button onClick={toggleTheme} className="theme-toggle">
-        {isDarkMode ? '☀️ Light' : '🌙 Dark'}
+        {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
       </button>
     </header>
   );

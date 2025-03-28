@@ -1,0 +1,27 @@
+.youtube-video-container {
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.youtube-video {
+  max-width: 100%;
+}
+
+.youtube-error {
+  color: red;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Make the video responsive */
+@media screen and (max-width: 640px) {
+  .youtube-video iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+} 

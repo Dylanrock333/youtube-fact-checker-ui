@@ -1,12 +1,12 @@
 /* Common Styles */
 .light-mode {
-  background-color: #ffffff;
-  color: #333333;
+  background-color: var(--light-main-bg);
+  color: var(--light-text-color);
 }
 
 .dark-mode {
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: var(--main-bg);
+  color: var(--text-color);
 }
 
 /* App.js Styles */
