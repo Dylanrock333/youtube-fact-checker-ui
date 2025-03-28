@@ -1,27 +1,27 @@
 :root {
   /* Dark theme (default) */
   
-  --main-bg: rgba(25,26,26,255);
-  --component-bg: rgba(32,34,34,255);
-  --text-color: rgba(210,210,208,255);
-  --accent-color: rgba(32,169,188,255);
-  --neutral-color: rgba(128,131,131,255);
-  --border-color: rgba(74, 85, 104, 0.6);
-  --box-shadow: rgba(0, 0, 0, 0.3);
-  --overlay-bg: rgba(255, 255, 255, 0.03);
+  --main-bg: #19191A;
+  --component-bg: #202222;
+  --text-color: #D2D2D0;
+  --accent-color: #20A9BC;
+  --neutral-color: #808383;
+  --border-color: #4A556899;
+  --box-shadow: #0000004D;
+  --overlay-bg: #FFFFFF08;
   --error-color: #fc8181;
-  --error-bg: rgba(252, 129, 129, 0.1);
+  --error-bg: #FC818119;
   --success-color: #68d391;
-  --success-bg: rgba(104, 211, 145, 0.1);
-  --hover-overlay: rgba(255, 255, 255, 0.1);
+  --success-bg: #68D39119;
+  --hover-overlay: #FFFFFF1A;
   
   /* Light theme variables */
   --light-main-bg: #f8f9fa;
   --light-component-bg: #ffffff;
   --light-text-color: #333333;
-  --light-border-color: rgba(226, 232, 240, 0.6);
-  --light-box-shadow: rgba(0, 0, 0, 0.1);
-  --light-overlay-bg: rgba(0, 0, 0, 0.03);
+  --light-border-color: #E2E8F099;
+  --light-box-shadow: #0000001A;
+  --light-overlay-bg: #00000008;
   
   /* Common variables */
   --theme-transition: all 0.3s ease;
