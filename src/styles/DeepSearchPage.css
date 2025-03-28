@@ -283,15 +283,15 @@
   
 /* Error message styling */
 .error-message {
-  color: #e53e3e;
+  color: var(--error-color);
   padding: 10px;
   border-radius: 6px;
-  background-color: rgba(229, 62, 62, 0.1);
+  background-color: var(--error-bg);
 }
 
 .deep-search-page.dark .error-message {
-  color: #fc8181;
-  background-color: rgba(252, 129, 129, 0.1);
+  color: var(--error-color);
+  background-color: var(--error-bg);
 }
 
 /* JSON/pre formatting */

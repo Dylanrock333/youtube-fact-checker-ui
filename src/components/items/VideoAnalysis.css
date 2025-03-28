@@ -73,8 +73,8 @@
 }
 
 .claim-card.light {
-  background-color: white;
-  border: 1px solid #e2e8f0;
+  background-color: var(--light-component-bg);
+  border: 1px solid var(--light-border-color);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
@@ -83,8 +83,8 @@
 }
 
 .claim-card.dark {
-  background-color: #bf5824;
-  border: 1px solid #d75412;
+  background-color: var(--component-bg);
+  border: 1px solid var(--border-color);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -107,13 +107,13 @@
   padding: 4px 8px;
   border-radius: 6px;
   background-color: rgba(66, 153, 225, 0.1);
-  color: #4299e1;
+  color: var(--accent-color);
   transition: all 0.2s ease;
 }
 
 .video-analysis.dark .timestamp {
   background-color: rgba(66, 153, 225, 0.2);
-  color: #63b3ed;
+  color: var(--accent-color);
 }
 
 .category {
@@ -121,7 +121,7 @@
   font-weight: 600;
   padding: 4px 8px;
   border-radius: 12px;
-  background-color: #4299e1;
+  background-color: var(--accent-color);
   color: white;
 }
 
@@ -184,7 +184,7 @@
 
 .score-fill {
   height: 100%;
-  background-color: #4299e1;
+  background-color: var(--accent-color);
   border-radius: 4px;
   transition: width 0.5s ease;
 }
@@ -326,23 +326,21 @@
 
 .tab-button:hover {
   background-color: rgba(66, 153, 225, 0.1);
-  color: #4299e1;
+  color: var(--accent-color);
 }
 
 .video-analysis.dark .tab-button:hover {
   background-color: rgba(66, 153, 225, 0.2);
-  color: #63b3ed;
+  color: var(--accent-color);
 }
 
 .tab-button.active {
-  border-bottom-color: #4299e1;
   font-weight: 600;
-  color: #4299e1;
+  color: var(--accent-color);
 }
 
 .video-analysis.dark .tab-button.active {
-  border-bottom-color: #63b3ed;
-  color: #63b3ed;
+  color: var(--accent-color);
 }
 
 .tab-icon {
@@ -370,7 +368,7 @@
   height: 30px;
   border: 3px solid rgba(66, 153, 225, 0.3);
   border-radius: 50%;
-  border-top-color: #4299e1;
+  border-top-color: var(--accent-color);
   animation: spin 1s ease-in-out infinite;
   margin-bottom: 15px;
 }
@@ -428,12 +426,27 @@
   font-family: inherit;
   font-size: 0.90rem;
   resize: vertical;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
   box-sizing: border-box;
   scrollbar-width: thin;
   scrollbar-color: #cbd5e0 #f8fafc;
   min-height: 120px; /* Set minimum height */
   line-height: 1.5;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* Hover state for better UX */
+.search-query-input:hover {
+  border-color: #a0aec0;
+  cursor: text;
+}
+
+/* Focus state with more prominent highlight */
+.search-query-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
 }
 
 /* Custom scrollbar for webkit browsers */
@@ -452,33 +465,27 @@
   border: 2px solid #f8fafc;
 }
 
-/* Dark mode scrollbar */
+/* Dark mode styles for the textarea */
 .video-analysis.dark .search-query-input {
-  background-color: var(--component-bg);
-  border-color: var(--border-color);
-  color: var(--text-color);
-  scrollbar-color: var(--border-color) var(--main-bg);
+  background-color: var(--light-text-color);
+  border-color: #4a5568;
+  color: #e2e8f0;
+  scrollbar-color: #4a5568 #1a202c;
 }
 
-.video-analysis.dark .search-query-input::-webkit-scrollbar-track {
-  background: #1a202c;
+.video-analysis.dark .search-query-input:hover {
+  border-color: #718096;
 }
 
-.video-analysis.dark .search-query-input::-webkit-scrollbar-thumb {
-  background-color: #4a5568;
-  border: 2px solid #1a202c;
-}
-
-.search-query-input:focus {
-  outline: none;
-  border-color: #4299e1;
-  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2);
+.video-analysis.dark .search-query-input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.3);
 }
 
 .start-search-button {
   align-self: center; 
   padding: 12px 20px;
-  background-color: #4299e1;
+  background-color: var(--accent-color);
   color: white;
   border: none;
   border-radius: 6px;
@@ -493,16 +500,16 @@
 }
 
 .start-search-button:hover {
-  background-color: #3182ce;
+  background-color: var(--accent-color);
 }
 
 .video-analysis.dark .start-search-button {
-  background-color: #4a9eff;
+  background-color: var(--accent-color);
   color: #1a1a1a;
 }
 
 .video-analysis.dark .start-search-button:hover {
-  background-color: #2684ff;
+  background-color: #1b90a0;
 }
 
 /* Create a container for tabs and tab content at the bottom */

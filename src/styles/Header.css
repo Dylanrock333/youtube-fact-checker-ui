@@ -23,20 +23,20 @@
 
 .light-mode .main-header {
   background-color: #e0e0e0;
-  color: #333333;
+  color: var(--light-text-color);
 }
 
 .light-mode .main-header nav a {
-  color: #333333;
+  color: var(--light-text-color);
 }
 
 .dark-mode .main-header {
   background-color: #282c34;
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .dark-mode .main-header nav a {
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .theme-toggle {
@@ -50,10 +50,10 @@
 
 .light-mode .theme-toggle {
   background-color: #e9ecef;
-  color: #333333;
+  color: var(--light-text-color);
 }
 
 .dark-mode .theme-toggle {
   background-color: #373737;
-  color: #ffffff;
+  color: var(--text-color);
 } 

@@ -37,8 +37,8 @@
 
 /* Theme-specific input styles */
 .main-input.light {
-  background-color: #ffffff;
-  color: #333333;
+  background-color: var(--light-component-bg);
+  color: var(--light-text-color);
   border-color: #cccccc;
 }
 
@@ -48,7 +48,7 @@
 
 .main-input.dark {
   background-color: #333333;
-  color: #ffffff;
+  color: var(--text-color);
   border-color: #666666;
 }
 
@@ -77,21 +77,21 @@
 }
 
 .analyze-button.light {
-  background-color: #007bff;
+  background-color: var(--accent-color);
   color: white;
 }
 
 .analyze-button.light:hover:not(.disabled) {
-  background-color: #0056b3;
+  background-color: #12616b;
 }
 
 .analyze-button.dark {
-  background-color: #4a9eff;
+  background-color: var(--accent-color);
   color: #1a1a1a;
 }
 
 .analyze-button.dark:hover:not(.disabled) {
-  background-color: #2684ff;
+  background-color: #12616b;
 }
 
 .analyze-button.disabled {
@@ -112,12 +112,12 @@
 }
 
 .result-container.light {
-  background-color: var(--light-main-bg);
+  background-color: var(--light-component-bg);
   border: 1px solid #dee2e6;
 }
 
 .result-container.dark {
-  background-color: #2d2d2d;
+  background-color: var(--component-bg);
   border: 1px solid #404040;
 }
 
@@ -139,18 +139,18 @@
 }
 
 .loading {
-  color: #888;
+  color: var(--neutral-color);
   margin-left: 8px;
 }
 
 .success {
-  color: green;
+  color: var(--success-color);
   font-weight: bold;
   margin-left: 8px;
 }
 
 .error {
-  color: red;
+  color: var(--error-color);
   font-weight: bold;
   margin-left: 8px;
 }
@@ -188,7 +188,7 @@
 }
 
 .error-message {
-  color: red;
+  color: var(--error-color);
   font-weight: bold;
 }
 
@@ -203,7 +203,7 @@
   text-align: center;
   margin-bottom: 2rem;
   font-size: 2.5rem;
-  color: #333;
+  color: var(--light-text-color);
   font-weight: 600;
   padding: 20px 0;
 } 
