@@ -4,18 +4,20 @@ import './VideoAnalysis.css';
 import { FaInfoCircle, FaSearch } from 'react-icons/fa';
 import YouTubeVideo from './YouTubeVideo';
 import { useAnalysis } from '../../context/AnalysisContext';
+import { useTheme } from '../../context/ThemeContext';
 
-const VideoAnalysis = ({ analysisData, isDarkMode }) => {
+const VideoAnalysis = ({ analysisData }) => {
   const { videoUrl } = useAnalysis();
   const [activeTabs, setActiveTabs] = useState({});
   const [searchQueries, setSearchQueries] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   // Add more thorough checks for analysisData
   if (!analysisData || !analysisData.claims) {
     return (
-      <div className={`video-analysis ${isDarkMode ? 'dark' : 'light'}`}>
+      <div className={`video-analysis ${theme}`}>
         <div className="video-info">
           <h2>Video Analysis Results</h2>
           {isLoading ? (
@@ -66,14 +68,13 @@ const VideoAnalysis = ({ analysisData, isDarkMode }) => {
         claimId, 
         claimText: claim.claim,
         context: claim.context,
-        timestamp: claim.timestamp,
-        isDarkMode 
+        timestamp: claim.timestamp
       } 
     });
   };
 
   return (
-    <div className={`video-analysis ${isDarkMode ? 'dark' : 'light'}`}>
+    <div className={`video-analysis ${theme}`}>
       {/* Video Information Section */}
       <div className="video-info">
         <h2>{analysisData.video_title || 'Video Analysis Results'}</h2>
@@ -92,7 +93,7 @@ const VideoAnalysis = ({ analysisData, isDarkMode }) => {
           <div className="loading-spinner">Loading...</div>
         ) : (
           analysisData.claims.map((claim) => (
-            <div key={claim.id} className={`claim-card ${isDarkMode ? 'dark' : 'light'}`}>
+            <div key={claim.id} className={`claim-card ${theme}`}>
               <div className="claim-header">
                 <span className="timestamp">Timestamp: {claim.timestamp}</span>
                 <span className="category">{claim.category}</span>

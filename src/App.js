@@ -10,11 +10,11 @@ import DeepSearchPage from './pages/DeepSearchPage';
 import './styles/App.css';
 
 function AppContent() {
-  const { isDarkMode } = useTheme();
+  const { theme } = useTheme();
   
   return (
     <Router>
-      <div className={`App ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+      <div className={`App ${theme}`}>
         <Header />
         <main className="main-content">
           <Routes>
