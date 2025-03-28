@@ -7,7 +7,7 @@ import '../styles/Home.css';
 
 function Home() {
   const [inputText, setInputText] = useState('');
-  const { isDarkMode } = useTheme();
+  const { theme } = useTheme();
   const { 
     analysisData, 
     setAnalysisData, 
@@ -71,21 +71,21 @@ function Home() {
           value={inputText}
           onChange={handleInputChange}
           placeholder="Enter YouTube video URL here ..."
-          className={`main-input ${isDarkMode ? 'dark' : 'light'}`}
+          className={`main-input ${theme}`}
           disabled={isAnalyzing}
         />
       </div>
       <div className="button-container">
         <button 
           onClick={handleAnalyzeClick}
-          className={`analyze-button ${isDarkMode ? 'dark' : 'light'} ${isAnalyzing ? 'disabled' : ''}`}
+          className={`analyze-button ${theme} ${isAnalyzing ? 'disabled' : ''}`}
           disabled={isAnalyzing || !apiStatus.success}
         >
           Analyze Video
         </button>
       </div>
       {(isAnalyzing || analysisData) && (
-        <div className={`result-container ${isDarkMode ? 'dark' : 'light'}`}>
+        <div className={`result-container ${theme}`}>
           {isAnalyzing ? (
             <div className="analysis-loading">
               <div className="loading-spinner-large"></div>

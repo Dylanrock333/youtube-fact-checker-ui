@@ -6,7 +6,7 @@
   transition: all 0.3s ease;
   overflow: hidden; /* Prevent overflow */
   max-width: 1800px; 
-  width: 98%; 
+  width: 100%; 
 }
 
 .video-analysis.light {

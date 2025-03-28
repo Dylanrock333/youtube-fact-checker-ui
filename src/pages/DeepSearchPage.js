@@ -11,7 +11,7 @@ const DeepSearchPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { query, claimId, claimText, context, timestamp } = location.state || {};
-    const { isDarkMode } = useTheme();
+    const { theme } = useTheme();
     const { videoUrl } = useAnalysis();
     
     const [isLoading, setIsLoading] = useState(true);
@@ -82,7 +82,7 @@ const DeepSearchPage = () => {
     };
 
     return (
-        <div className={`deep-search-page ${isDarkMode ? 'dark' : 'light'}`}>
+        <div className={`deep-search-page ${theme}`}>
             <button className="back-button" onClick={handleGoBack}>
             <FaArrowLeft /> Back to Analysis
             </button>
