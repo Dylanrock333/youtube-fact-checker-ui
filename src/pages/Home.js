@@ -83,7 +83,7 @@ function Home() {
         >
           Analyze Video
         </button>
-      </div>
+      </div>    
       {(isAnalyzing || analysisData) && (
         <div className={`result-container ${theme}`}>
           {isAnalyzing ? (
@@ -95,7 +95,7 @@ function Home() {
             analysisData && (
               analysisData.error ? (
                 <div className="error-message">{analysisData.error}</div>
-              ) : (
+              ) : (   
                 <VideoAnalysis 
                   analysisData={analysisData}
                   videoUrl={videoUrl}
