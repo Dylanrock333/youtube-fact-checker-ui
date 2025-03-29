@@ -218,34 +218,13 @@
   text-align: center;
 }
 
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  border-top-color: #4299e1;
-  animation: spin 1s ease-in-out infinite;
-  margin-bottom: 15px;
-  margin: 0 auto 20px;
+.loading-hexagon {
+  width: 100px;
+  height: 100px;
 }
 
-.deep-search-page.dark .loading-spinner {
-  border: 4px solid rgba(255, 255, 255, 0.1);
-  border-top-color: #63b3ed;
-}
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
 
-.loading-container p {
-  font-size: 1rem;
-  color: #4a5568;
-}
-
-.deep-search-page.dark .loading-container p {
-  color: #e2e8f0;
-}
 
 /* ===== ERROR MESSAGE ===== */
 .error-message {
