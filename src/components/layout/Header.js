@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
+import { ReactComponent as SunIcon } from '../../assets/sun-icon.svg';
+import { ReactComponent as MoonIcon } from '../../assets/moon-icon.svg';
 import '../../styles/Header.css';
 
 function Header() {
@@ -15,7 +17,17 @@ function Header() {
         </ul>
       </nav>
       <button onClick={toggleTheme} className="theme-toggle">
-        {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+        {theme === 'dark' ? (
+          <>
+            <SunIcon className="theme-icon" />
+            <span>Light</span>
+          </>
+        ) : (
+          <>
+            <MoonIcon className="theme-icon" />
+            <span>Dark</span>
+          </>
+        )}
       </button>
     </header>
   );

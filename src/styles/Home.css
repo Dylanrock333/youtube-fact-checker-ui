@@ -47,7 +47,7 @@
 }
 
 .main-input.dark {
-  background-color: #333333;
+  background-color: var(--component-bg);
   color: var(--text-color);
   border-color: #666666;
 }

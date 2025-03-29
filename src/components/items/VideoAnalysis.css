@@ -500,16 +500,12 @@
 }
 
 .start-search-button:hover {
-  background-color: var(--accent-color);
+  background-color: #12616b;
 }
 
 .video-analysis.dark .start-search-button {
   background-color: var(--accent-color);
   color: #1a1a1a;
-}
-
-.video-analysis.dark .start-search-button:hover {
-  background-color: #1b90a0;
 }
 
 /* Create a container for tabs and tab content at the bottom */
