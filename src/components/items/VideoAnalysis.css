@@ -508,6 +508,10 @@
   color: #1a1a1a;
 }
 
+.video-analysis.dark .start-search-button:hover {
+  background-color: #12616b;
+}
+
 /* Create a container for tabs and tab content at the bottom */
 .claim-tabs-container {
   margin-top: auto; /* Push to bottom of claim-context */
