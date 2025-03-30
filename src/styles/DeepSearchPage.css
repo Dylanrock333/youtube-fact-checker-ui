@@ -223,9 +223,6 @@
   height: 100px;
 }
 
-
-
-
 /* ===== ERROR MESSAGE ===== */
 .error-message {
   padding: 10px;
@@ -295,4 +292,81 @@
     font-size: 1.3rem;
     margin-bottom: 15px;
   }
+}
+
+/* ===== CITATIONS SECTION ===== */
+.citations-section {
+  margin-top: 20px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 15px;
+}
+
+.citations-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: var(--accent-color);
+  color: white;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+
+.deep-search-page.light .citations-toggle {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.deep-search-page.light .citations-toggle:hover {
+  background-color: #12616b;
+}
+
+.deep-search-page.dark .citations-toggle {
+  background-color: var(--accent-color);
+  color: #030303;
+}
+
+.deep-search-page.dark .citations-toggle:hover {
+  background-color: #12616b;
+}
+
+.citations-list {
+  background-color: var(--overlay-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px var(--box-shadow);
+}
+
+.citations-list h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.citations-list ol {
+  margin: 0;
+  padding-left: 25px;
+}
+
+.citations-list li {
+  margin-bottom: 8px;
+  word-break: break-all;
+}
+
+.citations-list a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.citations-list a:hover {
+  text-decoration: underline;
 } 

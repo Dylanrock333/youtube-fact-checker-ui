@@ -82,6 +82,10 @@ const DeepSearchPage = () => {
         navigate(-1);
     };
 
+    const toggleCitations = () => {
+        setShowCitations(!showCitations);
+    };
+
     return (
         <div className={`deep-search-page ${theme}`}>
             <button className="back-button" onClick={handleGoBack}>
@@ -136,6 +140,36 @@ const DeepSearchPage = () => {
                             <div className="sonar-content">
                                 {searchResult.choices[0].message.content}
                             </div>
+                            
+                            {searchResult.citations && searchResult.citations.length > 0 && (
+                                <div className="citations-section">
+                                    <button 
+                                        className="citations-toggle" 
+                                        onClick={toggleCitations}
+                                    >
+                                        {showCitations ? (
+                                            <>Hide Citations <FaChevronUp /></>
+                                        ) : (
+                                            <>Show Citations <FaChevronDown /></>
+                                        )}
+                                    </button>
+                                    
+                                    {showCitations && (
+                                        <div className="citations-list">
+                                            <h4>Citations</h4>
+                                            <ol>
+                                                {searchResult.citations.map((citation, index) => (
+                                                    <li key={index}>
+                                                        <a href={citation} target="_blank" rel="noopener noreferrer">
+                                                            {citation}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ol>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}
