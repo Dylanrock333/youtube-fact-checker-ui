@@ -77,16 +77,18 @@ const VideoAnalysis = ({ analysisData }) => {
     <div className={`video-analysis ${theme}`}>
       {/* Video Information Section */}
       <div className="video-info">
-        <h2>{analysisData.video_title || 'Video Analysis Results'}</h2>
+        <h2>{analysisData.video_data.title || 'Video Analysis Results'}</h2>
         <p className="claim-count">Total Claims Analyzed: {analysisData.claim_count}</p>
         <p className="video-id">Video ID: {analysisData.video_id}</p>
+        <p className='video-views'>Video Views: {analysisData.video_data.view_count}</p>
+        <p className='video-published'>Video Published: {analysisData.video_data.published_at}</p>
+        <p className='video-account'>Video Account: {analysisData.video_data.channel_title}</p>
         {isLoading ? (
           <div className="loading-spinner">Loading...</div>
         ) : (
           <YouTubeVideo url={videoUrl} />
         )}
       </div>
-
       {/* Claims Section */}
       <div className="claims-grid">
         {isLoading ? (
