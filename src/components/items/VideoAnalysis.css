@@ -1,4 +1,4 @@
-/* Main container styles */
+/* ===== GENERAL LAYOUT ===== */
 .video-analysis {
   padding: 20px;
   border-radius: 8px;
@@ -21,7 +21,7 @@
   box-shadow: 0 2px 10px var(--box-shadow);
 }
 
-/* Video info section */
+/* ===== VIDEO INFO SECTION ===== */
 .video-info {
   margin-bottom: 30px;
   padding-bottom: 20px;
@@ -138,7 +138,7 @@
   box-shadow: 0 0 10px rgba(32, 169, 188, 0.3);
 }
 
-/* Claims grid - responsive layout */
+/* ===== CLAIMS GRID ===== */
 .claims-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -148,7 +148,7 @@
   margin-bottom: 30px;
 }
 
-/* Claim card styles */
+/* ===== CLAIM CARD STYLES ===== */
 .claim-card {
   border-radius: 8px;
   padding: 20px;
@@ -183,7 +183,6 @@
 .claim-card.dark:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
-
 
 /* Claim header */
 .claim-header {
@@ -247,7 +246,7 @@
   display: inline;
 }
 
-/* Score bars */
+/* ===== SCORE BARS ===== */
 .claim-details {
   margin-bottom: 16px;
 }
@@ -281,7 +280,7 @@
   transition: width 0.5s ease;
 }
 
-/* Claim context */
+/* ===== CLAIM CONTEXT ===== */
 .claim-context {
   font-size: 0.9rem;
   padding-top: 12px;
@@ -322,66 +321,7 @@
   margin: 0;
 }
 
-/* Expanded search query container */
-.search-query-container.expanded {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  height: 100%;
-  flex-grow: 1;
-}
-
-.search-query-container.expanded .search-query-input {
-  flex-grow: 1;
-  min-height: 100px;
-  height: auto;
-  resize: none;
-  margin: 10px 0;
-}
-
-/* Tab content transition */
-.tab-content {
-  transition: all 0.3s ease-in-out;
-}
-
-.claim-context.expanded .tab-content {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  height: 100%;
-}
-
-/* Ensure claim card height adjusts smoothly */
-.claim-card {
-  transition: height 0.3s ease-in-out, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .claims-grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-  
-  .claim-card,
-  .video-analysis {
-    padding: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .claims-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .video-info h2 {
-    font-size: 1.5rem;
-  }
-  
-  .claim-card {
-    min-height: 300px;
-  }
-}
-
+/* ===== TABS AND SEARCH ===== */
 /* Tab styles */
 .claim-tabs {
   margin-top: auto;
@@ -437,6 +377,50 @@
 
 .tab-icon {
   font-size: 0.8rem;
+}
+
+/* Tab content transition */
+.tab-content {
+  transition: all 0.3s ease-in-out;
+}
+
+.claim-context.expanded .tab-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+/* Create a container for tabs and tab content at the bottom */
+.claim-tabs-container {
+  margin-top: auto; /* Push to bottom of claim-context */
+  transition: all 0.3s ease-in-out;
+}
+
+/* When deep verification is active */
+.claim-context.expanded .claim-tabs-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+/* ===== DEEP SEARCH STYLES ===== */
+/* Expanded search query container */
+.search-query-container.expanded {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.search-query-container.expanded .search-query-input {
+  flex-grow: 1;
+  min-height: 100px;
+  height: auto;
+  resize: none;
+  margin: 10px 0;
 }
 
 /* Deep search panel styles */
@@ -604,22 +588,7 @@
   background-color: #12616b;
 }
 
-/* Create a container for tabs and tab content at the bottom */
-.claim-tabs-container {
-  margin-top: auto; /* Push to bottom of claim-context */
-  transition: all 0.3s ease-in-out;
-}
-
-/* When deep verification is active */
-.claim-context.expanded .claim-tabs-container {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  height: 100%;
-}
-
-/* Add this class to your VideoAnalysis.js component */
-
+/* ===== LOADING STATES ===== */
 .loading-spinner {
   display: flex;
   justify-content: center;
@@ -651,4 +620,30 @@
 .dark .placeholder-video {
   background-color: var(--overlay-bg);
   color: var(--neutral-color);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+  .claims-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  
+  .claim-card,
+  .video-analysis {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .claims-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .video-info h2 {
+    font-size: 1.5rem;
+  }
+  
+  .claim-card {
+    min-height: 300px;
+  }
 }
