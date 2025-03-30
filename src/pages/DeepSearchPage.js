@@ -11,7 +11,7 @@ import hexagonLoading from '../assets/hexagon-loading.svg';
 const DeepSearchPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { query, claimId, claimText, context, timestamp } = location.state || {};
+    const { query, claimId, claimText, context, timestamp, videodata } = location.state || {};
     const { theme } = useTheme();
     const { videoUrl } = useAnalysis();
     
@@ -36,6 +36,13 @@ const DeepSearchPage = () => {
                 """
                 ${context}
                 """
+
+                VIDEO INFO:
+                """
+                Caption: ${videodata.title}
+                Published at: ${videodata.published_at}
+                Tags: ${videodata.tags}
+                """
                 
                 Please:
                 1. Analyze this claim objectively without political bias
@@ -46,8 +53,11 @@ const DeepSearchPage = () => {
                 6. Explain specifically what parts are accurate or inaccurate if the claim is partially true
                 7. Cite specific sources, studies, statistics or expert consensus that support your assessment
                 
-                Use this search query as a starting point: ${query}
+                Use this search query as a starting point: 
+                ${query}
                 `;
+
+                console.log(fullQuery);
 
                 const result = await performDeepSearch(fullQuery);
                 
@@ -91,7 +101,7 @@ const DeepSearchPage = () => {
             <button className="back-button" onClick={handleGoBack}>
             <FaArrowLeft /> Back to Analysis
             </button>
-            
+            {JSON.stringify(videodata)}
             <h2>Deep Search</h2>
             
             <div className="claim-box">

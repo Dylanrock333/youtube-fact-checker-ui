@@ -62,13 +62,15 @@ const VideoAnalysis = ({ analysisData }) => {
     setIsLoading(true);
     const query = searchQueries[claimId];
     const claim = analysisData.claims.find(c => c.id === claimId);
+    const videodata = analysisData.video_data;
     navigate('/deep-search', { 
       state: { 
         query, 
         claimId, 
         claimText: claim.claim,
         context: claim.context,
-        timestamp: claim.timestamp
+        timestamp: claim.timestamp,
+        videodata: videodata
       } 
     });
   };

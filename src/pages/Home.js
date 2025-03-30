@@ -99,6 +99,7 @@ function Home() {
                 <VideoAnalysis 
                   analysisData={analysisData}
                   videoUrl={videoUrl}
+                  
                 />
               )
             )
