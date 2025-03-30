@@ -89,11 +89,15 @@ const VideoAnalysis = ({ analysisData }) => {
         <div className="video-metadata">
           <div className="metadata-item">
             <span className="metadata-label">Views</span>
-            <span className="metadata-value">{analysisData.video_data.view_count.toLocaleString()}</span>
+            <span className="metadata-value">
+              {Number(analysisData.video_data.view_count).toLocaleString()}
+            </span>
           </div>
           <div className="metadata-item">
             <span className="metadata-label">Published</span>
-            <span className="metadata-value">{analysisData.video_data.published_at}</span>
+            <span className="metadata-value">
+              {analysisData.video_data.published_at.split('T')[0]}
+            </span>
           </div>
           <div className="metadata-item">
             <span className="metadata-label">Channel</span>
@@ -135,7 +139,7 @@ const VideoAnalysis = ({ analysisData }) => {
                       className={`tab-button ${activeTabs[claim.id] === 'deepSearch' ? 'active' : ''}`}
                       onClick={() => handleTabChange(claim.id, 'deepSearch')}
                     >
-                      <FaSearch className="tab-icon" /> Deep Verification
+                      <FaSearch className="tab-icon" /> Deep Search
                     </button>
                   </div>
                   
@@ -164,7 +168,7 @@ const VideoAnalysis = ({ analysisData }) => {
                               className="info-icon" 
                               title="How important this claim is to the overall message and how much it might influence viewers' understanding of the topic"
                             />                  
-                            Verification Priority:
+                            Search Priority:
                           </span>
                           <div className="score-bar">
                             <div 

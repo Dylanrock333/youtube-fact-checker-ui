@@ -88,7 +88,7 @@ const DeepSearchPage = () => {
             <FaArrowLeft /> Back to Analysis
             </button>
             
-            <h2>Deep Verification</h2>
+            <h2>Deep Search</h2>
             
             <div className="claim-box">
                 <div className="claim-header">
@@ -117,14 +117,14 @@ const DeepSearchPage = () => {
             </div>
             
             <div className="results-box">
-                <h3>Verification Results:</h3>
+                <h3>Search Results:</h3>
                 
                 {isLoading ? (
                     <div className="loading-container">
                         <object type="image/svg+xml" data={hexagonLoading} className="loading-hexagon">
                             Loading animation
                         </object>
-                        <p>Performing deep verification...</p>
+                        <p>Performing deep search...</p>
                     </div>
                 ) : error ? (
                     <div className="error-message">
