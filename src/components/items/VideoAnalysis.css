@@ -23,9 +23,13 @@
 
 /* Video info section */
 .video-info {
-  margin-bottom: 24px;
-  padding-bottom: 16px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
   border-bottom: 1px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .video-info.light {
@@ -36,14 +40,102 @@
   border-color: var(--border-color);
 }
 
+/* Title styling */
 .video-info h2 {
-  margin-bottom: 12px;
-  font-size: 1.8rem;
+  margin-bottom: 16px;
+  font-size: 2.2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+  max-width: 90%;
+  background: linear-gradient(90deg, var(--accent-color) 0%, #4299e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 8px;
 }
 
-.claim-count, .video-id {
-  margin: 8px 0;
-  font-size: 0.95rem;
+/* Video metadata container */
+.video-metadata {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: rgba(66, 153, 225, 0.05);
+}
+
+.video-analysis.dark .video-metadata {
+  background-color: rgba(66, 153, 225, 0.1);
+}
+
+/* Individual metadata item */
+.metadata-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.metadata-item:hover {
+  background-color: rgba(66, 153, 225, 0.1);
+}
+
+.video-analysis.dark .metadata-item:hover {
+  background-color: rgba(66, 153, 225, 0.15);
+}
+
+.metadata-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  color: var(--neutral-color);
+  font-weight: 600;
+}
+
+.metadata-value {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Video ID styling */
+.video-id {
+  margin: 15px 0 5px;
+  font-size: 0.85rem;
+  color: var(--neutral-color);
+  font-family: monospace;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 5px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.video-analysis.dark .video-id {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Claim count badge */
+.claim-count {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 10px 0;
+  display: inline-block;
+}
+
+.video-analysis.dark .claim-count {
+  box-shadow: 0 0 10px rgba(32, 169, 188, 0.3);
 }
 
 /* Claims grid - responsive layout */

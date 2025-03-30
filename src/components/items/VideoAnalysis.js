@@ -78,16 +78,30 @@ const VideoAnalysis = ({ analysisData }) => {
       {/* Video Information Section */}
       <div className="video-info">
         <h2>{analysisData.video_data.title || 'Video Analysis Results'}</h2>
-        <p className="claim-count">Total Claims Analyzed: {analysisData.claim_count}</p>
-        <p className="video-id">Video ID: {analysisData.video_id}</p>
-        <p className='video-views'>Video Views: {analysisData.video_data.view_count}</p>
-        <p className='video-published'>Video Published: {analysisData.video_data.published_at}</p>
-        <p className='video-account'>Video Account: {analysisData.video_data.channel_title}</p>
+        <div className="claim-count">Total Claims Analyzed: {analysisData.claim_count}</div>
+        
         {isLoading ? (
           <div className="loading-spinner">Loading...</div>
         ) : (
           <YouTubeVideo url={videoUrl} />
         )}
+        
+        <div className="video-metadata">
+          <div className="metadata-item">
+            <span className="metadata-label">Views</span>
+            <span className="metadata-value">{analysisData.video_data.view_count.toLocaleString()}</span>
+          </div>
+          <div className="metadata-item">
+            <span className="metadata-label">Published</span>
+            <span className="metadata-value">{analysisData.video_data.published_at}</span>
+          </div>
+          <div className="metadata-item">
+            <span className="metadata-label">Channel</span>
+            <span className="metadata-value">{analysisData.video_data.channel_title}</span>
+          </div>
+        </div>
+        
+        <div className="video-id">Video ID: {analysisData.video_id}</div>
       </div>
       {/* Claims Section */}
       <div className="claims-grid">
