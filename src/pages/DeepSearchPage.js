@@ -19,6 +19,7 @@ const DeepSearchPage = () => {
     const [searchResult, setSearchResult] = useState(null);
     const [error, setError] = useState(null);
     const [showCitations, setShowCitations] = useState(false);
+    const [queryText, setQueryText] = useState(query || '');
 
     useEffect(() => {
         const performSearch = async () => {
@@ -72,6 +73,10 @@ const DeepSearchPage = () => {
         setShowCitations(!showCitations);
     };
 
+    const handleQueryChange = (e) => {
+        setQueryText(e.target.value);
+    };
+
     const handlePerformSearch = async () => {
         try {
             setIsLoading(true);
@@ -79,7 +84,7 @@ const DeepSearchPage = () => {
             // Clear existing data for this claim from localStorage
             localStorage.removeItem(`search-${claimId}`);
 
-            const result = await performDeepSearch(query, videodata, context, claimText);
+            const result = await performDeepSearch(queryText, videodata, context, claimText);
             
             if (typeof result === 'string' && result.includes('Error')) {
                 setError(result);
@@ -128,7 +133,13 @@ const DeepSearchPage = () => {
                 
                 <div className="query-box">
                     <h3>Search Query:</h3>
-                    <p>{query || 'No query provided'}</p>
+                    <textarea
+                        className="search-query-input"
+                        value={queryText}
+                        onChange={handleQueryChange}
+                        rows={5}
+                        placeholder="Enter your search query..."
+                    />
                     <button onClick={handlePerformSearch} className="perform-search-button">
                         Perform Deep Search
                     </button>
