@@ -54,7 +54,7 @@ export const checkApiHealth = async () => {
 
 export const performDeepSearch = async (query, videodata, context, claimText) => {
   try {
-    console.log(query);
+    //console.log(query);
     const searchUrl = `${API_ENDPOINTS.LOCAL_URL}/deepsearch`;
 
     const requestBody = {

@@ -63,6 +63,11 @@ const VideoAnalysis = ({ analysisData }) => {
     const query = searchQueries[claimId];
     const claim = analysisData.claims.find(c => c.id === claimId);
     const videodata = analysisData.video_data;
+
+    // Clear existing data for this claim from localStorage
+    localStorage.removeItem(`search-${claimId}`);
+    console.log(`removed item id: search-${claimId}`);
+
     navigate('/deep-search', { 
       state: { 
         query, 

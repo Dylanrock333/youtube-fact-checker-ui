@@ -25,6 +25,16 @@ const DeepSearchPage = () => {
             try {
                 setIsLoading(true);
 
+                // Check if data is already in localStorage
+                const storedResult = localStorage.getItem(`search-${claimId}`);
+                console.log(`storedResult: search-${claimId}`);
+                if (storedResult) {
+                    setSearchResult(JSON.parse(storedResult));
+                    setError(null);
+                    setIsLoading(false);
+                    return;
+                }
+
                 const result = await performDeepSearch(query, videodata, context, claimText);
                 
                 if (typeof result === 'string' && result.includes('Error')) {
@@ -33,6 +43,8 @@ const DeepSearchPage = () => {
                 } else {
                     // Store the result in localStorage
                     localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
+
+                    console.log(`saved item id: search-${claimId}`);
                     
                     setSearchResult(result);
                     setError(null);
