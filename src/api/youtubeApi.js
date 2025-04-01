@@ -52,17 +52,26 @@ export const checkApiHealth = async () => {
 };
 
 
-export const performDeepSearch = async (query) => {
+export const performDeepSearch = async (query, videodata, context, claimText) => {
   try {
     console.log(query);
     const searchUrl = `${API_ENDPOINTS.LOCAL_URL}/deepsearch`;
+
+    const requestBody = {
+      query,
+      videoPublishedAt: videodata.published_at,
+      videoTags: videodata.tags,
+      videoTitle: videodata.title,
+      context,
+      claimText
+    };
 
     const response = await fetch(searchUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ search_prompt: query })
+      body: JSON.stringify(requestBody)
     });
 
     if (!response.ok) {

@@ -19,47 +19,13 @@ const DeepSearchPage = () => {
     const [searchResult, setSearchResult] = useState(null);
     const [error, setError] = useState(null);
     const [showCitations, setShowCitations] = useState(false);
-    const [parsedResult, setParsedResult] = useState(null);
 
     useEffect(() => {
         const performSearch = async () => {
             try {
                 setIsLoading(true);
-                
-                const fullQuery = `
-                CLAIM:
-                """
-                ${claimText}
-                """
-                
-                CONTEXT:
-                """
-                ${context}
-                """
 
-                VIDEO INFO:
-                """
-                Caption: ${videodata.title}
-                Published at: ${videodata.published_at}
-                Tags: ${videodata.tags}
-                """
-                
-                Please:
-                1. Analyze this claim objectively without political bias
-                2. Find reliable sources that confirm or contradict this claim
-                3. Present evidence from multiple perspectives when relevant
-                4. Note any important nuance, context, or qualifications missing from the original claim
-                5. Assess the overall accuracy on a scale from "Completely False" to "Completely True"
-                6. Explain specifically what parts are accurate or inaccurate if the claim is partially true
-                7. Cite specific sources, studies, statistics or expert consensus that support your assessment
-                
-                Use this search query as a starting point: 
-                ${query}
-                `;
-
-                console.log(fullQuery);
-
-                const result = await performDeepSearch(fullQuery);
+                const result = await performDeepSearch(query, videodata, context, claimText);
                 
                 if (typeof result === 'string' && result.includes('Error')) {
                     setError(result);
@@ -69,8 +35,6 @@ const DeepSearchPage = () => {
                     localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
                     
                     setSearchResult(result);
-                    const content = result.choices[0].message.content;
-                    setParsedResult(content);
                     setError(null);
                 }
             } catch (error) {
@@ -86,7 +50,7 @@ const DeepSearchPage = () => {
         } else {
             navigate('/');
         }
-    }, [query, context, navigate, claimText, claimId]);
+    }, [query, context, navigate, claimText, claimId, videodata]);
 
     const handleGoBack = () => {
         navigate(-1);
@@ -101,7 +65,6 @@ const DeepSearchPage = () => {
             <button className="back-button" onClick={handleGoBack}>
             <FaArrowLeft /> Back to Analysis
             </button>
-            {JSON.stringify(videodata)}
             <h2>Deep Search</h2>
             
             <div className="claim-box">
