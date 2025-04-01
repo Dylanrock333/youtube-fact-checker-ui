@@ -65,8 +65,8 @@ const VideoAnalysis = ({ analysisData }) => {
     const videodata = analysisData.video_data;
 
     // Clear existing data for this claim from localStorage
+    //TODO: if the claimId is the same as the one in localStorage, don't clear it
     localStorage.removeItem(`search-${claimId}`);
-    console.log(`removed item id: search-${claimId}`);
 
     navigate('/deep-search', { 
       state: { 
