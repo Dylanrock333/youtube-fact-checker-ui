@@ -28,6 +28,15 @@ export function AnalysisProvider({ children }) {
     }
   }, [analysisData, videoUrl]);
 
+  const saveSearchResult = (claimId, result) => {
+    localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
+  };
+
+  const getSearchResult = (claimId) => {
+    const storedResult = localStorage.getItem(`search-${claimId}`);
+    return storedResult ? JSON.parse(storedResult) : null;
+  };
+
   return (
     <AnalysisContext.Provider 
       value={{ 
@@ -36,7 +45,9 @@ export function AnalysisProvider({ children }) {
         videoUrl, 
         setVideoUrl,
         isAnalyzing,
-        setIsAnalyzing
+        setIsAnalyzing,
+        saveSearchResult,
+        getSearchResult
       }}
     >
       {children}

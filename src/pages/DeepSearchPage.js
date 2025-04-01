@@ -11,7 +11,7 @@ import hexagonLoading from '../assets/hexagon-loading.svg';
 const DeepSearchPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { query, claimId, claimText, context, timestamp } = location.state || {};
+    const { query, claimId, claimText, context, timestamp, videodata } = location.state || {};
     const { theme } = useTheme();
     const { videoUrl } = useAnalysis();
     
@@ -19,37 +19,23 @@ const DeepSearchPage = () => {
     const [searchResult, setSearchResult] = useState(null);
     const [error, setError] = useState(null);
     const [showCitations, setShowCitations] = useState(false);
-    const [parsedResult, setParsedResult] = useState(null);
 
     useEffect(() => {
         const performSearch = async () => {
             try {
                 setIsLoading(true);
-                
-                const fullQuery = `
-                CLAIM:
-                """
-                ${claimText}
-                """
-                
-                CONTEXT:
-                """
-                ${context}
-                """
-                
-                Please:
-                1. Analyze this claim objectively without political bias
-                2. Find reliable sources that confirm or contradict this claim
-                3. Present evidence from multiple perspectives when relevant
-                4. Note any important nuance, context, or qualifications missing from the original claim
-                5. Assess the overall accuracy on a scale from "Completely False" to "Completely True"
-                6. Explain specifically what parts are accurate or inaccurate if the claim is partially true
-                7. Cite specific sources, studies, statistics or expert consensus that support your assessment
-                
-                Use this search query as a starting point: ${query}
-                `;
 
-                const result = await performDeepSearch(fullQuery);
+                // Check if data is already in localStorage
+                const storedResult = localStorage.getItem(`search-${claimId}`);
+                console.log(`storedResult: search-${claimId}`);
+                if (storedResult) {
+                    setSearchResult(JSON.parse(storedResult));
+                    setError(null);
+                    setIsLoading(false);
+                    return;
+                }
+
+                const result = await performDeepSearch(query, videodata, context, claimText);
                 
                 if (typeof result === 'string' && result.includes('Error')) {
                     setError(result);
@@ -57,10 +43,10 @@ const DeepSearchPage = () => {
                 } else {
                     // Store the result in localStorage
                     localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
+
+                    console.log(`saved item id: search-${claimId}`);
                     
                     setSearchResult(result);
-                    const content = result.choices[0].message.content;
-                    setParsedResult(content);
                     setError(null);
                 }
             } catch (error) {
@@ -76,10 +62,41 @@ const DeepSearchPage = () => {
         } else {
             navigate('/');
         }
-    }, [query, context, navigate, claimText, claimId]);
+    }, [query, context, navigate, claimText, claimId, videodata]);
 
     const handleGoBack = () => {
         navigate(-1);
+    };
+
+    const toggleCitations = () => {
+        setShowCitations(!showCitations);
+    };
+
+    const handlePerformSearch = async () => {
+        try {
+            setIsLoading(true);
+
+            // Clear existing data for this claim from localStorage
+            localStorage.removeItem(`search-${claimId}`);
+
+            const result = await performDeepSearch(query, videodata, context, claimText);
+            
+            if (typeof result === 'string' && result.includes('Error')) {
+                setError(result);
+                setSearchResult(null);
+            } else {
+                // Store the result in localStorage
+                localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
+                
+                setSearchResult(result);
+                setError(null);
+            }
+        } catch (error) {
+            setError(`Error performing deep search: ${error.message}`);
+            setSearchResult(null);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -87,8 +104,7 @@ const DeepSearchPage = () => {
             <button className="back-button" onClick={handleGoBack}>
             <FaArrowLeft /> Back to Analysis
             </button>
-            
-            <h2>Deep Verification</h2>
+            <h2>Deep Search</h2>
             
             <div className="claim-box">
                 <div className="claim-header">
@@ -113,18 +129,21 @@ const DeepSearchPage = () => {
                 <div className="query-box">
                     <h3>Search Query:</h3>
                     <p>{query || 'No query provided'}</p>
+                    <button onClick={handlePerformSearch} className="perform-search-button">
+                        Perform Deep Search
+                    </button>
                 </div>
             </div>
             
             <div className="results-box">
-                <h3>Verification Results:</h3>
+                <h3>Search Results:</h3>
                 
                 {isLoading ? (
                     <div className="loading-container">
                         <object type="image/svg+xml" data={hexagonLoading} className="loading-hexagon">
                             Loading animation
                         </object>
-                        <p>Performing deep verification...</p>
+                        <p>Performing deep search...</p>
                     </div>
                 ) : error ? (
                     <div className="error-message">
@@ -136,6 +155,36 @@ const DeepSearchPage = () => {
                             <div className="sonar-content">
                                 {searchResult.choices[0].message.content}
                             </div>
+                            
+                            {searchResult.citations && searchResult.citations.length > 0 && (
+                                <div className="citations-section">
+                                    <button 
+                                        className="citations-toggle" 
+                                        onClick={toggleCitations}
+                                    >
+                                        {showCitations ? (
+                                            <>Hide Citations <FaChevronUp /></>
+                                        ) : (
+                                            <>Show Citations <FaChevronDown /></>
+                                        )}
+                                    </button>
+                                    
+                                    {showCitations && (
+                                        <div className="citations-list">
+                                            <h4>Citations</h4>
+                                            <ol>
+                                                {searchResult.citations.map((citation, index) => (
+                                                    <li key={index}>
+                                                        <a href={citation} target="_blank" rel="noopener noreferrer">
+                                                            {citation}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ol>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}

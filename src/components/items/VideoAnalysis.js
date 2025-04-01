@@ -62,13 +62,20 @@ const VideoAnalysis = ({ analysisData }) => {
     setIsLoading(true);
     const query = searchQueries[claimId];
     const claim = analysisData.claims.find(c => c.id === claimId);
+    const videodata = analysisData.video_data;
+
+    // Clear existing data for this claim from localStorage
+    //TODO: if the claimId is the same as the one in localStorage, don't clear it
+    localStorage.removeItem(`search-${claimId}`);
+
     navigate('/deep-search', { 
       state: { 
         query, 
         claimId, 
         claimText: claim.claim,
         context: claim.context,
-        timestamp: claim.timestamp
+        timestamp: claim.timestamp,
+        videodata: videodata
       } 
     });
   };
@@ -77,16 +84,36 @@ const VideoAnalysis = ({ analysisData }) => {
     <div className={`video-analysis ${theme}`}>
       {/* Video Information Section */}
       <div className="video-info">
-        <h2>{analysisData.video_title || 'Video Analysis Results'}</h2>
-        <p className="claim-count">Total Claims Analyzed: {analysisData.claim_count}</p>
-        <p className="video-id">Video ID: {analysisData.video_id}</p>
+        <h2>{analysisData.video_data.title || 'Video Analysis Results'}</h2>
+        <div className="claim-count">Total Claims Analyzed: {analysisData.claim_count}</div>
+        
         {isLoading ? (
           <div className="loading-spinner">Loading...</div>
         ) : (
           <YouTubeVideo url={videoUrl} />
         )}
+        
+        <div className="video-metadata">
+          <div className="metadata-item">
+            <span className="metadata-label">Views</span>
+            <span className="metadata-value">
+              {Number(analysisData.video_data.view_count).toLocaleString()}
+            </span>
+          </div>
+          <div className="metadata-item">
+            <span className="metadata-label">Published</span>
+            <span className="metadata-value">
+              {analysisData.video_data.published_at.split('T')[0]}
+            </span>
+          </div>
+          <div className="metadata-item">
+            <span className="metadata-label">Channel</span>
+            <span className="metadata-value">{analysisData.video_data.channel_title}</span>
+          </div>
+        </div>
+        
+        <div className="video-id">Video ID: {analysisData.video_id}</div>
       </div>
-
       {/* Claims Section */}
       <div className="claims-grid">
         {isLoading ? (
@@ -119,7 +146,7 @@ const VideoAnalysis = ({ analysisData }) => {
                       className={`tab-button ${activeTabs[claim.id] === 'deepSearch' ? 'active' : ''}`}
                       onClick={() => handleTabChange(claim.id, 'deepSearch')}
                     >
-                      <FaSearch className="tab-icon" /> Deep Verification
+                      <FaSearch className="tab-icon" /> Deep Search
                     </button>
                   </div>
                   
@@ -148,7 +175,7 @@ const VideoAnalysis = ({ analysisData }) => {
                               className="info-icon" 
                               title="How important this claim is to the overall message and how much it might influence viewers' understanding of the topic"
                             />                  
-                            Verification Priority:
+                            Search Priority:
                           </span>
                           <div className="score-bar">
                             <div 
