@@ -28,6 +28,8 @@ export function AnalysisProvider({ children }) {
     }
   }, [analysisData, videoUrl]);
 
+
+  //TODO: think of a cleaner way to save the search results maybe session storage?
   const saveSearchResult = (claimId, result) => {
     localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
   };
