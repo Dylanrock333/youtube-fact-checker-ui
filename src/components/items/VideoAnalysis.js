@@ -157,7 +157,7 @@ const VideoAnalysis = ({ analysisData }) => {
                           <span className="score-label">
                             <FaInfoCircle 
                               className="info-icon" 
-                              title="How much this claim contradicts established consensus or presents information in a potentially misleading way"
+                              title="How much this claim differs from widely accepted information"
                             />                  
                             Controversy Level:
                           </span>
@@ -173,9 +173,9 @@ const VideoAnalysis = ({ analysisData }) => {
                           <span className="score-label">
                             <FaInfoCircle 
                               className="info-icon" 
-                              title="How important this claim is to the overall message and how much it might influence viewers' understanding of the topic"
+                              title="How important this claim is to the video's main message"
                             />                  
-                            Search Priority:
+                            Video Relevance:
                           </span>
                           <div className="score-bar">
                             <div 
@@ -189,9 +189,9 @@ const VideoAnalysis = ({ analysisData }) => {
                           <span className="score-label">
                             <FaInfoCircle 
                               className="info-icon" 
-                              title="How detailed and precisely verifiable the claim is, with higher scores indicating claims that can be clearly checked against evidence"
+                              title="How easily this claim can be fact-checked with evidence"
                             />                    
-                            Claim Specificity:
+                            Checkability:
                           </span>
                           <div className="score-bar">
                             <div 
