@@ -160,6 +160,32 @@
   background-color: inherit !important;
 }
 
+.perform-search-button {
+  display: block;
+  padding: 15px 20px;
+  margin: 20px auto;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: var(--accent-color);
+  color: var(--button-text-color);
+  transition: background-color 0.2s ease;
+}
+
+.perform-search-button:hover {
+  background-color: #12616b;
+}
+
+.deep-search-page.light .perform-search-button {
+  color: white;
+}
+
+.deep-search-page.dark .perform-search-button {
+  color: black;
+}
+
 /* ===== RESULTS BOX ===== */
 .results-box {
   background: var(--background-secondary);
@@ -369,4 +395,4 @@
 
 .citations-list a:hover {
   text-decoration: underline;
-} 
+}
