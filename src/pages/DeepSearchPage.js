@@ -129,9 +129,6 @@ const DeepSearchPage = () => {
                 <div className="query-box">
                     <h3>Search Query:</h3>
                     <p>{query || 'No query provided'}</p>
-                    <button onClick={handlePerformSearch} className="perform-search-button">
-                        Perform Deep Search
-                    </button>
                 </div>
             </div>
             
