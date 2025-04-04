@@ -5,6 +5,8 @@ import { analyzeVideo, checkApiHealth } from '../api/youtubeApi';
 import VideoAnalysis from '../components/items/VideoAnalysis';
 import '../styles/Home.css';
 
+//TODO: remove or blend in some of the backgrounf componenets
+//TODO: add the video duration
 function Home() {
   const [inputText, setInputText] = useState('');
   const { theme } = useTheme();
