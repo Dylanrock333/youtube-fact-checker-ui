@@ -204,7 +204,7 @@ const VideoAnalysis = ({ analysisData }) => {
                     ) : (
                       <div className="deep-search-panel">
                         <div className="search-query-container expanded">
-                          <label htmlFor={`search-query-${claim.id}`}>Search Query:</label>
+                          <label htmlFor={`search-query-${claim.id}`}>Explore...</label>
                           <textarea
                             id={`search-query-${claim.id}`}
                             className="search-query-input"

@@ -127,7 +127,7 @@ const DeepSearchPage = () => {
                 )}
                 
                 <div className="query-box">
-                    <h3>Search Query:</h3>
+                    <h3>Searched for:</h3>
                     <p>{query || 'No query provided'}</p>
                 </div>
             </div>
