@@ -1,28 +1,24 @@
 import { API_ENDPOINTS } from '../config/constants';
 
-export const analyzeVideo = async (url) => {
-  try {
-    let request_url = `${API_ENDPOINTS.LOCAL_URL}/execute`
-    console.log('Calling API at:', request_url)
-    const response = await fetch(request_url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ url })
-    });
+export const analyzeVideo = async (url, origin, videoID) => {
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+  let request_url = `${API_ENDPOINTS.LOCAL_URL}/execute`
+  console.log('Calling API at:', request_url)
+  const response = await fetch(request_url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ url, origin, videoID })
+  });
 
-    const data = await response.json();
-    return data;
-    
-  } catch (error) {
-    console.error('Error analyzing video:', error);
-    return `Error analyzing video: ${error.message}`;
+  if (!response.ok) {
+    throw new Error('Error processing video');
   }
+
+  const data = await response.json();
+  return data;
+    
 }; 
 
 export const checkApiHealth = async () => {

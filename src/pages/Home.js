@@ -33,11 +33,12 @@ function Home() {
     
     try {
       const { origin, videoID } = validateUrl(inputUrl);
-      
+
       setVideoUrl(inputUrl); 
 
-      const response = await analyzeVideo(inputUrl);
-
+      const response = await analyzeVideo(inputUrl, origin, videoID);
+      console.log(response);
+      
       setAnalysisData(response);
     } catch (error) {
       console.error('Error analyzing video:', error);
