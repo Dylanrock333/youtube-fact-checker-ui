@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import '../styles/DeepSearchPage.css';
 import { useTheme } from '../context/ThemeContext';
-import { performDeepSearch } from '../api/youtubeApi';
+import { performDeepSearch } from '../api/api';
 import { useAnalysis } from '../context/AnalysisContext';
 import YouTubeVideo from '../components/items/YouTubeVideo';
 import hexagonLoading from '../assets/hexagon-loading.svg';

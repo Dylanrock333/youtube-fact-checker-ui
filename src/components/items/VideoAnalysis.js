@@ -6,7 +6,9 @@ import YouTubeVideo from './YouTubeVideo';
 import { useAnalysis } from '../../context/AnalysisContext';
 import { useTheme } from '../../context/ThemeContext';
 
-const VideoAnalysis = ({ analysisData }) => {
+//TODO: when the pai can handle more plarforms change how YouTubeVideo componenet is handled
+
+const VideoAnalysis = ({ analysisData}) => {
   const { videoUrl } = useAnalysis();
   const [activeTabs, setActiveTabs] = useState({});
   const [searchQueries, setSearchQueries] = useState({});

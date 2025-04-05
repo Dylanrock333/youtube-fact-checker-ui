@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useAnalysis } from '../context/AnalysisContext';
-import { analyzeVideo, checkApiHealth } from '../api/youtubeApi';
+import { analyzeVideo, checkApiHealth } from '../api/api';
 import VideoAnalysis from '../components/items/VideoAnalysis';
+import validateUrl from '../utils/urlDecoder';
 import '../styles/Home.css';
 
 //TODO: remove or blend in some of the backgrounf componenets
 //TODO: add the video duration
 function Home() {
-  const [inputText, setInputText] = useState('');
+  const [inputUrl, setInputUrl] = useState('');
   const { theme } = useTheme();
   const { 
     analysisData, 
@@ -21,17 +22,22 @@ function Home() {
   const [apiStatus, setApiStatus] = useState({ loading: true, success: null });
 
   const handleInputChange = (e) => {
-    setInputText(e.target.value);
+    setInputUrl(e.target.value);
   };
 
   const handleAnalyzeClick = async () => {
-    if (!inputText.trim()) return;
+    if (!inputUrl.trim()) return;
     
     setIsAnalyzing(true);
-    setVideoUrl(inputText);
+    
     
     try {
-      const response = await analyzeVideo(inputText);
+      const { origin, videoID } = validateUrl(inputUrl);
+      
+      setVideoUrl(inputUrl); 
+
+      const response = await analyzeVideo(inputUrl);
+
       setAnalysisData(response);
     } catch (error) {
       console.error('Error analyzing video:', error);
@@ -70,7 +76,7 @@ function Home() {
       <div className="input-container">
         <input
           type="text"
-          value={inputText}
+          value={inputUrl}
           onChange={handleInputChange}
           placeholder="Enter YouTube video URL here ..."
           className={`main-input ${theme}`}
