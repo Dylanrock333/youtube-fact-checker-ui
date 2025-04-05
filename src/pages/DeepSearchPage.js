@@ -21,6 +21,7 @@ const DeepSearchPage = () => {
     const [showCitations, setShowCitations] = useState(false);
 
     useEffect(() => {
+        console.log('useEffect triggered');
         const performSearch = async () => {
             try {
                 setIsLoading(true);
@@ -72,32 +73,32 @@ const DeepSearchPage = () => {
         setShowCitations(!showCitations);
     };
 
-    const handlePerformSearch = async () => {
-        try {
-            setIsLoading(true);
+    // const handlePerformSearch = async () => {
+    //     try {
+    //         setIsLoading(true);
 
-            // Clear existing data for this claim from localStorage
-            localStorage.removeItem(`search-${claimId}`);
+    //         // Clear existing data for this claim from localStorage
+    //         localStorage.removeItem(`search-${claimId}`);
 
-            const result = await performDeepSearch(query, videodata, context, claimText);
+    //         const result = await performDeepSearch(query, videodata, context, claimText);
             
-            if (typeof result === 'string' && result.includes('Error')) {
-                setError(result);
-                setSearchResult(null);
-            } else {
-                // Store the result in localStorage
-                localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
+    //         if (typeof result === 'string' && result.includes('Error')) {
+    //             setError(result);
+    //             setSearchResult(null);
+    //         } else {
+    //             // Store the result in localStorage
+    //             localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
                 
-                setSearchResult(result);
-                setError(null);
-            }
-        } catch (error) {
-            setError(`Error performing deep search: ${error.message}`);
-            setSearchResult(null);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    //             setSearchResult(result);
+    //             setError(null);
+    //         }
+    //     } catch (error) {
+    //         setError(`Error performing deep search: ${error.message}`);
+    //         setSearchResult(null);
+    //     } finally {
+    //         setIsLoading(false);
+    //     }
+    // };
 
     return (
         <div className={`deep-search-page ${theme}`}>
