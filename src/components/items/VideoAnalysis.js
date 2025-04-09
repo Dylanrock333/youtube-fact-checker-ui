@@ -114,7 +114,7 @@ const VideoAnalysis = ({ analysisData}) => {
           </div>
         </div>
         
-        <div className="video-id">Video ID: {analysisData.video_id}</div>
+        <div className="video-id">Video ID: {analysisData.videoID}</div>
       </div>
       {/* Claims Section */}
       <div className="claims-grid">

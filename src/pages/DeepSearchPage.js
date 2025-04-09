@@ -7,6 +7,7 @@ import { performDeepSearch } from '../api/api';
 import { useAnalysis } from '../context/AnalysisContext';
 import YouTubeVideo from '../components/items/YouTubeVideo';
 import hexagonLoading from '../assets/hexagon-loading.svg';
+import ReactMarkdown from 'react-markdown';
 
 const DeepSearchPage = () => {
     const location = useLocation();
@@ -151,7 +152,9 @@ const DeepSearchPage = () => {
                     <div className="result-content">
                         <div className="sonar-result">
                             <div className="sonar-content">
-                                {searchResult.choices[0].message.content}
+                                <ReactMarkdown>
+                                    {searchResult.choices[0].message.content}
+                                </ReactMarkdown>
                             </div>
                             
                             {searchResult.citations && searchResult.citations.length > 0 && (
