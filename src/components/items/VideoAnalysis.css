@@ -219,13 +219,16 @@
 /* Claim text */
 .claim-text {
   font-size: 1.1rem;
-  margin-bottom: 20px; /* Fixed margin */
+  margin-bottom: 20px;
   line-height: 1.6;
   flex-grow: 0;
   position: relative;
   font-style: italic;
   display: inline-block;
   width: 100%;
+  padding: 10px 15px;
+  background-color: rgba(66, 153, 225, 0.05);
+  border-radius: 0 4px 4px 0;
 }
 
 .claim-text::before {
@@ -235,6 +238,7 @@
   font-weight: bold;
   margin-right: 2px;
   display: inline;
+  color: var(--accent-color);
 }
 
 .claim-text::after {
@@ -244,6 +248,7 @@
   font-weight: bold;
   margin-left: 2px;
   display: inline;
+  color: var(--accent-color);
 }
 
 /* ===== SCORE BARS ===== */
@@ -307,12 +312,29 @@
 
 /* Context content transition */
 .context-content {
-  max-height: none; /* Increase max height for context */
+  max-height: none;
   opacity: 1;
+  font-size: 1rem;
   transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, margin 0.3s ease-in-out;
   overflow: hidden;
   margin-bottom: 15px;
   line-height: 1.5;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 6px;
+}
+
+.video-analysis.dark .context-content {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.context-content p {
+  margin: 0;
+}
+
+.context-content strong {
+  color: var(--accent-color);
+  font-weight: 600;
 }
 
 .claim-context.expanded .context-content {

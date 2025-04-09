@@ -107,32 +107,54 @@
 }
 
 /* ===== CLAIM BOX ===== */
-.claim-box p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-  line-height: 1.6;
-  position: relative;
-  font-style: italic;
-  display: inline-block;
+.claim-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.claim-box .claim-header {
+  align-self: flex-start;
   width: 100%;
 }
 
-.claim-box p::before {
+.claim-box .claim-text {
+  font-size: 1.2rem;
+  margin: 20px auto;
+  line-height: 1.6;
+  position: relative;
+  font-style: italic;
+  max-width: 90%;
+  text-align: center;
+  padding: 15px 25px;
+  background-color: rgba(66, 153, 225, 0.05);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.claim-box .video-container {
+  align-self: stretch;
+  width: 100%;
+}
+
+.claim-box .claim-text::before {
   content: '"';
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: bold;
   margin-right: 2px;
   display: inline;
+  color: var(--accent-color);
 }
 
-.claim-box p::after {
+.claim-box .claim-text::after {
   content: '"';
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: bold;
   margin-left: 2px;
   display: inline;
+  color: var(--accent-color);
 }
 
 /* ===== CONTEXT & QUERY BOXES (INFO ROW) ===== */
@@ -210,8 +232,8 @@
 }
 
 .sonar-content {
-  white-space: normal;
-  line-height: 1.5;
+  white-space: pre-wrap;
+  line-height: 1.6;
   font-size: 1rem;
   color: var(--text-color);
   padding: 15px;
@@ -220,19 +242,15 @@
   margin-bottom: 15px;
 }
 
-.sonar-content p {
-  margin: 8px 0;
-  text-align: justify;
-}
-
+/*   Improve list formatting in markdown content
 .sonar-content ol,
 .sonar-content ul {
   padding-left: 30px;
-  margin: 10px 0;
+  margin: 15px 0;
 }
 
 .sonar-content li {
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
 .sonar-content h1,
@@ -241,6 +259,10 @@
 .sonar-content h4 {
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+.sonar-content p {
+  margin: 12px 0;
 }
 
 /* JSON/pre formatting */

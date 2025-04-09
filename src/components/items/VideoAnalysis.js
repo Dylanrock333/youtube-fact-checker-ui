@@ -131,9 +131,9 @@ const VideoAnalysis = ({ analysisData}) => {
               <p className="claim-text">{claim.claim}</p>
               
               <div className={`claim-context ${activeTabs[claim.id] === 'deepSearch' ? 'expanded' : ''}`}>
-                {/* Context is only visible when not in deep search mode */}
                 <div className="context-content">
-                  <p><strong>Context:</strong> {claim.context}</p>
+                  <strong>Context</strong>
+                  <p> {claim.context}</p>
                 </div>
                 
                 <div className="claim-tabs-container">
