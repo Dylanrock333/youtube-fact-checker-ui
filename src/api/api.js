@@ -1,8 +1,11 @@
 import { API_ENDPOINTS } from '../config/constants';
 
+const isProduction = process.env.NODE_ENV === 'production';
+const BASE_URL = isProduction ? API_ENDPOINTS.PROD_BASE_URL : API_ENDPOINTS.DEV_LOCAL_URL;
+
 export const analyzeVideo = async (url, origin, videoID) => {
 
-  let request_url = `${API_ENDPOINTS.LOCAL_URL}/execute`
+  let request_url = `${BASE_URL}/execute`
   console.log('Calling API at:', request_url)
   const response = await fetch(request_url, {
     method: 'POST',
@@ -23,7 +26,9 @@ export const analyzeVideo = async (url, origin, videoID) => {
 
 export const checkApiHealth = async () => {
   try {
-    const healthUrl = `${API_ENDPOINTS.LOCAL_URL}/health`;
+    //TODO: Have a better way for production and development environment
+    const isDev = process.env.NODE_ENV === 'development';
+    const healthUrl = `${isDev ? API_ENDPOINTS.DEV_LOCAL_URL : API_ENDPOINTS.PROD_BASE_URL}${API_ENDPOINTS.HEALTH_CHECK}`;
     console.log('Checking API health at:', healthUrl);
     
     const response = await fetch(healthUrl, {
@@ -51,7 +56,7 @@ export const checkApiHealth = async () => {
 export const performDeepSearch = async (query, videodata, context, claimText) => {
   try {
     //console.log(query);
-    const searchUrl = `${API_ENDPOINTS.LOCAL_URL}/deepsearch`;
+    const searchUrl = `${BASE_URL}/deepsearch`;
 
     const requestBody = {
       query,
