@@ -7,7 +7,7 @@ import { performDeepSearch } from '../api/api';
 import { useAnalysis } from '../context/AnalysisContext';
 import YouTubeVideo from '../components/items/YouTubeVideo';
 import hexagonLoading from '../assets/hexagon-loading.svg';
-import ReactMarkdown from 'react-markdown';
+import { marked } from 'marked';
 
 const DeepSearchPage = () => {
     const location = useLocation();
@@ -74,7 +74,7 @@ const DeepSearchPage = () => {
         setShowCitations(!showCitations);
     };
 
-    // const handlePerformSearch = async () => {
+        // const handlePerformSearch = async () => {
     //     try {
     //         setIsLoading(true);
 
@@ -100,6 +100,11 @@ const DeepSearchPage = () => {
     //         setIsLoading(false);
     //     }
     // };
+    // Add this function to safely render markdown
+    
+    const renderMarkdown = (content) => {
+        return { __html: marked(content, { sanitize: true }) };
+    };
 
     return (
         <div className={`deep-search-page ${theme}`}>
@@ -137,7 +142,6 @@ const DeepSearchPage = () => {
             </div>
             
             <div className="results-box">
-                <h3>Search Results:</h3>
                 
                 {isLoading ? (
                     <div className="loading-container">
@@ -154,9 +158,7 @@ const DeepSearchPage = () => {
                     <div className="result-content">
                         <div className="sonar-result">
                             <div className="sonar-content">
-                                <ReactMarkdown>
-                                    {searchResult.choices[0].message.content}
-                                </ReactMarkdown>
+                                <div dangerouslySetInnerHTML={renderMarkdown(searchResult.choices[0].message.content)} />
                             </div>
                             
                             {searchResult.citations && searchResult.citations.length > 0 && (

@@ -233,36 +233,36 @@
 
 .sonar-content {
   white-space: pre-wrap;
-  line-height: 1.6;
-  font-size: 1rem;
+  line-height: 1.5;
+  font-size: 1.05rem;
   color: var(--text-color);
-  padding: 15px;
-  background-color: var(--overlay-bg);
+  padding: 20px;
   border-radius: 8px;
-  margin-bottom: 15px;
 }
 
-/*   Improve list formatting in markdown content
-.sonar-content ol,
-.sonar-content ul {
-  padding-left: 30px;
-  margin: 15px 0;
+.sonar-content h2 {
+  font-size: 1.5em;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
 }
 
-.sonar-content li {
-  margin-bottom: 10px;
+.sonar-content h3 {
+  font-size: 1.2em;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
 }
 
-.sonar-content h1,
-.sonar-content h2,
-.sonar-content h3,
-.sonar-content h4 {
-  margin-top: 20px;
-  margin-bottom: 10px;
+.sonar-content ul, .sonar-content ol {
+  padding-left: 2em;
+  margin: 0.1em 0;
 }
 
 .sonar-content p {
-  margin: 12px 0;
+  margin: 0.1em 0;
+}
+
+.sonar-content strong {
+  font-weight: 600;
 }
 
 /* JSON/pre formatting */
@@ -445,3 +445,4 @@
 .citations-list a:hover {
   text-decoration: underline;
 }
+
