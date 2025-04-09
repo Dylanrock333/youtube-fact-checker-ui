@@ -5,6 +5,7 @@ import { analyzeVideo, checkApiHealth } from '../api/api';
 import VideoAnalysis from '../components/items/VideoAnalysis';
 import validateUrl from '../utils/urlDecoder';
 import '../styles/Home.css';
+import hexagonLoading from '../assets/hexagon-loading.svg';
 
 //TODO: remove or blend in some of the backgrounf componenets
 //TODO: add the video duration
@@ -97,8 +98,13 @@ function Home() {
         <div className={`result-container ${theme}`}>
           {isAnalyzing ? (
             <div className="analysis-loading">
-              <div className="loading-spinner-large"></div>
-              <p>Analyzing video...</p>
+
+              <div className="loading-container">
+                  <object type="image/svg+xml" data={hexagonLoading} className="loading-hexagon">
+                      Loading animation
+                  </object>
+                  <p>Analyzing video...</p>
+              </div>
             </div>
           ) : (
             analysisData && (

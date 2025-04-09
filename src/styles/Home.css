@@ -155,15 +155,21 @@
   margin-left: 8px;
 }
 
-.loading-spinner-large {
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(66, 153, 225, 0.3);
-  border-radius: 50%;
-  border-top-color: #4299e1;
-  animation: spin 1s linear infinite;
-  margin: 0 auto;
+/* ===== LOADING SPINNER ===== */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
 }
+
+.loading-hexagon {
+  width: 100px;
+  height: 100px;
+}
+
 
 .analysis-loading {
   display: flex;
