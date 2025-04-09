@@ -405,6 +405,22 @@
   height: 100%;
 }
 
+/* ===== LOADING SPINNER ===== */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+}
+
+.loading-hexagon {
+  width: 100px;
+  height: 100px;
+}
+
+
 /* ===== DEEP SEARCH STYLES ===== */
 /* Expanded search query container */
 .search-query-container.expanded {
