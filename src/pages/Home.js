@@ -79,7 +79,6 @@ function Home() {
   return (
     <div className="home">
       <h1>YouTube Video Fact Checker</h1>
-      {apiStatusIndicator}
       {process.env.NODE_ENV}
       <div className="input-container">
         <input
@@ -104,7 +103,6 @@ function Home() {
         <div className={`result-container ${theme}`}>
           {isAnalyzing ? (
             <div className="analysis-loading">
-
               <div className="loading-container">
                   <object type="image/svg+xml" data={hexagonLoading} className="loading-hexagon">
                       Loading animation
