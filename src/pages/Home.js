@@ -79,7 +79,7 @@ function Home() {
   return (
     <div className="home">
       <h1>YouTube Video Fact Checker</h1>
-      {process.env.NODE_ENV}
+      {apiStatusIndicator}
       <div className="input-container">
         <input
           type="text"
