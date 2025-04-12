@@ -1,7 +1,13 @@
 import { API_ENDPOINTS } from '../config/constants';
 
-const isProduction = process.env.NODE_ENV === 'production';
-const BASE_URL = isProduction ? API_ENDPOINTS.PROD_BASE_URL : API_ENDPOINTS.DEV_LOCAL_URL;
+// Create a helper function to get the base URL
+const getBaseUrl = () => {
+  const isDev = process.env.NODE_ENV === 'development';
+  return isDev ? API_ENDPOINTS.DEV_LOCAL_URL : API_ENDPOINTS.PROD_BASE_URL;
+};
+
+// Replace the existing BASE_URL constant
+const BASE_URL = getBaseUrl();
 
 export const analyzeVideo = async (url, origin, videoID) => {
 
@@ -26,9 +32,7 @@ export const analyzeVideo = async (url, origin, videoID) => {
 
 export const checkApiHealth = async () => {
   try {
-    //TODO: Have a better way for production and development environment
-    const isDev = process.env.NODE_ENV === 'development';
-    const healthUrl = `${isDev ? API_ENDPOINTS.DEV_LOCAL_URL : API_ENDPOINTS.PROD_BASE_URL}${API_ENDPOINTS.HEALTH_CHECK}`;
+    const healthUrl = `${BASE_URL}${API_ENDPOINTS.HEALTH_CHECK}`;
     console.log('Checking API health at:', healthUrl);
     
     const response = await fetch(healthUrl, {

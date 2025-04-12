@@ -62,19 +62,24 @@ function Home() {
     checkHealth();
   }, []);
 
+  const isDev = process.env.NODE_ENV === 'development';
+  const apiStatusIndicator = isDev ? (
+    <div className="api-status-indicator">
+      API Status: 
+      {apiStatus.loading ? (
+        <span className="loading">Loading...</span>
+      ) : apiStatus.success ? (
+        <span className="success">✓</span>
+      ) : (
+        <span className="error">✗</span>
+      )}
+    </div>
+  ) : null;
+
   return (
     <div className="home">
       <h1>YouTube Video Fact Checker</h1>
-      <div className="api-status-indicator">
-        API Status: 
-        {apiStatus.loading ? (
-          <span className="loading">Loading...</span>
-        ) : apiStatus.success ? (
-          <span className="success">✓</span>
-        ) : (
-          <span className="error">✗</span>
-        )}
-      </div>
+      {apiStatusIndicator}
       <div className="input-container">
         <input
           type="text"
