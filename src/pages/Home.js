@@ -74,12 +74,13 @@ function Home() {
         <span className="error">✗</span>
       )}
     </div>
-  ) : null;
+  ) : null; 
 
   return (
     <div className="home">
       <h1>YouTube Video Fact Checker</h1>
       {apiStatusIndicator}
+      {process.env.NODE_ENV}
       <div className="input-container">
         <input
           type="text"
