@@ -82,6 +82,11 @@ const VideoAnalysis = ({ analysisData}) => {
     });
   };
 
+  const isDev = process.env.NODE_ENV === 'development';
+  const videoIdDisplay = isDev ? (
+    <div className="video-id">Video ID: {analysisData.videoID}</div>
+  ) : null; 
+
   return (
     <div className={`video-analysis ${theme}`}>
       {/* Video Information Section */}
@@ -113,8 +118,7 @@ const VideoAnalysis = ({ analysisData}) => {
             <span className="metadata-value">{analysisData.video_data.channel_title}</span>
           </div>
         </div>
-        
-        <div className="video-id">Video ID: {analysisData.videoID}</div>
+        {videoIdDisplay}
       </div>
       {/* Claims Section */}
       <div className="claims-grid">
