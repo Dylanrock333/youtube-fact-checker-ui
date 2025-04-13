@@ -1,15 +1,13 @@
 /* ===== GENERAL LAYOUT ===== */
 .video-analysis {
   padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   transition: all 0.3s ease;
-  overflow: hidden; /* Prevent overflow */
-  max-width: 1800px; 
+  overflow: hidden; 
   width: 100%; 
 }
 
-.video-analysis.light {
+/* .video-analysis.light {
   background-color: var(--light-main-bg);
   color: var(--light-text-color);
   box-shadow: 0 2px 10px var(--light-box-shadow);
@@ -19,7 +17,7 @@
   background-color: var(--main-bg);
   color: var(--text-color);
   box-shadow: 0 2px 10px var(--box-shadow);
-}
+} */
 
 /* ===== VIDEO INFO SECTION ===== */
 .video-info {
@@ -130,8 +128,9 @@
   border-radius: 20px;
   font-weight: 600;
   font-size: 0.9rem;
-  margin: 10px 0;
-  display: inline-block;
+  margin: 10px 10px 30px 10px;
+  float: left;
+  clear: both;
 }
 
 .video-analysis.dark .claim-count {
@@ -141,8 +140,8 @@
 /* ===== CLAIMS GRID ===== */
 .claims-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  column-gap: 25px;
+  grid-template-columns: repeat(3, minmax(300px, 450px));
+  column-gap: 35px;
   row-gap: 30px;
   width: 100%;
   margin-bottom: 30px;
