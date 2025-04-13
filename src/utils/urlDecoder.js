@@ -45,8 +45,14 @@ const findVideoID = (url, origin) => {
     //TODO: add paresing for other platforms when the api is ready
     if (origin === 'youtube') {
         const parsedUrl = new URL(url);
-        const videoID = parsedUrl.searchParams.get('v');
-        return videoID;
+        if (parsedUrl.hostname.includes('youtu.be')) {
+            return parsedUrl.pathname.substring(1);
+        } 
+        else if (parsedUrl.hostname.includes('youtube.com')) {
+            const videoID = parsedUrl.searchParams.get('v');
+            return videoID;
+        }
+        return null; 
     }
     else {
         return null;
@@ -57,6 +63,7 @@ export default validateUrl;
 
 //Example URL: 
 // Youtube https://www.youtube.com/watch?v=K-ri2NajcXA&t=2979s
+// Youtube app URL https://youtu.be/K-ri2NajcXA
 // X https://x.com/Acyn/status/1908299449505575105
 //Instgram reel https://www.instagram.com/reel/DICScdLxHUC/?utm_source=ig_web_copy_link
 //Instgram post video https://www.instagram.com/p/DH3TmyFy5ET/?utm_source=ig_web_copy_link
