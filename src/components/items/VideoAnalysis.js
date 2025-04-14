@@ -4,7 +4,7 @@ import './VideoAnalysis.css';
 import { FaInfoCircle, FaSearch } from 'react-icons/fa';
 import YouTubeVideo from './YouTubeVideo';
 import { useAnalysis } from '../../context/AnalysisContext';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext'; 
 
 //TODO: when the pai can handle more plarforms change how YouTubeVideo componenet is handled
 

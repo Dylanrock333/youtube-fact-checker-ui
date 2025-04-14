@@ -7,6 +7,7 @@ import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import DeepSearchPage from './pages/DeepSearchPage';
+import AnalysisPage from './pages/AnalysisPage';
 import './styles/App.css';
 
 function AppContent() {
@@ -21,6 +22,7 @@ function AppContent() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/deep-search" element={<DeepSearchPage />} />
+            <Route path="/analysis-page" element={<AnalysisPage />} />
           </Routes>
         </main>
         <Footer />

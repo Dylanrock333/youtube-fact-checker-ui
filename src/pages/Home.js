@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useAnalysis } from '../context/AnalysisContext';
 import { analyzeVideo, checkApiHealth } from '../api/api';
-import VideoAnalysis from '../components/items/VideoAnalysis';
+// import VideoAnalysis from '../components/items/VideoAnalysis';
+import AnalysisPage from './AnalysisPage'
 import validateUrl from '../utils/urlDecoder';
 import '../styles/Home.css';
 import hexagonLoading from '../assets/hexagon-loading.svg';
+import { useNavigate } from 'react-router-dom';
 
-//TODO: remove or blend in some of the backgrounf componenets
 //TODO: add the video duration
 function Home() {
   const [inputUrl, setInputUrl] = useState('');
+  const navigate = useNavigate();
   const { theme } = useTheme();
   const { 
     analysisData, 
@@ -28,25 +30,27 @@ function Home() {
 
   const handleAnalyzeClick = async () => {
     if (!inputUrl.trim()) return;
-    
-    setIsAnalyzing(true);
-    
-    
-    try {
-      const { origin, videoID } = validateUrl(inputUrl);
 
-      setVideoUrl(inputUrl); 
+    navigate("/analysis-page", { state: { inputUrl } });
+    
+    // setIsAnalyzing(true);
+    
+    
+    // try {
+    //   const { origin, videoID } = validateUrl(inputUrl);
 
-      const response = await analyzeVideo(inputUrl, origin, videoID);
-      console.log(response);
+    //   setVideoUrl(inputUrl); 
+
+    //   const response = await analyzeVideo(inputUrl, origin, videoID);
+    //   console.log(response);
       
-      setAnalysisData(response);
-    } catch (error) {
-      console.error('Error analyzing video:', error);
-      setAnalysisData({ error: error.message });
-    } finally {
-      setIsAnalyzing(false);
-    }
+    //   setAnalysisData(response);
+    // } catch (error) {
+    //   console.error('Error analyzing video:', error);
+    //   setAnalysisData({ error: error.message });
+    // } finally {
+    //   setIsAnalyzing(false);
+    // }
   };
 
   useEffect(() => {
@@ -98,8 +102,10 @@ function Home() {
         >
           Analyze Video
         </button>
-      </div>    
-      {(isAnalyzing || analysisData) && (
+      </div>  
+
+      
+      {/* {(isAnalyzing || analysisData) && (
         <div className={`result-container ${theme}`}>
           {isAnalyzing ? (
             <div className="analysis-loading">
@@ -124,7 +130,7 @@ function Home() {
             )
           )}
         </div>
-      )}
+      )} */}
     </div>
   );
 }
