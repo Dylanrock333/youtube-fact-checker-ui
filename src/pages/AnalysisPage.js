@@ -17,14 +17,13 @@ function AnalysisPage() {
       isAnalyzing, 
       setIsAnalyzing 
     } = useAnalysis();
+
     const location = useLocation();
     const inputUrl = location.state?.inputUrl;
-
 
     useEffect(() => {
         const performAnalysis = async () => {
             setIsAnalyzing(true);
-
 
             try {
                 const { origin, videoID } = validateUrl(inputUrl);
@@ -48,8 +47,6 @@ function AnalysisPage() {
 
     return (
         <div>
-            <h1>Analysis Page</h1>
-
             {(isAnalyzing || analysisData) && (
                 <div className={`result-container ${theme}`}>
                     {isAnalyzing ? (

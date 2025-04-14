@@ -1,27 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useAnalysis } from '../context/AnalysisContext';
-import { analyzeVideo, checkApiHealth } from '../api/api';
-// import VideoAnalysis from '../components/items/VideoAnalysis';
-import AnalysisPage from './AnalysisPage'
-import validateUrl from '../utils/urlDecoder';
-import '../styles/Home.css';
-import hexagonLoading from '../assets/hexagon-loading.svg';
+import { checkApiHealth } from '../api/api';
 import { useNavigate } from 'react-router-dom';
+
+import '../styles/Home.css';
 
 //TODO: add the video duration
 function Home() {
   const [inputUrl, setInputUrl] = useState('');
   const navigate = useNavigate();
   const { theme } = useTheme();
-  const { 
-    analysisData, 
-    setAnalysisData, 
-    videoUrl, 
-    setVideoUrl, 
-    isAnalyzing, 
-    setIsAnalyzing 
-  } = useAnalysis();
+  const {isAnalyzing} = useAnalysis();
   const [apiStatus, setApiStatus] = useState({ loading: true, success: null });
 
   const handleInputChange = (e) => {
@@ -33,24 +23,6 @@ function Home() {
 
     navigate("/analysis-page", { state: { inputUrl } });
     
-    // setIsAnalyzing(true);
-    
-    
-    // try {
-    //   const { origin, videoID } = validateUrl(inputUrl);
-
-    //   setVideoUrl(inputUrl); 
-
-    //   const response = await analyzeVideo(inputUrl, origin, videoID);
-    //   console.log(response);
-      
-    //   setAnalysisData(response);
-    // } catch (error) {
-    //   console.error('Error analyzing video:', error);
-    //   setAnalysisData({ error: error.message });
-    // } finally {
-    //   setIsAnalyzing(false);
-    // }
   };
 
   useEffect(() => {
@@ -103,34 +75,6 @@ function Home() {
           Analyze Video
         </button>
       </div>  
-
-      
-      {/* {(isAnalyzing || analysisData) && (
-        <div className={`result-container ${theme}`}>
-          {isAnalyzing ? (
-            <div className="analysis-loading">
-              <div className="loading-container">
-                  <object type="image/svg+xml" data={hexagonLoading} className="loading-hexagon">
-                      Loading animation
-                  </object>
-                  <p>Analyzing video...</p>
-              </div>
-            </div>
-          ) : (
-            analysisData && (
-              analysisData.error ? (
-                <div className="error-message">{analysisData.error}</div>
-              ) : (   
-                <VideoAnalysis 
-                  analysisData={analysisData}
-                  videoUrl={videoUrl}
-                  
-                />
-              )
-            )
-          )}
-        </div>
-      )} */}
     </div>
   );
 }
