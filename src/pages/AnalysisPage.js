@@ -22,28 +22,59 @@ function AnalysisPage() {
     const inputUrl = location.state?.inputUrl;
 
     useEffect(() => {
+        // Define the analysis function
+        setIsAnalyzing(true);
+        
         const performAnalysis = async () => {
-            setIsAnalyzing(true);
+            // Guard against running without a URL - safety check
+            if (!inputUrl) {
+                console.error("performAnalysis called without inputUrl.");
+                setAnalysisData({ error: "No video URL provided." });
+                setIsAnalyzing(false);
+                return;
+            }
 
             try {
                 const { origin, videoID } = validateUrl(inputUrl);
-
-                setVideoUrl(inputUrl); 
-                console.log(inputUrl, origin, videoID);
+                // Set the videoUrl in context *before* the async call starts
+                // This indicates which URL we are currently processing
+                setVideoUrl(inputUrl);
+                console.log("Attempting analysis for:", inputUrl, origin, videoID);
                 const response = await analyzeVideo(inputUrl, origin, videoID);
-                console.log(response);
-
+                console.log("Analysis response:", response);
+                // Set the successful analysis data
                 setAnalysisData(response);
             } catch (error) {
-            console.error('Error analyzing video:', error);
+                console.error('Error analyzing video:', error);
+                // Ensure the URL associated with the error is the one we tried
+                setVideoUrl(inputUrl);
+                // Set the error state in the context
                 setAnalysisData({ error: error.message });
             } finally {
                 setIsAnalyzing(false);
             }
         };
 
-        performAnalysis();
-    }, []);
+        if (inputUrl && inputUrl === videoUrl && analysisData && !analysisData.error) {
+      
+            console.log('Using existing analysis data from context for:', inputUrl);
+           
+            setIsAnalyzing(false);
+        } else if (inputUrl) {
+
+            performAnalysis();
+        } else {
+            console.error("AnalysisPage loaded without an inputUrl in location state.");
+            setAnalysisData({ error: "No video URL provided to analyze." });
+            setVideoUrl(''); 
+            setIsAnalyzing(false);
+        }
+        // --- End Decision Logic ---
+
+    // Dependencies: Re-run this effect if the target `inputUrl` changes,
+    // or if the relevant context state used in the decision logic changes.
+    }, [inputUrl, videoUrl, analysisData, setAnalysisData, setVideoUrl, setIsAnalyzing]);
+
 
     return (
         <div>
