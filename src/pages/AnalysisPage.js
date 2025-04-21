@@ -5,6 +5,7 @@ import { useAnalysis } from '../context/AnalysisContext';
 import { analyzeVideo} from '../api/api';
 import validateUrl from '../utils/urlDecoder';
 import hexagonLoading from '../assets/hexagon-loading.svg';
+import "../styles/AnalysisPage.css";
 
 function AnalysisPage() {
     const { theme } = useTheme();
@@ -76,7 +77,7 @@ function AnalysisPage() {
 
 
     return (
-        <div>
+        <div className="analysis-page">
             {(isAnalyzing || analysisData) && (
                 <div className={`result-container ${theme}`}>
                     {isAnalyzing ? (

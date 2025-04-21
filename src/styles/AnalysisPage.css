@@ -1,0 +1,78 @@
+.analysis-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    width: 100%;
+}
+  
+
+/* ===== Result Section ===== */
+.result-container {
+    margin-top: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    transition: opacity 0.3s ease;
+    max-width: 1200px;
+  }
+  
+  /* .result-container.light {
+    background-color: var(--light-component-bg);
+    border: 1px solid #dee2e6;
+  }
+  
+  .result-container.dark {
+    background-color: var(--component-bg);
+    border: 1px solid #404040;
+  } */
+  
+  .result-container.loading {
+    opacity: 0.7;
+  }
+
+  
+/* ===== Loading Indicators ===== */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .loading-hexagon {
+    width: 100px;
+    height: 100px;
+    /* Assuming SVG or other element handles animation/visuals */
+  }
+  .analysis-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    width: 100%;
+    gap: 20px;
+  }
+  
+  .analysis-loading p {
+    color: #666; /* Default/Light theme */
+    font-size: 1.2em;
+  }
+  
+  .dark .analysis-loading p { /* Theme-specific loading text */
+    color: #999;
+  }
+
+  /* ===== Error Message ===== */
+.error-message {
+    color: var(--error-color);
+    font-weight: bold;
+    text-align: center; /* Added for consistency */
+    margin-top: 1rem; /* Added spacing */
+  } 
