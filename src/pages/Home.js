@@ -11,7 +11,7 @@ function Home() {
   const [inputUrl, setInputUrl] = useState('');
   const navigate = useNavigate();
   const { theme } = useTheme();
-  const {isAnalyzing} = useAnalysis();
+  const {isAnalyzing, setIsAnalyzing, setVideoUrl} = useAnalysis();
   const [apiStatus, setApiStatus] = useState({ loading: true, success: null });
 
   const handleInputChange = (e) => {
@@ -21,7 +21,10 @@ function Home() {
   const handleAnalyzeClick = async () => {
     if (!inputUrl.trim()) return;
 
-    navigate("/analysis-page", { state: { inputUrl } });
+    setIsAnalyzing(true);
+    setVideoUrl(inputUrl);
+
+    navigate("/analysis-page");
     
   };
 
