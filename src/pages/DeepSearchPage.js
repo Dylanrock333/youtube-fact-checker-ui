@@ -111,7 +111,6 @@ const DeepSearchPage = () => {
             <button className="back-button" onClick={handleGoBack}>
             <FaArrowLeft /> Back to Analysis
             </button>
-            <h2>Deep Search</h2>
             
             <div className="claim-box">
                 <div className="claim-header">

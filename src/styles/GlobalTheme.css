@@ -68,10 +68,9 @@ body {
 
 .main-content {
   flex: 1;
-  padding: var(--spacing-lg);
   max-width: var(--max-width);
   margin: 0 auto;
-  width: 95%;
+  width: 100%;
 }
 
 /* Common elements */

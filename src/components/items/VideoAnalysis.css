@@ -196,7 +196,7 @@
   font-weight: 500;
   padding: 4px 8px;
   border-radius: 6px;
-  background-color: rgba(66, 153, 225, 0.1);
+  background-color: rgba(66, 153, 225, 0.125);
   color: var(--accent-color);
   transition: all 0.2s ease;
 }
@@ -226,8 +226,8 @@
   display: inline-block;
   width: 100%;
   padding: 10px 15px;
-  background-color: rgba(66, 153, 225, 0.05);
-  border-radius: 0 4px 4px 0;
+  background-color: rgba(66, 153, 225, 0.125);
+  border-radius: 8px;
 }
 
 .claim-text::before {
