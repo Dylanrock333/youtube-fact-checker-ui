@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { AnalysisProvider } from './context/AnalysisContext';
 import Header from './components/layout/Header';
@@ -10,12 +10,25 @@ import DeepSearchPage from './pages/DeepSearchPage';
 import AnalysisPage from './pages/AnalysisPage';
 import './styles/App.css';
 
+// Create a ScrollToTop component that uses the useLocation hook
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  
+  return null;
+}
+
 function AppContent() {
   const { theme } = useTheme();
   
   return (
     <Router>
       <div className={`App ${theme}`}>
+        {/* Add the ScrollToTop component inside Router */}
+        <ScrollToTop />
         <Header />
         <main className="main-content">
           <Routes>
