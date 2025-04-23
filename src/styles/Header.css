@@ -72,6 +72,27 @@
   color: white;
 }
 
+@media (max-width: 480px) {
+  .main-header {
+    gap: 1rem; 
+    padding: 1rem 0.5rem; 
+  }
+
+  .main-header nav ul {
+    gap: 1rem; 
+    justify-content: center; 
+    width: 100%; 
+  }
+
+  .main-header nav a {
+    font-size: 1rem; 
+    padding: 0.4rem 0.6rem;
+  }
+
+}
+
+
+/*====== Theme Toggle ======*/
 .theme-toggle {
   padding: 0.5rem 1rem;
   border: none;

@@ -59,7 +59,7 @@
 .video-metadata {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 5pxpx;
+  gap: 5px;
   width: 100%;
   max-width: 800px;
   margin: 20px auto;
@@ -71,6 +71,26 @@
 .video-analysis.dark .video-metadata {
   background-color: rgba(66, 153, 225, 0.15);
 }
+
+@media (max-width: 768px) {
+  .video-metadata {
+    width: 87%;
+
+  }
+
+  .metadata-item{
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-metadata {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+}
+
+
 
 /* Individual metadata item */
 .metadata-item {
@@ -99,9 +119,22 @@
   font-weight: 600;
 }
 
+@media (max-width: 480px) {
+  .metadata-label{
+    font-size: 0.7rem;
+  }
+  
+}
+
 .metadata-value {
   font-size: 1.1rem;
   font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .metadata-value{
+    font-size: 0.9rem;
+  }
 }
 
 /* Video ID styling */
@@ -147,6 +180,20 @@
   margin-bottom: 30px;
 }
 
+@media (max-width: 768px) {
+  .claims-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+  
+  .video-analysis {
+    padding: 12px;
+  }
+}
+
+
+
 /* ===== CLAIM CARD STYLES ===== */
 .claim-card {
   border-radius: 8px;
@@ -158,6 +205,18 @@
   min-height: 400px;
   transition: all 0.3s ease;
 }
+
+@media (max-width: 768px) {
+  .claim-card{
+    padding: 12px;
+  }
+}
+
+/* @media (max-width: 480px) {
+  .claim-card{
+    min-height: 1px;
+  }
+} */
 
 .claim-card:hover {
   transform: translateY(-5px);
@@ -250,6 +309,31 @@
   color: var(--accent-color);
 }
 
+@media (max-width: 768px) {
+  .claim-text{
+    font-size: 1.05rem;
+  }
+  .claim-text::before{
+    font-size: 1.1rem;
+  }
+  .claim-text::after{
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .claim-text{
+    font-size: 0.95rem;
+  }
+  .claim-text::before{
+    font-size: 1rem;
+  }
+  .claim-text::after{
+    font-size: 1rem;
+  }
+}
+
+
 /* ===== SCORE BARS ===== */
 .claim-details {
   margin-bottom: 16px;
@@ -265,6 +349,19 @@
   font-size: 0.95rem;
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+  .score-label{
+    font-size: 0.9rem;
+  }
+} 
+
+@media (max-width: 480px) {
+  .score-label{
+    font-size: 0.8rem;
+  }
+}
+
 
 .score-bar {
   height: 8px;
@@ -297,6 +394,8 @@
   overflow: hidden;
 }
 
+
+
 .claim-context.light {
   border-color: var(--light-border-color);
 }
@@ -322,6 +421,19 @@
   background-color: rgba(0, 0, 0, 0.02);
   border-radius: 6px;
 }
+
+@media (max-width: 768px) {
+  .context-content{
+    font-size: 0.9rem;
+  }
+} 
+
+@media (max-width: 480px) {
+  .context-content{
+    font-size: 0.825rem;
+  }
+}
+
 
 .video-analysis.dark .context-content {
   background-color: rgba(255, 255, 255, 0.03);
@@ -354,6 +466,19 @@
   gap: 10px;
 }
 
+/* @media (max-width: 768px) {
+  .claim-tabs{
+    gap: 5px;
+  }
+} */
+
+@media (max-width: 480px) {
+  .claim-tabs{
+    gap: 40px;
+  }
+}
+
+
 .video-analysis.dark .claim-tabs {
   border-bottom-color: var(--border-color);
 }
@@ -372,6 +497,20 @@
   gap: 8px;
   color: var(--text-color);
 }
+
+@media (max-width: 768px) {
+  .tab-button{
+    font-size: 0.85rem;
+  }
+} 
+
+@media (max-width: 480px) {
+  .tab-button{
+    font-size: 0.8rem;
+  }
+}
+
+
 
 .video-analysis.dark .tab-button {
   color: var(--text-color);
@@ -549,6 +688,19 @@
   color: #333333;
 }
 
+@media (max-width: 768px) {
+  .search-query-input{
+    font-size: 0.85rem;
+  }
+}   
+
+@media (max-width: 480px) {
+  .search-query-input{
+    font-size: 0.75rem;
+  }
+}
+
+
 /* Hover state for better UX */
 .search-query-input:hover {
   border-color: #a0aec0;
@@ -612,6 +764,21 @@
   font-size: 0.95rem;
 }
 
+@media (max-width: 768px) {
+  .start-search-button{
+    font-size: 0.9rem;
+  }
+} 
+
+@media (max-width: 480px) {
+  .start-search-button{
+    font-size: 0.8rem;
+  }
+}
+
+
+
+
 .start-search-button:hover {
   background-color: #12616b;
 }
@@ -659,28 +826,3 @@
   color: var(--neutral-color);
 }
 
-/* ===== RESPONSIVE ADJUSTMENTS ===== */
-@media (max-width: 768px) {
-  .claims-grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-  
-  .claim-card,
-  .video-analysis {
-    padding: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .claims-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .video-info h2 {
-    font-size: 1.5rem;
-  }
-  
-  .claim-card {
-    min-height: 300px;
-  }
-}

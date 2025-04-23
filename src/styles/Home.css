@@ -46,6 +46,23 @@
   letter-spacing: -0.2px;
 }
 
+@media (max-width: 768px) {
+  .main-input{
+    width: 70%;
+    height: 40px;
+    font-size: 0.75rem;
+  }
+} 
+
+@media (max-width: 480px) {
+  .main-input{
+    width: 85%;
+    height: 45px;
+    font-size: 0.65rem;
+  }
+}
+
+
 .main-input:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -91,6 +108,28 @@
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .button-container{
+    margin-top: 1.7rem;
+    
+  }
+
+  .analyze-button{
+    font-size: 0.8rem;
+  }
+} 
+
+@media (max-width: 480px) {
+  .button-container{
+    margin-top: 1.9rem;
+    
+  }
+
+  .analyze-button{
+    font-size: 0.7rem;
+  }
 }
 
 .analyze-button.light {

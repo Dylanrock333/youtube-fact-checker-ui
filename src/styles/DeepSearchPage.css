@@ -6,6 +6,19 @@
   transition: all 0.3s ease;
 }
 
+@media (max-width: 768px) {
+  .deep-search-page{
+    max-width: 87%;
+  }
+}
+
+@media (max-width: 480px) {
+  .deep-search-page{
+    max-width: 90%;
+  }
+}
+
+
 /* ===== PAGE TITLE ===== */
 .deep-search-page h2 {
   text-align: center;
@@ -97,6 +110,12 @@
   font-weight: 600;
 }
 
+@media (max-width: 480px) {
+  .claim-box h3, .query-box h3, .results-box h3, .context-box h3 {
+    font-size: 1rem;
+  }
+}
+
 /* ===== CLAIM BOX ===== */
 .claim-box {
   display: flex;
@@ -146,12 +165,73 @@
   color: var(--accent-color);
 }
 
+@media (max-width: 768px) {
+  .claim-box, .query-box, .results-box, .context-box {
+    padding: 10px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .context-box, .query-box {
+    width: 100%;
+  }
+  
+  .results-box {
+    padding: 16px;
+  }
+  
+  .result-header {
+    font-size: 1rem;
+  }
+  
+  .result-paragraph {
+    font-size: 0.95rem;
+  }
+
+  .claim-box .claim-text{
+    font-size: 1.1rem;
+  } 
+  .claim-box .claim-text::before,
+  .claim-box .claim-text::after{
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  
+  .claim-box .claim-text{
+    font-size: 1.05rem;
+  } 
+  .claim-box .claim-text::before,
+  .claim-box .claim-text::after{
+    font-size: 1.2rem;
+  }
+}
+
 /* ===== CONTEXT & QUERY BOXES (INFO ROW) ===== */
 .info-row {
   display: flex;
   gap: 20px;
   margin-bottom: 20px;
 }
+
+@media (max-width: 768px) {
+  .info-row{
+    flex-direction: column;
+    gap: 1px;
+  }
+}
+
+/* @media (max-width: 480px) {
+  .info-row{
+    flex-direction: column;
+    gap: 15px;
+  }
+} */
+
 
 .context-box, .query-box {
   flex: 1;
@@ -169,6 +249,12 @@
   padding: 8px;
   border-radius: 4px;
   background-color: inherit !important;
+}
+
+@media (max-width: 480px) {
+  .claim-box p, .query-box p, .context-box p {
+    font-size: 0.9rem;
+  }
 }
 
 .perform-search-button {
@@ -305,53 +391,6 @@
 .deep-search-page.light .error-message {
   color: var(--error-color);
   background-color: var(--error-bg);
-}
-
-/* ===== RESPONSIVE STYLES ===== */
-@media (max-width: 768px) {
-  .claim-box, .query-box, .results-box, .context-box {
-    padding: 15px;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
-  
-  .info-row {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .context-box, .query-box {
-    width: 100%;
-  }
-  
-  .results-box {
-    padding: 16px;
-  }
-  
-  .result-header {
-    font-size: 1rem;
-  }
-  
-  .result-paragraph {
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .deep-search-page {
-    padding: 10px;
-  }
-  
-  .claim-box, .query-box, .results-box, .context-box {
-    padding: 12px;
-  }
-  
-  h2 {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-  }
 }
 
 /* ===== CITATIONS SECTION ===== */
