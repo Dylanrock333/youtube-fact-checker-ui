@@ -12,50 +12,54 @@ export function AnalysisProvider({ children }) {
   // that survives page refreshes
   
   useEffect(() => {
-    try { 
-      const savedData = localStorage.getItem('analysisData');
-      const savedUrl = localStorage.getItem('analyzedVideoUrl');
+    try {
+      // Load from sessionStorage instead of localStorage
+      const savedData = sessionStorage.getItem('analysisData');
+      const savedUrl = sessionStorage.getItem('analyzedVideoUrl');
 
       if (savedData) setAnalysisData(JSON.parse(savedData));
       if (savedUrl) setVideoUrl(savedUrl);
     } catch (error) {
-      console.error("Error loading data from localStorage:", error);
+      console.error("Error loading data from sessionStorage:", error);
       // Optionally clear corrupted storage
-      // localStorage.removeItem('analysisData');
-      // localStorage.removeItem('analyzedVideoUrl');
+      // sessionStorage.removeItem('analysisData');
+      // sessionStorage.removeItem('analyzedVideoUrl');
     } finally {
-      setIsInitialized(true); 
+      setIsInitialized(true);
     }
   }, []);
 
-  // Save to localStorage when data changes
+  // Save to sessionStorage when data changes
   useEffect(() => {
     // Only save if initialized to prevent overwriting loaded data with initial nulls
     if (isInitialized) {
         if (analysisData) {
-          localStorage.setItem('analysisData', JSON.stringify(analysisData));
+          // Save to sessionStorage
+          sessionStorage.setItem('analysisData', JSON.stringify(analysisData));
         } else {
           // Optional: Remove item if data becomes null/undefined after initialization
-          localStorage.removeItem('analysisData');
+          sessionStorage.removeItem('analysisData');
         }
 
         if (videoUrl) {
-          localStorage.setItem('analyzedVideoUrl', videoUrl);
+          // Save to sessionStorage
+          sessionStorage.setItem('analyzedVideoUrl', videoUrl);
         } else {
             // Optional: Remove item if URL becomes empty after initialization
-          localStorage.removeItem('analyzedVideoUrl');
+          sessionStorage.removeItem('analyzedVideoUrl');
         }
     }
   }, [analysisData, videoUrl, isInitialized]);
 
 
-  //TODO: think of a cleaner way to save the search results maybe session storage?
+  // Save search results to sessionStorage
   const saveSearchResult = (claimId, result) => {
-    localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
+    sessionStorage.setItem(`search-${claimId}`, JSON.stringify(result));
   };
 
+  // Get search results from sessionStorage
   const getSearchResult = (claimId) => {
-    const storedResult = localStorage.getItem(`search-${claimId}`);
+    const storedResult = sessionStorage.getItem(`search-${claimId}`);
     return storedResult ? JSON.parse(storedResult) : null;
   };
 
