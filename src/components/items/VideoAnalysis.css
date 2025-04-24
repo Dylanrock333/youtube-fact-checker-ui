@@ -65,7 +65,7 @@
   margin: 20px auto;
   padding: 10px;
   border-radius: 10px;
-  background-color: rgba(66, 153, 225, 0.15);
+  background-color: var(--accent-color-light);
 }
 
 .video-analysis.dark .video-metadata {
