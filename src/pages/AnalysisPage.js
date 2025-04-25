@@ -25,7 +25,7 @@ function AnalysisPage() {
             return;
         }
 
-        console.log("useEffect triggered:", videoUrl, analysisData);
+        console.log("useEffect triggered:", videoUrl);
     
         const performAnalysis = async () => {
             // Guard against running without a URL - safety check
@@ -53,10 +53,11 @@ function AnalysisPage() {
             }
         };
 
-        const { origin, videoID } = validateUrl(videoUrl);
+        const { origin, videoID } = validateUrl(videoUrl); //TODO: maybe add better error handling here
         
         const currentVideoId = analysisData?.videoID;
 
+        //TODO: add better error handling here and conditions here
         if (videoUrl && analysisData && !analysisData.error && currentVideoId === videoID) {
             // Use existing data, ensure loading is off
             console.log('Using existing analysis data from context for:', videoUrl);
@@ -73,7 +74,7 @@ function AnalysisPage() {
         }
     
 
-    }, [videoUrl, analysisData, isInitialized, setIsAnalyzing, setAnalysisData]);
+    }, [videoUrl, isInitialized, setIsAnalyzing, setAnalysisData]);
 
 
     return (
