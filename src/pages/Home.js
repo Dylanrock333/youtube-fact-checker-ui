@@ -5,6 +5,7 @@ import { checkApiHealth, analyzeVideo } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import validateUrl from '../utils/urlDecoder';
 
+import Hexagon from '../assets/hexagon-static.svg';
 import '../styles/Home.css';
 
 //TODO: add the video duration
@@ -95,8 +96,9 @@ function Home() {
 
   return (
     <div className="home">
-      <h1>YouTube Video Fact Checker</h1>
-      {apiStatusIndicator}
+      <div className="home-header">
+        <h1>YouTube Video Fact Checker</h1>
+      </div>
       <div className="input-container">
         <input
           type="text"

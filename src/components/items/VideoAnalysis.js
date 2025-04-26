@@ -91,9 +91,10 @@ const VideoAnalysis = ({ analysisData}) => {
     <div className={`video-analysis ${theme}`}>
       {/* Video Information Section */}
       <div className="video-info">
-        <div className="video-title-container">
+        <div className={`video-title-container ${theme}`}>
           <h2>{analysisData.video_data.title || 'Video Analysis Results'}</h2>
         </div>
+        
         {isLoading ? (
           <div className="loading-spinner">Loading...</div>
         ) : (
