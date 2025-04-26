@@ -125,6 +125,7 @@
   color: var(--accent-color); /* Inherit color from header */
   font-size: 0.9em; /* Slightly smaller than header text */
   line-height: 1; /* Prevent extra spacing */
+  display: none; /* Hide by default */
 }
 
 /* Ensure icon color matches text in dark/light mode
@@ -264,6 +265,11 @@
       display: none;
   } */
   /* --- End Collapsing Styles --- */
+
+  /* Make toggle icon visible on smaller screens */
+  .toggle-icon {
+    display: inline-block; /* Or block, inline-flex, etc. as needed */
+  }
 }
 
 @media (max-width: 480px) {
@@ -275,6 +281,10 @@
   .claim-box .claim-text::before,
   .claim-box .claim-text::after{
     font-size: 1.2rem;
+  }
+
+  .toggle-icon {
+    display: inline-block; /* Or block, inline-flex, etc. as needed */
   }
 }
 

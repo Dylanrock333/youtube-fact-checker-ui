@@ -20,8 +20,10 @@ const DeepSearchPage = () => {
     const [searchResult, setSearchResult] = useState(null);
     const [error, setError] = useState(null);
     const [showCitations, setShowCitations] = useState(false);
-    const [isContextExpanded, setIsContextExpanded] = useState(true);
-    const [isQueryExpanded, setIsQueryExpanded] = useState(true);
+    
+    // Initialize state based on initial window width
+    const [isContextExpanded, setIsContextExpanded] = useState(window.innerWidth > 768);
+    const [isQueryExpanded, setIsQueryExpanded] = useState(window.innerWidth > 768);
 
     useEffect(() => {
         console.log('useEffect triggered');
@@ -83,7 +85,7 @@ const DeepSearchPage = () => {
     const toggleQuery = () => {
         setIsQueryExpanded(!isQueryExpanded);
     };
-
+    
     const renderMarkdown = (content) => {
         return { __html: marked(content, { sanitize: true }) };
     };
