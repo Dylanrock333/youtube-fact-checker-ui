@@ -104,7 +104,7 @@ function Home() {
           onChange={handleInputChange}
           placeholder="Enter YouTube video URL here ..."
           className={`main-input ${theme}`}
-          disabled={isAnalyzing || rateLimitMessage}
+          disabled={isAnalyzing}
         />
       </div>
       {rateLimitMessage && (
