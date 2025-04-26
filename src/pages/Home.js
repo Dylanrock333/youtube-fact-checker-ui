@@ -57,8 +57,9 @@ function Home() {
 
   return (
     <div className="home">
-      <h1>YouTube Video Fact Checker</h1>
-      {apiStatusIndicator}
+      <div className="home-header">
+        <h1>YouTube Video Fact Checker</h1>
+      </div>
       <div className="input-container">
         <input
           type="text"
