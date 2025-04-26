@@ -3,7 +3,7 @@ import { useTheme } from '../context/ThemeContext';
 import { useAnalysis } from '../context/AnalysisContext';
 import { checkApiHealth } from '../api/api';
 import { useNavigate } from 'react-router-dom';
-
+import Hexagon from '../assets/hexagon-static.svg';
 import '../styles/Home.css';
 
 //TODO: add the video duration
