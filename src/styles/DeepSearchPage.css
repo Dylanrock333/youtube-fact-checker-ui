@@ -106,7 +106,36 @@
   margin-bottom: 15px;
   font-size: 1.2rem;
   font-weight: 600;
+  /* Make header clickable if it's collapsible */
+  &.collapsible-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
+
+/* Style for the toggle icon button */
+.toggle-icon {
+  background: none;
+  border: none;
+  padding: 0 5px; /* Add some padding */
+  margin-left: 8px; /* Space between text and icon */
+  cursor: pointer;
+  color: var(--accent-color); /* Inherit color from header */
+  font-size: 0.9em; /* Slightly smaller than header text */
+  line-height: 1; /* Prevent extra spacing */
+  display: none; /* Hide by default */
+}
+
+/* Ensure icon color matches text in dark/light mode
+.deep-search-page.light .toggle-icon {
+  color: #2d3748;
+}
+
+.deep-search-page.dark .toggle-icon {
+  color: #e2e8f0;
+} */
 
 @media (max-width: 480px) {
   .claim-box h3, .query-box h3, .results-box h3, .context-box h3 {
@@ -129,11 +158,12 @@
 .claim-box .claim-text {
   font-size: 1.2rem;
   margin: 20px auto;
+  font-weight: 500;
   line-height: 1.6;
   position: relative;
   font-style: italic;
   text-align: center;
-  background-color: var(--accent-color-light);
+  background-color: 768;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
@@ -195,6 +225,52 @@
   .claim-box .claim-text::after{
     font-size: 1.2rem;
   }
+
+  /* --- Collapsing Styles --- */
+  .context-box.collapsed p,
+  .query-box.collapsed p {
+    max-height: 2.2em; 
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative; 
+    margin-bottom: 0px; 
+    padding-right: 40px; 
+  }
+
+  .context-box.collapsed p::after,
+  .query-box.collapsed p::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 150px; 
+
+  }
+
+  /* Fade for light theme */
+  .deep-search-page.light .context-box.collapsed p::after,
+  .deep-search-page.light .query-box.collapsed p::after {
+     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, var(--light-component-bg) 95%);
+  }
+
+  /* Fade for dark theme */
+   .deep-search-page.dark .context-box.collapsed p::after,
+   .deep-search-page.dark .query-box.collapsed p::after {
+     background: linear-gradient(to right, rgba(45, 55, 72, 0) 0%, var(--component-bg) 95%);
+   } 
+
+  /* Hide paragraph completely if needed (alternative to max-height) */
+  /* .context-box.collapsed p,
+  .query-box.collapsed p {
+      display: none;
+  } */
+  /* --- End Collapsing Styles --- */
+
+  /* Make toggle icon visible on smaller screens */
+  .toggle-icon {
+    display: inline-block; /* Or block, inline-flex, etc. as needed */
+  }
 }
 
 @media (max-width: 480px) {
@@ -206,6 +282,10 @@
   .claim-box .claim-text::before,
   .claim-box .claim-text::after{
     font-size: 1.2rem;
+  }
+
+  .toggle-icon {
+    display: inline-block; /* Or block, inline-flex, etc. as needed */
   }
 }
 
@@ -247,12 +327,27 @@
   padding: 8px;
   border-radius: 4px;
   background-color: inherit !important;
+  /* Add transition for smooth collapse/expand */
+  /* transition: max-height 0.3s ease-out, margin-bottom 0.3s ease-out, padding-right 0.3s ease-out; */
+  /* Ensure expanded state has appropriate max-height if using max-height for collapse */
+  max-height: 1000px; /* Set a large max-height for expanded state */
+  white-space: normal; /* Override nowrap from collapsed state */
+  overflow: visible; /* Override hidden */
+  position: relative; /* Ensure consistent positioning */
+}
+
+/* Remove pseudo-element when expanded */
+.context-box p::after,
+.query-box p::after {
+  content: none;
 }
 
 @media (max-width: 480px) {
   .claim-box p, .query-box p, .context-box p {
     font-size: 0.9rem;
   }
+  /* Apply collapsing styles for 480px as well if needed */
+  /* If the 768px styles are sufficient, no need to repeat */
 }
 
 .perform-search-button {

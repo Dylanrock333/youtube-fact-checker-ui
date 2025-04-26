@@ -20,6 +20,10 @@ const DeepSearchPage = () => {
     const [searchResult, setSearchResult] = useState(null);
     const [error, setError] = useState(null);
     const [showCitations, setShowCitations] = useState(false);
+    
+    // Initialize state based on initial window width
+    const [isContextExpanded, setIsContextExpanded] = useState(window.innerWidth > 768);
+    const [isQueryExpanded, setIsQueryExpanded] = useState(window.innerWidth > 768);
 
     useEffect(() => {
         console.log('useEffect triggered');
@@ -74,33 +78,13 @@ const DeepSearchPage = () => {
         setShowCitations(!showCitations);
     };
 
-        // const handlePerformSearch = async () => {
-    //     try {
-    //         setIsLoading(true);
+    const toggleContext = () => {
+        setIsContextExpanded(!isContextExpanded);
+    };
 
-    //         // Clear existing data for this claim from localStorage
-    //         localStorage.removeItem(`search-${claimId}`);
-
-    //         const result = await performDeepSearch(query, videodata, context, claimText);
-            
-    //         if (typeof result === 'string' && result.includes('Error')) {
-    //             setError(result);
-    //             setSearchResult(null);
-    //         } else {
-    //             // Store the result in localStorage
-    //             localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
-                
-    //             setSearchResult(result);
-    //             setError(null);
-    //         }
-    //     } catch (error) {
-    //         setError(`Error performing deep search: ${error.message}`);
-    //         setSearchResult(null);
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // };
-    // Add this function to safely render markdown
+    const toggleQuery = () => {
+        setIsQueryExpanded(!isQueryExpanded);
+    };
     
     const renderMarkdown = (content) => {
         return { __html: marked(content, { sanitize: true }) };
@@ -128,14 +112,24 @@ const DeepSearchPage = () => {
             
             <div className="info-row">
                 {context && (
-                    <div className="context-box">
-                        <h3>Context:</h3>
+                    <div className={`context-box ${!isContextExpanded ? 'collapsed' : ''}`}>
+                        <h3 onClick={toggleContext} className="collapsible-header">
+                            Context:
+                            <button className="toggle-icon">
+                                {isContextExpanded ? <FaChevronUp /> : <FaChevronDown />}
+                            </button>
+                        </h3>
                         <p>{context}</p>
                     </div>
                 )}
                 
-                <div className="query-box">
-                    <h3>Searched for:</h3>
+                <div className={`query-box ${!isQueryExpanded ? 'collapsed' : ''}`}>
+                     <h3 onClick={toggleQuery} className="collapsible-header">
+                        Searched for:
+                        <button className="toggle-icon">
+                            {isQueryExpanded ? <FaChevronUp /> : <FaChevronDown />}
+                        </button>
+                    </h3>
                     <p>{query || 'No query provided'}</p>
                 </div>
             </div>

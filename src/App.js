@@ -54,7 +54,5 @@ function App() {
   );
 }
 
-//TODO: save content of the video analysis unless there is a refresh or a new video is uploaded 
-//TODO: when I refresh the page the theme goes to light mode. keep it to whatever the theme was last
 
 export default App; 
