@@ -119,9 +119,9 @@
 }
 
 .light-mode .theme-toggle .theme-icon {
-  color: #5c6bc0;
+  color: black;
 }
 
 .dark-mode .theme-toggle .theme-icon {
-  color: #ffb74d;
+  color: black;
 } 
