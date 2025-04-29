@@ -120,6 +120,6 @@
 
 
 /* Add new rules targeting the SVG path */
-.theme-toggle .theme-icon path {
+.theme-toggle .theme-icon path{
   fill: black;
 } 

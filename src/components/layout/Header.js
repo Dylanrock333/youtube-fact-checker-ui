@@ -20,12 +20,10 @@ function Header() {
         {theme === 'dark' ? (
           <>
             <SunIcon className="theme-icon" />
-            <span>Light</span>
           </>
         ) : (
           <>
             <MoonIcon className="theme-icon" />
-            <span>Dark</span>
           </>
         )}
       </button>
