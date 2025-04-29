@@ -118,18 +118,30 @@
   height: 18px;
 }
 
-/* Remove or comment out the generic rule */
+/* Remove or comment out the generic rule if still present */
 /*
 .theme-toggle .theme-icon path{
   fill: black;
 } 
 */
 
-/* Add theme-specific rules */
-.theme-toggle .theme-icon path {
-  fill: black;
+/* Remove or comment out the theme-specific path fill rules */
+/*
+.light-mode .theme-toggle .theme-icon path {
+  fill: var(--light-icon-color, #282c34); 
 }
 
-/* .dark-mode .theme-toggle .theme-icon path {
+.dark-mode .theme-toggle .theme-icon path {
   fill: var(--dark-icon-color, #e0e0e0); 
-}  */
+} 
+*/
+
+/* Add theme-specific color rules for the icon container */
+/* This color will be inherited by 'currentColor' in the SVGs */
+.light-mode .theme-toggle .theme-icon {
+  color: var(--light-icon-color, #282c34); /* Icon color in light mode */
+}
+
+.dark-mode .theme-toggle .theme-icon {
+  color: var(--dark-icon-color, #e0e0e0); /* Icon color in dark mode */
+}
