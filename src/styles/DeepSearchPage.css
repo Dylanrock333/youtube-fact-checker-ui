@@ -171,6 +171,8 @@
 .claim-box .video-container {
   align-self: stretch;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .claim-box .claim-text::before {

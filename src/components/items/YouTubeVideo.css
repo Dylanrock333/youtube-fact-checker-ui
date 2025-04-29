@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   max-width: 960px;
+  margin: 0 auto;
 
   display: flex;
   justify-content: center;
@@ -11,7 +12,9 @@
 .youtube-video {
   width: 100%; 
   aspect-ratio: 16/9; 
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .youtube-error {
@@ -24,6 +27,7 @@
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .youtube-container {
+  
     max-width: 100%;
   }
 }
