@@ -18,13 +18,13 @@ function Header() {
       </nav>
       <button onClick={toggleTheme} className={`theme-toggle`}>
         {theme === 'dark' ? (
-          <>
-            <SunIcon className="theme-icon" />
-          </>
+          <div className="theme-icon">
+            <SunIcon />
+          </div>
         ) : (
-          <>
-            <MoonIcon className="theme-icon" />
-          </>
+          <div className="theme-icon">
+            <MoonIcon />
+          </div>
         )}
       </button>
     </header>

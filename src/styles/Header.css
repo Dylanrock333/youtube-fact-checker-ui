@@ -119,11 +119,11 @@
 }
 
 /* Remove or comment out the generic rule if still present */
-/*
+
 .theme-toggle .theme-icon path{
   fill: black;
 } 
-*/
+
 
 /* Remove or comment out the theme-specific path fill rules */
 /*
@@ -136,12 +136,11 @@
 } 
 */
 
-/* Add theme-specific color rules for the icon container */
-/* This color will be inherited by 'currentColor' in the SVGs */
+/* 
 .light-mode .theme-toggle .theme-icon {
-  color: var(--light-icon-color, #282c34); /* Icon color in light mode */
+  color: var(--light-icon-color, #282c34);
 }
 
 .dark-mode .theme-toggle .theme-icon {
-  color: var(--dark-icon-color, #e0e0e0); /* Icon color in dark mode */
-}
+  color: var(--dark-icon-color, #e0e0e0); 
+} */
