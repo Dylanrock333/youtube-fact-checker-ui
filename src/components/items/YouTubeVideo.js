@@ -36,8 +36,8 @@ const YouTubeVideo = ({ url, timestamp }) => {
   
   // Options for the YouTube player
   const opts = {
-    height: '390',
-    width: '640',
+    height: '80%',
+    width: '80%',
     playerVars: {
       autoplay: 0,
       start: startSeconds, // This will make the video start at the specified timestamp
@@ -49,7 +49,7 @@ const YouTubeVideo = ({ url, timestamp }) => {
   }
 
   return (
-    <div className="youtube-video-container">
+    <div className="youtube-container">
       <YouTube 
         videoId={videoId} 
         opts={opts} 

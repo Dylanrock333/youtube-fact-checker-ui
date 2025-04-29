@@ -1,27 +1,29 @@
-.youtube-video-container {
+.youtube-container {
   position: relative;
   width: 100%;
-  padding: 20px 0;
+  max-width: 960px;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .youtube-video {
-  max-width: 100%;
+  width: 100%; 
+  aspect-ratio: 16/9; 
+  display: block;
 }
 
 .youtube-error {
   color: red;
   padding: 20px;
   text-align: center;
+  width: 100%;
 }
 
-/* Make the video responsive */
-@media screen and (max-width: 640px) {
-  .youtube-video iframe {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16/9;
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .youtube-container {
+    max-width: 100%;
   }
-} 
+}
