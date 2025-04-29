@@ -118,29 +118,22 @@
   height: 18px;
 }
 
-/* Remove or comment out the generic rule if still present */
+/* Add these specific rules for the sun icon */
+.theme-toggle .theme-icon svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
 
-.theme-toggle .theme-icon path{
+.light-mode .theme-toggle .theme-icon svg,
+.dark-mode .theme-toggle .theme-icon svg {
   fill: black;
-} 
-
-
-/* Remove or comment out the theme-specific path fill rules */
-/*
-.light-mode .theme-toggle .theme-icon path {
-  fill: var(--light-icon-color, #282c34); 
+  stroke: black;
 }
 
-.dark-mode .theme-toggle .theme-icon path {
-  fill: var(--dark-icon-color, #e0e0e0); 
+/* For mobile specifically */
+@media (max-width: 480px) {
+  .theme-toggle .theme-icon svg {
+    fill: black !important;
+    stroke: black !important;
+  }
 } 
-*/
-
-/* 
-.light-mode .theme-toggle .theme-icon {
-  color: var(--light-icon-color, #282c34);
-}
-
-.dark-mode .theme-toggle .theme-icon {
-  color: var(--dark-icon-color, #e0e0e0); 
-} */

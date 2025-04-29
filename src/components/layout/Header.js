@@ -19,11 +19,11 @@ function Header() {
       <button onClick={toggleTheme} className={`theme-toggle`}>
         {theme === 'dark' ? (
           <div className="theme-icon">
-            <SunIcon />
+            <SunIcon style={{fill: 'black', stroke: 'black'}} />
           </div>
         ) : (
           <div className="theme-icon">
-            <MoonIcon />
+            <MoonIcon style={{fill: 'black', stroke: 'black'}} />
           </div>
         )}
       </button>
