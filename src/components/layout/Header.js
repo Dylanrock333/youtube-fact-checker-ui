@@ -16,14 +16,14 @@ function Header() {
           <li><Link to="/about">About</Link></li>
         </ul>
       </nav>
-      <button onClick={toggleTheme} className="theme-toggle">
+      <button onClick={toggleTheme} className={`theme-toggle`}>
         {theme === 'dark' ? (
           <>
-            <SunIcon className="theme-icon" />
+            <SunIcon className="theme-icon-sun" />
           </>
         ) : (
           <>
-            <MoonIcon className="theme-icon" />
+            <MoonIcon className="theme-icon-moon" />
           </>
         )}
       </button>
