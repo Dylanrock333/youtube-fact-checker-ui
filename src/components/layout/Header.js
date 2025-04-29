@@ -19,11 +19,11 @@ function Header() {
       <button onClick={toggleTheme} className={`theme-toggle`}>
         {theme === 'dark' ? (
           <>
-            <SunIcon className="theme-icon-sun" />
+            <SunIcon className="theme-icon" />
           </>
         ) : (
           <>
-            <MoonIcon className="theme-icon-moon" />
+            <MoonIcon className="theme-icon" />
           </>
         )}
       </button>

@@ -104,6 +104,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  background-color: var(--light-component-bg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -112,26 +113,23 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* Style for the Sun icon SVG */
-.theme-toggle .theme-icon-sun {
-  /* fill is now handled by theme-specific rules below */
+.theme-icon {
   width: 18px;
   height: 18px;
 }
 
-/* Add style for the Moon icon SVG */
-.theme-toggle .theme-icon-moon {
-  /* fill is now handled by theme-specific rules below */
-  width: 18px;
-  height: 18px;
+/* Remove or comment out the generic rule */
+/*
+.theme-toggle .theme-icon path{
+  fill: black;
+} 
+*/
+
+/* Add theme-specific rules */
+.light-mode .theme-toggle .theme-icon path {
+  fill: var(--light-icon-color, #282c34); /* Example: Dark icon in light mode */
 }
 
-/* Theme-specific icon colors */
-.light-mode .theme-toggle .theme-icon-moon {
-  fill: var(--light-text-color); /* Or specific dark color */
-}
-
-.dark-mode .theme-toggle .theme-icon-sun {
-  fill: var(--text-color); /* Or specific light color */
-}
-
+.dark-mode .theme-toggle .theme-icon path {
+  fill: var(--dark-icon-color, #e0e0e0); /* Example: Light icon in dark mode */
+} 
