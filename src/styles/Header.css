@@ -126,10 +126,10 @@
 */
 
 /* Add theme-specific rules */
-.light-mode .theme-toggle .theme-icon path {
-  fill: var(--light-icon-color, #282c34); /* Example: Dark icon in light mode */
+.theme-toggle .theme-icon path {
+  fill: black;
 }
 
-.dark-mode .theme-toggle .theme-icon path {
-  fill: var(--dark-icon-color, #e0e0e0); /* Example: Light icon in dark mode */
-} 
+/* .dark-mode .theme-toggle .theme-icon path {
+  fill: var(--dark-icon-color, #e0e0e0); 
+}  */
