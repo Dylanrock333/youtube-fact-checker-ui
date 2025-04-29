@@ -118,10 +118,8 @@
   height: 18px;
 }
 
-.light-mode .theme-toggle .theme-icon {
-  color: black;
-}
 
-.dark-mode .theme-toggle .theme-icon {
-  color: black;
+/* Add new rules targeting the SVG path */
+.theme-toggle .theme-icon path {
+  fill: black;
 } 
