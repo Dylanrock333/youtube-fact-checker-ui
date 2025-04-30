@@ -36,8 +36,6 @@ const YouTubeVideo = ({ url, timestamp }) => {
   
   // Options for the YouTube player
   const opts = {
-    height: '80%',
-    width: '80%',
     playerVars: {
       autoplay: 0,
       start: startSeconds, // This will make the video start at the specified timestamp
