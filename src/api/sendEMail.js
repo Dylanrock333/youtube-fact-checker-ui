@@ -1,47 +1,26 @@
-const nodemailer = require('nodemailer');
 
-//TODO: Fix logic for sending email
-
-async function sendEmail(name, email, message) {
-  // Create a transporter using SMTP
-  const transporter = nodemailer.createTransporter({
-    service: 'gmail', // or another service like 'outlook', 'yahoo', etc.
-    auth: {
-      user: 'your-email@gmail.com', // replace with your email that will send messages
-      pass: 'your-app-password' // replace with your app password or email password
-    }
-  });
-
-  // Email content configuration
-  const mailOptions = {
-    from: `"Website Contact Form" <your-email@gmail.com>`,
-    to: 'your-personal-email@example.com', // replace with your personal email where you want to receive messages
-    subject: `New message from ${name}`,
-    text: `
-      Name: ${name}
-      Email: ${email}
-      
-      Message:
-      ${message}
-    `,
-    html: `
-      <h3>New Contact Form Submission</h3>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <h4>Message:</h4>
-      <p>${message}</p>
-    `
-  };
-
+const sendEmail = async (formData) => {
+  const formspreeEndpoint = 'https://formspree.io/f/mgvkavbd';
+  
   try {
-    // Send the email
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully:', info.messageId);
-    return { success: true, messageId: info.messageId };
+    const response = await fetch(formspreeEndpoint, {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error('Form submission failed');
+    }
+    
+    return await response.json();
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('Error sending form:', error);
     throw error;
   }
-}
+};
 
-module.exports = sendEmail;
+export default sendEmail;

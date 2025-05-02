@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Contact.css';
-
+import sendEmail from '../api/sendEMail';
 function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -23,13 +23,7 @@ function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Replace with actual email sending logic
-      // For example: await axios.post('/api/send-email', formData);
-      console.log('Sending email with data:', formData);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await sendEmail(formData);
       setSubmitMessage('Your message has been sent successfully!');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
