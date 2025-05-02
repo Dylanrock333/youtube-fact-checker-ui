@@ -133,19 +133,26 @@ const VideoAnalysis = ({ analysisData}) => {
                 <span className="timestamp">Timestamp: {claim.timestamp}</span>
                 <span className="category">{claim.category}</span>
               </div>
+
+              <div className="claim-title-container">
+                <p className="claim-title">{claim.title}</p>
+              </div>
               
-              <p className="claim-text">{claim.claim}</p>
+              <div className="claim-text-container">
+                <p className="claim-text">{claim.claim}</p>
+              </div>
               
-              <div className={`claim-context ${activeTabs[claim.id] === 'deepSearch' ? 'expanded' : ''}`}>
-                <div className="context-content">
-                  <strong>Context</strong>
-                  <p> {claim.context}</p>
-                </div>
-                
+              <div className={`claim-context ${activeTabs[claim.id] === 'deepSearch' ? 'expanded' : ''}`}>          
                 <div className="claim-tabs-container">
                   <div className="claim-tabs">
                     <button 
-                      className={`tab-button ${activeTabs[claim.id] !== 'deepSearch' ? 'active' : ''}`}
+                      className={`tab-button ${activeTabs[claim.id] === 'context' || !activeTabs[claim.id] ? 'active' : ''}`}
+                      onClick={() => handleTabChange(claim.id, 'context')}
+                    >
+                      Context
+                    </button>
+                    <button 
+                      className={`tab-button ${activeTabs[claim.id] === 'metrics' ? 'active' : ''}`}
                       onClick={() => handleTabChange(claim.id, 'metrics')}
                     >
                       Claim Metrics
@@ -159,7 +166,12 @@ const VideoAnalysis = ({ analysisData}) => {
                   </div>
                   
                   <div className="tab-content">
-                    {activeTabs[claim.id] !== 'deepSearch' ? (
+                    {activeTabs[claim.id] === 'context' || !activeTabs[claim.id] ? (
+                      <div className="context-content">
+                        <strong>Context</strong>
+                        <p>{claim.context}</p>
+                      </div>
+                    ) : activeTabs[claim.id] === 'metrics' ? (
                       <div className="claim-details">
                         <div className="score-container">
                           <span className="score-label">
