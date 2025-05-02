@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import '../styles/Contact.css';
 import sendEmail from '../api/sendEMail';
+import { useTheme } from '../context/ThemeContext';
+
 function Contact() {
+  const { theme } = useTheme();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -37,11 +40,11 @@ function Contact() {
   return (
     <div className="page-contact-us">
       <h1>Contact us</h1>
-      <p className="contact-intro">
+      <p className={`contact-intro ${theme}`}>
         Feel free to contact us using the form below. We'll be happy to help or hear your feedback!
       </p>
 
-      <div className="contact-form-container">
+      <div className={`contact-form-container ${theme}`}>
         <form onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">

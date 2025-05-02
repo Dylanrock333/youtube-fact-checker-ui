@@ -8,25 +8,30 @@
 .page-contact-us h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: var(--accent-color);
 }
 
-.contact-intro {
+.contact-intro.dark {
   font-size: 1.1rem;
   margin-bottom: 1rem;
-  color: #adb5bd;
+  color: var(--text-color);
 }
 
-.faq-link {
-  color: #3a86ff;
-  text-decoration: none;
+.contact-intro.light {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--light-text-color);
 }
 
-.faq-link:hover {
-  text-decoration: underline;
+.contact-form-container.dark {
+  background-color: var(--component-bg);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-top: 2rem;
 }
 
-.contact-form-container {
-  background-color: rgba(30, 34, 40, 0.5);
+.contact-form-container.light {
+  background-color: var(--light-component-bg);
   border-radius: 8px;
   padding: 2rem;
   margin-top: 2rem;
@@ -54,25 +59,40 @@ label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
+  color: var(--text-color);
 }
 
-input, textarea {
+label.light {
+  color: var(--light-text-color);
+}
+
+.dark input, .dark textarea {
   width: 100%;
   padding: 0.75rem;
   border-radius: 4px;
   border: none;
-  background-color: #2a2e35;
-  color: #fff;
+  background-color: var(--light-text-color);
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.light input, .light textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: none;
+  background-color: #ffffff;
+  color: var(--light-text-color);
   font-size: 1rem;
 }
 
 input:focus, textarea:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(58, 134, 255, 0.5);
+  box-shadow: 0 0 0 2px var(--accent-color);
 }
 
 .send-button {
-  background-color: #3a86ff;
+  background-color: var(--accent-color);
   color: white;
   border: none;
   border-radius: 4px;
@@ -84,7 +104,7 @@ input:focus, textarea:focus {
 }
 
 .send-button:hover {
-  background-color: #2a75f5;
+  background-color: var(--accent-color-light);
 }
 
 .send-button:disabled {
@@ -100,11 +120,11 @@ input:focus, textarea:focus {
 }
 
 .submit-message.success {
-  background-color: rgba(40, 167, 69, 0.2);
-  color: #28a745;
+  background-color: var(--success-bg);
+  color: var(--success-color);
 }
 
 .submit-message.error {
-  background-color: rgba(220, 53, 69, 0.2);
-  color: #dc3545;
+  background-color: var(--error-bg);
+  color: var(--error-color);
 }
