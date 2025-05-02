@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import DeepSearchPage from './pages/DeepSearchPage';
 import AnalysisPage from './pages/AnalysisPage';
+import Contact from './pages/Contact';
 import './styles/App.css';
 
 // Create a ScrollToTop component that uses the useLocation hook
@@ -36,6 +37,7 @@ function AppContent() {
             <Route path="/about" element={<About />} />
             <Route path="/deep-search" element={<DeepSearchPage />} />
             <Route path="/analysis-page" element={<AnalysisPage />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
         <Footer />
