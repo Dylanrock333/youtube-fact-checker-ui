@@ -118,10 +118,22 @@
   height: 18px;
 }
 
-.light-mode .theme-toggle .theme-icon {
-  color: #5c6bc0;
+/* Add these specific rules for the sun icon */
+.theme-toggle .theme-icon svg {
+  fill: currentColor;
+  stroke: currentColor;
 }
 
-.dark-mode .theme-toggle .theme-icon {
-  color: #ffb74d;
+.light-mode .theme-toggle .theme-icon svg,
+.dark-mode .theme-toggle .theme-icon svg {
+  fill: black;
+  stroke: black;
+}
+
+/* For mobile specifically */
+@media (max-width: 480px) {
+  .theme-toggle .theme-icon svg {
+    fill: black !important;
+    stroke: black !important;
+  }
 } 

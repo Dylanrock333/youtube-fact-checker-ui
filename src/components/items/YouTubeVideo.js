@@ -47,7 +47,7 @@ const YouTubeVideo = ({ url, timestamp }) => {
   }
 
   return (
-    <div className="youtube-video-container">
+    <div className="youtube-container">
       <YouTube 
         videoId={videoId} 
         opts={opts} 

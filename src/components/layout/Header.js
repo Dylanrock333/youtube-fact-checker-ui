@@ -16,17 +16,15 @@ function Header() {
           <li><Link to="/about">About</Link></li>
         </ul>
       </nav>
-      <button onClick={toggleTheme} className="theme-toggle">
+      <button onClick={toggleTheme} className={`theme-toggle`}>
         {theme === 'dark' ? (
-          <>
-            <SunIcon className="theme-icon" />
-            <span>Light</span>
-          </>
+          <div className="theme-icon">
+            <SunIcon style={{fill: 'black', stroke: 'black'}} />
+          </div>
         ) : (
-          <>
-            <MoonIcon className="theme-icon" />
-            <span>Dark</span>
-          </>
+          <div className="theme-icon">
+            <MoonIcon style={{fill: 'black', stroke: 'black'}} />
+          </div>
         )}
       </button>
     </header>

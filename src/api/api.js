@@ -13,6 +13,7 @@ export const analyzeVideo = async (url, origin, videoID) => {
 
   let request_url = `${BASE_URL}/execute`
   console.log('Calling API at:', request_url)
+
   const response = await fetch(request_url, {
     method: 'POST',
     headers: {
@@ -20,14 +21,40 @@ export const analyzeVideo = async (url, origin, videoID) => {
     },
     body: JSON.stringify({ url, origin, videoID })
   });
+  
+  try { // Wrap in try...catch to handle errors including rate limits
 
-  if (!response.ok) {
-    throw new Error('Error processing video');
-  }
+    // --- Rate Limit Check ---
+    if (response.status === 429) {
+      const rateLimitData = await response.json();
+      // Store rate limit info temporarily for UI feedback
+      sessionStorage.setItem('rateLimitInfo', JSON.stringify({
+        isLimited: true,
+        resetTime: rateLimitData.resetTime,
+        message: rateLimitData.message || 'Rate limit exceeded.' // Use message from API
+      }));
+      // Throw a specific error or return a specific structure
+      throw new Error(rateLimitData.message || 'Rate limit reached'); 
+    }
+    // --- End Rate Limit Check ---
 
-  const data = await response.json();
-  return data;
+    if (!response.ok) {
+      // Handle other non-OK responses
+      const errorData = await response.json().catch(() => ({ detail: 'Unknown error processing video' }));
+      throw new Error(errorData.detail || `Error processing video: ${response.statusText}`);
+    }
     
+    // Clear any previous rate limit info on success
+    sessionStorage.removeItem('rateLimitInfo');
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error("Error in analyzeVideo:", error);
+    // Re-throw the error so the calling component can handle it
+    throw error; 
+  }
 }; 
 
 export const checkApiHealth = async () => {
@@ -79,15 +106,29 @@ export const performDeepSearch = async (query, videodata, context, claimText) =>
       body: JSON.stringify(requestBody)
     });
 
+    // --- Rate Limit Check ---
+    if (response.status === 429) {
+      const rateLimitData = await response.json();
+      sessionStorage.setItem('deepSearchRateLimitInfo', JSON.stringify({ // Use a different key if needed
+        isLimited: true,
+        resetTime: rateLimitData.resetTime,
+        message: rateLimitData.message || 'Rate limit exceeded for deep search.'
+      }));
+      throw new Error(rateLimitData.message || 'Rate limit reached for deep search');
+    }
+    // --- End Rate Limit Check ---
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
+    sessionStorage.removeItem('deepSearchRateLimitInfo'); // Clear on success
     const data = await response.json();
     return data;
 
   } catch (error) {
     console.error('Error performing deep search:', error);
-    return `Error performing deep search: ${error.message}`;
+    // Propagate the error
+    throw error; 
   }
 };    
