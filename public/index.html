@@ -8,8 +8,17 @@
       name="description"
       content="React application"
     />
-    <link rel="icon" href="%PUBLIC_URL%/hexagon-static.svg" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/hexagon-static.svg" />
+    <!-- Basic favicon - ICO format works best for broad compatibility -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- SVG favicon for modern browsers -->
+    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/hexagon-static.svg" />
+    <!-- PNG fallbacks at different sizes -->
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/hexagon-static.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/hexagon-static.png" />
+    <!-- Apple Touch Icon (at least 180x180px for best results) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/hexagon-static.png" />
+    <!-- Manifest file for Android -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Video Claim Catcher</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   </head>
