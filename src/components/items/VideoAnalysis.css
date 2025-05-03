@@ -337,10 +337,43 @@
   }
 }
 
+/* Claim title */
+.claim-title-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(66, 153, 225, 0.08);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+} 
+
+.claim-title{
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  letter-spacing: 0.35px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.0125);
+}
+
+.video-analysis.dark .claim-title {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
 /* Claim text */
+.claim-text-container{
+  border-top: 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+}
 .claim-text {
   font-size: 1.1rem;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   line-height: 1.6;
   flex-grow: 0;
   position: relative;
@@ -349,7 +382,7 @@
   width: 100%;
   padding: 10px 15px;
   background-color: rgba(66, 153, 225, 0.05);
-  border-radius: 0 4px 4px 0;
+  border-radius: 5px;
 }
 
 .claim-text::before {
@@ -448,7 +481,7 @@
 .claim-context {
   font-size: 0.9rem;
   padding-top: 12px;
-  border-top: 1px solid;
+  /* border-top: 1px solid; */
   transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -547,7 +580,7 @@
 }
 
 .tab-button {
-  padding: 12px 24px;
+  padding: 12px;
   background: none;
   border: none;
   border-bottom: 3px solid transparent;
