@@ -60,9 +60,6 @@ function Home() {
       <div className="home-header">
         <h1>Video Claim Catcher</h1>
         <p>Dive Deep and Separate Fact from Fiction</p>
-        <p>Dive Deep and Turn speculation into verification</p>
-        <p>Dive Deep and Navigate the path to verified facts</p>
-        <p>Dive Deep and Discover what's credible in every video</p>
         <p>Dive Deep and Transform Watching into Knowing</p>
       </div>
       <div className="input-container">
