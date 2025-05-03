@@ -1,0 +1,45 @@
+.video-browser {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 2.1rem; 
+  padding: 1rem;
+  border-radius: var(--border-radius);
+}
+
+/* Style the container for each video item */
+.video-item {
+  display: flex; 
+  flex-direction: column; 
+  overflow: hidden; 
+  background-color: #f0f0f0;
+  padding: 0.5rem;
+  border-radius: 10px; 
+}
+
+/* Style the thumbnail image */
+.video-thumbnail {
+  width: 100%; 
+  height: auto; 
+  display: block; 
+  /* aspect-ratio: 16 / 9; */
+}
+
+/* Style the video title */
+.video-title {
+  padding: 0.8rem; /* Increased padding slightly */
+  font-size: 0.95rem; /* Slightly smaller font size */
+  font-weight: 700; /* Added font weight */
+  margin: 0; 
+  /* white-space: nowrap; Removed to allow wrapping */
+  overflow: hidden; /* Keep hidden if you want to clip overflow */
+  text-align: center; /* Added to center text */
+  color: var(--accent-color);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Added subtle text shadow for texture/depth */
+}
+
+/* Style the individual video containers */
+/* Removed the aspect-ratio rule as discussed previously */
+/* .video-browser > * { 
+  width: 100%; 
+  aspect-ratio: 16 / 9; 
+} */

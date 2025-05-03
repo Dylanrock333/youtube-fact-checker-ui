@@ -2,9 +2,13 @@ import React from 'react';
 import YouTube from 'react-youtube';
 import './YouTubeVideo.css';
 
-const YouTubeVideo = ({ url, timestamp }) => {
-  // Extract video ID from YouTube URL
+// Accept url, timestamp, and videoId as props
+const YouTubeVideo = ({ url, timestamp, videoId: videoIdProp }) => {
+
+  // Restore the getVideoId function
   const getVideoId = (url) => {
+    // Ensure url is a string before matching
+    if (typeof url !== 'string') return null;
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);
     return match && match[2].length === 11 ? match[2] : null;
@@ -31,8 +35,12 @@ const YouTubeVideo = ({ url, timestamp }) => {
     return 0;
   };
 
-  const videoId = getVideoId(url);
-  const startSeconds = convertTimestampToSeconds(timestamp);
+  // Determine the videoId: use videoIdProp if provided, otherwise extract from url
+  const videoId = videoIdProp || (url ? getVideoId(url) : null);
+  let startSeconds = 0;
+  if (timestamp != null) {
+    startSeconds = convertTimestampToSeconds(timestamp);
+  }
   
   // Options for the YouTube player
   const opts = {
@@ -42,8 +50,10 @@ const YouTubeVideo = ({ url, timestamp }) => {
     },
   };
 
+  // Check if we successfully determined a videoId
   if (!videoId) {
-    return <div className="youtube-error">Invalid YouTube URL</div>;
+    // Provide a more informative error message
+    return <div className="youtube-error">Invalid YouTube URL or Video ID</div>;
   }
 
   return (

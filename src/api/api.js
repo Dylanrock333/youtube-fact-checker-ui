@@ -132,3 +132,25 @@ export const performDeepSearch = async (query, videodata, context, claimText) =>
     throw error; 
   }
 };    
+
+export const getBrowserVideos = async (query) => {
+  try {
+    const searchUrl = `${BASE_URL}/home_list`;
+    const response = await fetch(searchUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.video_list;
+  } catch (error) {
+    console.error('Error fetching browser videos:', error);
+    throw error;
+  }
+};

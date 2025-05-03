@@ -4,8 +4,8 @@ import { useAnalysis } from '../context/AnalysisContext';
 import { checkApiHealth, analyzeVideo } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import validateUrl from '../utils/urlDecoder';
-
 import Hexagon from '../assets/hexagon-static.svg';
+import VideoBrowser from '../components/items/VideoBrowser';
 import '../styles/Home.css';
 
 //TODO: add the video duration
@@ -97,7 +97,7 @@ function Home() {
   return (
     <div className="home">
       <div className="home-header">
-        <h1>Video Claim Catcher</h1>
+        <h1 className="home-header-title">Video Claim Catcher</h1>
       </div>
       <div className="input-container">
         <input
@@ -122,7 +122,11 @@ function Home() {
         >
           {isAnalyzing ? 'Analyzing...' : 'Analyze Video'}
         </button>
+
       </div>  
+      <div className="video-browser-container">
+        <VideoBrowser />
+      </div>
     </div>
   );
 }
