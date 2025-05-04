@@ -91,6 +91,23 @@
 
 }
 
+/* Medium-sized screens */
+@media (max-width: 768px) {
+  .main-header nav a {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.7rem;
+  }
+  
+  .theme-toggle {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .theme-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
 
 /*====== Theme Toggle ======*/
 .theme-toggle {
