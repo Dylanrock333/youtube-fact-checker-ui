@@ -6,27 +6,31 @@
     <meta name="theme-color" content="#20A9BC" />
     <meta
       name="description"
-      content="React application"
+      content="Video Claim Catcher scans YouTube videos for fact-checkable content. Simply paste any YouTube URL, and our AI will analyze the transcript to identify specific claims and statements."
     />
-    <!-- Basic favicon - ICO format works best for broad compatibility -->
+    
+    <!-- Favicon declarations - organized and deduplicated -->
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <!-- SVG favicon for modern browsers -->
     <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/hexagon-static.svg" />
-    <!-- PNG fallbacks at different sizes -->
     <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/hexagon-static.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/hexagon-static.png" />
-    <!-- Apple Touch Icon (at least 180x180px for best results) -->
     <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/hexagon-static.png" />
-    <!-- Manifest file for Android -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <title>Video Claim Catcher</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png">
     <link rel="mask-icon" href="%PUBLIC_URL%/safari-pinned-tab.svg" color="#20A9BC">
+    
+    <!-- Android specific icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="%PUBLIC_URL%/android-chrome-512x512.png" />
+    
+    <!-- Web app manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <title>Video Claim Catcher</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <noscript>Video Claim Catcher scans YouTube videos for fact-checkable content. Simply paste any YouTube URL, and our AI will analyze the transcript to identify specific claims and statements made in the video that can be verified against reliable sources.Get instant access to the key claims in any video so you can quickly separate fact from fiction.</noscript>
+    <noscript>Video Claim Catcher scans YouTube videos for fact-checkable content. Simply paste any YouTube URL, and our AI will analyze the transcript to identify specific claims and statements made in the video that can be verified against reliable sources. Get instant access to the key claims in any video so you can quickly separate fact from fiction.</noscript>
     <div id="root"></div>
   </body>
 </html>   
