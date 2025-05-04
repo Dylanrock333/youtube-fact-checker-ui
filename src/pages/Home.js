@@ -103,7 +103,7 @@ function Home() {
           type="text"
           value={inputUrl}
           onChange={handleInputChange}
-          placeholder="Enter YouTube video URL here ..."
+          placeholder="Enter YouTube video link here ..."
           className={`main-input ${theme}`}
           disabled={isAnalyzing}
         />
