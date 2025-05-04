@@ -98,8 +98,7 @@ function Home() {
     <div className="home">
       <div className="home-header">
         <h1>Video Claim Catcher</h1>
-        <p>Dive Deep and Separate Fact from Fiction</p>
-        <p>Dive Deep and Transform Watching into Knowing</p>
+        <p>Transform Watching into Knowing</p>
       </div>
       <div className="input-container">
         <input
