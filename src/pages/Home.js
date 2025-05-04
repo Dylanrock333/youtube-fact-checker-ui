@@ -98,6 +98,7 @@ function Home() {
     <div className="home">
       <div className="home-header">
         <h1>Video Claim Catcher</h1>
+        <p>Transform Watching into Knowing</p>
       </div>
       <div className="input-container">
         <input
