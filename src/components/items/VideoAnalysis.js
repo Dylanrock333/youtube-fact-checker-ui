@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './VideoAnalysis.css';
 import { FaInfoCircle, FaSearch } from 'react-icons/fa';
@@ -15,6 +15,29 @@ const VideoAnalysis = ({ analysisData}) => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { theme } = useTheme();
+
+  // Function to adjust textarea height based on content
+  const adjustTextareaHeight = useCallback((textarea) => {
+    if (textarea) {
+      textarea.style.height = 'auto'; // Temporarily shrink to calculate correct scrollHeight
+      textarea.style.height = `${textarea.scrollHeight}px`; // Set height to content height
+      textarea.style.overflow = 'hidden'; // Hide scrollbar after resizing
+    }
+  }, []);
+
+  // Adjust height when 'deepSearch' tab becomes active
+  useEffect(() => {
+    Object.keys(activeTabs).forEach(claimId => {
+      if (activeTabs[claimId] === 'deepSearch') {
+        // Use setTimeout to ensure the element is rendered and measurable
+        setTimeout(() => {
+          const textarea = document.getElementById(`search-query-${claimId}`);
+          adjustTextareaHeight(textarea);
+        }, 0);
+      }
+    });
+    // Add analysisData as a dependency in case initial data has deepSearch active
+  }, [activeTabs, analysisData, adjustTextareaHeight]);
 
   // Add more thorough checks for analysisData
   if (!analysisData || !analysisData.claims) {
@@ -52,11 +75,15 @@ const VideoAnalysis = ({ analysisData}) => {
   };
 
   // Function to handle search query changes
-  const handleSearchQueryChange = (claimId, value) => {
+  const handleSearchQueryChange = (claimId, value, event) => {
     setSearchQueries(prev => ({
       ...prev,
       [claimId]: value
     }));
+    // Adjust height dynamically as user types
+    if (event && event.target) {
+       adjustTextareaHeight(event.target);
+    }
   };
 
   // Function to navigate to deep search page
@@ -224,14 +251,15 @@ const VideoAnalysis = ({ analysisData}) => {
                     ) : (
                       <div className="deep-search-panel">
                         <div className="search-query-container expanded">
-                          <label htmlFor={`search-query-${claim.id}`}>Explore...</label>
+                          <label htmlFor={`search-query-${claim.id}`}>Edit, Search and Explore...</label>
                           <textarea
                             id={`search-query-${claim.id}`}
                             className="search-query-input"
                             value={searchQueries[claim.id] || ''}
-                            onChange={(e) => handleSearchQueryChange(claim.id, e.target.value)}
-                            rows={5}
+                            onChange={(e) => handleSearchQueryChange(claim.id, e.target.value, e)}
+                            rows={3}
                             placeholder="Enter your search query..."
+                            style={{ overflow: 'hidden' }}
                           />
                           <button 
                             className="start-search-button"
