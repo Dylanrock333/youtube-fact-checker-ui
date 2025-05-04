@@ -233,6 +233,19 @@
   margin-bottom: 30px;
 }
 
+@media (max-width: 1024px) {
+  .claims-grid {
+    grid-template-columns: repeat(2, minmax(300px, 450px));
+    justify-content: center;
+    column-gap: 15px;
+  }
+
+  .video-analysis {
+    padding: 12px;
+  }
+}
+
+
 @media (max-width: 768px) {
   .claims-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
