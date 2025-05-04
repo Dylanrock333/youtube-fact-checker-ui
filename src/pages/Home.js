@@ -4,8 +4,6 @@ import { useAnalysis } from '../context/AnalysisContext';
 import { checkApiHealth, analyzeVideo } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import validateUrl from '../utils/urlDecoder';
-
-import Hexagon from '../assets/hexagon-static.svg';
 import '../styles/Home.css';
 
 //TODO: add the video duration
