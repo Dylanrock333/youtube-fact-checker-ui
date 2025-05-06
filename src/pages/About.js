@@ -14,43 +14,30 @@ function About() {
 
       <div className="about-section">
         <p>
-          As an engineer passionate about merging technical expertise with creative innovation, I'm captivated by the transformative potential of artificial intelligence. 
-          Video Claim Catcher exemplifies how Large Language Models can extract meaning from content, restructure information, and make agentic assessments. 
-          The agenticity of AI represents just one example of how these capabilities, when thoughtfully implemented, can revolutionize numerous fields and streamline complex tasks.
-        </p>
-
-        <p>
           As YouTube's position as the world's largest media platform continues to grow, the volume of unchecked information expands exponentially. 
           In today's landscape of rampant misinformation, Video Claim Catcher empowers viewers to navigate the nuances of statements presented in video content.
           I designed this tool to help users efficiently evaluate content credibility. 
           Beyond simple fact-checking, Video Claim Catcher creates comprehensive information profiles for each video, enabling deeper understanding of diverse topics. 
-          The application serves both as a verification system for assessing statement validity and as a knowledge expansion tool that contextualizes information within broader discussions.
+          The application bridges the gap between passive consumption and active learning by transforming viewing experiences into opportunities for research and discovery. It gives viewers the tools to instantly verify claims, explore supporting evidence, and gain contextual understanding—all in a digestible format that doesn't require hours of independent research. By making knowledge verification accessible and efficient, Video Claim Catcher helps users build media literacy and critical thinking skills while ensuring they can confidently separate reliable information from questionable assertions in the content they consume.
         </p>
 
         <p>
           This sophisticated application utilizes advanced language models to power two specialized AI components: the Analyzing Agent and the Deep Search Agent.
-          The Analyzing Agent processes video transcripts through Gemini to identify statements containing historical references, factual assertions, logical arguments, statistical data, or verifiable claims. 
+          The Analyzing Agent processes video transcripts to identify statements containing historical references, factual assertions, logical arguments, statistical data, or verifiable claims. 
           Each detected statement is accompanied by a contextual summary that frames the claim within its surrounding discussion and subject matter.
-          The system evaluates each claim across three dimensions: Controversy, Video Relevance, and Checkability. It then formulates precise search parameters that the Deep Search Agent uses to conduct internet research.
-          The Deep Search Agent leverages Perplexity to execute targeted web searches based on these parameters. 
+          The system evaluates each claim across three metrics: Controversy, Video Relevance, and Checkability. It then formulates precise search parameters that the Deep Search Agent uses to conduct internet research.
+          The Deep Search Agent will then execute a targeted web searches based on these parameters. 
           It synthesizes findings into concise summaries supported by attribution to credible sources. 
           This provides users with both immediate insights and pathways for deeper investigation through retrived citations.
         </p>
 
         <p>
-          While this technology represents a significant advancement, it faces inherent limitations including the probabilistic nature of language models that may yield inconsistent claim identification,and transcript quality issues that affect accuracy.
-          Additionally, while the system utilizes Perplexity to evaluate claims using internet resources, it cannot independently verify source credibility, making user judgment an essential component of the verification process.
-        </p>
-
-        <p>
-          Despite prioritizing authoritative references, the system has inherent limitations in distinguishing between reliable and unreliable information, making user discretion essential for critical matters.
-          Despite these constraints, Video Claim Catcher delivers exceptional value through its contextual comprehension capabilities, claim extraction functionality, and targeted research abilities. 
-          It serves diverse purposes spanning from verification needs to curiosity satisfaction to comprehensive topic exploration.
-          Whether you're fact-checking important claims, satisfying intellectual curiosity, or diving deeper into complex subjects, Video Claim Catcher empowers you to engage more meaningfully with content and discover both the facts and the broader context behind what you watch.
+          While this technology represents a significant advancement, it has inherent limitations including inconsistent claim identification due to the probabilistic nature of language models, transcript quality issues, and an inability to independently verify source credibility—making user judgment essential for the verification process. 
+          Nevertheless, Video Claim Catcher delivers exceptional value through its contextual comprehension, claim extraction, and targeted research abilities, empowering you to engage more meaningfully with content whether you're fact-checking important claims, satisfying intellectual curiosity, or exploring complex subjects to discover both facts and broader context behind what you watch.
         </p>
 
         <p> 
-          If you're interested in learning more about the technology behind Video Claim Catcher, or would like to to work together, please reach out to me at in the contact us section at the bottom of the page.
+          If you're interested in learning more about the technology behind Video Claim Catcher, or would like to to work together, please reach out to me using the 'Contact Us' link at the bottom of the page.
         </p>
       </div>
     </div>
