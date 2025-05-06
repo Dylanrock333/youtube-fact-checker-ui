@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - var(--header-height, 60px) - var(--footer-height, 50px));
+  overscroll-behavior-y: contain;
 }
 
 .page-contact-us h1 {

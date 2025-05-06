@@ -6,6 +6,7 @@
   min-height: 100vh;
   overflow-y: auto;
   position: relative;
+  overscroll-behavior-y: contain;
 }
 
 .page-content h1 {
