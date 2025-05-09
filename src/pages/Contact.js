@@ -39,7 +39,7 @@ function Contact() {
 
   return (
     <div className="page-contact-us">
-      <h1>Contact us</h1>
+      <h1>Contact Us</h1>
       <p className={`contact-intro ${theme}`}>
         Feel free to contact us using the form below. We'll be happy to help or hear your feedback!
       </p>
