@@ -6,7 +6,8 @@ export function ThemeProvider({ children }) {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Load from localStorage on initial mount
     const savedTheme = localStorage.getItem('theme');
-    return savedTheme === 'dark';
+    // Default to dark mode if no theme is saved
+    return savedTheme ? savedTheme === 'dark' : true;
   });
 
   // Save to localStorage when theme changes
