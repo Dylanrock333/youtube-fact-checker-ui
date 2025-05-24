@@ -2,7 +2,6 @@
 .video-analysis {
   padding: 20px;
   margin-bottom: 25px;
-  transition: all 0.3s ease;
   overflow: hidden; 
   width: 100%; 
 }
@@ -142,9 +141,6 @@
   }
 }
 
-
-
-
 /* Individual metadata item */
 .metadata-item {
   display: flex;
@@ -152,16 +148,7 @@
   align-items: center;
   padding: 3px;
   border-radius: 8px;
-  transition: all 0.3s ease;
 }
-
-/* .metadata-item:hover {
-  background-color: rgba(66, 153, 225, 0.1);
-} */
-
-/* .video-analysis.dark .metadata-item:hover {
-  background-color: rgba(66, 153, 225, 0.15);
-} */
 
 .metadata-label {
   font-size: 0.8rem;
@@ -269,7 +256,8 @@
   max-width: 100%;
   overflow: hidden;
   min-height: 400px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
+  transform: translateZ(0);
 }
 
 @media (max-width: 768px) {
@@ -323,7 +311,6 @@
   border-radius: 6px;
   background-color: rgba(66, 153, 225, 0.1);
   color: var(--accent-color);
-  transition: all 0.2s ease;
 }
 
 .video-analysis.dark .timestamp {
@@ -494,12 +481,11 @@
 .claim-context {
   font-size: 0.9rem;
   padding-top: 12px;
-  /* border-top: 1px solid; */
-  transition: all 0.3s ease-in-out;
+  transition: height 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 100%; /* Ensure full height */
+  height: 100%;
   overflow: hidden;
 }
 
@@ -522,7 +508,7 @@
   max-height: none;
   opacity: 1;
   font-size: 1rem;
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, margin 0.3s ease-in-out;
+  transition: max-height 0.3s ease-in-out;
   overflow: hidden;
   margin-bottom: 15px;
   line-height: 1.5;
@@ -600,7 +586,7 @@
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -648,11 +634,6 @@
   font-size: 0.8rem;
 }
 
-/* Tab content transition */
-.tab-content {
-  transition: all 0.3s ease-in-out;
-}
-
 .claim-context.expanded .tab-content {
   display: flex;
   flex-direction: column;
@@ -662,10 +643,10 @@
 
 /* Create a container for tabs and tab content at the bottom */
 .claim-tabs-container {
-  margin-top: auto; /* Push to bottom of claim-context */
-  transition: all 0.3s ease-in-out;
+  margin-top: auto; 
+  transition: flex 0.3s ease-in-out;
 }
-
+ 
 /* When deep verification is active */
 .claim-context.expanded .claim-tabs-container {
   display: flex;

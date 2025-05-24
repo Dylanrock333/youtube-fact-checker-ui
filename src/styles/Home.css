@@ -149,7 +149,6 @@
   font-size: 0.9rem;
   border-radius: 8px;
   border: 2px solid #ccc;
-  transition: all 0.3s ease;
   font-family: monospace;
   letter-spacing: -0.2px;
 }
@@ -224,7 +223,6 @@
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
   font-weight: 600;
 }
 

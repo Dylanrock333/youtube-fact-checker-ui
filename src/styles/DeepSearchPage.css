@@ -3,7 +3,6 @@
   max-width: 1400px;
   margin: 0 auto;
   border-radius: 10px;
-  transition: all 0.3s ease;
   width: 97%;
 }
 
@@ -48,7 +47,6 @@
   font-weight: 500;
   cursor: pointer;
   margin-bottom: 20px;
-  transition: all 0.2s ease;
 }
 
 .deep-search-page.light .back-button {
@@ -74,7 +72,6 @@
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 25px;
-  transition: all 0.3s ease;
 }
 
 .query-box, .results-box, .context-box {
@@ -82,7 +79,6 @@
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 25px;
-  transition: all 0.3s ease;
 }
 
 .deep-search-page.light .query-box,
@@ -509,7 +505,6 @@
   background-color: var(--accent-color);
   color: white;
   margin-bottom: 10px;
-  transition: all 0.2s ease;
 }
 
 .deep-search-page.light .citations-toggle {

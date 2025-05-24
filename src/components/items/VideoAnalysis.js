@@ -195,7 +195,6 @@ const VideoAnalysis = ({ analysisData}) => {
                   <div className="tab-content">
                     {activeTabs[claim.id] === 'context' || !activeTabs[claim.id] ? (
                       <div className="context-content">
-                        {/* <strong>Context</strong> */}
                         <p>{claim.context}</p>
                       </div>
                     ) : activeTabs[claim.id] === 'metrics' ? (
