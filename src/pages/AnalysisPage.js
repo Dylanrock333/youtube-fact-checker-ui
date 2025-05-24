@@ -36,21 +36,30 @@ function AnalysisPage() {
                 return;
             }
 
-            try {
-           
-                console.log("Attempting analysis for:", videoUrl, origin, videoID);
-                const response = await analyzeVideo(videoUrl, origin, videoID);
-                console.log("Analysis response:", response);
-                setAnalysisData(response);
+            let attempts = 0;
+            const maxAttempts = 2; // Will try initially + 2 retries
 
-            } catch (error) {
-
-                console.error('Error analyzing video:', error);
-                setAnalysisData({ error: error.message });
-            } finally {
-
-                setIsAnalyzing(false);
+            while (attempts < maxAttempts) {
+                try {
+                    console.log(`Attempt ${attempts + 1} of ${maxAttempts}`);
+                    const response = await analyzeVideo(videoUrl, origin, videoID);
+                    console.log("Analysis response:", response);
+                    setAnalysisData(response);
+                    setIsAnalyzing(false);
+                    return; // Success! Exit the function
+                } catch (error) {
+                    attempts++;
+                    if (attempts === maxAttempts) {
+                        console.error('Final attempt failed:', error);
+                        setAnalysisData({ error: "Error processing video" });
+                    } else {
+                        console.log(`Attempt ${attempts} failed, retrying...`);
+                        await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second before retrying
+                    }
+                }
             }
+
+            setIsAnalyzing(false);
         };
 
         const { origin, videoID } = validateUrl(videoUrl); //TODO: maybe add better error handling here

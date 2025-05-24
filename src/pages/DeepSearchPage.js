@@ -41,23 +41,37 @@ const DeepSearchPage = () => {
                     return;
                 }
 
-                const result = await performDeepSearch(query, videodata, context, claimText);
-                
-                if (typeof result === 'string' && result.includes('Error')) {
-                    setError(result);
-                    setSearchResult(null);
-                } else {
-                    // Store the result in localStorage
-                    localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
+                let attempts = 0;
+                const maxAttempts = 2; // Initial try + 2 retries
 
-                    console.log(`saved item id: search-${claimId}`);
-                    
-                    setSearchResult(result);
-                    setError(null);
+                while (attempts < maxAttempts) {
+                    try {
+                        console.log(`Attempt ${attempts + 1} of ${maxAttempts}`);
+                        const result = await performDeepSearch(query, videodata, context, claimText);
+                        
+                        if (typeof result === 'string' && result.includes('Error')) {
+                            throw new Error(result);
+                        }
+                        
+                        // Store the result in localStorage
+                        localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
+                        console.log(`saved item id: search-${claimId}`);
+                        
+                        setSearchResult(result);
+                        setError(null);
+                        return; // Success! Exit the function
+                    } catch (error) {
+                        attempts++;
+                        if (attempts === maxAttempts) {
+                            console.error('Final attempt failed:', error);
+                            setError(`Error performing deep search: ${error.message}`);
+                            setSearchResult(null);
+                        } else {
+                            console.log(`Attempt ${attempts} failed, retrying...`);
+                            await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second before retrying
+                        }
+                    }
                 }
-            } catch (error) {
-                setError(`Error performing deep search: ${error.message}`);
-                setSearchResult(null);
             } finally {
                 setIsLoading(false);
             }
