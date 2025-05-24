@@ -1,0 +1,39 @@
+/* src/components/items/HexagonLoader.css */
+
+@keyframes spin-clockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes spin-counterclockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+  
+  /* Only animate when explicitly allowed */
+  .loading-hexagon.animate .outer-hexagon {
+    animation: spin-clockwise 8s linear infinite;
+    transform-origin: center;
+  }
+  
+  .loading-hexagon.animate .inner-hexagon {
+    animation: spin-counterclockwise 4s linear infinite;
+    transform-origin: center;
+  }
+  
+  /* Paused state - no animations */
+  .loading-hexagon.paused .outer-hexagon,
+  .loading-hexagon.paused .inner-hexagon {
+    animation: none;
+  }
+  
+  /* Base styles */
+  .loading-hexagon {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .loading-hexagon .outer-hexagon,
+  .loading-hexagon .inner-hexagon {
+    transform-origin: center;
+  }

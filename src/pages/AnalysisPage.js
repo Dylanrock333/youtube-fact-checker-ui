@@ -4,7 +4,7 @@ import { useTheme } from '../context/ThemeContext';
 import { useAnalysis } from '../context/AnalysisContext';
 import { analyzeVideo} from '../api/api';
 import validateUrl from '../utils/urlDecoder';
-import hexagonLoading from '../assets/hexagon-loading.svg';
+import HexagonLoader from '../components/items/hexagon-loading';
 import "../styles/AnalysisPage.css";
 
 function AnalysisPage() {
@@ -92,12 +92,11 @@ function AnalysisPage() {
                 <div className={`result-container ${theme}`}>
                     {isAnalyzing ? (
                     <div className="analysis-loading">
-                        <div className="loading-container">
-                            <object type="image/svg+xml" data={hexagonLoading} className="loading-hexagon">
-                                Loading animation
-                            </object>
-                            <p>Analyzing video...</p>
-                        </div>
+                        <HexagonLoader 
+                            className="loading-hexagon" 
+                            isVisible={isAnalyzing}
+                        />
+                        <p>Analyzing video...</p>
                     </div>
                     ) : (
                     analysisData && (

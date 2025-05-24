@@ -49,7 +49,6 @@
   .loading-hexagon {
     width: 100px;
     height: 100px;
-    /* Assuming SVG or other element handles animation/visuals */
   }
   .analysis-loading {
     display: flex;

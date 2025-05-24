@@ -6,7 +6,7 @@ import { useTheme } from '../context/ThemeContext';
 import { performDeepSearch } from '../api/api';
 import { useAnalysis } from '../context/AnalysisContext';
 import YouTubeVideo from '../components/items/YouTubeVideo';
-import hexagonLoading from '../assets/hexagon-loading.svg';
+import HexagonLoader from '../components/items/hexagon-loading';
 import { marked } from 'marked';
 
 const DeepSearchPage = () => {
@@ -152,9 +152,10 @@ const DeepSearchPage = () => {
                 
                 {isLoading ? (
                     <div className="loading-container">
-                        <object type="image/svg+xml" data={hexagonLoading} className="loading-hexagon">
-                            Loading animation
-                        </object>
+                        <HexagonLoader 
+                            className="loading-hexagon" 
+                            isVisible={isLoading}
+                        />
                         <p>Performing deep search...</p>
                     </div>
                 ) : error ? (
