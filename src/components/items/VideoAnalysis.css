@@ -104,8 +104,8 @@
 }
 
 @media (max-width: 768px) {
-  .video-metadata {
-    grid-template-columns: 1fr 1fr;
+    .video-metadata {
+    grid-template-columns: 1fr 1fr;  /* TODO make more memory efficient */
     grid-template-areas: 
       "views published"
       "channel channel";
@@ -128,7 +128,6 @@
     font-size: 0.7rem;
   }
 }
-
 
 .video-analysis.dark .video-metadata {
   background-color: rgba(66, 153, 225, 0.15);
@@ -235,16 +234,22 @@
 
 @media (max-width: 768px) {
   .claims-grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    column-gap: 10px;
-    row-gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .claims-grid .claim-card {
+    flex: 1 1 300px; /* grow, shrink, basis */
+    min-width: 300px;
+    max-width: 100%; /* Prevents overflow */
   }
   
   .video-analysis {
     padding: 12px;
   }
 }
-
 
 
 /* ===== CLAIM CARD STYLES ===== */
