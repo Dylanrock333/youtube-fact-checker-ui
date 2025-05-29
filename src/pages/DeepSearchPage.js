@@ -14,7 +14,7 @@ const DeepSearchPage = () => {
     const navigate = useNavigate();
     const { query, claimId, claimText, context, timestamp, videodata } = location.state || {};
     const { theme } = useTheme();
-    const { videoUrl } = useAnalysis();
+    const { videoUrl, setDeepSearchResult } = useAnalysis();
     
     const [isLoading, setIsLoading] = useState(true);
     const [searchResult, setSearchResult] = useState(null);
@@ -31,16 +31,6 @@ const DeepSearchPage = () => {
             try {
                 setIsLoading(true);
 
-                // Check if data is already in localStorage
-                const storedResult = localStorage.getItem(`search-${claimId}`);
-                console.log(`storedResult: search-${claimId}`);
-                if (storedResult) {
-                    setSearchResult(JSON.parse(storedResult));
-                    setError(null);
-                    setIsLoading(false);
-                    return;
-                }
-
                 let attempts = 0;
                 const maxAttempts = 2; // Initial try + 2 retries
 
@@ -54,7 +44,7 @@ const DeepSearchPage = () => {
                         }
                         
                         // Store the result in localStorage
-                        localStorage.setItem(`search-${claimId}`, JSON.stringify(result));
+                        setDeepSearchResult(result);
                         console.log(`saved item id: search-${claimId}`);
                         
                         setSearchResult(result);

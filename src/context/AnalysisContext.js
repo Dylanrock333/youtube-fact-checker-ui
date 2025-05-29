@@ -53,15 +53,10 @@ export function AnalysisProvider({ children }) {
 
 
   // Save search results to sessionStorage
-  const saveSearchResult = (claimId, result) => {
-    sessionStorage.setItem(`search-${claimId}`, JSON.stringify(result));
+  const setDeepSearchResult = (result) => {
+    sessionStorage.setItem(`deep-search`, JSON.stringify(result));
   };
 
-  // Get search results from sessionStorage
-  const getSearchResult = (claimId) => {
-    const storedResult = sessionStorage.getItem(`search-${claimId}`);
-    return storedResult ? JSON.parse(storedResult) : null;
-  };
 
   return (
     <AnalysisContext.Provider 
@@ -73,8 +68,7 @@ export function AnalysisProvider({ children }) {
         isAnalyzing,
         setIsAnalyzing,
         isInitialized,
-        saveSearchResult,
-        getSearchResult
+        setDeepSearchResult
       }}
     >
       {children}
