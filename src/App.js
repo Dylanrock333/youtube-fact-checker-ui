@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { AnalysisProvider } from './context/AnalysisContext';
+//import { LanguageProvider } from './context/LanguageContext';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
@@ -52,7 +53,7 @@ function App() {
       <AnalysisProvider>
         <AppContent />
       </AnalysisProvider>
-    </ThemeProvider>
+    </ThemeProvider>    
   );
 }
 

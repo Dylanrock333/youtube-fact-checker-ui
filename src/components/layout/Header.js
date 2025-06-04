@@ -4,6 +4,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { ReactComponent as SunIcon } from '../../assets/sun-icon.svg';
 import { ReactComponent as MoonIcon } from '../../assets/moon-icon.svg';
 import '../../styles/Header.css';
+import LanguageSelector from '../items/language-handler';
 
 function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -14,6 +15,7 @@ function Header() {
         <ul>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/about">About</Link></li>
+          <li><LanguageSelector /></li>
         </ul>
       </nav>
       <button onClick={toggleTheme} className={`theme-toggle`}>

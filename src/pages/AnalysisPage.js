@@ -16,6 +16,7 @@ function AnalysisPage() {
       isAnalyzing, 
       setIsAnalyzing,
       isInitialized,
+      currentLanguage
     } = useAnalysis();
 
     useEffect(() => {
@@ -42,7 +43,7 @@ function AnalysisPage() {
             while (attempts < maxAttempts) {
                 try {
                     console.log(`Attempt ${attempts + 1} of ${maxAttempts}`);
-                    const response = await analyzeVideo(videoUrl, origin, videoID);
+                    const response = await analyzeVideo(videoUrl, origin, videoID, currentLanguage);
                     console.log("Analysis response:", response);
                     setAnalysisData(response);
                     setIsAnalyzing(false);

@@ -1,0 +1,52 @@
+.language-selector {
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background-color: var(--component-bg);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 150px; /* Adjust as needed */
+  box-shadow: 0 2px 5px var(--box-shadow);
+  transition: var(--theme-transition);
+}
+
+.language-selector:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(32, 169, 188, 0.2); /* Similar to input focus */
+}
+
+.language-selector:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(32, 169, 188, 0.2);
+}
+
+/* Optional: Style for the options */
+.language-selector option {
+  background-color: var(--component-bg);
+  color: var(--text-color);
+}
+
+/* Light theme adjustments */
+.light .language-selector {
+  background-color: var(--light-component-bg);
+  color: var(--light-text-color);
+  border-color: var(--light-border-color);
+  box-shadow: 0 2px 5px var(--light-box-shadow);
+}
+
+.light .language-selector:hover {
+  border-color: var(--accent-color);
+}
+
+.light .language-selector:focus {
+  border-color: var(--accent-color);
+}
+
+.light .language-selector option {
+  background-color: var(--light-component-bg);
+  color: var(--light-text-color);
+} 

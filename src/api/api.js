@@ -9,17 +9,18 @@ const getBaseUrl = () => {
 // Replace the existing BASE_URL constant
 const BASE_URL = getBaseUrl();
 
-export const analyzeVideo = async (url, origin, videoID) => {
+export const analyzeVideo = async (url, origin, videoID, selectedLanguage) => {
 
   let request_url = `${BASE_URL}/execute`
   console.log('Calling API at:', request_url)
-
+  // Debug logging
+  console.log('Request payload:', { url, origin, videoID, selectedLanguage });
   const response = await fetch(request_url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ url, origin, videoID })
+    body: JSON.stringify({ url, origin, videoID, selectedLanguage })
   });
   
   try { // Wrap in try...catch to handle errors including rate limits

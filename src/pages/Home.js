@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useAnalysis } from '../context/AnalysisContext';
-import { checkApiHealth, analyzeVideo } from '../api/api';
+import { checkApiHealth} from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import validateUrl from '../utils/urlDecoder';
 import '../styles/Home.css';
