@@ -132,7 +132,7 @@ const VideoAnalysis = ({ analysisData}) => {
           <div className="metadata-item">
             <span className="metadata-label">Views</span>
             <span className="metadata-value">
-              {Number(analysisData.video_data.view_count).toLocaleString()}
+              {analysisData.video_data.view_count}
             </span>
           </div>
           <div className="metadata-item">

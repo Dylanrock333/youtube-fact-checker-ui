@@ -11,6 +11,7 @@
   margin: 0;
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
 .main-header nav a {
@@ -151,4 +152,9 @@
     fill: black !important;
     stroke: black !important;
   }
+}
+
+.main-header nav li {
+  display: flex;
+  align-items: center;
 } 
