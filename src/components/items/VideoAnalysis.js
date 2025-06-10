@@ -145,6 +145,10 @@ const VideoAnalysis = ({ analysisData}) => {
             <span className="metadata-label">Channel</span>
             <span className="metadata-value">{analysisData.video_data.channel_title}</span>
           </div>
+          <div className="metadata-item">
+            <span className="metadata-label">Duration</span>
+            <span className="metadata-value">{analysisData.video_data.duration}</span>
+          </div>
         </div>
         {videoIdDisplay}
       </div>

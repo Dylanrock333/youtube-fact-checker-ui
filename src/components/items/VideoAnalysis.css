@@ -93,8 +93,8 @@
 /* Video metadata container */
 .video-metadata {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 5px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
   width: 100%;
   max-width: 800px;
   margin: 20px auto;
@@ -108,11 +108,11 @@
     grid-template-columns: 1fr 1fr;  /* TODO make more memory efficient */
     grid-template-areas: 
       "views published"
-      "channel channel";
+      "channel duration";
     width: 87%;
   }
   
-  .video-metadata .metadata-item:nth-child(1) {
+  /* .video-metadata .metadata-item:nth-child(1) {
     grid-area: views;
   }
   
@@ -122,7 +122,7 @@
   
   .video-metadata .metadata-item:nth-child(3) {
     grid-area: channel;
-  }
+  } */
 
   .metadata-item{
     font-size: 0.7rem;
