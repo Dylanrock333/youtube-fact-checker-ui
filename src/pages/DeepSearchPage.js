@@ -8,8 +8,10 @@ import { useAnalysis } from '../context/AnalysisContext';
 import YouTubeVideo from '../components/items/YouTubeVideo';
 import HexagonLoader from '../components/items/hexagon-loading';
 import { marked } from 'marked';
+import { useTranslation } from '../translation/useTranslation';
 
 const DeepSearchPage = () => {
+    const { t } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
     const { query, claimId, claimText, context, timestamp, videodata } = location.state || {};
@@ -97,15 +99,15 @@ const DeepSearchPage = () => {
     return (
         <div className={`deep-search-page ${theme}`}>
             <button className="back-button" onClick={handleGoBack}>
-            <FaArrowLeft /> Back to Analysis
+            <FaArrowLeft /> {t('common.back')}
             </button>
             
             <div className="claim-box">
                 <div className="claim-header">
-                    {timestamp && <span className="timestamp">Timestamp: {timestamp}</span>}
+                    {timestamp && <span className="timestamp">{t('analysis.timestamp')}: {timestamp}</span>}
                 </div>
                 <div className="claim-text">
-                    {claimText || 'No claim provided'}
+                    {claimText || t('deepSearch.noClaim')}
                 </div>
                 {videoUrl && (
                     <div className="video-container">
@@ -118,7 +120,7 @@ const DeepSearchPage = () => {
                 {context && (
                     <div className={`context-box ${!isContextExpanded ? 'collapsed' : ''}`}>
                         <h3 onClick={toggleContext} className="collapsible-header">
-                            Context:
+                            {t('analysis.context')}
                             <button className="toggle-icon">
                                 {isContextExpanded ? <FaChevronUp /> : <FaChevronDown />}
                             </button>
@@ -129,12 +131,12 @@ const DeepSearchPage = () => {
                 
                 <div className={`query-box ${!isQueryExpanded ? 'collapsed' : ''}`}>
                      <h3 onClick={toggleQuery} className="collapsible-header">
-                        Searched for:
+                        {t('deepSearch.searchFor')}
                         <button className="toggle-icon">
                             {isQueryExpanded ? <FaChevronUp /> : <FaChevronDown />}
                         </button>
                     </h3>
-                    <p>{query || 'No query provided'}</p>
+                    <p>{query || t('deepSearch.noQuery')}</p>
                 </div>
             </div>
             
@@ -146,7 +148,7 @@ const DeepSearchPage = () => {
                             className="loading-hexagon" 
                             isVisible={isLoading}
                         />
-                        <p>Performing deep search...</p>
+                        <p>{t('deepSearch.performingDeepSearch')}</p>
                     </div>
                 ) : error ? (
                     <div className="error-message">
@@ -166,15 +168,15 @@ const DeepSearchPage = () => {
                                         onClick={toggleCitations}
                                     >
                                         {showCitations ? (
-                                            <>Hide Citations <FaChevronUp /></>
+                                            <> {t('deepSearch.hideCitations')} <FaChevronUp /></>
                                         ) : (
-                                            <>Show Citations <FaChevronDown /></>
+                                            <> {t('deepSearch.showCitations')} <FaChevronDown /></>
                                         )}
                                     </button>
                                     
                                     {showCitations && (
                                         <div className="citations-list">
-                                            <h4>Citations</h4>
+                                                <h4>{t('analysis.citations')}</h4>
                                             <ol>
                                                 {searchResult.citations.map((citation, index) => (
                                                     <li key={index}>

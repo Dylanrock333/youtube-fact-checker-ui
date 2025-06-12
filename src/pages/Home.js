@@ -5,9 +5,11 @@ import { checkApiHealth} from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import validateUrl from '../utils/urlDecoder';
 import '../styles/Home.css';
+import { useTranslation } from '../translation/useTranslation'; 
 
 //TODO: add the video duration
 function Home() {
+  const { t } = useTranslation();
   const [inputUrl, setInputUrl] = useState('');
   const navigate = useNavigate();
   const { theme } = useTheme();
@@ -83,11 +85,11 @@ function Home() {
     <div className="api-status-indicator">
       API Status: 
       {apiStatus.loading ? (
-        <span className="loading">Loading...</span>
+        <span className="loading">{t('common.loading')}</span>
       ) : apiStatus.success ? (
-        <span className="success">✓</span>
+        <span className="success">{t('common.success')}</span>
       ) : (
-        <span className="error">✗</span>
+        <span className="error">{t('common.error')}</span>
       )}
     </div>
   ) : null; 
@@ -95,15 +97,15 @@ function Home() {
   return (
     <div className="home">
       <div className="home-header">
-        <h1>Video Claim Catcher</h1>
-        <p>Transform Watching into Knowing</p>
+        <h1>{t('home.title')}</h1>
+        <p>{t('home.subtitle')}</p>
       </div>
       <div className="input-container">
         <input
           type="text"
           value={inputUrl}
           onChange={handleInputChange}
-          placeholder="Enter YouTube video link here ..."
+          placeholder={t('home.inputPlaceholder')}
           className={`main-input ${theme}`}
           disabled={isAnalyzing}
         />
@@ -119,7 +121,7 @@ function Home() {
           className={`analyze-button ${theme} ${isAnalyzing || rateLimitMessage ? 'disabled' : ''}`}
           disabled={isAnalyzing || !apiStatus.success || !!rateLimitMessage}
         >
-          {isAnalyzing ? 'Analyzing...' : 'Analyze Video'}
+          {isAnalyzing ? t('home.analyzingButton') : t('home.analyzeButton')}
         </button>
       </div>  
     </div>

@@ -6,8 +6,10 @@ import { analyzeVideo} from '../api/api';
 import validateUrl from '../utils/urlDecoder';
 import HexagonLoader from '../components/items/hexagon-loading';
 import "../styles/AnalysisPage.css";
+import { useTranslation } from '../translation/useTranslation';
 
 function AnalysisPage() {
+    const { t } = useTranslation();
     const { theme } = useTheme();
     const { 
       analysisData, 
@@ -97,12 +99,12 @@ function AnalysisPage() {
                             className="loading-hexagon" 
                             isVisible={isAnalyzing}
                         />
-                        <p>Analyzing video...</p>
+                        <p>{t('analysis.loading')}</p> 
                     </div>
                     ) : (
                     analysisData && (
                         analysisData.error ? (
-                        <div className="error-message">{analysisData.error}</div>
+                        <div className="error-message">{t('analysis.error')}</div>
                         ) : (   
                         <VideoAnalysis 
                             analysisData={analysisData}

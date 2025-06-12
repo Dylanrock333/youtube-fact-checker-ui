@@ -5,16 +5,17 @@ import { ReactComponent as SunIcon } from '../../assets/sun-icon.svg';
 import { ReactComponent as MoonIcon } from '../../assets/moon-icon.svg';
 import '../../styles/Header.css';
 import LanguageSelector from '../items/language-handler';
-
+import { useTranslation } from '../../translation/useTranslation';
 function Header() {
   const { theme, toggleTheme } = useTheme();
+  const { t } = useTranslation();
 
   return (
     <header className="main-header">
       <nav>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
+          <li><Link to="/">{t('nav.home')}</Link></li>
+          <li><Link to="/about">{t('nav.about')}</Link></li>
           <li><LanguageSelector /></li>
         </ul>
       </nav>

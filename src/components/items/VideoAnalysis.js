@@ -5,6 +5,7 @@ import { FaInfoCircle, FaSearch } from 'react-icons/fa';
 import YouTubeVideo from './YouTubeVideo';
 import { useAnalysis } from '../../context/AnalysisContext';
 import { useTheme } from '../../context/ThemeContext'; 
+import { useTranslation } from '../../translation/useTranslation';
 
 //TODO: when the pai can handle more plarforms change how YouTubeVideo componenet is handled
 
@@ -15,7 +16,8 @@ const VideoAnalysis = ({ analysisData}) => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { theme } = useTheme();
-
+  const { t } = useTranslation();
+  
   // Function to adjust textarea height based on content
   const adjustTextareaHeight = useCallback((textarea) => {
     if (textarea) {
@@ -123,45 +125,45 @@ const VideoAnalysis = ({ analysisData}) => {
         </div>
         
         {isLoading ? (
-          <div className="loading-spinner">Loading...</div>
+          <div className="loading-spinner">{t('common.loading')}</div>
         ) : (
           <YouTubeVideo url={videoUrl} />
         )}
         
         <div className="video-metadata">
           <div className="metadata-item">
-            <span className="metadata-label">Views</span>
+            <span className="metadata-label">{t('analysis.views')}</span> 
             <span className="metadata-value">
               {analysisData.video_data.view_count}
             </span>
           </div>
           <div className="metadata-item">
-            <span className="metadata-label">Published</span>
+            <span className="metadata-label">{t('analysis.published')}</span>
             <span className="metadata-value">
               {analysisData.video_data.published_at.split('T')[0]}
             </span>
           </div>
           <div className="metadata-item">
-            <span className="metadata-label">Channel</span>
+            <span className="metadata-label">{t('analysis.channel')}</span>
             <span className="metadata-value">{analysisData.video_data.channel_title}</span>
           </div>
           <div className="metadata-item">
-            <span className="metadata-label">Duration</span>
+            <span className="metadata-label">{t('analysis.duration')}</span>
             <span className="metadata-value">{analysisData.video_data.duration}</span>
           </div>
         </div>
         {videoIdDisplay}
       </div>
       {/* Claims Section */}
-      <div className="claim-count">Total Claims Analyzed: {analysisData.claim_count}</div>
+      <div className="claim-count">{t('analysis.totalClaims')}: {analysisData.claim_count}</div>
       <div className="claims-grid">
         {isLoading ? (
-          <div className="loading-spinner">Loading...</div>
+          <div className="loading-spinner">{t('common.loading')}</div>
         ) : (
           analysisData.claims.map((claim) => (
             <div key={claim.id} className={`claim-card ${theme}`}>
               <div className="claim-header">
-                <span className="timestamp">Timestamp: {claim.timestamp}</span>
+                <span className="timestamp">{t('analysis.timestamp')}: {claim.timestamp}</span>
                 <span className="category">{claim.category}</span>
               </div>
 
@@ -180,19 +182,19 @@ const VideoAnalysis = ({ analysisData}) => {
                       className={`tab-button ${activeTabs[claim.id] === 'context' || !activeTabs[claim.id] ? 'active' : ''}`}
                       onClick={() => handleTabChange(claim.id, 'context')}
                     >
-                      Context
+                      {t('analysis.context')}
                     </button>
                     <button 
                       className={`tab-button ${activeTabs[claim.id] === 'metrics' ? 'active' : ''}`}
                       onClick={() => handleTabChange(claim.id, 'metrics')}
                     >
-                      Claim Metrics
+                      {t('analysis.claimMetrics')}
                     </button>
                     <button 
                       className={`tab-button ${activeTabs[claim.id] === 'deepSearch' ? 'active' : ''}`}
                       onClick={() => handleTabChange(claim.id, 'deepSearch')}
                     >
-                      <FaSearch className="tab-icon" /> Deep Search
+                      <FaSearch className="tab-icon" /> {t('analysis.deepSearch')}
                     </button>
                   </div>
                   
@@ -209,7 +211,7 @@ const VideoAnalysis = ({ analysisData}) => {
                               className="info-icon" 
                               title="How much this claim differs from widely accepted information"
                             />                  
-                            Controversy Level:
+                            {t('analysis.controversyLevel')}
                           </span>
                           <div className="score-bar">
                             <div 
@@ -225,7 +227,7 @@ const VideoAnalysis = ({ analysisData}) => {
                               className="info-icon" 
                               title="How important this claim is to the video's main message"
                             />                  
-                            Video Relevance:
+                            {t('analysis.videoRelevance')}
                           </span>
                           <div className="score-bar">
                             <div 
@@ -241,7 +243,7 @@ const VideoAnalysis = ({ analysisData}) => {
                               className="info-icon" 
                               title="How easily this claim can be fact-checked with evidence"
                             />                    
-                            Checkability:
+                            {t('analysis.checkability')}
                           </span>
                           <div className="score-bar">
                             <div 
@@ -254,21 +256,21 @@ const VideoAnalysis = ({ analysisData}) => {
                     ) : (
                       <div className="deep-search-panel">
                         <div className="search-query-container expanded">
-                          <label htmlFor={`search-query-${claim.id}`}>Edit, Search and Explore...</label>
+                          <label htmlFor={`search-query-${claim.id}`}>{t('analysis.editSearchExplore')}</label>
                           <textarea
                             id={`search-query-${claim.id}`}
                             className="search-query-input"
                             value={searchQueries[claim.id] || ''}
                             onChange={(e) => handleSearchQueryChange(claim.id, e.target.value, e)}
                             rows={3}
-                            placeholder="Enter your search query..."
+                            placeholder={t('analysis.enterSearchQuery')}
                             style={{ overflow: 'hidden' }}
                           />
                           <button 
                             className="start-search-button"
-                            onClick={() => handleStartDeepSearch(claim.id)}
+                            onClick={() => handleStartDeepSearch(claim.id)} 
                           >
-                            Start Deep Search
+                            {t('analysis.startDeepSearch')}
                           </button>
                         </div>
                       </div>
