@@ -54,8 +54,7 @@ function AnalysisPage() {
             const callbacks = {
                 onProgress: (progressUpdate) => {
                     console.log('Progress:', progressUpdate);
-                    setPercentage(progressUpdate.percentage);
-                    
+                    setPercentage(prev => progressUpdate.percentage > prev ? progressUpdate.percentage : prev);
                 },
                 onComplete: (result) => {
                     console.log('Analysis Complete:', result);
