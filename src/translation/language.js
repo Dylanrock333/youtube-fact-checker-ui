@@ -111,7 +111,7 @@ export const en = {
     },
   
     footer: {
-      copyright: "© 2025 Detector de Afirmaciones en Video. Todos los derechos reservados.",
+      copyright: " Todos los derechos reservados.",
       contact: "Contáctanos",
     },
     
