@@ -9,6 +9,104 @@ const getBaseUrl = () => {
 // Replace the existing BASE_URL constant
 const BASE_URL = getBaseUrl();
 
+/**
+ * Analyzes a video by streaming progress and results from the backend SSE endpoint.
+ *
+ * @param {object} payload - The data for the analysis request.
+ * @param {string} payload.origin - The origin of the video (e.g., 'youtube').
+ * @param {string} payload.videoID - The ID of the video.
+ * @param {string} payload.selectedLanguage - The language for analysis.
+ * @param {object} callbacks - An object containing callback functions.
+ * @param {function} callbacks.onProgress - Callback for progress updates. Receives a progress object.
+ * @param {function} callbacks.onComplete - Callback for when analysis is complete. Receives the final data object.
+ * @param {function} callbacks.onError - Callback for any errors. Receives an error object.
+ */
+export const analyzeVideoWithProgress = async (
+  { url,origin, videoID, selectedLanguage },
+  { onProgress, onComplete, onError }
+) => {
+  // Note: BASE_URL should be defined in your environment, e.g., http://localhost:8000
+  const request_url = `${BASE_URL}/execute/stream`;
+  console.log('Connecting to SSE endpoint:', request_url);
+
+  try {
+    const response = await fetch(request_url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // The `url` parameter from your original function is not needed by the backend API.
+      body: JSON.stringify({ url, origin, videoID, selectedLanguage }),
+    });
+
+    // --- Rate Limit Check ---
+    if (response.status === 429) {
+      const rateLimitData = await response.json();
+      const error = new Error(rateLimitData.message || 'Rate limit reached');
+      error.rateLimitData = rateLimitData; 
+      sessionStorage.setItem('rateLimitInfo', JSON.stringify({
+        isLimited: true,
+        resetTime: rateLimitData.resetTime,
+        message: rateLimitData.message || 'Rate limit exceeded.'
+      }));
+      onError(error);
+      return;
+    }
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({ detail: 'Unknown error starting analysis stream' }));
+      throw new Error(errorData.detail || `Error starting stream: ${response.statusText}`);
+    }
+
+    // Clear rate limit info on successful connection
+    sessionStorage.removeItem('rateLimitInfo');
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) {
+        break;
+      }
+
+      buffer += decoder.decode(value, { stream: true });
+      // Events are separated by double newlines.
+      const events = buffer.split('\n\n');
+      // The last event might be incomplete, so we keep it in the buffer.
+      buffer = events.pop(); 
+
+      for (const event of events) {
+        if (event.startsWith('data: ')) {
+          const dataString = event.substring(6);
+          if (dataString) {
+            try {
+              const data = JSON.parse(dataString);
+
+              if (data.status === 'progress') {
+                onProgress(data);
+              } else if (data.status === 'complete') {
+                onComplete(data.data);
+                return; // Stream finished successfully
+              } else if (data.status === 'error') {
+                onError(new Error(data.message));
+                return; // Stream finished with an error
+              }
+            } catch (e) {
+              console.error("Failed to parse SSE event data:", dataString, e);
+              onError(new Error("Failed to parse a server event."));
+            }
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.error("Error in analyzeVideoWithProgress:", error);
+    onError(error);
+  }
+};
+
 export const analyzeVideo = async (url, origin, videoID, selectedLanguage) => {
 
   let request_url = `${BASE_URL}/execute`
