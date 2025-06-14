@@ -132,6 +132,10 @@ const VideoAnalysis = ({ analysisData}) => {
         
         <div className="video-metadata">
           <div className="metadata-item">
+            <span className="metadata-label">{t('analysis.channel')}</span>
+            <span className="metadata-value">{analysisData.video_data.channel_title}</span>
+          </div>
+          <div className="metadata-item">
             <span className="metadata-label">{t('analysis.views')}</span> 
             <span className="metadata-value">
               {analysisData.video_data.view_count}
@@ -142,10 +146,6 @@ const VideoAnalysis = ({ analysisData}) => {
             <span className="metadata-value">
               {analysisData.video_data.published_at.split('T')[0]}
             </span>
-          </div>
-          <div className="metadata-item">
-            <span className="metadata-label">{t('analysis.channel')}</span>
-            <span className="metadata-value">{analysisData.video_data.channel_title}</span>
           </div>
           <div className="metadata-item">
             <span className="metadata-label">{t('analysis.duration')}</span>
