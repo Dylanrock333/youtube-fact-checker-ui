@@ -9,23 +9,11 @@ const getBaseUrl = () => {
 // Replace the existing BASE_URL constant
 const BASE_URL = getBaseUrl();
 
-/**
- * Analyzes a video by streaming progress and results from the backend SSE endpoint.
- *
- * @param {object} payload - The data for the analysis request.
- * @param {string} payload.origin - The origin of the video (e.g., 'youtube').
- * @param {string} payload.videoID - The ID of the video.
- * @param {string} payload.selectedLanguage - The language for analysis.
- * @param {object} callbacks - An object containing callback functions.
- * @param {function} callbacks.onProgress - Callback for progress updates. Receives a progress object.
- * @param {function} callbacks.onComplete - Callback for when analysis is complete. Receives the final data object.
- * @param {function} callbacks.onError - Callback for any errors. Receives an error object.
- */
 export const analyzeVideoWithProgress = async (
-  { url,origin, videoID, selectedLanguage },
+  { url, origin, videoID, selectedLanguage },
   { onProgress, onComplete, onError }
 ) => {
-  // Note: BASE_URL should be defined in your environment, e.g., http://localhost:8000
+
   const request_url = `${BASE_URL}/execute/stream`;
   console.log('Connecting to SSE endpoint:', request_url);
 
@@ -35,7 +23,6 @@ export const analyzeVideoWithProgress = async (
       headers: {
         'Content-Type': 'application/json',
       },
-      // The `url` parameter from your original function is not needed by the backend API.
       body: JSON.stringify({ url, origin, videoID, selectedLanguage }),
     });
 
@@ -65,6 +52,7 @@ export const analyzeVideoWithProgress = async (
     const decoder = new TextDecoder();
     let buffer = '';
 
+    //Stream the response from the server
     while (true) {
       const { value, done } = await reader.read();
       if (done) {
@@ -106,55 +94,6 @@ export const analyzeVideoWithProgress = async (
     onError(error);
   }
 };
-
-export const analyzeVideo = async (url, origin, videoID, selectedLanguage) => {
-
-  let request_url = `${BASE_URL}/execute`
-  console.log('Calling API at:', request_url)
-  // Debug logging
-  console.log('Request payload:', { url, origin, videoID, selectedLanguage });
-  const response = await fetch(request_url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ url, origin, videoID, selectedLanguage })
-  });
-  
-  try { // Wrap in try...catch to handle errors including rate limits
-
-    // --- Rate Limit Check ---
-    if (response.status === 429) {
-      const rateLimitData = await response.json();
-      // Store rate limit info temporarily for UI feedback
-      sessionStorage.setItem('rateLimitInfo', JSON.stringify({
-        isLimited: true,
-        resetTime: rateLimitData.resetTime,
-        message: rateLimitData.message || 'Rate limit exceeded.' // Use message from API
-      }));
-      // Throw a specific error or return a specific structure
-      throw new Error(rateLimitData.message || 'Rate limit reached'); 
-    }
-    // --- End Rate Limit Check ---
-
-    if (!response.ok) {
-      // Handle other non-OK responses
-      const errorData = await response.json().catch(() => ({ detail: 'Unknown error processing video' }));
-      throw new Error(errorData.detail || `Error processing video: ${response.statusText}`);
-    }
-    
-    // Clear any previous rate limit info on success
-    sessionStorage.removeItem('rateLimitInfo');
-
-    const data = await response.json();
-    return data;
-
-  } catch (error) {
-    console.error("Error in analyzeVideo:", error);
-    // Re-throw the error so the calling component can handle it
-    throw error; 
-  }
-}; 
 
 export const checkApiHealth = async () => {
   try {
@@ -231,3 +170,53 @@ export const performDeepSearch = async (query, videodata, context, claimText) =>
     throw error; 
   }
 };    
+
+
+// export const analyzeVideo = async (url, origin, videoID, selectedLanguage) => {
+
+//   let request_url = `${BASE_URL}/execute`
+//   console.log('Calling API at:', request_url)
+//   // Debug logging
+//   console.log('Request payload:', { url, origin, videoID, selectedLanguage });
+//   const response = await fetch(request_url, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({ url, origin, videoID, selectedLanguage })
+//   });
+  
+//   try { // Wrap in try...catch to handle errors including rate limits
+
+//     // --- Rate Limit Check ---
+//     if (response.status === 429) {
+//       const rateLimitData = await response.json();
+//       // Store rate limit info temporarily for UI feedback
+//       sessionStorage.setItem('rateLimitInfo', JSON.stringify({
+//         isLimited: true,
+//         resetTime: rateLimitData.resetTime,
+//         message: rateLimitData.message || 'Rate limit exceeded.' // Use message from API
+//       }));
+//       // Throw a specific error or return a specific structure
+//       throw new Error(rateLimitData.message || 'Rate limit reached'); 
+//     }
+//     // --- End Rate Limit Check ---
+
+//     if (!response.ok) {
+//       // Handle other non-OK responses
+//       const errorData = await response.json().catch(() => ({ detail: 'Unknown error processing video' }));
+//       throw new Error(errorData.detail || `Error processing video: ${response.statusText}`);
+//     }
+    
+//     // Clear any previous rate limit info on success
+//     sessionStorage.removeItem('rateLimitInfo');
+
+//     const data = await response.json();
+//     return data;
+
+//   } catch (error) {
+//     console.error("Error in analyzeVideo:", error);
+//     // Re-throw the error so the calling component can handle it
+//     throw error; 
+//   }
+// }; 
