@@ -1,8 +1,8 @@
 import VideoAnalysis from '../components/items/VideoAnalysis';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useAnalysis } from '../context/AnalysisContext';
-import { analyzeVideo} from '../api/api';
+import { analyzeVideoWithProgress } from '../api/api';
 import validateUrl from '../utils/urlDecoder';
 import HexagonLoader from '../components/items/hexagon-loading';
 import "../styles/AnalysisPage.css";
@@ -21,6 +21,9 @@ function AnalysisPage() {
       currentLanguage
     } = useAnalysis();
 
+    // State for streaming progress
+    const [percentage, setPercentage] = useState(0);
+
     useEffect(() => {
 
         if (!isInitialized) {
@@ -28,65 +31,67 @@ function AnalysisPage() {
             return;
         }
 
-        console.log("useEffect triggered:", videoUrl);
-    
-        const performAnalysis = async () => {
-            // Guard against running without a URL - safety check
-            if (!videoUrl) {
-                console.error("performAnalysis called without inputUrl.");
-                setAnalysisData({ error: "No video URL provided." });
+        const performAnalysis = () => {
+            const { origin, videoID } = validateUrl(videoUrl);
+
+            if (!videoID) {
+                console.error("performAnalysis called with invalid videoUrl.");
+                setAnalysisData({ error: "Invalid video URL provided." });
                 setIsAnalyzing(false);
                 return;
             }
+            
+            // Reset progress state for new analysis
+            setPercentage(5);
 
-            let attempts = 0;
-            const maxAttempts = 2; // Will try initially + 2 retries
+            const payload = {
+                url: videoUrl,
+                origin,
+                videoID,
+                selectedLanguage: currentLanguage
+            };
 
-            while (attempts < maxAttempts) {
-                try {
-                    console.log(`Attempt ${attempts + 1} of ${maxAttempts}`);
-                    const response = await analyzeVideo(videoUrl, origin, videoID, currentLanguage);
-                    console.log("Analysis response:", response);
-                    setAnalysisData(response);
+            const callbacks = {
+                onProgress: (progressUpdate) => {
+                    console.log('Progress:', progressUpdate);
+                    setPercentage(prev => progressUpdate.percentage > prev ? progressUpdate.percentage : prev);
+                },
+                onComplete: (result) => {
+                    console.log('Analysis Complete:', result);
+                    setAnalysisData(result);
+                    setPercentage(100);
+                    // Delay hiding the loader to show "complete" status
+                    setTimeout(() => setIsAnalyzing(false), 500);
+                },
+                onError: (err) => {
+                    console.error('Analysis Error:', err);
+                    setAnalysisData({ error: err.message || t('analysis.error') });
                     setIsAnalyzing(false);
-                    return; // Success! Exit the function
-                } catch (error) {
-                    attempts++;
-                    if (attempts === maxAttempts) {
-                        console.error('Final attempt failed:', error);
-                        setAnalysisData({ error: "Error processing video" });
-                    } else {
-                        console.log(`Attempt ${attempts} failed, retrying...`);
-                        await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second before retrying
-                    }
                 }
-            }
+            };
 
-            setIsAnalyzing(false);
+            // Start the analysis
+            analyzeVideoWithProgress(payload, callbacks);
         };
 
-        const { origin, videoID } = validateUrl(videoUrl); //TODO: maybe add better error handling here
-        
+        const { videoID } = validateUrl(videoUrl);
         const currentVideoId = analysisData?.videoID;
 
-        //TODO: add better error handling here and conditions here
         if (videoUrl && analysisData && !analysisData.error && currentVideoId === videoID) {
-            // Use existing data, ensure loading is off
             console.log('Using existing analysis data from context for:', videoUrl);
             if (isAnalyzing) setIsAnalyzing(false); 
         } else if (videoUrl) {
-
             console.log("Starting analysis for:", videoUrl);
             performAnalysis();
         } else {
-           
-            console.error("AnalysisPage loaded without an url in context.");
+            console.error("AnalysisPage loaded without a url in context.");
             setAnalysisData({ error: "No video URL provided to analyze." });
             if (isAnalyzing) setIsAnalyzing(false);
         }
     
-
-    }, [videoUrl, isInitialized, setIsAnalyzing, setAnalysisData]);
+    // The dependency array is intentionally kept from the original to avoid re-triggering analysis on progress state changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [videoUrl, isInitialized, setAnalysisData, setIsAnalyzing, currentLanguage]);
 
 
     return (
@@ -99,12 +104,15 @@ function AnalysisPage() {
                             className="loading-hexagon" 
                             isVisible={isAnalyzing}
                         />
-                        <p>{t('analysis.loading')}</p> 
+                        <p>{t('analysis.loading')}</p>
+                        <div className="progress-bar-container">
+                            <div className="progress-bar" style={{ width: `${percentage}%` }}></div>
+                        </div>
                     </div>
                     ) : (
                     analysisData && (
                         analysisData.error ? (
-                        <div className="error-message">{t('analysis.error')}</div>
+                        <div className="error-message">{analysisData.error}</div>
                         ) : (   
                         <VideoAnalysis 
                             analysisData={analysisData}

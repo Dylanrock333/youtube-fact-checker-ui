@@ -9,54 +9,91 @@ const getBaseUrl = () => {
 // Replace the existing BASE_URL constant
 const BASE_URL = getBaseUrl();
 
-export const analyzeVideo = async (url, origin, videoID, selectedLanguage) => {
+export const analyzeVideoWithProgress = async (
+  { url, origin, videoID, selectedLanguage },
+  { onProgress, onComplete, onError }
+) => {
 
-  let request_url = `${BASE_URL}/execute`
-  console.log('Calling API at:', request_url)
-  // Debug logging
-  console.log('Request payload:', { url, origin, videoID, selectedLanguage });
-  const response = await fetch(request_url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ url, origin, videoID, selectedLanguage })
-  });
-  
-  try { // Wrap in try...catch to handle errors including rate limits
+  const request_url = `${BASE_URL}/execute/stream`;
+  console.log('Connecting to SSE endpoint:', request_url);
+
+  try {
+    const response = await fetch(request_url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ url, origin, videoID, selectedLanguage }),
+    });
 
     // --- Rate Limit Check ---
     if (response.status === 429) {
       const rateLimitData = await response.json();
-      // Store rate limit info temporarily for UI feedback
+      const error = new Error(rateLimitData.message || 'Rate limit reached');
+      error.rateLimitData = rateLimitData; 
       sessionStorage.setItem('rateLimitInfo', JSON.stringify({
         isLimited: true,
         resetTime: rateLimitData.resetTime,
-        message: rateLimitData.message || 'Rate limit exceeded.' // Use message from API
+        message: rateLimitData.message || 'Rate limit exceeded.'
       }));
-      // Throw a specific error or return a specific structure
-      throw new Error(rateLimitData.message || 'Rate limit reached'); 
+      onError(error);
+      return;
     }
-    // --- End Rate Limit Check ---
 
     if (!response.ok) {
-      // Handle other non-OK responses
-      const errorData = await response.json().catch(() => ({ detail: 'Unknown error processing video' }));
-      throw new Error(errorData.detail || `Error processing video: ${response.statusText}`);
+      const errorData = await response.json().catch(() => ({ detail: 'Unknown error starting analysis stream' }));
+      throw new Error(errorData.detail || `Error starting stream: ${response.statusText}`);
     }
-    
-    // Clear any previous rate limit info on success
+
+    // Clear rate limit info on successful connection
     sessionStorage.removeItem('rateLimitInfo');
 
-    const data = await response.json();
-    return data;
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
 
+    //Stream the response from the server
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) {
+        break;
+      }
+
+      buffer += decoder.decode(value, { stream: true });
+      // Events are separated by double newlines.
+      const events = buffer.split('\n\n');
+      // The last event might be incomplete, so we keep it in the buffer.
+      buffer = events.pop(); 
+
+      for (const event of events) {
+        if (event.startsWith('data: ')) {
+          const dataString = event.substring(6);
+          if (dataString) {
+            try {
+              const data = JSON.parse(dataString);
+
+              if (data.status === 'progress') {
+                onProgress(data);
+              } else if (data.status === 'complete') {
+                onComplete(data.data);
+                return; // Stream finished successfully
+              } else if (data.status === 'error') {
+                onError(new Error(data.message));
+                return; // Stream finished with an error
+              }
+            } catch (e) {
+              console.error("Failed to parse SSE event data:", dataString, e);
+              onError(new Error("Failed to parse a server event."));
+            }
+          }
+        }
+      }
+    }
   } catch (error) {
-    console.error("Error in analyzeVideo:", error);
-    // Re-throw the error so the calling component can handle it
-    throw error; 
+    console.error("Error in analyzeVideoWithProgress:", error);
+    onError(error);
   }
-}; 
+};
 
 export const checkApiHealth = async () => {
   try {
@@ -133,3 +170,53 @@ export const performDeepSearch = async (query, videodata, context, claimText) =>
     throw error; 
   }
 };    
+
+
+// export const analyzeVideo = async (url, origin, videoID, selectedLanguage) => {
+
+//   let request_url = `${BASE_URL}/execute`
+//   console.log('Calling API at:', request_url)
+//   // Debug logging
+//   console.log('Request payload:', { url, origin, videoID, selectedLanguage });
+//   const response = await fetch(request_url, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({ url, origin, videoID, selectedLanguage })
+//   });
+  
+//   try { // Wrap in try...catch to handle errors including rate limits
+
+//     // --- Rate Limit Check ---
+//     if (response.status === 429) {
+//       const rateLimitData = await response.json();
+//       // Store rate limit info temporarily for UI feedback
+//       sessionStorage.setItem('rateLimitInfo', JSON.stringify({
+//         isLimited: true,
+//         resetTime: rateLimitData.resetTime,
+//         message: rateLimitData.message || 'Rate limit exceeded.' // Use message from API
+//       }));
+//       // Throw a specific error or return a specific structure
+//       throw new Error(rateLimitData.message || 'Rate limit reached'); 
+//     }
+//     // --- End Rate Limit Check ---
+
+//     if (!response.ok) {
+//       // Handle other non-OK responses
+//       const errorData = await response.json().catch(() => ({ detail: 'Unknown error processing video' }));
+//       throw new Error(errorData.detail || `Error processing video: ${response.statusText}`);
+//     }
+    
+//     // Clear any previous rate limit info on success
+//     sessionStorage.removeItem('rateLimitInfo');
+
+//     const data = await response.json();
+//     return data;
+
+//   } catch (error) {
+//     console.error("Error in analyzeVideo:", error);
+//     // Re-throw the error so the calling component can handle it
+//     throw error; 
+//   }
+// }; 
