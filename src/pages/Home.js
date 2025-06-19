@@ -44,6 +44,7 @@ function Home() {
       event_label: 'Analyze button clicked',
       value: 1
     });
+    
     if (!inputUrl.trim()) return;
     setRateLimitMessage('');
 
