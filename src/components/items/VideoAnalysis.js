@@ -64,7 +64,7 @@ const VideoAnalysis = ({ analysisData}) => {
     gtag('event', 'tab_switch', {
       'tab_name': tabName
     });
-    ``
+    
     setActiveTabs(prev => ({
       ...prev,
       [claimId]: tabName

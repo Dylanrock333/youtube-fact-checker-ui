@@ -5,7 +5,7 @@ import { checkApiHealth} from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import validateUrl from '../utils/urlDecoder';
 import '../styles/Home.css';
-import { useTranslation } from '../translation/useTranslation'; 
+import { useTranslation } from '../translation/useTranslation';
 
 //TODO: add the video duration
 function Home() {
@@ -39,12 +39,15 @@ function Home() {
   };
 
   const handleAnalyzeClick = async () => {
-    gtag('event', 'analyze_button_clicked', {
-      event_category: 'engagement',
-      event_label: 'Analyze button clicked',
-      value: 1
-    });
-    
+    // Track analytics event
+    if (window.gtag) {
+      window.gtag('event', 'analyze_button_clicked', {
+        event_category: 'engagement',
+        event_label: 'Analyze button clicked',
+        value: 1
+      });
+    }
+
     if (!inputUrl.trim()) return;
     setRateLimitMessage('');
 
