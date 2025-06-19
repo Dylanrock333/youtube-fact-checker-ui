@@ -7,6 +7,8 @@ import validateUrl from '../utils/urlDecoder';
 import '../styles/Home.css';
 import { useTranslation } from '../translation/useTranslation';
 
+/* global gtag */
+
 //TODO: add the video duration
 function Home() {
   const { t } = useTranslation();

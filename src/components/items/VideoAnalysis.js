@@ -7,6 +7,8 @@ import { useAnalysis } from '../../context/AnalysisContext';
 import { useTheme } from '../../context/ThemeContext'; 
 import { useTranslation } from '../../translation/useTranslation';
 
+/* global gtag */
+
 //TODO: when the pai can handle more plarforms change how YouTubeVideo componenet is handled
 
 const VideoAnalysis = ({ analysisData}) => {
@@ -61,9 +63,11 @@ const VideoAnalysis = ({ analysisData}) => {
 
   // Function to handle tab switching
   const handleTabChange = (claimId, tabName) => {
-    gtag('event', 'tab_switch', {
-      'tab_name': tabName
-    });
+    if (window.gtag) {
+      window.gtag('event', 'tab_switch', {
+        'tab_name': tabName
+      });
+    }
     
     setActiveTabs(prev => ({
       ...prev,
@@ -94,7 +98,9 @@ const VideoAnalysis = ({ analysisData}) => {
 
   // Function to navigate to deep search page
   const handleStartDeepSearch = (claimId) => {
-    gtag('event', 'deep_search_click');
+    if (window.gtag) {
+      window.gtag('event', 'deep_search_click');
+    }
     
     setIsLoading(true);
     const query = searchQueries[claimId];
