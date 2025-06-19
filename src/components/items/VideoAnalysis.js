@@ -61,6 +61,10 @@ const VideoAnalysis = ({ analysisData}) => {
 
   // Function to handle tab switching
   const handleTabChange = (claimId, tabName) => {
+    gtag('event', 'tab_switch', {
+      'tab_name': tabName
+    });
+    ``
     setActiveTabs(prev => ({
       ...prev,
       [claimId]: tabName
@@ -90,6 +94,8 @@ const VideoAnalysis = ({ analysisData}) => {
 
   // Function to navigate to deep search page
   const handleStartDeepSearch = (claimId) => {
+    gtag('event', 'deep_search_click');
+
     setIsLoading(true);
     const query = searchQueries[claimId];
     const claim = analysisData.claims.find(c => c.id === claimId);

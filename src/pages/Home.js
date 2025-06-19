@@ -39,6 +39,11 @@ function Home() {
   };
 
   const handleAnalyzeClick = async () => {
+    gtag('event', 'analyze_button_clicked', {
+      event_category: 'engagement',
+      event_label: 'Analyze button clicked',
+      value: 1
+    });
     if (!inputUrl.trim()) return;
     setRateLimitMessage('');
 
