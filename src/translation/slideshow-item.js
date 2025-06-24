@@ -53,6 +53,7 @@ export const slideshowItem = [
                 claimContext: "The speaker introduces the story of Eurysaces, a former slave who became a wealthy baker in Rome, using his life as an example of social mobility. Immediately after describing Eurysaces' rise, the speaker asserts that such upward mobility was unique to Rome. They claim that in ancient Egypt and during the Middle Ages, individuals would invariably remain in the social class they were born into. This statement serves to highlight Rome's perceived exceptionalism regarding its social structure.",
                 searchQuery: "Investigate the historical evidence regarding social mobility in ancient Egypt and during the Middle Ages. Evaluate the claim that individuals in these periods 'would die in the same station and life as he had been born.' Research examples of individuals who experienced upward or downward social mobility in these eras, considering factors like wealth, occupation, and status. Identify any nuances or exceptions to the general statement presented in the video.",
             },
+            
         ]
     },
     {

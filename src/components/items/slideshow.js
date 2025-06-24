@@ -15,7 +15,7 @@ const Slideshow = () => {
                         {item.claims.map((claim, claimIndex) => (
                             <div key={claimIndex} className="slideshow-item-claim">
                                 <h3>Timestamp: {claim.timestamp}</h3>
-                                <h3>Claim: {claim.claimTitle}</h3>
+                                <h3>{claim.claimTitle}</h3>
                                 <p>Claim Quote: {claim.claimQuote}</p>
                                 <p>Claim Context: {claim.claimContext}</p>
                             </div>
