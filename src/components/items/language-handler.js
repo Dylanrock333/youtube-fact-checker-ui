@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAnalysis } from '../../context/AnalysisContext';
-import '../../styles/LanguageSelector.css';
+import './language-handler.css';
 //import './LanguageSelector.css';
 
 const LanguageSelector = () => {

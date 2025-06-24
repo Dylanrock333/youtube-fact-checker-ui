@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import validateUrl from '../utils/urlDecoder';
 import '../styles/Home.css';
 import { useTranslation } from '../translation/useTranslation';
+import Slideshow from '../components/items/slideshow';
 
 /* global gtag */
 
@@ -104,7 +105,7 @@ function Home() {
       )}
     </div>
   ) : null; 
-
+  
   return (
     <div className="home">
       <div className="home-header">
@@ -135,6 +136,7 @@ function Home() {
           {isAnalyzing ? t('home.analyzingButton') : t('home.analyzeButton')}
         </button>
       </div>  
+      <Slideshow />
     </div>
   );
 }
