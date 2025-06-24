@@ -8,8 +8,11 @@ const Slideshow = () => {
             {slideshowItem.map((item, index) => (
                 <div key={index} className="slideshow-item">
                     <div className="slideshow-item-left">
-                        <img src={item.thumbnail} alt={item.videoTitle} />
-                        <h2>{item.videoTitle}</h2>
+                        <div>
+                            <img src={item.thumbnail} alt={item.videoTitle} />
+                            <h2>{item.videoTitle}</h2>
+                            <h1>{item.channel}</h1>
+                        </div>
                     </div>
                     <div className="slideshow-item-claims">
                         {item.claims.map((claim, claimIndex) => (

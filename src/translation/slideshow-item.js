@@ -3,6 +3,7 @@ export const slideshowItem = [
         thumbnail: "https://i.ytimg.com/vi/46ZXl-V4qwY/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCj8K2JE8qYnY3k6zaBz9DrVn4k5w",
         videoUrl: "https://www.youtube.com/watch?v=46ZXl-V4qwY",
         videoTitle: "Ancient Rome in 20 minutes",
+        channel: "Arzamas",
         claims: [
             {
                 claimTitle: "Was Caesar's Gallic conquest genocide, killing millions?",
@@ -31,6 +32,7 @@ export const slideshowItem = [
         thumbnail: "https://i.ytimg.com/vi/46ZXl-V4qwY/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCj8K2JE8qYnY3k6zaBz9DrVn4k5w",
         videoUrl: "https://www.youtube.com/watch?v=46ZXl-V4qwY",
         videoTitle: "Ancient Rome in 20 minutes",
+        channel: "Arzamas",
         claims: [
             {
                 claimTitle: "Was Caesar's Gallic conquest genocide, killing millions?",
@@ -60,6 +62,7 @@ export const slideshowItem = [
         thumbnail: "https://i.ytimg.com/vi/46ZXl-V4qwY/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCj8K2JE8qYnY3k6zaBz9DrVn4k5w",
         videoUrl: "https://www.youtube.com/watch?v=46ZXl-V4qwY",
         videoTitle: "Ancient Rome in 20 minutes",
+        channel: "Arzamas",
         claims: [
             {
                 claimTitle: "Was Caesar's Gallic conquest genocide, killing millions?",
