@@ -14,7 +14,7 @@ const SlideshowItemComponent = ({ item }) => {
 
         const glide = new Glide(glideRef.current, {
             type: 'slider',
-            perView: 3,
+            perView: 2.3,
             gap: 20,
             bound: true,
         });
@@ -34,6 +34,7 @@ const SlideshowItemComponent = ({ item }) => {
                     <h2>{item.videoTitle}</h2>
                     <h1>{item.channel}</h1>
                 </div>
+                <button className="slideshow-item-claim__button">View More</button>
             </div>
             <div className="slideshow-item-claims-container">
                 {item.claims.length > 3 ? (
@@ -43,10 +44,15 @@ const SlideshowItemComponent = ({ item }) => {
                                 {item.claims.map((claim, claimIndex) => (
                                     <li key={claimIndex} className="glide__slide">
                                         <div className="slideshow-item-claim">
-                                            <h3>Timestamp: {claim.timestamp}</h3>
-                                            <h3>{claim.claimTitle}</h3>
-                                            <p>Claim Quote: {claim.claimQuote}</p>
-                                            <p>Claim Context: {claim.claimContext}</p>
+                                            <div className="claim-title-container">
+                                                <h3 className="claim-title">{claim.claimTitle}</h3>
+                                            </div>
+                                            <h3 className="timestamp">Timestamp: {claim.timestamp}</h3>
+                                            <div className="claim-text-container">
+                                                <p className="">Claim Quote: {claim.claimQuote}</p>
+                                                <p className="">Claim Context: {claim.claimContext}</p>
+                                            </div>
+                                            <button className="slideshow-item-claim__button">View More</button>
                                         </div>
                                     </li>
                                 ))}
@@ -61,10 +67,15 @@ const SlideshowItemComponent = ({ item }) => {
                     <div className="slideshow-item-claims">
                         {item.claims.map((claim, claimIndex) => (
                             <div key={claimIndex} className="slideshow-item-claim">
-                                <h3>Timestamp: {claim.timestamp}</h3>
-                                <h3>{claim.claimTitle}</h3>
-                                <p>Claim Quote: {claim.claimQuote}</p>
-                                <p>Claim Context: {claim.claimContext}</p>
+                                    <div className="claim-title-container">
+                                    <h3 className="claim-title">{claim.claimTitle}</h3>
+                                    <h3 className="timestamp">Timestamp: {claim.timestamp}</h3>
+                                </div>
+                                <div className="claim-text-container">
+                                    <p>Claim Quote: {claim.claimQuote}</p>
+                                    <p>Claim Context: {claim.claimContext}</p>
+                                </div>
+                                <button className="slideshow-item-claim__button">View More</button>
                             </div>
                         ))}
                     </div>
