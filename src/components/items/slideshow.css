@@ -8,7 +8,6 @@
 .slideshow-item {
     display: flex;
     align-items: stretch;
-    gap: 20px;
     margin-bottom: 20px;
     padding: 0 20px;
     border-radius: 10px;
@@ -140,6 +139,7 @@
     flex-direction: column;
     box-sizing: border-box;
     height: 100%;
+    margin-left: 20px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
@@ -188,6 +188,31 @@
 
 .glide {
     height: 100%;
+    position: relative;
+    padding: 0 20px;
+}
+
+.glide::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    background: linear-gradient(to right, var(--light-main-bg) 0%, var(--light-main-bg) 20%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+.glide::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    background: linear-gradient(to left, var(--light-main-bg) 0%, var(--light-main-bg) 20%, transparent 80%);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .glide__track {
