@@ -3,6 +3,7 @@ import { slideshowItem } from '../../translation/slideshow-item';
 import './slideshow.css';
 import Glide from '@glidejs/glide';
 import '@glidejs/glide/dist/css/glide.core.min.css';
+import { RiArrowLeftWideFill, RiArrowRightWideLine  } from "react-icons/ri";
 
 const SlideshowItemComponent = ({ item }) => {
     const glideRef = useRef(null);
@@ -59,8 +60,8 @@ const SlideshowItemComponent = ({ item }) => {
                             </ul>
                         </div>
                         <div className="glide__arrows" data-glide-el="controls">
-                            <button className="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
-                            <button className="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+                            <button className="glide__arrow glide__arrow--left" data-glide-dir="<"><RiArrowLeftWideFill /></button>
+                            <button className="glide__arrow glide__arrow--right" data-glide-dir=">"><RiArrowRightWideLine   /></button>
                         </div>
                     </div>
                 ) : (
