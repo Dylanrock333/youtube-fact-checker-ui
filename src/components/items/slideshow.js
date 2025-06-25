@@ -13,7 +13,7 @@ const SlideshowItemComponent = ({ item }) => {
             return;
         }
 
-        const randomInterval = Math.floor(Math.random() * (8000 - 4000 + 1)) + 4000;
+        const randomInterval = Math.floor(Math.random() * (8000 - 4000 + 1)) + 6000;
 
         const glide = new Glide(glideRef.current, {
             type: 'carousel',
@@ -25,6 +25,17 @@ const SlideshowItemComponent = ({ item }) => {
             touchRatio: 0.7,
             swipeThreshold: 60,
             dragThreshold: 80,
+            breakpoints: {
+                1250: {
+                    perView: 1.75
+                },
+                1100: {
+                    perView: 1.25
+                },
+                1000: {
+                    perView: 1.125
+                }
+            }
         });
 
         glide.mount();
