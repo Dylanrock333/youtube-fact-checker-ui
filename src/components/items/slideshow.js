@@ -34,6 +34,18 @@ const SlideshowItemComponent = ({ item }) => {
                 },
                 1000: {
                     perView: 1.125
+                },
+                950: {
+                    perView: 1.15
+                },
+                900: {
+                    perView: 1.1
+                },
+                850: {
+                    perView: 1.05
+                },
+                800: {
+                    perView: 1
                 }
             }
         });
