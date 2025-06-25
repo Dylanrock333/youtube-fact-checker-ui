@@ -13,11 +13,18 @@ const SlideshowItemComponent = ({ item }) => {
             return;
         }
 
+        const randomInterval = Math.floor(Math.random() * (8000 - 4000 + 1)) + 4000;
+
         const glide = new Glide(glideRef.current, {
-            type: 'slider',
+            type: 'carousel',
             perView: 2.3,
             gap: 20,
-            bound: true,
+            autoplay: randomInterval,
+            animationDuration: 1500,
+            animationTimingFunc: 'cubic-bezier(0.65, 0, 0.35, 1)',
+            touchRatio: 0.7,
+            swipeThreshold: 60,
+            dragThreshold: 80,
         });
 
         glide.mount();
