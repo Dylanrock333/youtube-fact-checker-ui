@@ -22,8 +22,8 @@ export const slideshowItem = [
             {   
                 claimTitle: "Elon Musk's role in OpenAI's founding?",
                 timestamp: "1:25:10",
-                claimQuote: "Open AI, you know, I was, you know, I think, I guess arguably, the prime, you know, prime mover behind Open AI in the sense that it was created because of discussions that I had with Larry Page back when he and I were friends... And I provided all of the funding in the beginning, over $40 million.",
-                claimContext: "Elon Musk expresses concern about OpenAI's current closed-source, for-profit trajectory, contrasting it with its original vision. To contextualize his disappointment, he elaborates on his instrumental role in the organization's inception. He claims to have been a key instigator due to conversations with Larry Page regarding AI safety and states that he personally supplied over $40 million in initial funding for the nonprofit's establishment.",
+                claimQuote: "Open AI, you know, I was, you know, I think, I guess arguably, the prime, you know, prime mover behind Open AI... And I provided all of the funding in the beginning, over $40 million.",
+                claimContext: "Elon Musk expresses concern about OpenAI's current closed-source, for-profit trajectory, contrasting it with its original vision. To contextualize his disappointment, he elaborates on his instrumental role in the organization's inception. He claims to have provided $40 million in initial funding for the nonprofit's establishment.",
                 searchQuery: "Investigate the founding history of OpenAI, focusing on the roles and contributions of its key co-founders and early investors. Specifically, verify Elon Musk's claim of being a 'prime mover' based on discussions with Larry Page concerning AI safety and confirm the exact amount and source of the initial funding provided to OpenAI, particularly the over $40 million contribution mentioned by Musk. Seek information from official OpenAI statements, historical records, and independent journalistic reports.",
             },
             {

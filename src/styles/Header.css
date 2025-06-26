@@ -74,12 +74,12 @@
 
 @media (max-width: 480px) {
   .main-header {
-    gap: 1rem; 
+    gap: 0.5rem; 
     padding: 1rem 0.5rem; 
   }
 
   .main-header nav ul {
-    gap: 1rem; 
+    gap: 0.25rem; 
     justify-content: center; 
     width: 100%; 
   }
@@ -89,6 +89,24 @@
     padding: 0.4rem 0.6rem;
   }
 
+}
+
+@media (max-width: 375px) {
+  .main-header {
+    gap: 0rem;
+    padding: 0.5rem 0.5rem; 
+  }
+
+  .main-header nav ul {
+    gap: 0rem; 
+    justify-content: center; 
+    width: 100%; 
+  }
+
+  .main-header nav a {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.5rem;
+  }
 }
 
 /* Medium-sized screens */
