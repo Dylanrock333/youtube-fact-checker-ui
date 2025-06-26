@@ -97,8 +97,12 @@ const SlideshowItemComponent = ({ item }) => {
             <div className="slideshow-item-left">
                 <div>
                     <img src={item.thumbnail} alt={item.videoTitle} />
-                    <h2>{item.videoTitle}</h2>
-                    <h1>{item.channel}</h1>
+                    <div className="video-info-container">
+                        <h2>{item.videoTitle}</h2>
+                        <div className="video-info-container-bottom">
+                            <span>{item.channel}</span>
+                        </div>
+                    </div>
                 </div>
                 <button className="slideshow-item-claim__button" onClick={() => handleAnalysisClick(item.videoUrl)}>Analyze Video</button>
             </div>
@@ -115,8 +119,10 @@ const SlideshowItemComponent = ({ item }) => {
                                             </div>
                                             <h3 className="timestamp">Timestamp: {claim.timestamp}</h3>
                                             <div className="claim-info-container">
-                                                <p className="">Claim Quote: {claim.claimQuote}</p>
-                                                <p className="">Claim Context: {claim.claimContext}</p>
+                                                <p className="claim-quote">{claim.claimQuote}</p>
+                                            </div>
+                                            <div className="claim-context-container">
+                                            <p className="claim-context-slideshow">{claim.claimContext}</p>
                                             </div>
                                             <button className="slideshow-item-claim__button" onClick={() => handleStartDeepSearch(claim, item.videoUrl)}>Start Deep Search</button>
                                         </div>
