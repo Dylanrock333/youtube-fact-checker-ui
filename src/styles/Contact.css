@@ -70,7 +70,7 @@ label.light {
   color: var(--light-text-color);
 }
 
-.dark input, .dark textarea {
+.page-contact-us .dark input, .page-contact-us .dark textarea {
   width: 100%;
   padding: 0.75rem;
   border-radius: 4px;
@@ -80,7 +80,7 @@ label.light {
   font-size: 1rem;
 }
 
-.light input, .light textarea {
+.page-contact-us .light input, .page-contact-us .light textarea {
   width: 100%;
   padding: 0.75rem;
   border-radius: 4px;

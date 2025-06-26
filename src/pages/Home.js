@@ -108,10 +108,14 @@ function Home() {
   
   return (
     <div className="home">
-      <div className="home-header">
-        <h1>{t('home.title')}</h1>
-        <p>{t('home.subtitle')}</p>
+      <div className="home-header-container">
+        <div className="home-header">
+          <h1 className="home-header-title1">{t('home.title1')}</h1>
+          <h1 className="home-header-title2">{t('home.title2')}</h1>
+          <p>{t('home.subtitle')}</p>
+        </div>        
       </div>
+
       <div className="input-container">
         <input
           type="text"

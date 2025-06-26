@@ -1,7 +1,8 @@
 export const en = {
     // Home page
     home: {
-      title: "Video Claim Catcher",
+      title1: "Video Claim",
+      title2: "Catcher",
       subtitle: "Transform Watching into Knowing",
       inputPlaceholder: "Enter YouTube video link here ...",
       analyzeButton: "Analyze Video",

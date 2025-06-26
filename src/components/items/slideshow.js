@@ -118,10 +118,16 @@ const SlideshowItemComponent = ({ item }) => {
 
 const Slideshow = () => {
     return (
-        <div className="slideshow-container">
-            {slideshowItem.map((item, index) => (
-                <SlideshowItemComponent key={index} item={item} />
-            ))}
+        <div>
+            <div className="section-header">
+                <h2 className="section-title">Not sure what to try?</h2>
+                <p className="section-subtext">Explore recent videos and the claims we extracted from them</p>
+            </div>
+            <div className="slideshow-container">
+                {slideshowItem.map((item, index) => (
+                    <SlideshowItemComponent key={index} item={item} />
+                ))}
+            </div>            
         </div>
     );
 };
