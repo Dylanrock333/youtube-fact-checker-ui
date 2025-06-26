@@ -4,10 +4,13 @@ import './slideshow.css';
 import Glide from '@glidejs/glide';
 import '@glidejs/glide/dist/css/glide.core.min.css';
 import { RiArrowLeftWideFill, RiArrowRightWideLine  } from "react-icons/ri";
+import { useAnalysis } from '../../context/AnalysisContext';
+import { useNavigate } from 'react-router-dom';
 
 const SlideshowItemComponent = ({ item }) => {
     const glideRef = useRef(null);
-
+    const { videoUrl, setVideoUrl, setIsAnalyzing } = useAnalysis();
+    const navigate = useNavigate();
     useEffect(() => {
         if (!glideRef.current || item.claims.length <= 3) {
             return;
@@ -57,6 +60,38 @@ const SlideshowItemComponent = ({ item }) => {
         };
     }, [item.claims]);
 
+    const handleAnalysisClick = (videoUrl) => {
+        setVideoUrl(videoUrl);
+        setIsAnalyzing(true);
+        navigate('/analysis-page');
+    };
+
+
+    const handleStartDeepSearch = (claim, videoUrl) => {
+        if (window.gtag) {
+          window.gtag('event', 'deep_search_click');
+        }
+        setVideoUrl(videoUrl);
+
+        const query = claim.searchQuery;
+        const claimId = -1;
+        const claimText = claim.claimQuote;
+        const context = claim.claimContext;
+        const timestamp = claim.timestamp;
+        const videodata = [];
+    
+        navigate('/deep-search', { 
+          state: { 
+            query, 
+            claimId, 
+            claimText,
+            context,
+            timestamp,
+            videodata
+          } 
+        });
+    };
+
     return (
         <div className="slideshow-item">
             <div className="slideshow-item-left">
@@ -65,7 +100,7 @@ const SlideshowItemComponent = ({ item }) => {
                     <h2>{item.videoTitle}</h2>
                     <h1>{item.channel}</h1>
                 </div>
-                <button className="slideshow-item-claim__button">View More</button>
+                <button className="slideshow-item-claim__button" onClick={() => handleAnalysisClick(item.videoUrl)}>Analyze Video</button>
             </div>
             <div className="slideshow-item-claims-container">
                 {item.claims.length > 3 ? (
@@ -79,11 +114,11 @@ const SlideshowItemComponent = ({ item }) => {
                                                 <h3 className="claim-title">{claim.claimTitle}</h3>
                                             </div>
                                             <h3 className="timestamp">Timestamp: {claim.timestamp}</h3>
-                                            <div className="claim-text-container">
+                                            <div className="claim-info-container">
                                                 <p className="">Claim Quote: {claim.claimQuote}</p>
                                                 <p className="">Claim Context: {claim.claimContext}</p>
                                             </div>
-                                            <button className="slideshow-item-claim__button">View More</button>
+                                            <button className="slideshow-item-claim__button" onClick={() => handleStartDeepSearch(claim, item.videoUrl)}>Start Deep Search</button>
                                         </div>
                                     </li>
                                 ))}
@@ -106,7 +141,7 @@ const SlideshowItemComponent = ({ item }) => {
                                     <p>Claim Quote: {claim.claimQuote}</p>
                                     <p>Claim Context: {claim.claimContext}</p>
                                 </div>
-                                <button className="slideshow-item-claim__button">View More</button>
+                                <button className="slideshow-item-claim__button">Start Deep Search</button>
                             </div>
                         ))}
                     </div>
@@ -120,8 +155,8 @@ const Slideshow = () => {
     return (
         <div>
             <div className="section-header">
-                <h2 className="section-title">Not sure what to try?</h2>
-                <p className="section-subtext">Explore recent videos and the claims we extracted from them</p>
+                <h2 className="section-title">NOT SURE WHAT TO ANALYZE?</h2>
+                <p className="section-subtext">Discover what we found in popular videos this week.</p>
             </div>
             <div className="slideshow-container">
                 {slideshowItem.map((item, index) => (

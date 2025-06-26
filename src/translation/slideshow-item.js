@@ -1,7 +1,7 @@
 export const slideshowItem = [
     {
         thumbnail: "https://i.ytimg.com/vi/JN3KPFbWCy8/hqdefault.jpg",
-        videoUrl: "https://www.youtube.com/watch?v=46ZXl-V4qwY",
+        videoUrl: "https://www.youtube.com/watch?v=JN3KPFbWCy8",
         videoTitle: "Elon Musk: War, AI, Aliens, Politics, Physics, Video Games, and Humanity | Lex Fridman Podcast #400",
         channel: "Lex Fridman",
         claims: [
@@ -151,3 +151,36 @@ export const slideshowItem = [
         ]
     },
 ]
+
+
+
+
+/*
+🎯 Recommended Genres to Highlight
+Here’s a short, focused list of genres to emphasize (with user intent in mind):
+
+🔬 Educational / Explainer Videos
+Why this works: High density of claims, very popular
+
+Channels: Kurzgesagt, Veritasium, RealLifeLore
+
+🎙️ Podcast Clips (especially long-form ones)
+Why this works: Highly quotable, tons of assertions
+
+Channels: Lex Fridman, Joe Rogan, Huberman, H3, etc.
+
+⚖️ Political Commentary / News Clips
+Why this works: Users want to verify bold claims
+
+Channels: Breaking Points, TYT, Ben Shapiro, MSNBC clips
+
+🧠 History and Documentary Content
+Why this works: Full of dates, people, and cause-effect claims
+
+Channels: Arzamas, Timeline, Kings and Generals
+
+📊 Finance & Economics
+Why this works: Lots of numerical claims users want to fact-check
+
+Channels: Ray Dalio, Graham Stephan, CNBC, Bloomberg clips
+*/
