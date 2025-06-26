@@ -448,6 +448,10 @@
         flex-shrink: 0;
     }
 
+    .video-info-container h2 {
+        font-size: 1.1rem;
+    }
+
     .slideshow-item-left img,
     .slideshow-item-left h1,
     .slideshow-item-left h2 {
@@ -495,6 +499,10 @@
     .slideshow-item-claims-container {
         width: 100%;
         max-width: none;
+    }
+
+    .slideshow-item-claim__button{
+        margin-top: 20px;
     }
 
     .slideshow-item-left img,
