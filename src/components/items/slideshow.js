@@ -23,11 +23,11 @@ const SlideshowItemComponent = ({ item }) => {
             perView: 2.3,
             gap: 20,
             autoplay: randomInterval,
-            animationDuration: 1500,
-            animationTimingFunc: 'cubic-bezier(0.65, 0, 0.35, 1)',
-            touchRatio: 0.7,
-            swipeThreshold: 60,
-            dragThreshold: 80,
+            animationDuration: 800,
+            animationTimingFunc: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            touchRatio: 1,
+            swipeThreshold: 20,
+            dragThreshold: 30,
             breakpoints: {
                 1250: {
                     perView: 1.75
