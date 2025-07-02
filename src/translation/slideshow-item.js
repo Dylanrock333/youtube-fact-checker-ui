@@ -163,7 +163,7 @@ Here’s a short, focused list of genres to emphasize (with user intent in mind)
 Why this works: High density of claims, very popular
 
 Channels: Kurzgesagt, Veritasium, RealLifeLore
-
+ 
 🎙️ Podcast Clips (especially long-form ones)
 Why this works: Highly quotable, tons of assertions
 
