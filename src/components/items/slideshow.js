@@ -1,11 +1,14 @@
-import React, { useEffect, useRef } from 'react';
-import { slideshowItem } from '../../translation/slideshow-item';
+import React, { useEffect, useRef, useState } from 'react';
+// import { slideshowItem } from '../../translation/slideshow-item';
+// import slideshowData from '../../config/res_slideshow.json';
 import './slideshow.css';
 import Glide from '@glidejs/glide';
 import '@glidejs/glide/dist/css/glide.core.min.css';
 import { RiArrowLeftWideFill, RiArrowRightWideLine  } from "react-icons/ri";
 import { useAnalysis } from '../../context/AnalysisContext';
 import { useNavigate } from 'react-router-dom';
+import { getSlideshowItem } from '../../api/api';
+
 
 const SlideshowItemComponent = ({ item }) => {
     const glideRef = useRef(null);
@@ -158,14 +161,67 @@ const SlideshowItemComponent = ({ item }) => {
 };
 
 const Slideshow = () => {
+    const [slideshowItems, setSlideshowItems] = useState([]);
+    const [apiData, setApiData] = useState({});
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
+
+    useEffect(() => {
+        const fetchSlideshowData = async () => {
+            try {
+                const data = await getSlideshowItem();
+                setApiData(data);
+                const availableCategories = Object.keys(data);
+                setCategories(availableCategories);
+                if (availableCategories.length > 0) {
+                    setSelectedCategory(availableCategories[0]);
+                }
+            } catch (error) {
+                console.error("Failed to fetch slideshow items:", error);
+            }
+        };
+
+        fetchSlideshowData();
+    }, []);
+
+    useEffect(() => {
+        if (selectedCategory && apiData[selectedCategory]) {
+            const items = apiData[selectedCategory].map(item => ({
+                videoTitle: item.title,
+                channel: item.channel_title,
+                thumbnail: `https://img.youtube.com/vi/${item.video_id}/maxresdefault.jpg`,
+                videoUrl: `https://www.youtube.com/watch?v=${item.video_id}`,
+                claims: item.claims.map(claim => ({
+                    claimTitle: claim.title,
+                    claimQuote: claim.claim,
+                    claimContext: claim.context,
+                    timestamp: claim.timestamp,
+                    searchQuery: claim.search_query
+                }))
+            }));
+            setSlideshowItems(items);
+        }
+    }, [selectedCategory, apiData]);
+
     return (
         <div>
             <div className="section-header">
                 <h2 className="section-title">NOT SURE WHAT TO ANALYZE?</h2>
                 <p className="section-subtext">Discover what we found in popular videos this week.</p>
             </div>
+            <div className="category-buttons">
+                {categories.map(category => (
+                    <button
+                        key={category}
+                        className={`category-button ${selectedCategory === category ? 'active' : ''}`}
+                        onClick={() => setSelectedCategory(category)}
+                    >
+                        {category.replace(/_/g, ' ').toUpperCase()}
+                    </button>
+                ))}
+            </div>
             <div className="slideshow-container">
-                {slideshowItem.map((item, index) => (
+                {slideshowItems.map((item, index) => (
                     <SlideshowItemComponent key={index} item={item} />
                 ))}
             </div>            

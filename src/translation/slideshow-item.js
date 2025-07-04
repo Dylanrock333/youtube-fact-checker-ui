@@ -103,8 +103,8 @@ export const slideshowItem = [
     {
         thumbnail: "https://i.ytimg.com/vi/4Wrc4fHSCpw/hqdefault.jpg",
         videoUrl: "https://www.youtube.com/watch?v=4Wrc4fHSCpw",
-        videoTitle: "Ancient Rome in 20 minutes",
-        channel: "Arzamas",
+        videoTitle: "These are the asteroids to worry about",
+        channel: "Veritasium",
         claims: [
             {
                 claimTitle: "How many meter-sized asteroids hit Earth annually?",

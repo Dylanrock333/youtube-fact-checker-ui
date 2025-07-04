@@ -172,6 +172,14 @@ export const performDeepSearch = async (query, videodata, context, claimText) =>
 };    
 
 
+export const getSlideshowItem = async () => {
+  const slideshowUrl = `${BASE_URL}/slideshow-videos`;
+  const response = await fetch(slideshowUrl);
+  const data = await response.json();
+  return data;
+};
+
+
 // export const analyzeVideo = async (url, origin, videoID, selectedLanguage) => {
 
 //   let request_url = `${BASE_URL}/execute`

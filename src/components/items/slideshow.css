@@ -580,3 +580,30 @@
   }
 }
 
+.category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.category-button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.category-button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.category-button:hover:not(.active) {
+    background-color: #e0e0e0;
+}
+
