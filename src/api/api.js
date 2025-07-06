@@ -14,85 +14,69 @@ export const analyzeVideoWithProgress = async (
   { onProgress, onComplete, onError }
 ) => {
 
-  const request_url = `${BASE_URL}/execute/stream`;
-  console.log('Connecting to SSE endpoint:', request_url);
-
-  try {
-    const response = await fetch(request_url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ url, origin, videoID, selectedLanguage }),
-    });
-
-    // --- Rate Limit Check ---
-    if (response.status === 429) {
-      const rateLimitData = await response.json();
-      const error = new Error(rateLimitData.message || 'Rate limit reached');
-      error.rateLimitData = rateLimitData; 
-      sessionStorage.setItem('rateLimitInfo', JSON.stringify({
-        isLimited: true,
-        resetTime: rateLimitData.resetTime,
-        message: rateLimitData.message || 'Rate limit exceeded.'
-      }));
-      onError(error);
-      return;
-    }
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: 'Unknown error starting analysis stream' }));
-      throw new Error(errorData.detail || `Error starting stream: ${response.statusText}`);
-    }
-
-    // Clear rate limit info on successful connection
-    sessionStorage.removeItem('rateLimitInfo');
-
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let buffer = '';
-
-    //Stream the response from the server
-    while (true) {
-      const { value, done } = await reader.read();
-      if (done) {
-        break;
-      }
-
-      buffer += decoder.decode(value, { stream: true });
-      // Events are separated by double newlines.
-      const events = buffer.split('\n\n');
-      // The last event might be incomplete, so we keep it in the buffer.
-      buffer = events.pop(); 
-
-      for (const event of events) {
-        if (event.startsWith('data: ')) {
-          const dataString = event.substring(6);
-          if (dataString) {
-            try {
-              const data = JSON.parse(dataString);
-
-              if (data.status === 'progress') {
-                onProgress(data);
-              } else if (data.status === 'complete') {
-                onComplete(data.data);
-                return; // Stream finished successfully
-              } else if (data.status === 'error') {
-                onError(new Error(data.message));
-                return; // Stream finished with an error
-              }
-            } catch (e) {
-              console.error("Failed to parse SSE event data:", dataString, e);
-              onError(new Error("Failed to parse a server event."));
-            }
-          }
-        }
-      }
-    }
-  } catch (error) {
-    console.error("Error in analyzeVideoWithProgress:", error);
-    onError(error);
+  if (!window.Worker) {
+    console.error("Web Workers are not supported by this browser.");
+    onError(new Error("Your browser does not support background processing. Please update to a modern browser."));
+    return;
   }
+
+  // Use new URL() to support Create React App's worker loading
+  const worker = new Worker(new URL('../workers/analysisWorker.js', import.meta.url));
+
+  worker.onmessage = (event) => {
+    const { type, payload } = event.data;
+
+    switch (type) {
+      case 'progress':
+        onProgress(payload);
+        break;
+      case 'complete':
+        onComplete(payload);
+        worker.terminate();
+        break;
+      case 'error':
+        // The payload is expected to be { message: '...' }
+        onError(new Error(payload.message));
+        worker.terminate();
+        break;
+      case 'rateLimit':
+        const rateLimitError = new Error(payload.message || 'Rate limit reached');
+        rateLimitError.rateLimitData = payload; 
+        sessionStorage.setItem('rateLimitInfo', JSON.stringify({
+          isLimited: true,
+          resetTime: payload.resetTime,
+          message: payload.message || 'Rate limit exceeded.'
+        }));
+        onError(rateLimitError);
+        worker.terminate();
+        break;
+      case 'connected':
+        // The worker has successfully connected to the stream.
+        // Clear any stale rate limit info from previous attempts.
+        sessionStorage.removeItem('rateLimitInfo');
+        break;
+      default:
+        console.warn(`Unknown message type from analysis worker: ${type}`);
+    }
+  };
+
+  worker.onerror = (err) => {
+    console.error("An unhandled error occurred in the analysis worker:", err);
+    onError(new Error(`An unexpected error occurred in the analysis process: ${err.message}`));
+    worker.terminate();
+  };
+  
+  // Send all necessary data for the worker to start its job
+  worker.postMessage({
+    type: 'start',
+    payload: {
+      url,
+      origin,
+      videoID,
+      selectedLanguage,
+      baseUrl: BASE_URL
+    }
+  });
 };
 
 export const checkApiHealth = async () => {
