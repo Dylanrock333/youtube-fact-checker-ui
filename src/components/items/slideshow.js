@@ -189,7 +189,7 @@ const Slideshow = () => {
             const items = apiData[selectedCategory].map(item => ({
                 videoTitle: item.title,
                 channel: item.channel_title,
-                thumbnail: `https://img.youtube.com/vi/${item.video_id}/maxresdefault.jpg`,
+                thumbnail: `https://i.ytimg.com/vi/${item.video_id}/hqdefault.jpg`,
                 videoUrl: `https://www.youtube.com/watch?v=${item.video_id}`,
                 claims: item.claims.map(claim => ({
                     claimTitle: claim.title,
