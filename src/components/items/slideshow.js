@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 // import { slideshowItem } from '../../translation/slideshow-item';
-// import slideshowData from '../../config/res_slideshow.json';
+import slideshowData from '../../config/res_slideshow.json';
 import './slideshow.css';
 import Glide from '@glidejs/glide';
 import '@glidejs/glide/dist/css/glide.core.min.css';
@@ -169,7 +169,8 @@ const Slideshow = () => {
     useEffect(() => {
         const fetchSlideshowData = async () => {
             try {
-                const data = await getSlideshowItem();
+                // const data = await getSlideshowItem();
+                const data = slideshowData;
                 setApiData(data);
                 const availableCategories = Object.keys(data);
                 setCategories(availableCategories);
