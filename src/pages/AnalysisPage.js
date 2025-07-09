@@ -7,6 +7,7 @@ import validateUrl from '../utils/urlDecoder';
 import HexagonLoader from '../components/items/hexagon-loading';
 import "../styles/AnalysisPage.css";
 import { useTranslation } from '../translation/useTranslation';
+import { requestWakeLock, releaseWakeLock } from '../utils/wakeLock';
 
 function AnalysisPage() {
     const { t } = useTranslation();
@@ -25,9 +26,12 @@ function AnalysisPage() {
     const [percentage, setPercentage] = useState(0);
 
     useEffect(() => {
+        // Request the wake lock when analysis is about to start
+        requestWakeLock();
 
         if (!isInitialized) {
             console.log("AnalysisPage is not initialized.");
+            releaseWakeLock(); // Release if we don't start
             return;
         }
 
@@ -38,6 +42,7 @@ function AnalysisPage() {
                 console.error("performAnalysis called with invalid videoUrl.");
                 setAnalysisData({ error: "Invalid video URL provided." });
                 setIsAnalyzing(false);
+                releaseWakeLock(); // Release on validation fail
                 return;
             }
             
@@ -62,11 +67,13 @@ function AnalysisPage() {
                     setPercentage(100);
                     // Delay hiding the loader to show "complete" status
                     setTimeout(() => setIsAnalyzing(false), 500);
+                    releaseWakeLock(); // Release on success
                 },
                 onError: (err) => {
                     console.error('Analysis Error:', err);
                     setAnalysisData({ error: err.message || t('analysis.error') });
                     setIsAnalyzing(false);
+                    releaseWakeLock(); // Release on error
                 }
             };
 
@@ -89,8 +96,13 @@ function AnalysisPage() {
             if (isAnalyzing) setIsAnalyzing(false);
         }
     
-    // The dependency array is intentionally kept from the original to avoid re-triggering analysis on progress state changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // The dependency array is intentionally kept from the original to avoid re-triggering analysis on progress state changes
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+
+        // Cleanup function to release the lock if the component unmounts
+        return () => {
+            releaseWakeLock();
+        };
     }, [videoUrl, isInitialized, setAnalysisData, setIsAnalyzing, currentLanguage]);
 
 
