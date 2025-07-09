@@ -39,6 +39,7 @@ const YouTubeVideo = ({ url, timestamp }) => {
     playerVars: {
       autoplay: 0,
       start: startSeconds, // This will make the video start at the specified timestamp
+      origin: window.location.origin, // Add this line
     },
   };
 
