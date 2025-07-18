@@ -117,6 +117,9 @@ function Home() {
       </div>
 
       <div className="input-container">
+        <div className="input-container-text">
+          Drop a YouTube link. We'll extract key claims, facts, and insights in seconds.
+        </div>
         <input
           type="text"
           value={inputUrl}

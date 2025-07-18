@@ -184,10 +184,23 @@
 /* ===== Input Section ===== */
 .input-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   margin-top: 40px;
+}
+
+.input-container-text {
+  color: var(--text-color);
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.5;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
 .main-input {
@@ -207,6 +220,10 @@
   .input-container{
     margin-top: 2rem;
   }
+  .input-container-text {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
   .main-input.dark{
     height: 40px;
     font-size: 0.75rem;
@@ -218,6 +235,9 @@
 } 
 
 @media (max-width: 480px) {
+  .input-container-text {
+    font-size: 0.8rem;
+  }
   .main-input.dark{
     height: 45px;
     font-size: 0.65rem;

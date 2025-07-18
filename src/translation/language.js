@@ -5,7 +5,7 @@ export const en = {
       title2: "Catcher",
       subtitle: "Transform Watching into Knowing",
       inputPlaceholder: "Enter YouTube video link here ...",
-      analyzeButton: "Analyze Video",
+      analyzeButton: "Extract Claims & Insights",
       analyzingButton: "Analyzing...",
       invalidUrl: "Invalid URL format.",
       rateLimitMessage: "Rate limit reached. Please try again after {time}.",

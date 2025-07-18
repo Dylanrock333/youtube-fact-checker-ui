@@ -549,7 +549,6 @@
 
 .section-subtext{
     font-size: 1.1rem;
-    color: var(--neutral-color);
     text-align: center;
     max-width: 600px;
     margin: 0 auto;
