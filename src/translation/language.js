@@ -5,6 +5,7 @@ export const en = {
       title2: "Catcher",
       subtitle: "Transform Watching into Knowing",
       inputPlaceholder: "Enter YouTube video link here ...",
+      inputDescription: "Drop a YouTube link. We'll pull out the most important quotes, arguments, and facts instantly",
       analyzeButton: "Start Video Analysis",
       analyzingButton: "Analyzing...",
       invalidUrl: "Invalid URL format.",
@@ -49,6 +50,15 @@ export const en = {
       checkability: "Checkability",
       showMore: "Show more",
       showLess: "Show less",
+    },
+
+    // Slideshow component
+    slideshow: {
+      claimQuote: "Claim Quote",
+      claimContext: "Claim Context",
+      notSureTitle: "NOT SURE WHAT TO ANALYZE?",
+      notSureSubtext: "Discover what we found in popular videos this week.",
+      startVideoAnalysis: "Start Video Analysis",
     },
 
     deepSearch: {
@@ -98,6 +108,7 @@ export const en = {
       title: "Detector de Afirmaciones en Video",
       subtitle: "Transforma Ver en Saber",
       inputPlaceholder: "Ingresa el enlace del video de YouTube aquí ...",
+      inputDescription: "Ingresa un enlace de YouTube. Extraeremos las citas, argumentos y hechos más importantes al instante",
       analyzeButton: "Analizar Video",
       analyzingButton: "Analizando...",
       invalidUrl: "Formato de URL no válido.",
@@ -141,6 +152,15 @@ export const en = {
       checkability: "Verificabilidad",
       showMore: "Mostrar más",
       showLess: "Mostrar menos",
+    },
+
+    // Componente de presentación
+    slideshow: {
+      claimQuote: "Cita de Afirmación",
+      claimContext: "Contexto de Afirmación",
+      notSureTitle: "¿NO ESTÁS SEGURO QUÉ ANALIZAR?",
+      notSureSubtext: "Descubre lo que encontramos en videos populares esta semana.",
+      startVideoAnalysis: "Iniciar Análisis de Video",
     },
   
     deepSearch: {
@@ -189,6 +209,7 @@ export const en = {
       title: "Detector de Afirmaciones en Video",
       subtitle: "Transforma Ver el Contenido en Conocimiento",
       inputPlaceholder: "Ingresa el enlace del video de YouTube aquí...",
+      inputDescription: "Déposez un lien YouTube. Nous extrairons instantanément les citations, arguments et faits les plus importants",
       analyzeButton: "Analizar Video",
       analyzingButton: "Analizando...",
       invalidUrl: "Formato de URL inválido.",
@@ -232,6 +253,15 @@ export const en = {
       checkability: "Verificabilidad",
       showMore: "Mostrar más",
       showLess: "Mostrar menos",
+    },
+
+    // Composant de diaporama
+    slideshow: {
+      claimQuote: "Citation d'Affirmation",
+      claimContext: "Contexte d'Affirmation",
+      notSureTitle: "PAS SÛR DE QUOI ANALYSER ?",
+      notSureSubtext: "Découvrez ce que nous avons trouvé dans les vidéos populaires cette semaine.",
+      startVideoAnalysis: "Démarrer l'Analyse Vidéo",
     },
   
     deepSearch: {
@@ -280,6 +310,7 @@ export const en = {
       title: "Video Claim Catcher",
       subtitle: "Verwandle Zuschauen in Wissen",
       inputPlaceholder: "Füge hier den YouTube-Link ein ...",
+      inputDescription: "YouTube-Link eingeben. Wir ziehen sofort die wichtigsten Zitate, Argumente und Fakten heraus",
       analyzeButton: "Video analysieren",
       analyzingButton: "Analyse läuft...",
       invalidUrl: "Ungültiges URL-Format.",
@@ -323,6 +354,15 @@ export const en = {
       checkability: "Überprüfbarkeit",
       showMore: "Mehr anzeigen",
       showLess: "Weniger anzeigen",
+    },
+
+    // Slideshow-Komponente
+    slideshow: {
+      claimQuote: "Behauptungszitat",
+      claimContext: "Behauptungskontext",
+      notSureTitle: "NICHT SICHER, WAS ANALYSIERT WERDEN SOLL?",
+      notSureSubtext: "Entdecken Sie, was wir in beliebten Videos dieser Woche gefunden haben.",
+      startVideoAnalysis: "Videoanalyse starten",
     },
   
     deepSearch: {
@@ -371,6 +411,7 @@ export const en = {
       title: "Video Claim Catcher",
       subtitle: "Transforme Assistir em Saber",
       inputPlaceholder: "Insira o link do vídeo do YouTube aqui...",
+      inputDescription: "Insira um link do YouTube. Extrairemos instantaneamente as citações, argumentos e fatos mais importantes",
       analyzeButton: "Analisar Vídeo",
       analyzingButton: "Analisando...",
       invalidUrl: "Formato de URL inválido.",
@@ -414,6 +455,15 @@ export const en = {
       checkability: "Verificabilidade",
       showMore: "Mostrar mais",
       showLess: "Mostrar menos",
+    },
+
+    // Componente de apresentação
+    slideshow: {
+      claimQuote: "Citação da Alegação",
+      claimContext: "Contexto da Alegação",
+      notSureTitle: "NÃO TEM CERTEZA DO QUE ANALISAR?",
+      notSureSubtext: "Descubra o que encontramos em vídeos populares esta semana.",
+      startVideoAnalysis: "Iniciar Análise de Vídeo",
     },
   
     deepSearch: {
@@ -463,6 +513,7 @@ export const en = {
       title: "Capturador de Reclamaciones en Videos",
       subtitle: "Transforma Ver en Saber",
       inputPlaceholder: "Ingresa el enlace del video de YouTube aquí...",
+      inputDescription: "Inserisci un link di YouTube. Estrarremo istantaneamente le citazioni, gli argomenti e i fatti più importanti",
       analyzeButton: "Analizar Video",
       analyzingButton: "Analizando...",
       invalidUrl: "Formato de URL inválido.",
@@ -506,6 +557,15 @@ export const en = {
       checkability: "Verificabilidad",
       showMore: "Mostrar más",
       showLess: "Mostrar menos",
+    },
+
+    // Componente slideshow
+    slideshow: {
+      claimQuote: "Citazione dell'Affermazione",
+      claimContext: "Contesto dell'Affermazione",
+      notSureTitle: "NON SAI COSA ANALIZZARE?",
+      notSureSubtext: "Scopri cosa abbiamo trovato nei video popolari di questa settimana.",
+      startVideoAnalysis: "Inizia Analisi Video",
     },
   
     deepSearch: {
@@ -554,6 +614,7 @@ export const en = {
       title: "ビデオ・クレーム・キャッチャー",
       subtitle: "視聴を知識へと変える",
       inputPlaceholder: "YouTubeの動画リンクを入力してください...",
+      inputDescription: "YouTubeリンクを入力してください。最も重要な引用、議論、事実を瞬時に抽出します",
       analyzeButton: "動画を分析する",
       analyzingButton: "分析中...",
       invalidUrl: "無効なURL形式です。",
@@ -597,6 +658,15 @@ export const en = {
       checkability: "検証可能性",
       showMore: "もっと見る",
       showLess: "もっと少なく",
+    },
+
+    // スライドショーコンポーネント
+    slideshow: {
+      claimQuote: "主張の引用",
+      claimContext: "主張の文脈",
+      notSureTitle: "何を分析すべきか分からない？",
+      notSureSubtext: "今週の人気動画で発見したものをご覧ください。",
+      startVideoAnalysis: "動画分析を開始",
     },
   
     deepSearch: {
@@ -645,6 +715,7 @@ export const en = {
       title: "视频主张捕捉器",
       subtitle: "让观看变成理解",
       inputPlaceholder: "请输入 YouTube 视频链接...",
+      inputDescription: "输入YouTube链接。我们会即时提取最重要的引用、论证和事实",
       analyzeButton: "分析视频",
       analyzingButton: "分析中...",
       invalidUrl: "无效的网址格式。",
@@ -688,6 +759,15 @@ export const en = {
       checkability: "可核查性",
       showMore: "显示更多",
       showLess: "显示更少",
+    },
+
+    // 幻灯片组件
+    slideshow: {
+      claimQuote: "主张引用",
+      claimContext: "主张上下文",
+      notSureTitle: "不确定要分析什么？",
+      notSureSubtext: "发现我们在本周热门视频中的发现。",
+      startVideoAnalysis: "开始视频分析",
     },
   
     // 深度搜索
@@ -744,6 +824,7 @@ export const en = {
       title: "Видео Ловец Утверждений",
       subtitle: "Преобразуй просмотр в знание",
       inputPlaceholder: "Введите ссылку на видео с YouTube ...",
+      inputDescription: "Введите ссылку на YouTube. Мы мгновенно извлечем самые важные цитаты, аргументы и факты",
       analyzeButton: "Анализировать видео",
       analyzingButton: "Анализируется...",
       invalidUrl: "Неверный формат URL.",
@@ -787,6 +868,15 @@ export const en = {
       checkability: "Проверяемость",
       showMore: "Показать больше",
       showLess: "Показать меньше",
+    },
+
+    // Компонент слайдшоу
+    slideshow: {
+      claimQuote: "Цитата утверждения",
+      claimContext: "Контекст утверждения",
+      notSureTitle: "НЕ ЗНАЕТЕ, ЧТО АНАЛИЗИРОВАТЬ?",
+      notSureSubtext: "Откройте для себя то, что мы нашли в популярных видео на этой неделе.",
+      startVideoAnalysis: "Начать анализ видео",
     },
   
     deepSearch: {
