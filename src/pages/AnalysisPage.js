@@ -1,5 +1,6 @@
 import VideoAnalysis from '../components/items/VideoAnalysis';
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useAnalysis } from '../context/AnalysisContext';
 import { analyzeVideoWithProgress } from '../api/api';
@@ -12,10 +13,12 @@ import { requestWakeLock, releaseWakeLock } from '../utils/wakeLock';
 function AnalysisPage() {
     const { t } = useTranslation();
     const { theme } = useTheme();
+    const [searchParams] = useSearchParams();
     const { 
       analysisData, 
       setAnalysisData, 
       videoUrl,
+      setVideoUrl,
       isAnalyzing, 
       setIsAnalyzing,
       isInitialized,
@@ -24,6 +27,35 @@ function AnalysisPage() {
 
     // State for streaming progress
     const [percentage, setPercentage] = useState(0);
+
+    // Check for videoId parameter in URL and set it in context
+    useEffect(() => {
+        // Handle both 'videoId' and 'videoID' parameter variations
+        const videoIdParam = searchParams.get('videoId') || searchParams.get('videoID');
+        if (videoIdParam) {
+            try {
+                // Construct YouTube URL from videoId parameter
+                const youtubeUrl = `https://www.youtube.com/watch?v=${videoIdParam}`;
+                
+                // Check if this is a different video than what's currently loaded
+                const currentVideoId = analysisData?.videoID;
+                const isDifferentVideo = !videoUrl || currentVideoId !== videoIdParam;
+                
+                if (isDifferentVideo) {
+                    console.log('Direct link detected - clearing existing data and starting fresh analysis for:', youtubeUrl);
+                    // Clear existing analysis data to force fresh analysis
+                    setAnalysisData(null);
+                    // Set analyzing state to show loading animation
+                    setIsAnalyzing(true);
+                    // Set the new video URL, which will trigger analysis
+                    setVideoUrl(youtubeUrl);
+                }
+            } catch (error) {
+                console.error('Error constructing URL from parameter:', error);
+                setAnalysisData({ error: `Invalid video ID parameter: ${videoIdParam}` });
+            }
+        }
+    }, [searchParams, videoUrl, setVideoUrl, setAnalysisData, analysisData]);
 
     useEffect(() => {
         // Request the wake lock when analysis is about to start
