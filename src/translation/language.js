@@ -47,6 +47,8 @@ export const en = {
       controversyLevel: "Controversy Level",
       videoRelevance: "Video Relevance",
       checkability: "Checkability",
+      showMore: "Show more",
+      showLess: "Show less",
     },
 
     deepSearch: {
@@ -137,6 +139,8 @@ export const en = {
       controversyLevel: "Nivel de Controversia",
       videoRelevance: "Relevancia del Video",
       checkability: "Verificabilidad",
+      showMore: "Mostrar más",
+      showLess: "Mostrar menos",
     },
   
     deepSearch: {
@@ -226,6 +230,8 @@ export const en = {
       controversyLevel: "Nivel de Controversia",
       videoRelevance: "Relevancia del Video",
       checkability: "Verificabilidad",
+      showMore: "Mostrar más",
+      showLess: "Mostrar menos",
     },
   
     deepSearch: {
@@ -240,7 +246,7 @@ export const en = {
   
     contact: {
       title: "Contáctanos",
-      contactIntro: "No dudes en comunicarte con nosotros usando el formulario a continuación. ¡Estaremos encantados de ayudarte o recibir tus comentarios!",
+      contactIntro: "No dudes en comunicarte con nosotros utilizando el formulario a continuación. ¡Estaremos encantados de ayudarte o recibir tus comentarios!",
       name: "Tu Nombre",
       email: "Tu Correo Electrónico",
       message: "Mensaje",
@@ -315,6 +321,8 @@ export const en = {
       controversyLevel: "Kontroversitätsgrad",
       videoRelevance: "Videorelevanz",
       checkability: "Überprüfbarkeit",
+      showMore: "Mehr anzeigen",
+      showLess: "Weniger anzeigen",
     },
   
     deepSearch: {
@@ -404,6 +412,8 @@ export const en = {
       controversyLevel: "Nível de Controvérsia",
       videoRelevance: "Relevância no Vídeo",
       checkability: "Verificabilidade",
+      showMore: "Mostrar mais",
+      showLess: "Mostrar menos",
     },
   
     deepSearch: {
@@ -494,6 +504,8 @@ export const en = {
       controversyLevel: "Nivel de Controversia",
       videoRelevance: "Relevancia del Video",
       checkability: "Verificabilidad",
+      showMore: "Mostrar más",
+      showLess: "Mostrar menos",
     },
   
     deepSearch: {
@@ -583,6 +595,8 @@ export const en = {
       controversyLevel: "論争性のレベル",
       videoRelevance: "動画との関連性",
       checkability: "検証可能性",
+      showMore: "もっと見る",
+      showLess: "もっと少なく",
     },
   
     deepSearch: {
@@ -672,6 +686,8 @@ export const en = {
       controversyLevel: "争议程度",
       videoRelevance: "视频相关性",
       checkability: "可核查性",
+      showMore: "显示更多",
+      showLess: "显示更少",
     },
   
     // 深度搜索
@@ -769,6 +785,8 @@ export const en = {
       controversyLevel: "Уровень спорности",
       videoRelevance: "Актуальность для видео",
       checkability: "Проверяемость",
+      showMore: "Показать больше",
+      showLess: "Показать меньше",
     },
   
     deepSearch: {

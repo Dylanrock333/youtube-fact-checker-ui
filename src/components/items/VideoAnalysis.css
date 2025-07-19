@@ -373,8 +373,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-
 }
+
 .claim-text {
   font-size: 1.1rem;
   margin-top: 10px;
@@ -388,6 +388,23 @@
   padding: 10px 15px;
   background-color: rgba(66, 153, 225, 0.05);
   border-radius: 5px;
+}
+
+.show-more-less-button {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0 0 0 4px;
+  font-size: inherit;
+  font-style: normal;
+  display: inline;
+  vertical-align: baseline;
+}
+
+.show-more-less-button:hover {
+  text-decoration: underline;
 }
 
 .claim-text::before {

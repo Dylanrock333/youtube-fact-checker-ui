@@ -15,6 +15,7 @@ const VideoAnalysis = ({ analysisData}) => {
   const { videoUrl } = useAnalysis();
   const [activeTabs, setActiveTabs] = useState({});
   const [searchQueries, setSearchQueries] = useState({});
+  const [expandedClaims, setExpandedClaims] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { theme } = useTheme();
@@ -94,6 +95,13 @@ const VideoAnalysis = ({ analysisData}) => {
     if (event && event.target) {
        adjustTextareaHeight(event.target);
     }
+  };
+
+  const handleToggleClaim = (claimId) => {
+    setExpandedClaims(prev => ({
+      ...prev,
+      [claimId]: !prev[claimId]
+    }));
   };
 
   // Function to navigate to deep search page
@@ -184,7 +192,34 @@ const VideoAnalysis = ({ analysisData}) => {
               </div>
               
               <div className="claim-text-container">
-                <p className="claim-text">{claim.claim}</p>
+                <p className="claim-text">
+                  {claim.claim.length > 300 && !expandedClaims[claim.id] ? (
+                    <>
+                      {`${claim.claim.substring(0, 300)}...`}
+                      <button
+                        className="show-more-less-button"
+                        onClick={() => handleToggleClaim(claim.id)}
+                      >
+                        {t('analysis.showMore')}
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      {claim.claim}
+                      {claim.claim.length > 300 && (
+                        <>
+                          {' '}
+                          <button
+                            className="show-more-less-button"
+                            onClick={() => handleToggleClaim(claim.id)}
+                          >
+                            {t('analysis.showLess')}
+                          </button>
+                        </>
+                      )}
+                    </>
+                  )}
+                </p>
               </div>
               
               <div className={`claim-context ${activeTabs[claim.id] === 'deepSearch' ? 'expanded' : ''}`}>          
