@@ -107,7 +107,7 @@ const SlideshowItemComponent = ({ item }) => {
                         </div>
                     </div>
                 </div>
-                <button className="slideshow-item-claim__button" onClick={() => handleAnalysisClick(item.videoUrl)}>Analyze Video</button>
+                <button className="slideshow-item-claim__button" onClick={() => handleAnalysisClick(item.videoUrl)}>Start Video Analysis</button>
             </div>
             <div className="slideshow-item-claims-container">
                 {item.claims.length > 3 ? (
