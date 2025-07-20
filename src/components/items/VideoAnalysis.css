@@ -530,26 +530,26 @@
 .context-content {
   max-height: none;
   opacity: 1;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 450;
   transition: max-height 0.3s ease-in-out;
   overflow: hidden;
   margin-bottom: 15px;
   line-height: 1.5;
-  padding: 20px;
+  padding: 10px;
   background-color: rgba(0, 0, 0, 0.02);
   border-radius: 6px;
 }
 
 @media (max-width: 768px) {
   .context-content{
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 } 
 
 @media (max-width: 480px) {
   .context-content{
-    font-size: 0.825rem;
+    font-size: 0.9rem;
   }
 }
 
