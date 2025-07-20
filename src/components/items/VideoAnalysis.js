@@ -133,9 +133,9 @@ const VideoAnalysis = ({ analysisData}) => {
               
               <div className="claim-text-container">
                 <p className="claim-text">
-                  {claim.claim.length > 300 && !expandedClaims[claim.id] ? (
+                  {claim.claim.length > 280 && !expandedClaims[claim.id] ? (
                     <>
-                      {`${claim.claim.substring(0, 300)}...`}
+                      {`${claim.claim.substring(0, 280)}...`}
                       <button
                         className="show-more-less-button"
                         onClick={() => handleToggleClaim(claim.id)}

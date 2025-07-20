@@ -180,7 +180,6 @@
   background-color: rgba(66, 153, 225, 0.1);
   color: var(--accent-color);
   display: inline-block;
-  margin-bottom: 10px;
 }
 
 .deep-search-page.dark .claim-header .timestamp {
