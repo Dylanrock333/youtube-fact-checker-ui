@@ -358,7 +358,6 @@
 .claim-title{
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--accent-color);
   letter-spacing: 0.35px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.0125);
 }
@@ -378,6 +377,7 @@
 
 .claim-text {
   font-size: 1.1rem;
+  font-weight: 500;
   margin-top: 10px;
   margin-bottom: 10px;
   line-height: 1.6;
@@ -530,7 +530,8 @@
 .context-content {
   max-height: none;
   opacity: 1;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  font-weight: 450;
   transition: max-height 0.3s ease-in-out;
   overflow: hidden;
   margin-bottom: 15px;
