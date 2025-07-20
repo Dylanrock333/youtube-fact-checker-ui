@@ -25,7 +25,6 @@ const DeepSearchPage = () => {
     
     // Initialize state based on initial window width
     const [isContextExpanded, setIsContextExpanded] = useState(window.innerWidth > 768);
-    const [isQueryExpanded, setIsQueryExpanded] = useState(window.innerWidth > 768);
 
     useEffect(() => {
         console.log('useEffect triggered');
@@ -87,10 +86,6 @@ const DeepSearchPage = () => {
     const toggleContext = () => {
         setIsContextExpanded(!isContextExpanded);
     };
-
-    const toggleQuery = () => {
-        setIsQueryExpanded(!isQueryExpanded);
-    };
     
     const renderMarkdown = (content) => {
         return { __html: marked(content, { sanitize: true }) };
@@ -102,6 +97,8 @@ const DeepSearchPage = () => {
             <FaArrowLeft /> {t('common.back')}
             </button>
             
+            <hr className="divider" />
+
             <div className="claim-box">
                 <div className="claim-header">
                     {timestamp && <span className="timestamp">{t('analysis.timestamp')}: {timestamp}</span>}
@@ -125,19 +122,9 @@ const DeepSearchPage = () => {
                                 {isContextExpanded ? <FaChevronUp /> : <FaChevronDown />}
                             </button>
                         </h3>
-                        <p>{context}</p>
+                        <p className="context-text">{context}</p>
                     </div>
                 )}
-                
-                <div className={`query-box ${!isQueryExpanded ? 'collapsed' : ''}`}>
-                     <h3 onClick={toggleQuery} className="collapsible-header">
-                        {t('deepSearch.searchFor')}
-                        <button className="toggle-icon">
-                            {isQueryExpanded ? <FaChevronUp /> : <FaChevronDown />}
-                        </button>
-                    </h3>
-                    <p>{query || t('deepSearch.noQuery')}</p>
-                </div>
             </div>
             
             <div className="results-box">
@@ -176,7 +163,6 @@ const DeepSearchPage = () => {
                                     
                                     {showCitations && (
                                         <div className="citations-list">
-                                                <h4>{t('analysis.citations')}</h4>
                                             <ol>
                                                 {searchResult.citations.map((citation, index) => (
                                                     <li key={index}>
