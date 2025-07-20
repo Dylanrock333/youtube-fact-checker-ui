@@ -531,7 +531,7 @@
   max-height: none;
   opacity: 1;
   font-size: 1.1rem;
-  font-weight: 450;
+  font-weight: 475;
   transition: max-height 0.3s ease-in-out;
   overflow: hidden;
   margin-bottom: 15px;
@@ -543,13 +543,13 @@
 
 @media (max-width: 768px) {
   .context-content{
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 } 
 
 @media (max-width: 480px) {
   .context-content{
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 }
 
