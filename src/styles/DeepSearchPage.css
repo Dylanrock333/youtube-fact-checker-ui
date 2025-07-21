@@ -54,7 +54,12 @@
   border: none;
   height: 1px;
   background-color: #FFFFFF;
-  margin: 0 0 20px 0;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.deep-search-page.light .divider {
+  background-color: #000000;
 }
 
 /* .deep-search-page.light .divider {
@@ -198,6 +203,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   width: 100%;
   box-sizing: border-box;
+  padding: 12px;
 }
 
 .deep-search-page.light .claim-box .claim-text {
@@ -208,7 +214,35 @@
   align-self: stretch;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+}
+
+.claim-title-container{
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.claim-title{
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1.4;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(66, 153, 225, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.deep-search-page.dark .claim-title {
+  color: #e2e8f0;
+}
+
+.deep-search-page.light .claim-title {
+  color: #2d3748;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .claim-box .claim-text::before {

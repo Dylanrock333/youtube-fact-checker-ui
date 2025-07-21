@@ -63,6 +63,7 @@ const VideoAnalysis = ({ analysisData}) => {
       state: { 
         query, 
         claimId, 
+        claimTitle: claim.title,
         claimText: claim.claim,
         context: claim.context,
         timestamp: claim.timestamp,

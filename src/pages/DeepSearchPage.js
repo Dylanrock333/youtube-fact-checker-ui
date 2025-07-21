@@ -14,7 +14,7 @@ const DeepSearchPage = () => {
     const { t } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
-    const { query, claimId, claimText, context, timestamp, videodata } = location.state || {};
+    const { query, claimId, claimTitle, claimText, context, timestamp, videodata } = location.state || {};
     const { theme } = useTheme();
     const { videoUrl, setDeepSearchResult } = useAnalysis();
     
@@ -94,15 +94,25 @@ const DeepSearchPage = () => {
     return (
         <div className={`deep-search-page ${theme}`}>
             <button className="back-button" onClick={handleGoBack}>
-            <FaArrowLeft /> {t('common.back')}
+                <FaArrowLeft /> {t('common.back')}
             </button>
-            
-            <hr className="divider" />
+
+
+
 
             <div className="claim-box">
                 <div className="claim-header">
                     {timestamp && <span className="timestamp">{t('analysis.timestamp')}: {timestamp}</span>}
+
+
                 </div>
+
+                <div className="claim-title">
+                    {claimTitle}
+                </div>
+
+                <hr className="divider" />   
+
                 <div className="claim-text">
                     {claimText || t('deepSearch.noClaim')}
                 </div>
