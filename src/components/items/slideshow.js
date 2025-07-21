@@ -80,6 +80,7 @@ const SlideshowItemComponent = ({ item }) => {
 
         const query = claim.searchQuery;
         const claimId = -1;
+        const claimTitle = claim.claimTitle;
         const claimText = claim.claimQuote;
         const context = claim.claimContext;
         const timestamp = claim.timestamp;
@@ -89,6 +90,7 @@ const SlideshowItemComponent = ({ item }) => {
           state: { 
             query, 
             claimId, 
+            claimTitle,
             claimText,
             context,
             timestamp,
