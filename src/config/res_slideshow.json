@@ -932,7 +932,7 @@
       ]
     }
   ],
-  "news_and_politics": [
+  "news": [
     {
       "video_id": "Y13Ty8Wg7XE",
       "title": "LIVE with Mary Trump",
@@ -1489,7 +1489,7 @@
       ]
     }
   ],
-  "history_and_society": [
+  "history": [
     {
       "video_id": "LyIBIx5qPsQ",
       "title": "The Origin of the Israel/Palestine Conflict (Simplified) - Part 1",
@@ -2039,7 +2039,7 @@
       ]
     }
   ],
-  "economy_and_finance": [
+  "economy": [
     {
       "video_id": "TJDcGv9OH4Q",
       "title": "THE PSYCHOLOGY OF MONEY (BY MORGAN HOUSEL)",
