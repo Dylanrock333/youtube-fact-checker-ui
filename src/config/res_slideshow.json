@@ -1160,25 +1160,6 @@
   ],
   "news": [
     {
-      "video_id": "L0O1-CwsYjY",
-      "title": "#COP28 World Climate Action Summit Opening | United Nations Climate Change Conference",
-      "channel_title": "United Nations",
-      "published_at": "Dec 1, 2023",
-      "view_count": "40,488",
-      "duration": "1:09:15",
-      "claims": [
-        {
-          "title": "COP28 Hosted in UAE",
-          "claim": "The United Arab Emirates is honored to host the COP28 World Climate Action Summit.",
-          "context": "This statement formally welcomes attendees to the United Arab Emirates for the COP28 summit, setting the location and tone for the event.",
-          "timestamp": "1:07:10",
-          "category": "political",
-          "controversy_score": 1,
-          "search_query": "Verify the host location of COP28. Research official United Nations Climate Change Conference documentation and news reports to confirm if the United Arab Emirates was the designated host nation for COP28. Evaluate sources to confirm the accuracy of this geographical information."
-        }
-      ]
-    },
-    {
       "video_id": "kMhle4o0uk0",
       "title": "Why China and the US are so obsessed with Taiwan | Mapped Out",
       "channel_title": "DW News",
