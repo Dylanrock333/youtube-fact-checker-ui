@@ -9,6 +9,7 @@ import YouTubeVideo from '../components/items/YouTubeVideo';
 import HexagonLoader from '../components/items/hexagon-loading';
 import { marked } from 'marked';
 import { useTranslation } from '../translation/useTranslation';
+import ReactMarkdown from 'react-markdown';
 
 const DeepSearchPage = () => {
     const { t } = useTranslation();
@@ -154,9 +155,9 @@ const DeepSearchPage = () => {
                 ) : (
                     <div className="result-content">
                         <div className="sonar-result">
-                            <div className="sonar-content">
-                                <div dangerouslySetInnerHTML={renderMarkdown(searchResult.choices[0].message.content)} />
-                            </div>
+                        <div className="sonar-content">
+                            <ReactMarkdown>{searchResult.choices[0].message.content}</ReactMarkdown>
+                        </div>
                             
                             {searchResult.citations && searchResult.citations.length > 0 && (
                                 <div className="citations-section">
