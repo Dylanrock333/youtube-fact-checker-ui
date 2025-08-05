@@ -484,7 +484,7 @@
   gap: 15px;
 }
 
-.sonar-content {
+/* .sonar-content {
   white-space: pre-wrap;
   line-height: 1;
   font-weight: 500;
@@ -492,15 +492,55 @@
   font-size: 1.2rem;
   color: var(--text-color);
   border-radius: 8px;
+} */
+
+/* Container around your markdown content */
+.sonar-content {
+  font-family: system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  font-weight: 500;
+  color: #fff;
 }
 
+.deep-search-page.light .sonar-content {
+  color: #000;
+}
+
+/* Paragraphs */
 .sonar-content p {
-  margin: 0 0 0.5em 0; /* Reduce space between paragraphs */
+  margin: 0.5em 0; /* reduce excessive spacing */
 }
 
+/* Unordered Lists */
 .sonar-content ul {
-  padding-left: 1.5em;
-  margin: 0; /* Remove top and bottom space */
+  list-style: disc;      /* standard bullets */
+  padding-left: 1.2em;   /* control indent of bullets */
+  margin: 0.5em 0;       /* tighten spacing above/below the list */
+}
+
+/* List Items */
+.sonar-content li {
+  margin: 0.3em 0;       /* tighter spacing between list items */
+}
+
+/* Headings */
+.sonar-content h1 {
+  font-size: 1.9em;
+  font-weight: 700;
+  margin: 0.8em 0 0.4em;
+}
+
+.sonar-content h2 {
+  font-size: 1.6em;
+  font-weight: 700;
+  margin: 0.75em 0 0.35em;
+}
+
+.sonar-content h3 {
+  font-size: 1.4em;
+  font-weight: 700;
+  margin: 0.7em 0 0.3em;
 }
 
 /*
