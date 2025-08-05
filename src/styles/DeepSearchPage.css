@@ -686,6 +686,7 @@
   }
   /* Tighten spacing between list items */
   .sonar-content li { margin: 0.25em 0; }
+  .sonar-content li > p { display: inline; margin: 0; }
   /* Reduce side padding of result box so text is closer to screen edge */
   .results-box { padding: 12px; }
 }
