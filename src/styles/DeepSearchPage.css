@@ -681,12 +681,12 @@
   /* Improve list padding / bullet alignment */
   .sonar-content ul {
     list-style: disc inside; /* bullet inside text block */
-    padding-left: 1em;        /* remove extra indent */
+    padding-left: 0.5em;        /* remove extra indent */
     margin: 0.4em 0;
   }
 
   /* Tighten spacing between list items */
-  .sonar-content li { margin: 0.25em 0; }
+  .sonar-content li { margin: 0.5em 0; }
   .sonar-content li > p { display: inline; margin: 0; }
   /* Reduce side padding of result box so text is closer to screen edge */
   .results-box { padding: 20px; }
