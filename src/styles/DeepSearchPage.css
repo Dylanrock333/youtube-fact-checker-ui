@@ -675,9 +675,9 @@
     line-height: 1.7;
   }
   /* Headings remain clearly larger than body text */
-  .sonar-content h1 { font-size: 1.6rem; }
-  .sonar-content h2 { font-size: 1.4rem; }
-  .sonar-content h3 { font-size: 1.2rem; }
+  .sonar-content h1 { font-size: 1.75rem; }
+  .sonar-content h2 { font-size: 1.55rem; }
+  .sonar-content h3 { font-size: 1.35rem; }
   /* Improve list padding / bullet alignment */
   .sonar-content ul {
     list-style: disc inside; /* bullet inside text block */
