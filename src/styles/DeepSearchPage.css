@@ -671,8 +671,8 @@
 @media (max-width: 480px) {
   /* Base text a bit smaller */
   .sonar-content {
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.7;
   }
   /* Headings remain clearly larger than body text */
   .sonar-content h1 { font-size: 1.6rem; }
@@ -681,13 +681,14 @@
   /* Improve list padding / bullet alignment */
   .sonar-content ul {
     list-style: disc inside; /* bullet inside text block */
-    padding-left: 0;        /* remove extra indent */
+    padding-left: 1em;        /* remove extra indent */
     margin: 0.4em 0;
   }
+
   /* Tighten spacing between list items */
   .sonar-content li { margin: 0.25em 0; }
   .sonar-content li > p { display: inline; margin: 0; }
   /* Reduce side padding of result box so text is closer to screen edge */
-  .results-box { padding: 12px; }
+  .results-box { padding: 20px; }
 }
 
