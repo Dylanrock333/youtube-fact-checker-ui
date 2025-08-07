@@ -7,13 +7,14 @@ import '@glidejs/glide/dist/css/glide.core.min.css';
 import { RiArrowLeftWideFill, RiArrowRightWideLine  } from "react-icons/ri";
 import { useAnalysis } from '../../context/AnalysisContext';
 import { useNavigate } from 'react-router-dom';
-import { getSlideshowItem } from '../../api/api';
+// import { getSlideshowItem } from '../../api/api';
 import { useTranslation } from '../../translation/useTranslation';
+import Analytics from '../../utils/analytics';
 
 
 const SlideshowItemComponent = ({ item }) => {
     const glideRef = useRef(null);
-    const { videoUrl, setVideoUrl, setIsAnalyzing } = useAnalysis();
+    const { setVideoUrl, setIsAnalyzing } = useAnalysis();
     const navigate = useNavigate();
     const { t } = useTranslation();
     useEffect(() => {
@@ -66,6 +67,11 @@ const SlideshowItemComponent = ({ item }) => {
     }, [item.claims]);
 
     const handleAnalysisClick = (videoUrl) => {
+        Analytics.trackAnalysisStep('slideshow_video_analysis', {
+          video_url: videoUrl,
+          source: 'slideshow_example'
+        });
+        
         setVideoUrl(videoUrl);
         setIsAnalyzing(true);
         navigate('/analysis-page');
@@ -73,9 +79,12 @@ const SlideshowItemComponent = ({ item }) => {
 
 
     const handleStartDeepSearch = (claim, videoUrl) => {
-        if (window.gtag) {
-          window.gtag('event', 'deep_search_click');
-        }
+        Analytics.trackAnalysisStep('slideshow_deep_search', {
+          video_url: videoUrl,
+          claim_title: claim.claimTitle,
+          source: 'slideshow_example'
+        });
+        
         setVideoUrl(videoUrl);
 
         const query = claim.searchQuery;
@@ -220,7 +229,13 @@ const Slideshow = () => {
                     <button
                         key={category}
                         className={`category-button ${selectedCategory === category ? 'active' : ''}`}
-                        onClick={() => setSelectedCategory(category)}
+                        onClick={() => {
+                          Analytics.trackFeatureUse('slideshow_category', 'select', {
+                            category: category,
+                            previous_category: selectedCategory
+                          });
+                          setSelectedCategory(category);
+                        }}
                     >
                         {category.replace(/_/g, ' ').toUpperCase()}
                     </button>

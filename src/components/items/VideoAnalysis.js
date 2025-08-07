@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './VideoAnalysis.css';
-import { FaInfoCircle, FaSearch } from 'react-icons/fa';
 import YouTubeVideo from './YouTubeVideo';
 import { useAnalysis } from '../../context/AnalysisContext';
 import { useTheme } from '../../context/ThemeContext'; 
 import { useTranslation } from '../../translation/useTranslation';
-
-/* global gtag */
+import Analytics from '../../utils/analytics';
 
 //TODO: when the pai can handle more plarforms change how YouTubeVideo componenet is handled
 
@@ -38,20 +36,33 @@ const VideoAnalysis = ({ analysisData}) => {
   }
 
   const handleToggleClaim = (claimId) => {
+    const isExpanding = !expandedClaims[claimId];
+    
     setExpandedClaims(prev => ({
       ...prev,
       [claimId]: !prev[claimId]
     }));
+
+    // Track claim expansion/collapse
+    Analytics.trackFeatureUse('claim_toggle', isExpanding ? 'expand' : 'collapse', {
+      claim_id: claimId,
+      video_id: analysisData?.videoID
+    });
   };
 
   // Function to navigate to deep search page
   const handleStartDeepSearch = (claimId) => {
-    if (window.gtag) {
-      window.gtag('event', 'deep_search_click');
-    }
+    const claim = analysisData.claims.find(c => c.id === claimId);
+    
+    // Enhanced tracking with claim details
+    Analytics.trackAnalysisStep('deep_search_initiated', {
+      claim_id: claimId,
+      video_id: analysisData?.videoID,
+      claim_category: claim?.category,
+      claim_title: claim?.title
+    });
     
     setIsLoading(true);
-    const claim = analysisData.claims.find(c => c.id === claimId);
     const query = claim.search_query;
     const videodata = analysisData.video_data;
 
