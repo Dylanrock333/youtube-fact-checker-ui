@@ -85,7 +85,7 @@ function Home() {
     setIsAnalyzing(true);
     setVideoUrl(inputUrl);
 
-    navigate("/analysis-page");
+    navigate("/analysis");
   };
 
   useEffect(() => {

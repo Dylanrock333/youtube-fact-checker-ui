@@ -72,7 +72,7 @@ const SlideshowItemComponent = ({ item }) => {
         
         setVideoUrl(videoUrl);
         setIsAnalyzing(true);
-        navigate('/analysis-page');
+        navigate('/analysis');
     };
 
 

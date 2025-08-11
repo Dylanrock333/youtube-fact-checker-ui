@@ -37,7 +37,7 @@ function AppContent() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/deep-search" element={<DeepSearchPage />} />
-            <Route path="/analysis-page" element={<AnalysisPage />} />
+            <Route path="/analysis" element={<AnalysisPage />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

@@ -31,8 +31,8 @@ function AnalysisPage() {
 
     // Check for videoId parameter in URL and set it in context
     useEffect(() => {
-        // Handle both 'videoId' and 'videoID' parameter variations
-        const videoIdParam = searchParams.get('videoId') || searchParams.get('videoID');
+        // Handle 'v' parameter for video ID
+        const videoIdParam = searchParams.get('v');
         if (videoIdParam) {
             try {
                 // Construct YouTube URL from videoId parameter
