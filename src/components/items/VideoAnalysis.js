@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './VideoAnalysis.css';
 import YouTubeVideo from './YouTubeVideo';
@@ -18,7 +18,7 @@ const VideoAnalysis = ({ analysisData}) => {
   const { t } = useTranslation();
   
   // Track when results are viewed (journey step) - must be at top level
-  React.useEffect(() => {
+  useEffect(() => {
     if (analysisData && analysisData.claims) {
       Analytics.trackUserJourneyStep('results_viewed', analysisData.videoID);
     }
