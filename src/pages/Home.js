@@ -18,6 +18,7 @@ function Home() {
   const { isAnalyzing, setIsAnalyzing, setVideoUrl } = useAnalysis();
   const [apiStatus, setApiStatus] = useState({ loading: true, success: null });
   const [rateLimitMessage, setRateLimitMessage] = useState('');
+  const [urlError, setUrlError] = useState('');
   const [pageLoadTime] = useState(Date.now());
   
 
@@ -40,6 +41,7 @@ function Home() {
   const handleInputChange = (e) => {
     setInputUrl(e.target.value);
     setRateLimitMessage('');
+    setUrlError('');
     
     // Track URL entry as journey step
     if (e.target.value.trim() && !inputUrl.trim()) {
@@ -62,11 +64,12 @@ function Home() {
 
     if (!inputUrl.trim()) return;
     setRateLimitMessage('');
+    setUrlError('');
 
     try {
       validateUrl(inputUrl);
     } catch (error) {
-      setRateLimitMessage("Invalid URL format.");
+      setUrlError("Please enter a valid YouTube URL");
       return;
     }
 
@@ -125,6 +128,15 @@ function Home() {
           className={`main-input ${theme}`}
           disabled={isAnalyzing}
         />
+        <div className="url-format-helper">
+          <span>youtube.com/watch?v=VIDEO_ID</span>
+          <span>youtu.be/VIDEO_ID</span>
+        </div>
+        {urlError && (
+          <div className="url-error-message">
+            {urlError}
+          </div>
+        )}
       </div>
       {rateLimitMessage && (
         <div className="rate-limit-message error-message"> 
@@ -134,8 +146,8 @@ function Home() {
       <div className="button-container">
         <button 
           onClick={handleAnalyzeClick}
-          className={`analyze-button ${theme} ${isAnalyzing || rateLimitMessage ? 'disabled' : ''}`}
-          disabled={isAnalyzing || !apiStatus.success || !!rateLimitMessage}
+          className={`analyze-button ${theme} ${isAnalyzing || rateLimitMessage || urlError ? 'disabled' : ''}`}
+          disabled={isAnalyzing || !apiStatus.success || !!rateLimitMessage || !!urlError}
         >
           {isAnalyzing ? t('home.analyzingButton') : t('home.analyzeButton')}
         </button>

@@ -20,6 +20,10 @@ const validateUrl = (url) => {
 
 const findOrigin = (url) => {
     try {
+        // Add protocol if missing
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+            url = 'https://' + url;
+        }
         const parsedUrl = new URL(url);
         const hostname = parsedUrl.hostname.toLowerCase();
 
@@ -44,6 +48,10 @@ const findOrigin = (url) => {
 const findVideoID = (url, origin) => {
     //TODO: add paresing for other platforms when the api is ready
     if (origin === 'youtube') {
+        // Add protocol if missing
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+            url = 'https://' + url;
+        }
         const parsedUrl = new URL(url);
         if (parsedUrl.hostname.includes('youtu.be')) {
             return parsedUrl.pathname.substring(1);

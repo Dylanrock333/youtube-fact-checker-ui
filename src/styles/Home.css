@@ -286,6 +286,65 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
+/* ===== URL Format Helper ===== */
+.url-format-helper {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 12px;
+  font-size: 0.80rem;
+  opacity: 0.85;
+  color: var(--text-color);
+}
+
+.url-format-helper span {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: rgba(23, 162, 184, 0.15);
+  border: 1px solid rgba(23, 162, 184, 0.2);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.2px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.url-format-helper span:hover {
+  background-color: rgba(23, 162, 184, 0.2);
+  border-color: rgba(23, 162, 184, 0.3);
+}
+
+@media (max-width: 768px) {
+  .url-format-helper {
+    gap: 0.4rem;
+    font-size: 0.70rem;
+  }
+  
+  .url-format-helper span {
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .url-format-helper {
+    gap: 0.35;
+    font-size: 0.65rem;
+  }
+  
+  .url-format-helper span {
+    padding: 4px 8px;
+  }
+}
+
+/* ===== URL Error Message ===== */
+.url-error-message {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #e74c3c;
+  text-align: center;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
 /* ===== Button Section ===== */
 .button-container {
   display: flex;
