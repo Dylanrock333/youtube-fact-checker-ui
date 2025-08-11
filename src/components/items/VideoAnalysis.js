@@ -17,6 +17,13 @@ const VideoAnalysis = ({ analysisData}) => {
   const { theme } = useTheme();
   const { t } = useTranslation();
   
+  // Track when results are viewed (journey step) - must be at top level
+  React.useEffect(() => {
+    if (analysisData && analysisData.claims) {
+      Analytics.trackUserJourneyStep('results_viewed', analysisData.videoID);
+    }
+  }, [analysisData]);
+  
   // Add more thorough checks for analysisData
   if (!analysisData || !analysisData.claims) {
     return (
@@ -36,31 +43,19 @@ const VideoAnalysis = ({ analysisData}) => {
   }
 
   const handleToggleClaim = (claimId) => {
-    const isExpanding = !expandedClaims[claimId];
-    
     setExpandedClaims(prev => ({
       ...prev,
       [claimId]: !prev[claimId]
     }));
-
-    // Track claim expansion/collapse
-    Analytics.trackFeatureUse('claim_toggle', isExpanding ? 'expand' : 'collapse', {
-      claim_id: claimId,
-      video_id: analysisData?.videoID
-    });
   };
 
   // Function to navigate to deep search page
   const handleStartDeepSearch = (claimId) => {
     const claim = analysisData.claims.find(c => c.id === claimId);
     
-    // Enhanced tracking with claim details
-    Analytics.trackAnalysisStep('deep_search_initiated', {
-      claim_id: claimId,
-      video_id: analysisData?.videoID,
-      claim_category: claim?.category,
-      claim_title: claim?.title
-    });
+    // Track journey step and deep search
+    Analytics.trackUserJourneyStep('claim_explored', analysisData?.videoID);
+    Analytics.trackDeepSearchPerformed(claim?.context || 'unknown', analysisData?.videoID);
     
     setIsLoading(true);
     const query = claim.search_query;

@@ -1,8 +1,6 @@
 import React from 'react';
 import YouTube from 'react-youtube';
 import './YouTubeVideo.css';
-import Analytics from '../../utils/analytics';
-
 const YouTubeVideo = ({ url, timestamp }) => {
   // Extract video ID from YouTube URL
   const getVideoId = (url) => {
@@ -35,25 +33,6 @@ const YouTubeVideo = ({ url, timestamp }) => {
   const videoId = getVideoId(url);
   const startSeconds = convertTimestampToSeconds(timestamp);
   
-  // YouTube player event handlers
-  const onReady = (event) => {
-    Analytics.trackVideoInteraction('ready', videoId, startSeconds);
-  };
-
-  const onPlay = (event) => {
-    const currentTime = Math.floor(event.target.getCurrentTime());
-    Analytics.trackVideoInteraction('play', videoId, currentTime);
-  };
-
-  const onPause = (event) => {
-    const currentTime = Math.floor(event.target.getCurrentTime());
-    Analytics.trackVideoInteraction('pause', videoId, currentTime);
-  };
-
-  const onEnd = (event) => {
-    Analytics.trackVideoInteraction('ended', videoId);
-  };
-  
   // Options for the YouTube player
   const opts = {
     playerVars: {
@@ -73,10 +52,6 @@ const YouTubeVideo = ({ url, timestamp }) => {
         videoId={videoId} 
         opts={opts} 
         className="youtube-video"
-        onReady={onReady}
-        onPlay={onPlay}
-        onPause={onPause}
-        onEnd={onEnd}
       />
     </div>
   );

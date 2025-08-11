@@ -67,10 +67,8 @@ const SlideshowItemComponent = ({ item }) => {
     }, [item.claims]);
 
     const handleAnalysisClick = (videoUrl) => {
-        Analytics.trackAnalysisStep('slideshow_video_analysis', {
-          video_url: videoUrl,
-          source: 'slideshow_example'
-        });
+        Analytics.trackSlideshowInteraction('video_analyze', videoUrl);
+        Analytics.trackVideoAnalysisAttempted('slideshow_example');
         
         setVideoUrl(videoUrl);
         setIsAnalyzing(true);
@@ -79,11 +77,7 @@ const SlideshowItemComponent = ({ item }) => {
 
 
     const handleStartDeepSearch = (claim, videoUrl) => {
-        Analytics.trackAnalysisStep('slideshow_deep_search', {
-          video_url: videoUrl,
-          claim_title: claim.claimTitle,
-          source: 'slideshow_example'
-        });
+        Analytics.trackSlideshowInteraction('deep_search', videoUrl, claim.claimTitle);
         
         setVideoUrl(videoUrl);
 
@@ -230,10 +224,7 @@ const Slideshow = () => {
                         key={category}
                         className={`category-button ${selectedCategory === category ? 'active' : ''}`}
                         onClick={() => {
-                          Analytics.trackFeatureUse('slideshow_category', 'select', {
-                            category: category,
-                            previous_category: selectedCategory
-                          });
+                          Analytics.trackSlideshowInteraction('category_select', null, null, category);
                           setSelectedCategory(category);
                         }}
                     >

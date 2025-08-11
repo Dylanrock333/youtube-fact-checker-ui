@@ -10,7 +10,6 @@ import "../styles/AnalysisPage.css";
 import { useTranslation } from '../translation/useTranslation';
 import { requestWakeLock, releaseWakeLock } from '../utils/wakeLock';
 import Analytics from '../utils/analytics';
-import { useTimingTracker } from '../hooks/useAnalytics';
 
 function AnalysisPage() {
     const { t } = useTranslation();
@@ -29,9 +28,6 @@ function AnalysisPage() {
 
     // State for streaming progress
     const [percentage, setPercentage] = useState(0);
-    
-    // Track analysis timing
-    const { trackTiming: trackAnalysisTime } = useTimingTracker('performance', 'video_analysis_time');
 
     // Check for videoId parameter in URL and set it in context
     useEffect(() => {
@@ -86,11 +82,6 @@ function AnalysisPage() {
             // Reset progress state for new analysis
             setPercentage(5);
             
-            // Track analysis start
-            Analytics.trackAnalysisStep('analysis_started', {
-              video_id: videoID,
-              language: currentLanguage
-            });
 
             const payload = {
                 url: videoUrl,
@@ -110,12 +101,7 @@ function AnalysisPage() {
                     setPercentage(100);
                     
                     // Track successful analysis completion
-                    trackAnalysisTime('analysis_completed');
-                    Analytics.trackAnalysisStep('analysis_completed', {
-                      video_id: videoID,
-                      claim_count: result.claim_count || 0,
-                      language: currentLanguage
-                    });
+                    Analytics.trackVideoAnalysisSucceeded(videoID, result.claim_count || 0);
                     
                     // Delay hiding the loader to show "complete" status
                     setTimeout(() => setIsAnalyzing(false), 500);
@@ -126,11 +112,7 @@ function AnalysisPage() {
                     setAnalysisData({ error: err.message || t('analysis.error') });
                     
                     // Track analysis error
-                    Analytics.trackError('analysis_error', err.message, {
-                      video_id: videoID,
-                      language: currentLanguage,
-                      progress_percentage: percentage
-                    });
+                    Analytics.trackVideoAnalysisFailed(videoID, err.message || 'unknown_error');
                     
                     setIsAnalyzing(false);
                     releaseWakeLock(); // Release on error

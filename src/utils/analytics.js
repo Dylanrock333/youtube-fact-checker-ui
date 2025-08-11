@@ -1,137 +1,75 @@
-/* global gtag */
 
-// Analytics utility for centralized tracking
+// Simplified Analytics utility - 6 core business events only
 class Analytics {
   // Check if gtag is available
   static isEnabled() {
     return typeof window !== 'undefined' && typeof window.gtag === 'function';
   }
 
-  // Page view tracking
-  static trackPageView(pagePath, pageTitle = '') {
-    if (!this.isEnabled()) return;
-    
-    window.gtag('config', 'G-JTDYRCN17T', {
-      page_path: pagePath,
-      page_title: pageTitle
-    });
-  }
-
-  // Generic event tracking
+  // Base event method
   static trackEvent(eventName, parameters = {}) {
     if (!this.isEnabled()) return;
-    
-    window.gtag('event', eventName, {
-      event_category: parameters.category || 'engagement',
-      event_label: parameters.label || '',
-      value: parameters.value || 1,
-      ...parameters
+    window.gtag('event', eventName, parameters);
+  }
+
+  // 6 Core Business Events Only
+
+  // 1. When user attempts to analyze a video
+  static trackVideoAnalysisAttempted(videoSource, videoTopic = null) {
+    this.trackEvent('video_analysis_attempted', {
+      video_source: videoSource || 'unknown',
+      video_topic: videoTopic
     });
   }
 
-  // User interaction events
-  static trackClick(elementName, additionalData = {}) {
-    this.trackEvent('click', {
-      category: 'user_interaction',
-      label: elementName,
-      ...additionalData
-    });
-  }
-
-  static trackFormInteraction(action, formName, additionalData = {}) {
-    this.trackEvent(`form_${action}`, {
-      category: 'form_interaction',
-      label: formName,
-      ...additionalData
-    });
-  }
-
-  // Navigation events
-  static trackNavigation(destination, source = 'unknown') {
-    this.trackEvent('navigation', {
-      category: 'navigation',
-      label: `${source}_to_${destination}`
-    });
-  }
-
-  // Feature usage events
-  static trackFeatureUse(featureName, action = 'use', additionalData = {}) {
-    this.trackEvent('feature_use', {
-      category: 'features',
-      label: `${featureName}_${action}`,
-      ...additionalData
-    });
-  }
-
-  // Timing events
-  static trackTiming(category, variable, value, label = '') {
-    if (!this.isEnabled()) return;
-    
-    window.gtag('event', 'timing_complete', {
-      name: variable,
-      value: value,
-      event_category: category,
-      event_label: label
-    });
-  }
-
-  // Error tracking
-  static trackError(errorType, errorMessage, additionalData = {}) {
-    this.trackEvent('exception', {
-      category: 'errors',
-      label: errorType,
-      description: errorMessage,
-      fatal: false,
-      ...additionalData
-    });
-  }
-
-  // Video-specific events
-  static trackVideoInteraction(action, videoId, timestamp = null) {
-    this.trackEvent(`video_${action}`, {
-      category: 'video_interaction',
-      label: videoId,
-      value: timestamp,
+  // 2. When video analysis completes successfully
+  static trackVideoAnalysisSucceeded(videoId, claimCount, duration = null) {
+    this.trackEvent('video_analysis_succeeded', {
       video_id: videoId,
-      timestamp: timestamp
+      claim_count: claimCount,
+      analysis_duration: duration
     });
   }
 
-  // Analysis workflow events
-  static trackAnalysisStep(step, data = {}) {
-    this.trackEvent('analysis_step', {
-      category: 'analysis_workflow',
-      label: step,
-      ...data
+  // 3. When video analysis fails
+  static trackVideoAnalysisFailed(videoId, errorType) {
+    this.trackEvent('video_analysis_failed', {
+      video_id: videoId,
+      error_type: errorType
     });
   }
 
-  // Search events
-  static trackSearch(query, resultsCount = 0, searchType = 'deep_search') {
-    this.trackEvent('search', {
-      category: 'search',
-      label: searchType,
-      search_term: query,
-      results_count: resultsCount
+  // 4. When user performs deep search on a claim
+  static trackDeepSearchPerformed(claimContext, videoId) {
+    this.trackEvent('deep_search_performed', {
+      claim_context: claimContext,
+      video_id: videoId
     });
   }
 
-  // Engagement metrics
-  static trackEngagement(type, duration = null, interactionCount = null) {
-    this.trackEvent('engagement', {
-      category: 'user_engagement',
-      label: type,
-      engagement_time_msec: duration,
-      interaction_count: interactionCount
+  // 5. When user interacts with slideshow
+  static trackSlideshowInteraction(interactionType, videoUrl = null, claimTitle = null, category = null) {
+    this.trackEvent('slideshow_interaction', {
+      interaction_type: interactionType, // 'video_analyze', 'deep_search', 'category_select'
+      video_url: videoUrl,
+      claim_title: claimTitle,
+      category: category
     });
   }
 
-  // Custom dimensions (if configured in GA)
-  static setUserProperties(properties) {
-    if (!this.isEnabled()) return;
-    
-    window.gtag('config', 'G-JTDYRCN17T', {
-      custom_map: properties
+  // 6. Track user journey completion steps
+  static trackUserJourneyStep(step, videoId = null) {
+    this.trackEvent('user_journey_step', {
+      step: step, // 'url_entered', 'analysis_started', 'results_viewed', 'claim_explored'
+      video_id: videoId
+    });
+  }
+
+  // 7. Track time to first user action
+  static trackTimeToFirstAction(timeSeconds, actionType) {
+    this.trackEvent('time_to_first_action', {
+      time_seconds: timeSeconds,
+      action_type: actionType // 'url_paste', 'analyze_click', 'example_click'
     });
   }
 }

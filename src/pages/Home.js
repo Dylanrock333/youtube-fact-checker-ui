@@ -8,7 +8,6 @@ import '../styles/Home.css';
 import { useTranslation } from '../translation/useTranslation';
 import Slideshow from '../components/items/slideshow';
 import Analytics from '../utils/analytics';
-import { useScrollDepthTracker, useTimingTracker } from '../hooks/useAnalytics';
 
 //TODO: add the video duration
 function Home() {
@@ -19,10 +18,8 @@ function Home() {
   const { isAnalyzing, setIsAnalyzing, setVideoUrl } = useAnalysis();
   const [apiStatus, setApiStatus] = useState({ loading: true, success: null });
   const [rateLimitMessage, setRateLimitMessage] = useState('');
+  const [pageLoadTime] = useState(Date.now());
   
-  // Analytics hooks
-  useScrollDepthTracker();
-  const { trackTiming: trackInputTime } = useTimingTracker('user_interaction', 'input_focus_time');
 
   useEffect(() => {
     const checkStoredRateLimit = () => {
@@ -44,32 +41,24 @@ function Home() {
     setInputUrl(e.target.value);
     setRateLimitMessage('');
     
-    // Track input interaction
-    if (e.target.value.length === 1) {
-      Analytics.trackFormInteraction('start_typing', 'url_input');
-    }
-  };
-
-  const handleInputFocus = () => {
-    Analytics.trackFormInteraction('focus', 'url_input');
-  };
-
-  const handleInputBlur = () => {
-    Analytics.trackFormInteraction('blur', 'url_input', {
-      input_length: inputUrl.length,
-      has_content: inputUrl.length > 0
-    });
-    if (inputUrl.length > 0) {
-      trackInputTime('input_completed');
+    // Track URL entry as journey step
+    if (e.target.value.trim() && !inputUrl.trim()) {
+      Analytics.trackUserJourneyStep('url_entered');
+      
+      // Track time to first action (URL paste/type)
+      const timeToAction = Math.round((Date.now() - pageLoadTime) / 1000);
+      Analytics.trackTimeToFirstAction(timeToAction, 'url_paste');
     }
   };
 
   const handleAnalyzeClick = async () => {
-    // Track analytics event with enhanced data
-    Analytics.trackAnalysisStep('analyze_button_clicked', {
-      url_length: inputUrl.length,
-      has_valid_url: inputUrl.includes('youtube.com') || inputUrl.includes('youtu.be')
-    });
+    // Track journey step and time to analyze click
+    Analytics.trackUserJourneyStep('analysis_started');
+    const timeToAction = Math.round((Date.now() - pageLoadTime) / 1000);
+    Analytics.trackTimeToFirstAction(timeToAction, 'analyze_click');
+    
+    // Track video analysis attempt
+    Analytics.trackVideoAnalysisAttempted('user_input');
 
     if (!inputUrl.trim()) return;
     setRateLimitMessage('');
@@ -78,10 +67,6 @@ function Home() {
       validateUrl(inputUrl);
     } catch (error) {
       setRateLimitMessage("Invalid URL format.");
-      Analytics.trackError('validation_error', error.message, {
-        input_url: inputUrl,
-        url_length: inputUrl.length
-      });
       return;
     }
 
@@ -116,19 +101,7 @@ function Home() {
     checkHealth();
   }, []);
 
-  const isDev = process.env.NODE_ENV === 'development';
-  const apiStatusIndicator = isDev ? (
-    <div className="api-status-indicator">
-      API Status: 
-      {apiStatus.loading ? (
-        <span className="loading">{t('common.loading')}</span>
-      ) : apiStatus.success ? (
-        <span className="success">{t('common.success')}</span>
-      ) : (
-        <span className="error">{t('common.error')}</span>
-      )}
-    </div>
-  ) : null; 
+  const isDev = process.env.NODE_ENV === 'development'; 
   
   return (
     <div className="home">
@@ -148,8 +121,6 @@ function Home() {
           type="text"
           value={inputUrl}
           onChange={handleInputChange}
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
           placeholder={t('home.inputPlaceholder')}
           className={`main-input ${theme}`}
           disabled={isAnalyzing}

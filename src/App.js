@@ -10,7 +10,6 @@ import About from './pages/About';
 import DeepSearchPage from './pages/DeepSearchPage';
 import AnalysisPage from './pages/AnalysisPage';
 import Contact from './pages/Contact';
-import { usePageTracking, useEngagementTracker } from './hooks/useAnalytics';
 import './styles/App.css';
 
 // Create a ScrollToTop component that uses the useLocation hook
@@ -24,12 +23,6 @@ function ScrollToTop() {
   return null;
 }
 
-// Analytics tracking component
-function AnalyticsTracker() {
-  usePageTracking();
-  useEngagementTracker();
-  return null;
-}
 
 function AppContent() {
   const { theme } = useTheme();
@@ -37,7 +30,6 @@ function AppContent() {
   return (
     <Router>
       <div className={`App ${theme}`}>
-        <AnalyticsTracker />
         <ScrollToTop />
         <Header />
         <main className="main-content">
