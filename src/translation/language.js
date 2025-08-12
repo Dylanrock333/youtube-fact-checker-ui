@@ -5,7 +5,7 @@ export const en = {
       title2: "Catcher",
       subtitle: "Transform Watching into Knowing",
       inputPlaceholder: "Enter YouTube video link here ...",
-      inputDescription: "Drop a YouTube link. We'll pull out the most important quotes, arguments, and facts instantly",
+      inputDescription: "Instantly break down any YouTube video into topics and insights you can explore",
       analyzeButton: "Start Video Analysis",
       analyzingButton: "Analyzing...",
       invalidUrl: "Invalid URL format.",
