@@ -384,21 +384,21 @@
 }
 
 .analyze-button.light {
-  background-color: var(--accent-color);
+  background: linear-gradient(135deg, #1a9bb8 0%, #18b589 50%, #16a085 100%);
   color: white;
 }
 
 .analyze-button.light:hover:not(.disabled) {
-  background-color: #12616b;
+  background: linear-gradient(135deg, #0f4c57 0%, #138a5c 50%, #0d7a4a 100%);
 }
 
 .analyze-button.dark {
-  background-color: var(--accent-color);
+  background: linear-gradient(135deg, #1a9bb8 0%, #18b589 50%, #16a085 100%);
   color: #1a1a1a;
 }
 
 .analyze-button.dark:hover:not(.disabled) {
-  background-color: #12616b;
+  background: linear-gradient(135deg, #0f4c57 0%, #138a5c 50%, #0d7a4a 100%);
 }
 
 .analyze-button.disabled {
@@ -441,6 +441,7 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
 
 .hero-section{
   background: var(--card-bg);
