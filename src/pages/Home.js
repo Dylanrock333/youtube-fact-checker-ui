@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useTheme } from '../context/ThemeContext';
 import { useAnalysis } from '../context/AnalysisContext';
 import { checkApiHealth} from '../api/api';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +11,6 @@ import Analytics from '../utils/analytics';
 function Home() {
   const [inputUrl, setInputUrl] = useState('');
   const navigate = useNavigate();
-  const { theme } = useTheme();
   const { isAnalyzing, setIsAnalyzing, setVideoUrl } = useAnalysis();
   const [apiStatus, setApiStatus] = useState({ loading: true, success: null });
   const [rateLimitMessage, setRateLimitMessage] = useState('');
@@ -123,7 +121,7 @@ function Home() {
           value={inputUrl}
           onChange={handleInputChange}
           placeholder="Enter YouTube video link here ..."
-          className={`main-input ${theme}`}
+          className="main-input dark"
           disabled={isAnalyzing}
         />
         <div className="url-format-helper">
@@ -144,7 +142,7 @@ function Home() {
       <div className="button-container">
         <button 
           onClick={handleAnalyzeClick}
-          className={`analyze-button ${theme} ${isAnalyzing || rateLimitMessage || urlError ? 'disabled' : ''}`}
+          className={`analyze-button dark ${isAnalyzing || rateLimitMessage || urlError ? 'disabled' : ''}`}
           disabled={isAnalyzing || !apiStatus.success || !!rateLimitMessage || !!urlError}
         >
           {isAnalyzing ? 'Analyzing...' : 'Start Video Analysis'}

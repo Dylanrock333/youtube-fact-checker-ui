@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import '../styles/DeepSearchPage.css';
-import { useTheme } from '../context/ThemeContext';
 import { performDeepSearch } from '../api/api';
 import { useAnalysis } from '../context/AnalysisContext';
 import YouTubeVideo from '../components/items/YouTubeVideo';
@@ -14,7 +13,6 @@ const DeepSearchPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { query, claimId, claimTitle, claimText, context, timestamp, videodata } = location.state || {};
-    const { theme } = useTheme();
     const { videoUrl, setDeepSearchResult } = useAnalysis();
     
     const [isLoading, setIsLoading] = useState(true);
@@ -91,7 +89,7 @@ const DeepSearchPage = () => {
     };
 
     return (
-        <div className={`deep-search-page ${theme}`}>
+        <div className="deep-search-page dark">
             <button className="back-button" onClick={handleGoBack}>
                 <FaArrowLeft /> Back
             </button>

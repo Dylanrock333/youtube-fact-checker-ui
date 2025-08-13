@@ -1,7 +1,6 @@
 import VideoAnalysis from '../components/items/VideoAnalysis';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
 import { useAnalysis } from '../context/AnalysisContext';
 import { analyzeVideoWithProgress } from '../api/api';
 import validateUrl from '../utils/urlDecoder';
@@ -11,7 +10,6 @@ import { requestWakeLock, releaseWakeLock } from '../utils/wakeLock';
 import Analytics from '../utils/analytics';
 
 function AnalysisPage() {
-    const { theme } = useTheme();
     const [searchParams] = useSearchParams();
     const { 
       analysisData, 
@@ -148,7 +146,7 @@ function AnalysisPage() {
     return (
         <div className="analysis-page">
             {(isAnalyzing || analysisData) && (
-                <div className={`result-container ${theme}`}>
+                <div className={`result-container dark`}>
                     {isAnalyzing ? (
                     <div className="analysis-loading">
                         <HexagonLoader 

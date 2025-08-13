@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './VideoAnalysis.css';
 import YouTubeVideo from './YouTubeVideo';
 import { useAnalysis } from '../../context/AnalysisContext';
-import { useTheme } from '../../context/ThemeContext'; 
 import Analytics from '../../utils/analytics';
 
 //TODO: when the pai can handle more plarforms change how YouTubeVideo componenet is handled
@@ -13,7 +12,6 @@ const VideoAnalysis = ({ analysisData}) => {
   const [expandedClaims, setExpandedClaims] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { theme } = useTheme();
   
   // Track when results are viewed (journey step) - must be at top level
   useEffect(() => {
@@ -25,7 +23,7 @@ const VideoAnalysis = ({ analysisData}) => {
   // Add more thorough checks for analysisData
   if (!analysisData || !analysisData.claims) {
     return (
-      <div className={`video-analysis ${theme}`}>
+      <div className={`video-analysis dark`}>
         <div className="video-info">
           <h2>Video Analysis Results</h2>
           {isLoading ? (
@@ -82,10 +80,10 @@ const VideoAnalysis = ({ analysisData}) => {
   ) : null; 
 
   return (
-    <div className={`video-analysis ${theme}`}>
+    <div className={`video-analysis dark`}>
       {/* Video Information Section */}
       <div className="video-info">
-        <div className={`video-title-container ${theme}`}>
+        <div className={`video-title-container dark`}>
           <h2>{analysisData.video_data.title || 'Video Analysis Results'}</h2>
         </div>
         
@@ -126,7 +124,7 @@ const VideoAnalysis = ({ analysisData}) => {
           <div className="loading-spinner">Loading...</div>
         ) : (
           analysisData.claims.map((claim) => (
-            <div key={claim.id} className={`claim-card ${theme}`}>
+            <div key={claim.id} className={`claim-card`}>
               <div className="claim-header">
                 <span className="timestamp">Timestamp: {claim.timestamp}</span>
                 <span className="category">{claim.category}</span>

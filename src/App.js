@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { AnalysisProvider } from './context/AnalysisContext';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -23,11 +23,9 @@ function ScrollToTop() {
 
 
 function AppContent() {
-  const { theme } = useTheme();
-  
   return (
     <Router>
-      <div className={`App ${theme}`}>
+      <div className="App">
         <ScrollToTop />
         <Header />
         <main className="main-content">
