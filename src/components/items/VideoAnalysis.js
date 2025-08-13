@@ -4,7 +4,6 @@ import './VideoAnalysis.css';
 import YouTubeVideo from './YouTubeVideo';
 import { useAnalysis } from '../../context/AnalysisContext';
 import { useTheme } from '../../context/ThemeContext'; 
-import { useTranslation } from '../../translation/useTranslation';
 import Analytics from '../../utils/analytics';
 
 //TODO: when the pai can handle more plarforms change how YouTubeVideo componenet is handled
@@ -15,7 +14,6 @@ const VideoAnalysis = ({ analysisData}) => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { theme } = useTheme();
-  const { t } = useTranslation();
   
   // Track when results are viewed (journey step) - must be at top level
   useEffect(() => {
@@ -92,45 +90,45 @@ const VideoAnalysis = ({ analysisData}) => {
         </div>
         
         {isLoading ? (
-          <div className="loading-spinner">{t('common.loading')}</div>
+          <div className="loading-spinner">Loading...</div>
         ) : (
           <YouTubeVideo url={videoUrl} />
         )}
         
         <div className="video-metadata">
           <div className="metadata-item">
-            <span className="metadata-label">{t('analysis.channel')}</span>
+            <span className="metadata-label">Channel</span>
             <span className="metadata-value">{analysisData.video_data.channel_title}</span>
           </div>
           <div className="metadata-item">
-            <span className="metadata-label">{t('analysis.views')}</span> 
+            <span className="metadata-label">Views</span> 
             <span className="metadata-value">
               {analysisData.video_data.view_count}
             </span>
           </div>
           <div className="metadata-item">
-            <span className="metadata-label">{t('analysis.published')}</span>
+            <span className="metadata-label">Published</span>
             <span className="metadata-value">
               {analysisData.video_data.published_at.split('T')[0]}
             </span>
           </div>
           <div className="metadata-item">
-            <span className="metadata-label">{t('analysis.duration')}</span>
+            <span className="metadata-label">Duration</span>
             <span className="metadata-value">{analysisData.video_data.duration}</span>
           </div>
         </div>
         {videoIdDisplay}
       </div>
       {/* Claims Section */}
-      <div className="claim-count">{t('analysis.totalClaims')}: {analysisData.claim_count}</div>
+      <div className="claim-count">Total Claims Analyzed: {analysisData.claim_count}</div>
       <div className="claims-grid">
         {isLoading ? (
-          <div className="loading-spinner">{t('common.loading')}</div>
+          <div className="loading-spinner">Loading...</div>
         ) : (
           analysisData.claims.map((claim) => (
             <div key={claim.id} className={`claim-card ${theme}`}>
               <div className="claim-header">
-                <span className="timestamp">{t('analysis.timestamp')}: {claim.timestamp}</span>
+                <span className="timestamp">Timestamp: {claim.timestamp}</span>
                 <span className="category">{claim.category}</span>
               </div>
 
@@ -147,7 +145,7 @@ const VideoAnalysis = ({ analysisData}) => {
                         className="show-more-less-button"
                         onClick={() => handleToggleClaim(claim.id)}
                       >
-                        {t('analysis.showMore')}
+                        Show more
                       </button>
                     </>
                   ) : (
@@ -160,7 +158,7 @@ const VideoAnalysis = ({ analysisData}) => {
                             className="show-more-less-button"
                             onClick={() => handleToggleClaim(claim.id)}
                           >
-                            {t('analysis.showLess')}
+                            Show less
                           </button>
                         </>
                       )}
@@ -171,7 +169,7 @@ const VideoAnalysis = ({ analysisData}) => {
               
               <div className="claim-context">          
                 <div className="claim-tabs">
-                  {t('analysis.context')}
+                  Context
                 </div>
                 
                 <div className="tab-content">
@@ -183,7 +181,7 @@ const VideoAnalysis = ({ analysisData}) => {
                         className="start-search-button"
                         onClick={() => handleStartDeepSearch(claim.id)} 
                       >
-                        {t('analysis.startDeepSearch')}
+                        Start Deep Search
                       </button>
                     </div>
                 </div>

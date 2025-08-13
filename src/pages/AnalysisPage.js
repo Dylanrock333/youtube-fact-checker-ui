@@ -7,12 +7,10 @@ import { analyzeVideoWithProgress } from '../api/api';
 import validateUrl from '../utils/urlDecoder';
 import HexagonLoader from '../components/items/hexagon-loading';
 import "../styles/AnalysisPage.css";
-import { useTranslation } from '../translation/useTranslation';
 import { requestWakeLock, releaseWakeLock } from '../utils/wakeLock';
 import Analytics from '../utils/analytics';
 
 function AnalysisPage() {
-    const { t } = useTranslation();
     const { theme } = useTheme();
     const [searchParams] = useSearchParams();
     const { 
@@ -22,8 +20,7 @@ function AnalysisPage() {
       setVideoUrl,
       isAnalyzing, 
       setIsAnalyzing,
-      isInitialized,
-      currentLanguage
+      isInitialized
     } = useAnalysis();
 
     // State for streaming progress
@@ -87,7 +84,7 @@ function AnalysisPage() {
                 url: videoUrl,
                 origin,
                 videoID,
-                selectedLanguage: currentLanguage
+                selectedLanguage: 'en'
             };
 
             const callbacks = {
@@ -109,7 +106,7 @@ function AnalysisPage() {
                 },
                 onError: (err) => {
                     console.error('Analysis Error:', err);
-                    setAnalysisData({ error: err.message || t('analysis.error') });
+                    setAnalysisData({ error: err.message || 'Error occurred during analysis' });
                     
                     // Track analysis error
                     Analytics.trackVideoAnalysisFailed(videoID, err.message || 'unknown_error');
@@ -145,7 +142,7 @@ function AnalysisPage() {
         return () => {
             releaseWakeLock();
         };
-    }, [videoUrl, isInitialized, setAnalysisData, setIsAnalyzing, currentLanguage]);
+    }, [videoUrl, isInitialized, setAnalysisData, setIsAnalyzing]);
 
 
     return (
@@ -158,7 +155,7 @@ function AnalysisPage() {
                             className="loading-hexagon" 
                             isVisible={isAnalyzing}
                         />
-                        <p>{t('analysis.loading')}</p>
+                        <p>Analyzing video...</p>
                         <div className="progress-bar-container">
                             <div className="progress-bar" style={{ width: `${percentage}%` }}></div>
                         </div>

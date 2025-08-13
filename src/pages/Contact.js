@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import '../styles/Contact.css';
 import sendEmail from '../api/sendEMail';
 import { useTheme } from '../context/ThemeContext';
-import { useTranslation } from '../translation/useTranslation';  
 
 function Contact() {
-  const { t } = useTranslation();
   const { theme } = useTheme();
   const [formData, setFormData] = useState({
     name: '',
@@ -41,16 +39,16 @@ function Contact() {
 
   return (
     <div className="page-contact-us">
-      <h1>{t('contact.title')}</h1>
+      <h1>Contact Us</h1>
       <p className={`contact-intro ${theme}`}>
-        {t('contact.contactIntro')}
+        Feel free to contact us using the form below. We'll be happy to help or hear your feedback!
       </p>
 
       <div className={`contact-form-container ${theme}`}>
         <form onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="name">{t('contact.name')}</label>
+              <label htmlFor="name">Your Name</label>
               <input
                 type="text"
                 id="name"
@@ -61,7 +59,7 @@ function Contact() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="email">{t('contact.email')}</label>
+              <label htmlFor="email">Your Email</label>
               <input
                 type="email"
                 id="email"
@@ -74,7 +72,7 @@ function Contact() {
           </div>
           
           <div className="form-group">
-            <label htmlFor="message">{t('contact.message')}</label>
+            <label htmlFor="message">Message</label>
             <textarea
               id="message"
               name="message"
@@ -90,7 +88,7 @@ function Contact() {
             className="send-button"
             disabled={isSubmitting}
           >
-            {isSubmitting ? t('common.loading') : t('contact.submit')}
+            {isSubmitting ? 'Loading...' : 'Submit Message'}
           </button>
           
           {submitMessage && (

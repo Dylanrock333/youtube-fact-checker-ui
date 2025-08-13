@@ -8,11 +8,9 @@ import { useAnalysis } from '../context/AnalysisContext';
 import YouTubeVideo from '../components/items/YouTubeVideo';
 import HexagonLoader from '../components/items/hexagon-loading';
 import { marked } from 'marked';
-import { useTranslation } from '../translation/useTranslation';
 import ReactMarkdown from 'react-markdown';
 
 const DeepSearchPage = () => {
-    const { t } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
     const { query, claimId, claimTitle, claimText, context, timestamp, videodata } = location.state || {};
@@ -95,7 +93,7 @@ const DeepSearchPage = () => {
     return (
         <div className={`deep-search-page ${theme}`}>
             <button className="back-button" onClick={handleGoBack}>
-                <FaArrowLeft /> {t('common.back')}
+                <FaArrowLeft /> Back
             </button>
 
 
@@ -103,7 +101,7 @@ const DeepSearchPage = () => {
 
             <div className="claim-box">
                 <div className="claim-header">
-                    {timestamp && <span className="timestamp">{t('analysis.timestamp')}: {timestamp}</span>}
+                    {timestamp && <span className="timestamp">Timestamp: {timestamp}</span>}
 
 
                 </div>
@@ -115,7 +113,7 @@ const DeepSearchPage = () => {
                 <hr className="divider" />   
 
                 <div className="claim-text">
-                    {claimText || t('deepSearch.noClaim')}
+                    {claimText || 'No claim found'}
                 </div>
                 {videoUrl && (
                     <div className="video-container">
@@ -128,7 +126,7 @@ const DeepSearchPage = () => {
                 {context && (
                     <div className={`context-box ${!isContextExpanded ? 'collapsed' : ''}`}>
                         <h3 onClick={toggleContext} className="collapsible-header">
-                            {t('analysis.context')}
+                            Context
                             <button className="toggle-icon">
                                 {isContextExpanded ? <FaChevronUp /> : <FaChevronDown />}
                             </button>
@@ -146,7 +144,7 @@ const DeepSearchPage = () => {
                             className="loading-hexagon" 
                             isVisible={isLoading}
                         />
-                        <p>{t('deepSearch.performingDeepSearch')}</p>
+                        <p>Performing deep search...</p>
                     </div>
                 ) : error ? (
                     <div className="error-message">
@@ -166,9 +164,9 @@ const DeepSearchPage = () => {
                                         onClick={toggleCitations}
                                     >
                                         {showCitations ? (
-                                            <> {t('deepSearch.hideCitations')} <FaChevronUp /></>
+                                            <> Hide Citations <FaChevronUp /></>
                                         ) : (
-                                            <> {t('deepSearch.showCitations')} <FaChevronDown /></>
+                                            <> Show Citations <FaChevronDown /></>
                                         )}
                                     </button>
                                     

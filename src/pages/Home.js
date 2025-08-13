@@ -5,13 +5,11 @@ import { checkApiHealth} from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import validateUrl from '../utils/urlDecoder';
 import '../styles/Home.css';
-import { useTranslation } from '../translation/useTranslation';
 import Slideshow from '../components/items/slideshow';
 import Analytics from '../utils/analytics';
 
 //TODO: add the video duration
 function Home() {
-  const { t } = useTranslation();
   const [inputUrl, setInputUrl] = useState('');
   const navigate = useNavigate();
   const { theme } = useTheme();
@@ -110,21 +108,21 @@ function Home() {
     <div className="home">
       <div className="home-header-container">
         <div className="home-header">
-          <h1 className="home-header-title1">{t('home.title1')}</h1>
-          <h1 className="home-header-title2">{t('home.title2')}</h1>
-          <p>{t('home.subtitle')}</p>
+          <h1 className="home-header-title1">Video Claim</h1>
+          <h1 className="home-header-title2">Catcher</h1>
+          <p>Transform Watching into Knowing</p>
         </div>        
       </div>
 
       <div className="input-container">
         <div className="input-container-text">
-          {t('home.inputDescription')}
+          Instantly break down any YouTube video into topics and insights you can explore
         </div>
         <input
           type="text"
           value={inputUrl}
           onChange={handleInputChange}
-          placeholder={t('home.inputPlaceholder')}
+          placeholder="Enter YouTube video link here ..."
           className={`main-input ${theme}`}
           disabled={isAnalyzing}
         />
@@ -149,7 +147,7 @@ function Home() {
           className={`analyze-button ${theme} ${isAnalyzing || rateLimitMessage || urlError ? 'disabled' : ''}`}
           disabled={isAnalyzing || !apiStatus.success || !!rateLimitMessage || !!urlError}
         >
-          {isAnalyzing ? t('home.analyzingButton') : t('home.analyzeButton')}
+          {isAnalyzing ? 'Analyzing...' : 'Start Video Analysis'}
         </button>
       </div>  
       <Slideshow />

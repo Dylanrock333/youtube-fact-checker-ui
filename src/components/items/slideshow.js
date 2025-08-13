@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-// import { slideshowItem } from '../../translation/slideshow-item';
 import slideshowData from '../../config/res_slideshow.json';
 import './slideshow.css';
 import Glide from '@glidejs/glide';
@@ -8,7 +7,6 @@ import { RiArrowLeftWideFill, RiArrowRightWideLine  } from "react-icons/ri";
 import { useAnalysis } from '../../context/AnalysisContext';
 import { useNavigate } from 'react-router-dom';
 // import { getSlideshowItem } from '../../api/api';
-import { useTranslation } from '../../translation/useTranslation';
 import Analytics from '../../utils/analytics';
 
 
@@ -16,7 +14,6 @@ const SlideshowItemComponent = ({ item }) => {
     const glideRef = useRef(null);
     const { setVideoUrl, setIsAnalyzing } = useAnalysis();
     const navigate = useNavigate();
-    const { t } = useTranslation();
     useEffect(() => {
         if (!glideRef.current || item.claims.length <= 3) {
             return;
@@ -114,7 +111,7 @@ const SlideshowItemComponent = ({ item }) => {
                         </div>
                     </div>
                 </div>
-                <button className="slideshow-item-claim__button" onClick={() => handleAnalysisClick(item.videoUrl)}>{t('slideshow.startVideoAnalysis')}</button>
+                <button className="slideshow-item-claim__button" onClick={() => handleAnalysisClick(item.videoUrl)}>Start Video Analysis</button>
             </div>
             <div className="slideshow-item-claims-container">
                 {item.claims.length > 3 ? (
@@ -127,14 +124,14 @@ const SlideshowItemComponent = ({ item }) => {
                                             <div className="claim-title-container">
                                                 <h3 className="claim-title">{claim.claimTitle}</h3>
                                             </div>
-                                            <h3 className="timestamp">{t('analysis.timestamp')}: {claim.timestamp}</h3>
+                                            <h3 className="timestamp">Timestamp: {claim.timestamp}</h3>
                                             <div className="claim-info-container">
                                                 <p className="claim-quote">{claim.claimQuote}</p>
                                             </div>
                                             <div className="claim-context-container">
                                             <p className="claim-context-slideshow">{claim.claimContext}</p>
                                             </div>
-                                            <button className="slideshow-item-claim__button" onClick={() => handleStartDeepSearch(claim, item.videoUrl)}>{t('analysis.startDeepSearch')}</button>
+                                            <button className="slideshow-item-claim__button" onClick={() => handleStartDeepSearch(claim, item.videoUrl)}>Start Deep Search</button>
                                         </div>
                                     </li>
                                 ))}
@@ -151,13 +148,13 @@ const SlideshowItemComponent = ({ item }) => {
                             <div key={claimIndex} className="slideshow-item-claim">
                                     <div className="claim-title-container">
                                     <h3 className="claim-title">{claim.claimTitle}</h3>
-                                    <h3 className="timestamp">{t('analysis.timestamp')}: {claim.timestamp}</h3>
+                                    <h3 className="timestamp">Timestamp: {claim.timestamp}</h3>
                                 </div>
                                 <div className="claim-text-container">
-                                    <p>{t('slideshow.claimQuote')}: {claim.claimQuote}</p>
-                                    <p>{t('slideshow.claimContext')}: {claim.claimContext}</p>
+                                    <p>Claim Quote: {claim.claimQuote}</p>
+                                    <p>Claim Context: {claim.claimContext}</p>
                                 </div>
-                                <button className="slideshow-item-claim__button">{t('analysis.startDeepSearch')}</button>
+                                <button className="slideshow-item-claim__button">Start Deep Search</button>
                             </div>
                         ))}
                     </div>
@@ -168,7 +165,6 @@ const SlideshowItemComponent = ({ item }) => {
 };
 
 const Slideshow = () => {
-    const { t } = useTranslation();
     const [slideshowItems, setSlideshowItems] = useState([]);
     const [apiData, setApiData] = useState({});
     const [categories, setCategories] = useState([]);
@@ -215,8 +211,8 @@ const Slideshow = () => {
     return (
         <div>
             <div className="section-header">
-                <h2 className="section-title">{t('slideshow.notSureTitle')}</h2>
-                <p className="section-subtext">{t('slideshow.notSureSubtext')}</p>
+                <h2 className="section-title">NOT SURE WHAT TO ANALYZE?</h2>
+                <p className="section-subtext">Discover what we found in popular videos this week.</p>
             </div>
             <div className="category-buttons">
                 {categories.map(category => (
