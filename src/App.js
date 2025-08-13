@@ -5,7 +5,6 @@ import { AnalysisProvider } from './context/AnalysisContext';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
-import About from './pages/About';
 import DeepSearchPage from './pages/DeepSearchPage';
 import AnalysisPage from './pages/AnalysisPage';
 import Contact from './pages/Contact';
@@ -34,7 +33,6 @@ function AppContent() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
             <Route path="/deep-search" element={<DeepSearchPage />} />
             <Route path="/analysis" element={<AnalysisPage />} />
             <Route path="/contact" element={<Contact />} />
