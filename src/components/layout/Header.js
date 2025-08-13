@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 import { ReactComponent as SunIcon } from '../../assets/sun-icon.svg';
 import { ReactComponent as MoonIcon } from '../../assets/moon-icon.svg';
@@ -10,11 +9,6 @@ function Header() {
 
   return (
     <header className="main-header">
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-        </ul>
-      </nav>
       <button onClick={toggleTheme} className={`theme-toggle`}>
         {theme === 'dark' ? (
           <div className="theme-icon">
