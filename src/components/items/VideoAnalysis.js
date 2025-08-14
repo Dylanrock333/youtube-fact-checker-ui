@@ -117,8 +117,11 @@ const VideoAnalysis = ({ analysisData}) => {
         </div>
         {videoIdDisplay}
       </div>
+      
+      <hr className="divider" />
+      
       {/* Claims Section */}
-      <div className="claim-count">Total Claims Analyzed: {analysisData.claim_count}</div>
+      <div className="claim-count">Total Claims: {analysisData.claim_count}</div>
       <div className="claims-grid">
         {isLoading ? (
           <div className="loading-spinner">Loading...</div>
