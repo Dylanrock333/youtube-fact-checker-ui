@@ -5,6 +5,11 @@
   min-height: 80vh;
   width: 100%;
   overscroll-behavior-y: contain;
+  /* background-color: var(--main-bg); */
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 1400px;
+  padding: 20px;
 }
   
 

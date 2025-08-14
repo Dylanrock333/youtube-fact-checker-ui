@@ -3,7 +3,9 @@
   padding: 20px;
   margin-bottom: 25px;
   overflow: hidden; 
-  width: 100%; 
+  width: 100%;
+  /* background-color: var(--main-bg); */
+  border-radius: 12px;
 }
 
 /* .video-analysis.light {
@@ -262,6 +264,7 @@
   overflow: hidden;
   min-height: 400px;
   transition: transform 0.3s ease;
+  background-color: var(--component-bg);
   transform: translateZ(0);
 }
 

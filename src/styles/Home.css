@@ -292,11 +292,13 @@
   color: var(--text-color);
   border-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
+  opacity: 0.95;
 }
 
 .main-input.dark:focus {
   border-color: var(--accent-color);
   box-shadow: 0 6px 20px rgba(23, 162, 184, 0.4);
+  opacity: 1;
 }
 
 .main-input.dark::placeholder {
@@ -314,15 +316,15 @@
   gap: 1rem;
   margin-top: 12px;
   font-size: 0.80rem;
-  opacity: 0.85;
+  opacity: 0.95;
   color: var(--text-color);
 }
 
 .url-format-helper span {
   padding: 6px 12px;
   border-radius: 6px;
-  background-color: rgba(23, 162, 184, 0.15);
-  border: 1px solid rgba(23, 162, 184, 0.2);
+  background-color: rgba(23, 162, 184, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   font-family: 'Courier New', monospace;
   letter-spacing: 0.2px;
   font-weight: 500;

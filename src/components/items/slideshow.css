@@ -540,22 +540,24 @@
 }
 
 .section-title{
-    font-size: 1.8rem;
-    color: var(--accent-color);
-    font-weight: 600;
+    font-size: 1.9rem;
+    color: #ffffff;
+    font-weight: 700;
     font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.6px;
     text-transform: none;
-    margin: 0 0 8px 0;
+    margin: 0 0 0 0;
     line-height: 1.3;
 }
 
 .section-subtext{
     font-size: 1.1rem;
+    color: #ffffff;
     text-align: center;
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
+    font-weight: 450;
 }
 
 @media(max-width:768px){
