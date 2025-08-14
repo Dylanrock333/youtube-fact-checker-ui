@@ -3,6 +3,9 @@
   
   --main-bg: #19191A;                    /* Main page background */
   --component-bg: #202222;               /* Cards, modals, form backgrounds */
+  
+  /* Enhanced Background Gradients */
+  --accent-gradient: linear-gradient(135deg, #20A9BC 0%, #16A085 50%, #1E90FF 100%);
   --text-color: #D2D2D0;                 /* Primary text color */
   --accent-color: #20A9BC;               /* Links, buttons, highlights */
   --accent-color-light: #20aabc3f;       /* Transparent accent for backgrounds */
@@ -12,6 +15,7 @@
   --overlay-bg: #FFFFFF08;               /* Modal overlays, backdrops */
   --error-color: #fc8181;                /* Error text and icons */
   --error-bg: #FC818119;                 /* Error message backgrounds */
+  
   --success-color: #68d391;              /* Success text and icons */
   --success-bg: #68D39119;               /* Success message backgrounds */
   --hover-overlay: #FFFFFF1A;            /* Hover effects on dark backgrounds */
@@ -74,7 +78,9 @@
 }
 
 body {
-  background-color: var(--main-bg);
+  background: url('../assets/background.png') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
   color: var(--text-color);
   transition: var(--theme-transition);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -83,6 +89,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
 /* Layout */
@@ -91,7 +98,7 @@ body {
   display: flex;
   flex-direction: column;
   transition: var(--theme-transition);
-  background-color: var(--main-bg);
+  background: transparent;
   color: var(--text-color);
 }
 

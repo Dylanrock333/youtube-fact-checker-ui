@@ -69,11 +69,11 @@
     box-sizing: border-box;
 }
 
-.light .video-info-container {
+.video-info-container.light {
     background-color: var(--accent-color-light);
 }
 
-.dark .video-info-container {
+.video-info-container.dark {
     background-color: rgba(66, 153, 225, 0.15);
 }
 

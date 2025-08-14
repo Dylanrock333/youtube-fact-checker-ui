@@ -104,7 +104,7 @@ const SlideshowItemComponent = ({ item }) => {
             <div className="slideshow-item-left">
                 <div>
                     <img src={item.thumbnail} alt={item.videoTitle} />
-                    <div className="video-info-container">
+                    <div className="video-info-container dark">
                         <h2>{item.videoTitle}</h2>
                         <div className="video-info-container-bottom">
                             <span>{item.channel}</span>

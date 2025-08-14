@@ -11,6 +11,7 @@
   overflow-x: hidden;
   overscroll-behavior-y: contain;
   box-sizing: border-box;
+  position: relative;
 }
 
 /* ===== Headings ===== */
@@ -50,7 +51,7 @@
   text-align: center;
 }
 
-.home-header h1, .home-header p {
+/* .home-header h1, .home-header p {
   max-width: 400px;
   width: 100%;
   color: var(--accent-color);
@@ -68,6 +69,25 @@
   margin: 0px;
   padding: 0 15px;
   box-sizing: border-box;
+} */
+
+.home-header h1, .home-header p {
+  max-width: 400px;
+  width: 100%;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-style: normal;
+  margin: 0px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .home-header-title1 {
@@ -268,9 +288,10 @@
 }
 
 .main-input.dark {
-  background-color: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(32, 169, 188, 0.02));
   color: var(--text-color);
   border-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
 }
 
 .main-input.dark:focus {
@@ -359,6 +380,7 @@
   border: none;
   cursor: pointer;
   font-weight: 600;
+  transition: all 0.4s ease-out;
 }
 
 @media (max-width: 768px) {
@@ -393,12 +415,17 @@
 }
 
 .analyze-button.dark {
-  background: linear-gradient(135deg, #1a9bb8 0%, #18b589 50%, #16a085 100%);
-  color: #1a1a1a;
+  background: var(--accent-gradient);
+  color: white;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(32, 169, 188, 0.4);
 }
 
 .analyze-button.dark:hover:not(.disabled) {
-  background: linear-gradient(135deg, #0f4c57 0%, #138a5c 50%, #0d7a4a 100%);
+  background: linear-gradient(135deg, #3DCBDC 0%, #2DD4BF 50%, #4F9CF9 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(32, 169, 188, 0.7);
 }
 
 .analyze-button.disabled {
@@ -443,17 +470,4 @@
 }
 
 
-.hero-section{
-  background: var(--card-bg);
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  padding: 40px 30px;
-  max-width: 1100px;
-  margin: 0 auto;
-  transition: var(--theme-transition);
-}
-.hero-section:hover{
-  box-shadow: var(--card-shadow-hover);
-}
 
