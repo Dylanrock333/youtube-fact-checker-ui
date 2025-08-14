@@ -20,8 +20,6 @@ const DeepSearchPage = () => {
     const [error, setError] = useState(null);
     const [showCitations, setShowCitations] = useState(false);
     
-    // Initialize state based on initial window width
-    const [isContextExpanded, setIsContextExpanded] = useState(window.innerWidth > 768);
 
     useEffect(() => {
         console.log('useEffect triggered');
@@ -72,17 +70,10 @@ const DeepSearchPage = () => {
         }
     }, [query, context, navigate, claimText, claimId, videodata]);
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
-
     const toggleCitations = () => {
         setShowCitations(!showCitations);
     };
 
-    const toggleContext = () => {
-        setIsContextExpanded(!isContextExpanded);
-    };
     
     const renderMarkdown = (content) => {
         return { __html: marked(content, { sanitize: true }) };
@@ -90,18 +81,10 @@ const DeepSearchPage = () => {
 
     return (
         <div className="deep-search-page dark">
-            <button className="back-button" onClick={handleGoBack}>
-                <FaArrowLeft /> Back
-            </button>
-
-
-
 
             <div className="claim-box">
                 <div className="claim-header">
                     {timestamp && <span className="timestamp">Timestamp: {timestamp}</span>}
-
-
                 </div>
 
                 <div className="claim-title">
@@ -118,17 +101,10 @@ const DeepSearchPage = () => {
                         <YouTubeVideo url={videoUrl} timestamp={timestamp} />
                     </div>
                 )}
-            </div>
-            
-            <div className="info-row">
+                
                 {context && (
-                    <div className={`context-box ${!isContextExpanded ? 'collapsed' : ''}`}>
-                        <h3 onClick={toggleContext} className="collapsible-header">
-                            Context
-                            <button className="toggle-icon">
-                                {isContextExpanded ? <FaChevronUp /> : <FaChevronDown />}
-                            </button>
-                        </h3>
+                    <div className="context-section">
+                        <h3>Context</h3>
                         <p className="context-text">{context}</p>
                     </div>
                 )}

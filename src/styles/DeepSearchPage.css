@@ -4,8 +4,7 @@
   margin: 0 auto;
   border-radius: 10px;
   width: 97%;
-  background-color: var(--main-bg);
-  padding: 20px;
+  /* background-color: var(--main-bg); */
 }
 
 @media (max-width: 768px) {
@@ -39,16 +38,7 @@
 
 /* ===== BACK BUTTON ===== */
 .back-button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  margin-bottom: 20px;
+  display: none;
 }
 
 /* ===== DIVIDER ===== */
@@ -56,8 +46,9 @@
   border: none;
   height: 1px;
   background-color: #FFFFFF;
-  margin: 20px 0;
-  width: 100%;
+  margin: 4px;
+  margin-top: 20px;
+  width: 80%;
 }
 
 .deep-search-page.light .divider {
@@ -68,98 +59,51 @@
   background-color: var(--light-border-color);
 } */
 
-.deep-search-page.light .back-button {
-  background-color: var(--accent-color);
-  color: white;
-}
-
-.deep-search-page.light .back-button:hover {
-  background-color: #12616b;
-}
-
-.deep-search-page.dark .back-button {
-  background-color: var(--accent-color);
-  color: #030303;
-}
-
-.deep-search-page.dark .back-button:hover {
-  background-color: #12616b;
-}
 
 /* ===== COMMON BOX STYLES ===== */
 .claim-box{
-  border-radius: 8px;
-  margin-bottom: 25px;
+  border-radius: 12px;
+  margin-bottom: 4px;
+  background: rgba(32, 34, 37, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 16px;
 }
 
 .results-box, .context-box {
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 25px;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 4px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .deep-search-page.light .results-box,
 .deep-search-page.light .context-box {
-  background-color: rgba(66, 153, 225, 0.1);
+  background: rgba(255, 255, 255, 0.8);
   color: var(--light-text-color);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 .deep-search-page.dark .results-box,
 .deep-search-page.dark .context-box {
-  background-color: rgba(66, 153, 225, 0.1);
+  background: rgba(32, 34, 37, 0.75);
   color: var(--text-color);
-  box-shadow: 0 2px 10px var(--box-shadow);
 }
 
-.deep-search-page.light .context-box {
-  background-color: rgba(66, 153, 225, 0.1);
-}
-
-.deep-search-page.dark .context-box {
-  background-color: rgba(66, 153, 225, 0.1);
-}
 
 /* Box headers */
 .claim-box h3, .results-box h3, .context-box h3 {
   margin-top: 0;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   /* font-size: 1.2rem;
   font-weight: 600; */
-  /* Make header clickable if it's collapsible */
-  &.collapsible-header {
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--accent-color);
-    font-size: 1.2rem;
-    font-weight: 600;
-    padding-left: 20px
-  }
 }
 
-/* Style for the toggle icon button */
-.toggle-icon {
-  background: none;
-  border: none;
-  padding: 0 5px; /* Add some padding */
-  margin-left: 8px; /* Space between text and icon */
-  cursor: pointer;
-  color: var(--accent-color); /* Inherit color from header */
-  font-size: 0.9em; /* Slightly smaller than header text */
-  line-height: 1; /* Prevent extra spacing */
-  display: none; /* Hide by default */
-}
 
-/* Ensure icon color matches text in dark/light mode
-.deep-search-page.light .toggle-icon {
-  color: #2d3748;
-}
-
-.deep-search-page.dark .toggle-icon {
-  color: #e2e8f0;
-} */
 
 @media (max-width: 480px) {
   .claim-box h3, .results-box h3, .context-box h3 {
@@ -180,44 +124,49 @@
 }
 
 .claim-header .timestamp {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   padding: 6px 12px;
   border-radius: 6px;
-  background-color: rgba(66, 153, 225, 0.1);
-  color: var(--accent-color);
+  background-color: var(--accent-color);
+  color: white;
   display: inline-block;
 }
 
-.deep-search-page.dark .claim-header .timestamp {
-  background-color: rgba(66, 153, 225, 0.2);
-}
 
-.claim-box .claim-text {
-  font-size: 1.2rem;
-  font-weight: 500;
+.deep-search-page .claim-box .claim-text {
+  font-size: 1.5rem !important;
+  font-weight: 500 !important;
   line-height: 1.6;
   position: relative;
   font-style: italic;
   text-align: center;
-  background-color: rgba(66, 153, 225, 0.1);
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  background: transparent;
   width: 100%;
   box-sizing: border-box;
-  padding: 12px;
+  padding: 4px 0 12px 0;
+  color: #ffffff;
 }
 
 .deep-search-page.light .claim-box .claim-text {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  color: #000000;
 }
 
+.deep-search-page.light .claim-box {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+
 .claim-box .video-container {
-  align-self: stretch;
+  align-self: center;
   width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .claim-title-container{
@@ -225,15 +174,13 @@
   padding: 1rem 0;
 }
 
-.claim-title{
-  font-size: 1.7rem;
-  font-weight: 600;
+.deep-search-page .claim-title{
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
   line-height: 1.4;
-  padding: 20px;
+  padding: 4px 0;
   text-align: center;
-  background-color: rgba(66, 153, 225, 0.1);
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  background: transparent;
   width: 100%;
   box-sizing: border-box;
 }
@@ -244,12 +191,11 @@
 
 .deep-search-page.light .claim-title {
   color: #2d3748;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.claim-box .claim-text::before {
+.deep-search-page .claim-box .claim-text::before {
   content: '"';
-  font-size: 1.6rem;
+  font-size: 1.6rem !important;
   font-style: normal;
   font-weight: bold;
   margin-right: 2px;
@@ -257,9 +203,9 @@
   color: var(--accent-color);
 }
 
-.claim-box .claim-text::after {
+.deep-search-page .claim-box .claim-text::after {
   content: '"';
-  font-size: 1.6rem;
+  font-size: 1.6rem !important;
   font-style: normal;
   font-weight: bold;
   margin-left: 2px;
@@ -292,79 +238,69 @@
     font-size: 0.95rem;
   }
 
-  .claim-box .claim-text{
-    font-size: 1.1rem;
+  /* Title font size for mobile */
+  .deep-search-page .claim-title {
+    font-size: 1.6rem !important;
+  }
+
+  /* Claim text font size for mobile */
+  .deep-search-page .claim-box .claim-text{
+    font-size: 1.1rem !important;
   } 
-  .claim-box .claim-text::before,
-  .claim-box .claim-text::after{
-    font-size: 1.2rem;
+  .deep-search-page .claim-box .claim-text::before,
+  .deep-search-page .claim-box .claim-text::after{
+    font-size: 1.2rem !important;
   }
 
-  /* --- Collapsing Styles --- */
-  .context-box.collapsed p {
-    max-height: 2.2em; 
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative; 
-    margin-bottom: 0px; 
-    padding-right: 40px; 
+  /* Context text font size for mobile */
+  .context-section p {
+    font-size: 1.1rem !important;
   }
 
-  .context-box.collapsed p::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 150px; 
-
+  /* Deep search results font size for mobile */
+  .sonar-content {
+    font-size: 15px !important;
   }
+  .sonar-content h1 { font-size: 1.7rem !important; }
+  .sonar-content h2 { font-size: 1.4rem !important; }
+  .sonar-content h3 { font-size: 1.2rem !important; }
 
-  /* Fade for light theme */
-  .deep-search-page.light .context-box.collapsed p::after {
-     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, var(--light-component-bg) 95%);
-  }
-
-  /* Fade for dark theme */
-   .deep-search-page.dark .context-box.collapsed p::after {
-     background: linear-gradient(to right, rgba(45, 55, 72, 0) 0%, var(--component-bg) 95%);
-   } 
-
-  /* Hide paragraph completely if needed (alternative to max-height) */
-  /* .context-box.collapsed p,
-  .query-box.collapsed p {
-      display: none;
-  } */
-  /* --- End Collapsing Styles --- */
-
-  /* Make toggle icon visible on smaller screens */
-  .toggle-icon {
-    display: inline-block; /* Or block, inline-flex, etc. as needed */
-  }
 }
 
 @media (max-width: 480px) {
+  /* Title font size for small mobile */
+  .deep-search-page .claim-title {
+    font-size: 1.4rem !important;
+  }
 
-  
-  .claim-box .claim-text{
-    font-size: 1.05rem;
+  /* Claim text font size for small mobile */
+  .deep-search-page .claim-box .claim-text{
+    font-size: 1.05rem !important;
   } 
-  .claim-box .claim-text::before,
-  .claim-box .claim-text::after{
-    font-size: 1.2rem;
+  .deep-search-page .claim-box .claim-text::before,
+  .deep-search-page .claim-box .claim-text::after{
+    font-size: 1.2rem !important;
   }
 
-  .toggle-icon {
-    display: inline-block; /* Or block, inline-flex, etc. as needed */
+  /* Context text font size for small mobile */
+  .context-section p {
+    font-size: 1.05rem !important;
   }
+
+  /* Deep search results font size for small mobile */
+  .sonar-content {
+    font-size: 14px !important;
+  }
+  .sonar-content h1 { font-size: 1.5rem !important; }
+  .sonar-content h2 { font-size: 1.3rem !important; }
+  .sonar-content h3 { font-size: 1.1rem !important; }
 }
 
-/* ===== CONTEXT & QUERY BOXES (INFO ROW) ===== */
-.info-row {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-bottom: 20px;
+/* ===== CONTEXT SECTION (NOW INSIDE CLAIM BOX) ===== */
+.context-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 3px solid rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -382,11 +318,11 @@
 } */
 
 
-.context-box {
-  flex: 1;
-  min-height: 100px;
-  border-radius: 8px;
+.context-section h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
 }
+
 
 .info-row:has(.query-box:only-child) .query-box {
   width: 100%;
@@ -399,37 +335,30 @@
   padding: 8px;
   border-radius: 4px;
   background-color: inherit !important;
-  /* Add transition for smooth collapse/expand */
-  /* transition: max-height 0.3s ease-out, margin-bottom 0.3s ease-out, padding-right 0.3s ease-out; */
-  /* Ensure expanded state has appropriate max-height if using max-height for collapse */
-  max-height: 1000px; /* Set a large max-height for expanded state */
-  white-space: normal; /* Override nowrap from collapsed state */
-  overflow: visible; /* Override hidden */
-  position: relative; /* Ensure consistent positioning */
+  white-space: normal;
+  overflow: visible;
+  position: relative;
 }
 
-.context-box p {
+.context-section p {
   line-height: 1.5;
-  font-size: 1.2rem;
-  padding: 20px;
+  font-size: 1.5rem;
+  padding: 8px 0;
   background-color: transparent !important;
   border-radius: 6px;
   font-weight: 500;
+  margin: 0;
+  color: #ffffff;
 }
 
-.deep-search-page.dark .context-box p {
-  background-color: transparent !important;
-  color: #e2e8f0;
-}
-
-.deep-search-page.light .context-box p {
+.deep-search-page.light .context-section p {
   color: #2d3748;
 }
 
-/* Remove pseudo-element when expanded */
-.context-box p::after {
-  content: none;
+.deep-search-page.light .context-section {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 
 @media (max-width: 480px) {
   .claim-box p, .context-box p {
@@ -470,7 +399,7 @@
   background: var(--background-secondary);
   border-radius: 12px;
   padding: 24px;
-  margin-top: 20px;
+  margin-top: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
