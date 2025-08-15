@@ -350,6 +350,7 @@
 */
 
 /* Claim header */
+/* COMMENTED OUT - Using ClaimCard.css .claim-header definition */
 /*
 .claim-header {
   display: flex;
@@ -357,21 +358,22 @@
   align-items: center;
   margin-bottom: 15px;
 }
+*/
 
-.timestamp {
+/* .timestamp {
   font-size: 0.8rem;
   font-weight: 500;
   padding: 4px 8px;
   border-radius: 6px;
   background-color: rgba(66, 153, 225, 0.1);
   color: #ffffff;
-}
+} */
 
 .video-analysis.dark .timestamp {
   background-color: rgba(66, 153, 225, 0.2);
   color: #ffffff;
 }
-
+/* 
 .category {
   font-size: 1.08rem;
   font-weight: 600;
@@ -380,8 +382,9 @@
   background-color: var(--accent-color);
   color: white;
   text-transform: capitalize;
-}
+} */
 
+/* 
 @media (max-width: 768px) {
   .timestamp{
     font-size: 0.65rem;
@@ -402,8 +405,8 @@
   .category{
     font-size: 0.85rem;
   }
-}
-*/
+} */
+
 
 /* Claim title */
 /*
@@ -595,6 +598,7 @@
 }
 
 /* Context content transition */
+/* 
 .context-content {
   max-height: none;
   opacity: 1;
@@ -619,9 +623,9 @@
   .context-content{
     font-size: 0.95rem;
   }
-}
+} */
 
-
+/*
 .video-analysis.dark .context-content {
   background-color: rgba(255, 255, 255, 0.03);
 }

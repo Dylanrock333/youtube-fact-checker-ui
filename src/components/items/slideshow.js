@@ -6,6 +6,7 @@ import '@glidejs/glide/dist/css/glide.core.min.css';
 import { RiArrowLeftWideFill, RiArrowRightWideLine  } from "react-icons/ri";
 import { useAnalysis } from '../../context/AnalysisContext';
 import { useNavigate } from 'react-router-dom';
+import ClaimCard from './ClaimCard';
 // import { getSlideshowItem } from '../../api/api';
 import Analytics from '../../utils/analytics';
 
@@ -73,13 +74,15 @@ const SlideshowItemComponent = ({ item }) => {
     };
 
 
-    const handleStartDeepSearch = (claim, videoUrl) => {
-        Analytics.trackSlideshowInteraction('deep_search', videoUrl, claim.claimTitle);
+    const handleStartDeepSearch = (claimId) => {
+        const claim = item.claims.find(c => c.id === claimId);
+        if (!claim) return;
         
-        setVideoUrl(videoUrl);
+        Analytics.trackSlideshowInteraction('deep_search', item.videoUrl, claim.claimTitle);
+        
+        setVideoUrl(item.videoUrl);
 
         const query = claim.searchQuery;
-        const claimId = -1;
         const claimTitle = claim.claimTitle;
         const claimText = claim.claimQuote;
         const context = claim.claimContext;
@@ -120,19 +123,17 @@ const SlideshowItemComponent = ({ item }) => {
                             <ul className="glide__slides">
                                 {item.claims.map((claim, claimIndex) => (
                                     <li key={claimIndex} className="glide__slide">
-                                        <div className="slideshow-item-claim">
-                                            <div className="claim-title-container">
-                                                <h3 className="claim-title">{claim.claimTitle}</h3>
-                                            </div>
-                                            <h3 className="timestamp">Timestamp: {claim.timestamp}</h3>
-                                            <div className="claim-info-container">
-                                                <p className="claim-quote">{claim.claimQuote}</p>
-                                            </div>
-                                            <div className="claim-context-container">
-                                            <p className="claim-context-slideshow">{claim.claimContext}</p>
-                                            </div>
-                                            <button className="slideshow-item-claim__button" onClick={() => handleStartDeepSearch(claim, item.videoUrl)}>Start Deep Search</button>
-                                        </div>
+                                        <ClaimCard 
+                                            claim={{
+                                                id: claimIndex,
+                                                timestamp: claim.timestamp,
+                                                category: claim.category || 'general',
+                                                title: claim.claimTitle,
+                                                claim: claim.claimQuote,
+                                                context: claim.claimContext
+                                            }}
+                                            onStartDeepSearch={handleStartDeepSearch}
+                                        />
                                     </li>
                                 ))}
                             </ul>
@@ -145,17 +146,18 @@ const SlideshowItemComponent = ({ item }) => {
                 ) : (
                     <div className="slideshow-item-claims">
                         {item.claims.map((claim, claimIndex) => (
-                            <div key={claimIndex} className="slideshow-item-claim">
-                                    <div className="claim-title-container">
-                                    <h3 className="claim-title">{claim.claimTitle}</h3>
-                                    <h3 className="timestamp">Timestamp: {claim.timestamp}</h3>
-                                </div>
-                                <div className="claim-text-container">
-                                    <p>Claim Quote: {claim.claimQuote}</p>
-                                    <p>Claim Context: {claim.claimContext}</p>
-                                </div>
-                                <button className="slideshow-item-claim__button">Start Deep Search</button>
-                            </div>
+                            <ClaimCard 
+                                key={claimIndex}
+                                claim={{
+                                    id: claimIndex,
+                                    timestamp: claim.timestamp,
+                                    category: claim.category || 'general',
+                                    title: claim.claimTitle,
+                                    claim: claim.claimQuote,
+                                    context: claim.claimContext
+                                }}
+                                onStartDeepSearch={handleStartDeepSearch}
+                            />
                         ))}
                     </div>
                 )}
@@ -201,6 +203,7 @@ const Slideshow = () => {
                     claimQuote: claim.claim,
                     claimContext: claim.context,
                     timestamp: claim.timestamp,
+                    category: claim.category,
                     searchQuery: claim.search_query
                 }))
             }));

@@ -83,7 +83,7 @@ const DeepSearchPage = () => {
         <div className="deep-search-page dark">
 
             <div className="claim-box">
-                <div className="claim-header">
+                <div className="ds-claim-header">
                     {timestamp && <span className="timestamp">Timestamp: {timestamp}</span>}
                 </div>
 

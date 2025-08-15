@@ -110,13 +110,13 @@
   align-items: center;
 }
 
-.claim-header {
+.ds-claim-header {
   align-self: flex-start;
   width: 100%;
   margin-bottom: 0;
 }
 
-.claim-header .timestamp {
+.ds-claim-header .timestamp {
   font-size: 1.1rem;
   font-weight: 500;
   padding: 8px 16px;
@@ -232,8 +232,8 @@
     font-size: 0.95rem;
   }
 
-  /* Claim header timestamp for mobile */
-  .claim-header .timestamp {
+  /* DS claim header timestamp for mobile */
+  .ds-claim-header .timestamp {
     font-size: 0.95rem !important;
     padding: 6px 12px !important;
   }
@@ -268,8 +268,8 @@
 }
 
 @media (max-width: 480px) {
-  /* Claim header timestamp for small mobile */
-  .claim-header .timestamp {
+  /* DS claim header timestamp for small mobile */
+  .ds-claim-header .timestamp {
     font-size: 0.85rem !important;
     padding: 5px 10px !important;
   }

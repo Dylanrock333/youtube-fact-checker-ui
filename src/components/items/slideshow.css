@@ -1,5 +1,54 @@
 /* ===== SLIDESHOW DARK/LIGHT THEME SUPPORT ===== */
 
+/* ===== SLIDESHOW CLAIMCARD OVERRIDES ===== */
+/* Ensure ClaimCard content is properly centered in slideshow context */
+.slideshow-item-claims-container .claim-card .context-content {
+    text-align: center;
+}
+
+.slideshow-item-claims-container .claim-card .claim-title {
+    text-align: center;
+}
+
+.slideshow-item-claims-container .claim-card .claim-title-container {
+    justify-content: center;
+}
+
+/* Ensure claim text container is centered like in video analysis */
+.slideshow-item-claims-container .claim-card .claim-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure claim text itself is properly styled */
+.slideshow-item-claims-container .claim-card .claim-text {
+    text-align: center;
+}
+/* 
+.slideshow-item-claims-container .claim-card .timestamp {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background-color: rgba(66, 153, 225, 0.2);
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .slideshow-item-claims-container .claim-card .timestamp {
+    font-size: 0.65rem;
+    padding: 2px 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slideshow-item-claims-container .claim-card .timestamp {
+    font-size: 0.6rem;
+    padding: 1px 3px;
+  }
+} */
+
 .slideshow-container {
     display: flex;
     flex-direction: column;
@@ -106,6 +155,8 @@
     margin: 0;
 }
 
+/* COMMENTED OUT - Using ClaimCard timestamp styles */
+/*
 .slideshow-item.dark .timestamp {
     background-color: rgba(66, 153, 225, 0.2);
     color: var(--accent-color);
@@ -119,13 +170,14 @@
     border-radius: 6px;
     padding: 4px 8px;
 }
+*/
 
-.claim-info-container{
+/* .claim-info-container{
     align-items: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
-}
+} */
 
 /* .claim-title-container h3 {
     color: var(--accent-color);
@@ -151,7 +203,7 @@
     transition: var(--theme-transition);
 } */
 
-.claim-quote {
+/* .claim-quote {
     background-color: rgba(66, 153, 225, 0.05);
     display: inline-block;
     flex-grow: 0;
@@ -179,9 +231,9 @@
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--accent-color);
-}
+} */
 
-.claim-context-container{
+/* .claim-context-container{
     background-color: rgba(0, 0, 0, 0.02);
     font-size: 0.95rem;
     line-height: 1.5;
@@ -196,10 +248,10 @@
 
 .claim-context-slideshow {
     margin: 0;
-}
+} */
 
-/* Claim title */
-.claim-title-container{
+/* Claim title - COMMENTED OUT - Using ClaimCard component */
+/* .claim-title-container{
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -230,8 +282,10 @@
 
 .dark .claim-title {
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-}
+} */
 
+/* COMMENTED OUT - Using ClaimCard timestamp styles */
+/*
 .timestamp {
     font-size: 0.8rem;
     font-weight: 500;
@@ -241,6 +295,7 @@
     color: var(--accent-color);
     transition: var(--theme-transition);
 }
+*/
 
 .slideshow-item-claims {
     display: flex;
@@ -269,6 +324,8 @@
     position: relative;
 }
 
+/* COMMENTED OUT - Using ClaimCard component now */
+/*
 .slideshow-item-claim {
     border: 1px solid var(--border-color);
     padding: 12px;
@@ -292,7 +349,6 @@
     border-color: rgba(23, 162, 184, 0.3);
 }
 
-/* Light theme overrides for slideshow-item-claim */
 .light .slideshow-item-claim {
     border-color: var(--light-border-color);
     background-color: var(--light-component-bg);
@@ -303,6 +359,7 @@
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     border-color: rgba(23, 162, 184, 0.4);
 }
+*/
 
 
 /* .slideshow-item-claim p {
@@ -314,9 +371,9 @@
     transition: var(--theme-transition);
 } */
 
-.slideshow-item-claim p:last-child {
+/* .slideshow-item-claim p:last-child {
     margin-bottom: 0;
-}
+} */
 
 .slideshow-item-claim__button {
     margin-top: auto;
@@ -462,10 +519,10 @@
         height: auto;
     }
 
-    .slideshow-item-claim {
+    /* .slideshow-item-claim {
         margin-left: 0;
         padding: 12px;
-    }
+    } */
 
     .glide::before {
         width: 40px;
@@ -519,9 +576,9 @@
         padding: 0;
     }
 
-    .slideshow-item-claim {
+    /* .slideshow-item-claim {
         margin-left: 0;
-    }
+    } */
 
     .glide {
         padding: 0;
