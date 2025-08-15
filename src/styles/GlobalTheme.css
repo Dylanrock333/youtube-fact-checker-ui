@@ -78,7 +78,7 @@
 }
 
 body {
-  background: url('../assets/background.png') no-repeat center center;
+  background: url('../assets/background1.png') no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   color: var(--text-color);
@@ -90,6 +90,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
   min-height: 100vh;
+}
+
+@media (min-width: 1200px) {
+  body {
+    background: url('../assets/background.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
 }
 
 /* Layout */
