@@ -25,6 +25,13 @@
 .slideshow-item-claims-container .claim-card .claim-text {
     text-align: center;
 }
+
+/* Ensure consistent height for claim cards in slideshow */
+.slideshow-item-claims-container .claim-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 /* 
 .slideshow-item-claims-container .claim-card .timestamp {
     font-size: 0.8rem;
@@ -298,10 +305,8 @@
 */
 
 .slideshow-item-claims {
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     width: 100%;
     box-sizing: border-box;
@@ -436,10 +441,19 @@
 
 .glide__slides {
     height: 100%;
+    align-items: stretch;
 }
 
 .glide__slide {
     height: 100%;
+    display: flex;
+    align-items: stretch;
+}
+
+.glide__slide .claim-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .glide__arrow {

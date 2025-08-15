@@ -15,6 +15,42 @@ const SlideshowItemComponent = ({ item }) => {
     const glideRef = useRef(null);
     const { setVideoUrl, setIsAnalyzing } = useAnalysis();
     const navigate = useNavigate();
+    const equalizeCardHeights = (containerRef = null) => {
+        const container = containerRef || glideRef.current;
+        if (!container) return;
+        
+        const claimCards = container.querySelectorAll('.claim-card');
+        if (claimCards.length === 0) return;
+        
+        // Reset heights
+        claimCards.forEach(card => {
+            card.style.height = 'auto';
+        });
+        
+        // Find max height among visible cards
+        let maxHeight = 0;
+        claimCards.forEach(card => {
+            const height = card.offsetHeight;
+            if (height > maxHeight) {
+                maxHeight = height;
+            }
+        });
+        
+        // Apply max height to all cards
+        claimCards.forEach(card => {
+            card.style.height = `${maxHeight}px`;
+        });
+    };
+
+    const staticClaimsRef = useRef(null);
+
+    // Effect for equalizing static claim heights
+    useEffect(() => {
+        if (item.claims.length <= 3 && staticClaimsRef.current) {
+            setTimeout(() => equalizeCardHeights(staticClaimsRef.current), 100);
+        }
+    }, [item.claims]);
+
     useEffect(() => {
         if (!glideRef.current || item.claims.length <= 3) {
             return;
@@ -58,6 +94,12 @@ const SlideshowItemComponent = ({ item }) => {
         });
 
         glide.mount();
+
+        // Equalize heights after mount and on slide changes
+        setTimeout(equalizeCardHeights, 100);
+        glide.on('run', () => {
+            setTimeout(equalizeCardHeights, 100);
+        });
 
         return () => {
             glide.destroy();
@@ -144,7 +186,7 @@ const SlideshowItemComponent = ({ item }) => {
                         </div>
                     </div>
                 ) : (
-                    <div className="slideshow-item-claims">
+                    <div className="slideshow-item-claims" ref={staticClaimsRef}>
                         {item.claims.map((claim, claimIndex) => (
                             <ClaimCard 
                                 key={claimIndex}
