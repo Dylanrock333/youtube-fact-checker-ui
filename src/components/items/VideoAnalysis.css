@@ -77,14 +77,6 @@
   margin-bottom: 15px;
 }
 
-.video-title-container.light{
-  /* No background */
-}
-
-.video-title-container.dark{
-  /* No background */
-}
-
 .video-title-container h2{
   font-size: 1.9rem;
   font-weight: 700;
@@ -132,7 +124,7 @@
 
 @media (max-width: 768px) {
     .video-metadata {
-    grid-template-columns: 1fr 1fr;  /* TODO make more memory efficient */
+    grid-template-columns: 1fr 1fr;
     grid-template-areas: 
       "views published"
       "channel duration";
@@ -237,6 +229,7 @@
 
 .video-analysis.dark .claim-count {
   box-shadow: 0 0 10px rgba(32, 169, 188, 0.3);
+  margin-bottom: 30px;
 }
 
 @media (max-width: 768px) {
@@ -265,11 +258,11 @@
   margin-bottom: 30px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1150px) {
   .claims-grid {
     grid-template-columns: repeat(2, minmax(300px, 450px));
     justify-content: center;
-    column-gap: 10px;
+    column-gap: 30px;
   }
 
   /* .video-analysis {
@@ -287,9 +280,9 @@
   }
   
   .claims-grid .claim-card {
-    flex: 1 1 300px; /* grow, shrink, basis */
+    flex: 1 1 300px;
     min-width: 300px;
-    max-width: 100%; /* Prevents overflow */
+    max-width: 100%;
   }
   
   /* .video-analysis {
@@ -299,6 +292,8 @@
 
 
 /* ===== CLAIM CARD STYLES ===== */
+/* Moved to ClaimCard.css */
+/*
 .claim-card {
   border-radius: 16px;
   padding: 20px;
@@ -314,18 +309,20 @@
   backdrop-filter: blur(10px);
   transform: translateZ(0);
 }
+*/
 
+/*
 @media (max-width: 768px) {
   .claim-card{
     padding: 12px;
   }
 }
 
-/* @media (max-width: 480px) {
+@media (max-width: 480px) {
   .claim-card{
     min-height: 1px;
   }
-} */
+}
 
 .claim-card:hover {
   transform: translateY(-5px);
@@ -350,8 +347,10 @@
 .claim-card.dark:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
+*/
 
 /* Claim header */
+/*
 .claim-header {
   display: flex;
   justify-content: space-between;
@@ -404,8 +403,10 @@
     font-size: 0.85rem;
   }
 }
+*/
 
 /* Claim title */
+/*
 .claim-title-container{
   display: flex;
   justify-content: center;
@@ -427,8 +428,10 @@
 .video-analysis.dark .claim-title {
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
+*/
 
 /* Claim text */
+/*
 .claim-text-container{
   border-top: 1px solid;
   display: flex;
@@ -513,9 +516,11 @@
     font-size: 1rem;
   }
 }
+*/
 
 
 /* ===== SCORE BARS ===== */
+/*
 .claim-details {
   margin-bottom: 16px;
 }
@@ -561,8 +566,10 @@
   border-radius: 4px;
   transition: width 0.5s ease;
 }
+*/
 
 /* ===== CLAIM CONTEXT ===== */
+/*
 .claim-context {
   font-size: 0.9rem;
   transition: height 0.3s ease-in-out;
@@ -633,8 +640,10 @@
   opacity: 0;
   margin: 0;
 }
+*/
 
 /* ===== TABS AND SEARCH ===== */
+/*
 .claim-tabs {
   margin-top: auto;
   margin-bottom: 15px;
@@ -658,6 +667,7 @@
   flex-direction: column;
   flex-grow: 1;
 }
+*/
 
 /* ===== LOADING SPINNER ===== */
 .loading-container {
@@ -676,6 +686,7 @@
 
 
 /* ===== DEEP SEARCH STYLES ===== */
+/*
 .deep-search-panel {
   display: flex;
   flex-direction: column;
@@ -732,8 +743,10 @@
 .video-analysis.dark .deep-search-placeholder {
   background-color: rgba(255, 255, 255, 0.03);
 }
+*/
 
 /* Search query input styles */
+/*
 .search-query-container {
   display: flex;
   flex-direction: column;
@@ -759,7 +772,7 @@
   box-sizing: border-box;
   scrollbar-width: thin;
   scrollbar-color: #cbd5e0 #f8fafc;
-  min-height: 120px; /* Set minimum height */
+  min-height: 120px;
   line-height: 1.5;
   background-color: #ffffff;
   color: #333333;
@@ -777,21 +790,17 @@
   }
 }
 
-
-/* Hover state for better UX */
 .search-query-input:hover {
   border-color: #a0aec0;
   cursor: text;
 }
 
-/* Focus state with more prominent highlight */
 .search-query-input:focus {
   outline: none;
   border-color: var(--accent-color);
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
 }
 
-/* Custom scrollbar for webkit browsers */
 .search-query-input::-webkit-scrollbar {
   width: 8px;
 }
@@ -807,7 +816,6 @@
   border: 2px solid #f8fafc;
 }
 
-/* Dark mode styles for the textarea */
 .video-analysis.dark .search-query-input {
   background-color: var(--light-text-color);
   border-color: #4a5568;
@@ -853,9 +861,6 @@
   }
 }
 
-
-
-
 .start-search-button:hover {
   background-color: #12616b;
 }
@@ -867,6 +872,7 @@
 .video-analysis.dark .start-search-button:hover {
   background-color: #12616b;
 }
+*/
 
 /* ===== LOADING STATES ===== */
 .loading-spinner {

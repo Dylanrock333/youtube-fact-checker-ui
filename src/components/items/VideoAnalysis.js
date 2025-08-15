@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './VideoAnalysis.css';
 import YouTubeVideo from './YouTubeVideo';
+import ClaimCard from './ClaimCard';
 import { useAnalysis } from '../../context/AnalysisContext';
 import Analytics from '../../utils/analytics';
 
@@ -9,7 +10,7 @@ import Analytics from '../../utils/analytics';
 
 const VideoAnalysis = ({ analysisData}) => {
   const { videoUrl } = useAnalysis();
-  const [expandedClaims, setExpandedClaims] = useState({});
+  // const [expandedClaims, setExpandedClaims] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   
@@ -38,12 +39,15 @@ const VideoAnalysis = ({ analysisData}) => {
     );
   }
 
+  // handleToggleClaim moved to ClaimCard component
+  /*
   const handleToggleClaim = (claimId) => {
     setExpandedClaims(prev => ({
       ...prev,
       [claimId]: !prev[claimId]
     }));
   };
+  */
 
   // Function to navigate to deep search page
   const handleStartDeepSearch = (claimId) => {
@@ -127,67 +131,11 @@ const VideoAnalysis = ({ analysisData}) => {
           <div className="loading-spinner">Loading...</div>
         ) : (
           analysisData.claims.map((claim) => (
-            <div key={claim.id} className={`claim-card`}>
-              <div className="claim-header">
-                <span className="timestamp">Timestamp: {claim.timestamp}</span>
-                <span className="category">{claim.category}</span>
-              </div>
-
-              <div className="claim-title-container">
-                <p className="claim-title">{claim.title}</p>
-              </div>
-              
-              <div className="claim-text-container">
-                <p className="claim-text">
-                  {claim.claim.length > 280 && !expandedClaims[claim.id] ? (
-                    <>
-                      {`${claim.claim.substring(0, 280)}...`}
-                      <button
-                        className="show-more-less-button"
-                        onClick={() => handleToggleClaim(claim.id)}
-                      >
-                        Show more
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      {claim.claim}
-                      {claim.claim.length > 300 && (
-                        <>
-                          {' '}
-                          <button
-                            className="show-more-less-button"
-                            onClick={() => handleToggleClaim(claim.id)}
-                          >
-                            Show less
-                          </button>
-                        </>
-                      )}
-                    </>
-                  )}
-                </p>
-              </div>
-              
-              <div className="claim-context">          
-                <div className="claim-tabs">
-                  Context
-                </div>
-                
-                <div className="tab-content">
-                    <div className="context-content">
-                      <p>{claim.context}</p>
-                    </div>
-                    <div className="deep-search-panel">
-                      <button 
-                        className="start-search-button"
-                        onClick={() => handleStartDeepSearch(claim.id)} 
-                      >
-                        Start Deep Search
-                      </button>
-                    </div>
-                </div>
-              </div>
-            </div>
+            <ClaimCard
+              key={claim.id}
+              claim={claim}
+              onStartDeepSearch={handleStartDeepSearch}
+            />
           ))
         )}
       </div>

@@ -28,14 +28,6 @@
   font-weight: 600;
 }
 
-.deep-search-page.light h3 {
-  color: #2d3748;
-}
-
-.deep-search-page.dark h3 {
-  color: #e2e8f0;
-}
-
 /* ===== BACK BUTTON ===== */
 .back-button {
   display: none;
@@ -121,12 +113,14 @@
 .claim-header {
   align-self: flex-start;
   width: 100%;
+  margin-bottom: 0;
 }
 
 .claim-header .timestamp {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 500;
-  padding: 6px 12px;
+  padding: 8px 16px;
+  margin: 10px;
   border-radius: 6px;
   background-color: var(--accent-color);
   color: white;
@@ -238,6 +232,12 @@
     font-size: 0.95rem;
   }
 
+  /* Claim header timestamp for mobile */
+  .claim-header .timestamp {
+    font-size: 0.95rem !important;
+    padding: 6px 12px !important;
+  }
+
   /* Title font size for mobile */
   .deep-search-page .claim-title {
     font-size: 1.6rem !important;
@@ -268,6 +268,12 @@
 }
 
 @media (max-width: 480px) {
+  /* Claim header timestamp for small mobile */
+  .claim-header .timestamp {
+    font-size: 0.85rem !important;
+    padding: 5px 10px !important;
+  }
+
   /* Title font size for small mobile */
   .deep-search-page .claim-title {
     font-size: 1.4rem !important;
@@ -321,6 +327,9 @@
 .context-section h3 {
   margin-top: 0;
   margin-bottom: 8px;
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  font-weight: 700;
 }
 
 

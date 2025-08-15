@@ -620,7 +620,7 @@
 .category-button:hover:not(.active) {
     border-color: var(--accent-color);
     box-shadow: 0 0 0 2px rgba(32, 169, 188, 0.2);
-    background-color: var(--component-bg); /* Explicitly set for hover */
+    background-color: var(--component-bg);
 }
 
 /* Light theme adjustments */
@@ -633,7 +633,7 @@
 
 .light .category-button:hover:not(.active) {
     border-color: var(--accent-color);
-    background-color: var(--light-component-bg); /* Explicitly set for hover */
+    background-color: var(--light-component-bg);
 }
 
 .light .category-button.active {
