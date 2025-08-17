@@ -60,7 +60,7 @@ const SlideshowItemComponent = ({ item }) => {
 
         const glide = new Glide(glideRef.current, {
             type: 'carousel',
-            perView: 2.3,
+            perView: 2.1,
             gap: 20,
             autoplay: randomInterval,
             animationDuration: 800,
@@ -76,18 +76,12 @@ const SlideshowItemComponent = ({ item }) => {
                     perView: 1.25
                 },
                 1000: {
-                    perView: 1.125
-                },
-                950: {
-                    perView: 1.15
-                },
-                900: {
-                    perView: 1.1
-                },
-                850: {
-                    perView: 1.05
+                    perView: 1
                 },
                 800: {
+                    perView: 2
+                },
+                675: {
                     perView: 1
                 }
             }
@@ -180,10 +174,10 @@ const SlideshowItemComponent = ({ item }) => {
                                 ))}
                             </ul>
                         </div>
-                        <div className="glide__arrows" data-glide-el="controls">
+                        {/* <div className="glide__arrows" data-glide-el="controls">
                             <button className="glide__arrow glide__arrow--left" data-glide-dir="<"><RiArrowLeftWideFill /></button>
                             <button className="glide__arrow glide__arrow--right" data-glide-dir=">"><RiArrowRightWideLine   /></button>
-                        </div>
+                        </div> */}
                     </div>
                 ) : (
                     <div className="slideshow-item-claims" ref={staticClaimsRef}>
@@ -275,7 +269,12 @@ const Slideshow = () => {
             </div>
             <div className="slideshow-container">
                 {slideshowItems.map((item, index) => (
-                    <SlideshowItemComponent key={index} item={item} />
+                    <React.Fragment key={index}>
+                        <SlideshowItemComponent item={item} />
+                        {index < slideshowItems.length - 1 && (
+                            <hr className="slideshow-divider" />
+                        )}
+                    </React.Fragment>
                 ))}
             </div>            
         </div>

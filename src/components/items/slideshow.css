@@ -32,41 +32,31 @@
     display: flex;
     flex-direction: column;
 }
-/* 
-.slideshow-item-claims-container .claim-card .timestamp {
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding: 4px 8px;
-    border-radius: 6px;
-    background-color: rgba(66, 153, 225, 0.2);
-    color: #ffffff;
+
+/* ===== SLIDESHOW DIVIDER ===== */
+.slideshow-divider {
+    border: none;
+    height: 2px;
+    background-color: #FFFFFF;
+    margin: 20px auto;
+    width: 95%;
 }
 
-@media (max-width: 768px) {
-  .slideshow-item-claims-container .claim-card .timestamp {
-    font-size: 0.65rem;
-    padding: 2px 4px;
-  }
+.light .slideshow-divider {
+    background-color: #000000;
 }
-
-@media (max-width: 480px) {
-  .slideshow-item-claims-container .claim-card .timestamp {
-    font-size: 0.6rem;
-    padding: 1px 3px;
-  }
-} */
 
 .slideshow-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    margin-top: 5px;
+    /* gap: 30px;
+    margin-top: 5px; */
 }
 
 .slideshow-item {
     display: flex;
     align-items: stretch;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     /* padding: 0 20px; */
     border-radius: 10px;
 }
@@ -78,32 +68,36 @@
     align-items: center;
     margin-left: 0;
     width: 500px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: var(--component-bg);
-    box-shadow: 0 1px 3px var(--box-shadow);
+    border-radius: 16px;
+    background: rgba(32, 34, 37, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
     padding: 15px;
     box-sizing: border-box;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, var(--theme-transition);
+    /* position: relative; */
+    /* z-index: 2; */
+    /* transform: translateZ(0); */
 }
 
-.slideshow-item-left:hover {
+/* .slideshow-item-left:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
     border-color: rgba(23, 162, 184, 0.3);
-}
+} */
 
 /* Light theme overrides for slideshow-item-left */
 .light .slideshow-item-left {
-    border-color: var(--light-border-color);
-    background-color: var(--light-component-bg);
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
-.light .slideshow-item-left:hover {
+/* .light .slideshow-item-left:hover {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
     border-color: rgba(23, 162, 184, 0.4);
-}
+} */
 
 .slideshow-item-left img {
     width: 400px;
@@ -162,148 +156,6 @@
     margin: 0;
 }
 
-/* COMMENTED OUT - Using ClaimCard timestamp styles */
-/*
-.slideshow-item.dark .timestamp {
-    background-color: rgba(66, 153, 225, 0.2);
-    color: var(--accent-color);
-}
-
-.timestamp {
-    background-color: rgba(66, 153, 225, 0.1);
-    color: var(--accent-color);
-    font-size: 0.8rem;
-    font-weight: 500;
-    border-radius: 6px;
-    padding: 4px 8px;
-}
-*/
-
-/* .claim-info-container{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-} */
-
-/* .claim-title-container h3 {
-    color: var(--accent-color);
-    font-family: Montserrat, sans-serif;
-    font-size: 1.9rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    line-height: 1.3;
-    overflow-wrap: break-word;
-    text-align: center;
-    text-shadow: rgba(0, 0, 0, 0.125) 1px 1px 2px;
-    -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.2);
-    margin: 0px;
-} */
-
-
-/* .claim-info-container p {
-    margin: 0;
-    font-size: 10px;
-    line-height: 1.5;
-    color: var(--neutral-color);
-    font-weight: 400;
-    transition: var(--theme-transition);
-} */
-
-/* .claim-quote {
-    background-color: rgba(66, 153, 225, 0.05);
-    display: inline-block;
-    flex-grow: 0;
-    font-size: 0.99rem;
-    font-style: italic;
-    line-height: 1.4;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    position: relative;
-    width: 100%;
-    border-radius: 5px;
-    padding: 10px 15px;
-    text-align: center;
-}
-
-.claim-quote::before {
-    content: '"';
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--accent-color);
-}
-
-.claim-quote::after {
-    content: '"';
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--accent-color);
-} */
-
-/* .claim-context-container{
-    background-color: rgba(0, 0, 0, 0.02);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin: 10px;
-    max-height: none;
-    opacity: 1;
-    border-radius: 6px;
-    overflow: hidden;
-    padding: 10px;
-    text-align: center;
-}
-
-.claim-context-slideshow {
-    margin: 0;
-} */
-
-/* Claim title - COMMENTED OUT - Using ClaimCard component */
-/* .claim-title-container{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    background-color: rgba(66, 153, 225, 0.08);
-    border-radius: 6px;
-    padding: 8px 12px;
-    margin-bottom: 10px;
-    transition: var(--theme-transition);
-} 
-
-.light .claim-title-container {
-    background-color: var(--accent-color-light);
-}
-  
-.claim-title{
-    font-family: Montserrat, sans-serif;
-    font-size: 1.9rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    line-height: 1.3;
-    overflow-wrap: break-word;
-    text-align: center;
-    text-shadow: rgba(0, 0, 0, 0.125) 1px 1px 2px;
-    -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.2);
-    margin: 0px;
-}
-
-.dark .claim-title {
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-} */
-
-/* COMMENTED OUT - Using ClaimCard timestamp styles */
-/*
-.timestamp {
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding: 4px 8px;
-    border-radius: 6px;
-    background-color: var(--accent-color-light);
-    color: var(--accent-color);
-    transition: var(--theme-transition);
-}
-*/
-
 .slideshow-item-claims {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -312,7 +164,7 @@
     box-sizing: border-box;
     transform: translateZ(0px);
     transition: opacity 0.3s ease-in-out;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .slideshow-item-claims.dark {
@@ -328,58 +180,10 @@
     flex-grow: 1;
     min-width: 0;
     position: relative;
+    /* Allow overflow to show cards sliding in from edge */
+    overflow: visible;
+    z-index: 1;
 }
-
-/* COMMENTED OUT - Using ClaimCard component now */
-/*
-.slideshow-item-claim {
-    border: 1px solid var(--border-color);
-    padding: 12px;
-    border-radius: 8px;
-    flex: 1 1 0;
-    min-width: 180px;
-    max-width: 100%;
-    background-color: var(--component-bg);
-    box-shadow: 0 1px 3px var(--box-shadow);
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    height: 100%;
-    margin-left: 20px;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, var(--theme-transition);
-}
-
-.slideshow-item-claim:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-    border-color: rgba(23, 162, 184, 0.3);
-}
-
-.light .slideshow-item-claim {
-    border-color: var(--light-border-color);
-    background-color: var(--light-component-bg);
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.light .slideshow-item-claim:hover {
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-    border-color: rgba(23, 162, 184, 0.4);
-}
-*/
-
-
-/* .slideshow-item-claim p {
-    margin: 8px 0;
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--neutral-color);
-    font-weight: 400;
-    transition: var(--theme-transition);
-} */
-
-/* .slideshow-item-claim p:last-child {
-    margin-bottom: 0;
-} */
 
 .slideshow-item-claim__button {
     margin-top: auto;
@@ -405,41 +209,25 @@
     color: #1a1a1a;
 }
 
+/* ===== GLIDE SLIDESHOW COMPONENTS ===== */
 .glide {
     height: 100%;
     position: relative;
-    padding: 0px;
-    padding-top: 5px;
-    margin-left: 20px;
-}
-
-.glide::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 100px;
-    background: linear-gradient(to right, #19191A 0%, #19191Aee 20%, #19191Acc 40%, #19191A99 60%, #19191A66 80%, transparent 100%);
-    pointer-events: none;
-    z-index: 1;
-}
-
-.glide::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 100px;
-    background: linear-gradient(to left, #19191A 0%, #19191Aee 20%, #19191Acc 40%, #19191A99 60%, #19191A66 80%, transparent 100%);
-    pointer-events: none;
-    z-index: 1;
+    overflow: visible;
 }
 
 
 .glide__track {
     height: 100%;
+    margin-left: 10px;
+    /* Allow cards to extend beyond track bounds */
+    overflow: visible;
+}
+
+@media (max-width: 800px) {
+    .glide__track {
+        margin-left: 0px;
+    }
 }
 
 .glide__slides {
@@ -459,70 +247,29 @@
     flex-direction: column;
 }
 
-
-.glide__arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: none;
-    transition: background-color 0.2s ease-in-out;
+/* ===== GLIDE RESPONSIVE BREAKPOINTS ===== */
+@media (min-width: 1000px) {
+    .glide {
+        mask-image: linear-gradient(to right, black, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, black, black 90%, transparent);
+    }
 }
 
-.glide__arrow:hover {
-    background: rgba(0,0,0,0.1);
-    border-radius: 50%;
-}
-
-.glide__arrow svg {
-    font-size: 24px;
-    color: var(--text-color);
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-}
-
-.glide__arrow:hover svg {
-    opacity: 1;
-}
-
-/* Light theme overrides for glide arrows */
-.light .glide__arrow svg {
-    color: var(--light-text-color);
-}
-
-.light .glide__arrow:hover {
-    background: rgba(255,255,255,0.2);
-}
-
-.glide__arrow--left {
-    left: 10px;
-}
-
-.glide__arrow--right {
-    right: 10px;
-}
-
-.glide__arrow--disabled {
-    opacity: 0.5;
+@media (max-width: 700px) {
+    .glide {
+        padding: 0;
+        margin-left: 0;
+    }
 }
 
 @media (max-width: 950px) {
-    .slideshow-item {
-        gap: 15px;
-        /* padding: 0 15px; */
-    }
+    /* .slideshow-item {
+        gap: 15px; */
+        /* padding: 0 15px;
+    } */
 
     .slideshow-item-left {
-        width: 320px;
+        width: 350px;
         flex-shrink: 0;
     }
 
@@ -542,18 +289,10 @@
         padding: 12px;
     } */
 
-    .glide::before {
-        width: 60px;
-        background: linear-gradient(to right, #19191A 0%, #19191A99 40%, transparent 100%);
-    }
-    .glide::after {
-        width: 60px;
-        background: linear-gradient(to left, #19191A 0%, #19191A99 40%, transparent 100%);
-    }
     
 }
 
-@media (max-width: 675px) {
+@media (max-width: 800px) {
     .slideshow-container {
         align-items: center;
         gap: 0;
@@ -566,7 +305,7 @@
         align-items: center;
         gap: 10px;
         margin-bottom: 0;
-        padding-bottom: 15px;
+        /* padding-bottom: 15px; */
     }
 
     .slideshow-item:last-child {
@@ -595,22 +334,8 @@
         padding: 0;
     }
 
-    /* .slideshow-item-claim {
-        margin-left: 0;
-    } */
-
-    .glide {
-        padding: 0;
-        margin-left: 0;
-    }
-    
     .slideshow-item-claims {
         margin-left: 0;
-    }
-
-    .glide::before,
-    .glide::after {
-        display: none;
     }
 }
 
@@ -641,7 +366,7 @@
     font-weight: 450;
 }
 
-@media(max-width:768px){
+/* @media(max-width:768px){
   .section-title{
     font-size: 1.5rem;
   }
@@ -649,7 +374,7 @@
     font-size: 1rem;
     padding: 0 20px;
   }
-}
+} */
 
 @media(max-width:480px){    
   .section-title{
