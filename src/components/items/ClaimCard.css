@@ -55,7 +55,7 @@
   font-weight: 500;
   padding: 3px 6px;
   border-radius: 4px;
-  background-color: var(--accent-color);
+  background-color: rgba(66, 153, 225, 0.2);
   color: #ffffff;
 }
 

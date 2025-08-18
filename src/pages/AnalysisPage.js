@@ -153,7 +153,7 @@ function AnalysisPage() {
                             className="loading-hexagon" 
                             isVisible={isAnalyzing}
                         />
-                        <p>Analyzing video...</p>
+                        <p>Analyzing Video....</p>
                         <div className="progress-bar-container">
                             <div className="progress-bar" style={{ width: `${percentage}%` }}></div>
                         </div>
