@@ -78,6 +78,11 @@
   max-width: none !important;
   height: auto;
   display: block;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7));
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.06) 0%, transparent 50%);
+  padding: 0 15px 15px 15px;
+  border-radius: 15px;
 }
 
 /* Responsive styles for SVG logo */
@@ -157,7 +162,7 @@
 .main-input:focus {
   outline: none;
   border-color: var(--accent-color);
-  box-shadow: 0 6px 20px rgba(23, 162, 184, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   transform: translateY(-2px);
   opacity: 1;
 }
