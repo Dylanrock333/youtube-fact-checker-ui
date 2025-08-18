@@ -6,12 +6,18 @@
 
 .home {
   margin: 0 auto;
-  width: 97%;
+  width: 100%;
   max-width: 1400px;
   overflow-x: hidden;
   overscroll-behavior-y: contain;
   box-sizing: border-box;
   position: relative;
+}
+
+@media (max-width: 1500px) {
+  .home {
+    width: 97%;
+  }
 }
 
 @media (max-width: 768px) {
