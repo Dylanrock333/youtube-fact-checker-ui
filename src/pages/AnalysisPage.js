@@ -51,7 +51,7 @@ function AnalysisPage() {
                 setAnalysisData({ error: `Invalid video ID parameter: ${videoIdParam}` });
             }
         }
-    }, [searchParams, videoUrl, setVideoUrl, setAnalysisData, analysisData]);
+    }, [searchParams, videoUrl, setVideoUrl, setAnalysisData, analysisData, setIsAnalyzing]);
 
     useEffect(() => {
         // Request the wake lock when analysis is about to start
@@ -140,7 +140,7 @@ function AnalysisPage() {
         return () => {
             releaseWakeLock();
         };
-    }, [videoUrl, isInitialized, setAnalysisData, setIsAnalyzing]);
+    }, [videoUrl, isInitialized, setAnalysisData, setIsAnalyzing, analysisData, isAnalyzing]);
 
 
     return (

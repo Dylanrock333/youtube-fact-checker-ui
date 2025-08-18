@@ -3,7 +3,7 @@ import slideshowData from '../../config/res_slideshow.json';
 import './slideshow.css';
 import Glide from '@glidejs/glide';
 import '@glidejs/glide/dist/css/glide.core.min.css';
-import { RiArrowLeftWideFill, RiArrowRightWideLine  } from "react-icons/ri";
+// import { RiArrowLeftWideFill, RiArrowRightWideLine  } from "react-icons/ri";
 import { useAnalysis } from '../../context/AnalysisContext';
 import { useNavigate } from 'react-router-dom';
 import ClaimCard from './ClaimCard';

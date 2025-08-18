@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import '../styles/DeepSearchPage.css';
 import { performDeepSearch } from '../api/api';
 import { useAnalysis } from '../context/AnalysisContext';
 import YouTubeVideo from '../components/items/YouTubeVideo';
 import HexagonLoader from '../components/items/hexagon-loading';
-import { marked } from 'marked';
+// import { marked } from 'marked';
 import ReactMarkdown from 'react-markdown';
 
 const DeepSearchPage = () => {
@@ -67,16 +67,12 @@ const DeepSearchPage = () => {
         } else {
             navigate('/');
         }
-    }, [query, context, navigate, claimText, claimId, videodata]);
+    }, [query, context, navigate, claimText, claimId, videodata, setDeepSearchResult]);
 
     const toggleCitations = () => {
         setShowCitations(!showCitations);
     };
 
-    
-    const renderMarkdown = (content) => {
-        return { __html: marked(content, { sanitize: true }) };
-    };
 
     return (
         <div className="deep-search-page dark">
