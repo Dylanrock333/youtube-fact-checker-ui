@@ -1,10 +1,16 @@
 import React from 'react';
 import '../../styles/Header.css';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <header className="main-header">
-      {/* Theme toggle removed - always dark mode */}
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+        </ul>
+      </nav>
+  
     </header>
   );
 }

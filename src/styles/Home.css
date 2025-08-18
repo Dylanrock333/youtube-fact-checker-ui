@@ -338,11 +338,6 @@
   transition: all 0.2s ease;
 }
 
-.url-format-helper span:hover {
-  background-color: rgba(23, 162, 184, 0.2);
-  border-color: rgba(23, 162, 184, 0.3);
-}
-
 @media (max-width: 768px) {
   .url-format-helper {
     gap: 0.4rem;

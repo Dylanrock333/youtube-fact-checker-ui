@@ -144,7 +144,7 @@ input:focus, textarea:focus {
 }
 
 a {
-  color: var(--accent-color);
+  color: white;
   text-decoration: none;
   transition: var(--theme-transition);
 }

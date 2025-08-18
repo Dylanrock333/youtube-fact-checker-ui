@@ -61,11 +61,11 @@
 
 .dark-mode .main-header {
   background-color: #282c34;
-  color: var(--text-color);
+  color: white;
 }
 
 .dark-mode .main-header nav a {
-  color: var(--text-color);
+  color: white;
 }
 
 .dark-mode .main-header nav a:hover {
