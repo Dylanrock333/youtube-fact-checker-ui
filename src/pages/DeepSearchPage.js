@@ -19,7 +19,6 @@ const DeepSearchPage = () => {
     const [searchResult, setSearchResult] = useState(null);
     const [error, setError] = useState(null);
     const [showCitations, setShowCitations] = useState(false);
-    
 
     useEffect(() => {
         console.log('useEffect triggered');
@@ -108,60 +107,59 @@ const DeepSearchPage = () => {
                         <p className="context-text">{context}</p>
                     </div>
                 )}
-            </div>
-            
-            <div className="results-box">
-                
-                {isLoading ? (
-                    <div className="loading-container">
-                        <HexagonLoader 
-                            className="loading-hexagon" 
-                            isVisible={isLoading}
-                        />
-                        <p>Performing deep search...</p>
-                    </div>
-                ) : error ? (
-                    <div className="error-message">
-                        {error}
-                    </div>
-                ) : (
-                    <div className="result-content">
-                        <div className="sonar-result">
-                        <div className="sonar-content">
-                            <ReactMarkdown>{searchResult.choices[0].message.content}</ReactMarkdown>
+                <hr className="divider" /> 
+                <div className="results-box">
+                    {isLoading ? (
+                        <div className="loading-container">
+                            <HexagonLoader 
+                                className="loading-hexagon" 
+                                isVisible={isLoading}
+                            />
+                            <p>Performing deep search...</p>
                         </div>
-                            
-                            {searchResult.citations && searchResult.citations.length > 0 && (
-                                <div className="citations-section">
-                                    <button 
-                                        className="citations-toggle" 
-                                        onClick={toggleCitations}
-                                    >
-                                        {showCitations ? (
-                                            <> Hide Citations <FaChevronUp /></>
-                                        ) : (
-                                            <> Show Citations <FaChevronDown /></>
+                    ) : error ? (
+                        <div className="error-message">
+                            {error}
+                        </div>
+                    ) : (
+                        <div className="result-content">
+                            <div className="sonar-result">
+                            <div className="sonar-content">
+                                <ReactMarkdown>{searchResult.choices[0].message.content}</ReactMarkdown>
+                            </div>
+                                
+                                {searchResult.citations && searchResult.citations.length > 0 && (
+                                    <div className="citations-section">
+                                        <button 
+                                            className="citations-toggle" 
+                                            onClick={toggleCitations}
+                                        >
+                                            {showCitations ? (
+                                                <> Hide Citations <FaChevronUp /></>
+                                            ) : (
+                                                <> Show Citations <FaChevronDown /></>
+                                            )}
+                                        </button>
+                                        
+                                        {showCitations && (
+                                            <div className="citations-list">
+                                                <ol>
+                                                    {searchResult.citations.map((citation, index) => (
+                                                        <li key={index}>
+                                                            <a href={citation} target="_blank" rel="noopener noreferrer">
+                                                                {citation}
+                                                            </a>
+                                                        </li>
+                                                    ))}
+                                                </ol>
+                                            </div>
                                         )}
-                                    </button>
-                                    
-                                    {showCitations && (
-                                        <div className="citations-list">
-                                            <ol>
-                                                {searchResult.citations.map((citation, index) => (
-                                                    <li key={index}>
-                                                        <a href={citation} target="_blank" rel="noopener noreferrer">
-                                                            {citation}
-                                                        </a>
-                                                    </li>
-                                                ))}
-                                            </ol>
-                                        </div>
-                                    )}
-                                </div>
-                            )}
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
         </div>
     );

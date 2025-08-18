@@ -111,7 +111,7 @@ const SlideshowItemComponent = ({ item }) => {
 
 
     const handleStartDeepSearch = (claimId) => {
-        const claim = item.claims.find(c => c.id === claimId);
+        const claim = item.claims[claimId];
         if (!claim) return;
         
         Analytics.trackSlideshowInteraction('deep_search', item.videoUrl, claim.claimTitle);
