@@ -106,15 +106,20 @@ function Home() {
     <div className="home">
       <div className="home-header-container">
         <div className="home-header">
-          <h1 className="home-header-title1">Video Claim</h1>
+          {/* <h1 className="home-header-title1">Video Claim</h1>
           <h1 className="home-header-title2">Catcher</h1>
-          <p>Transform Watching into Knowing</p>
+          <p>Transform Watching into Knowing</p> */}
+          <img 
+            src="/video claim logo.svg" 
+            alt="Video Claim Catcher - Transform Watching into Knowing"
+            className="home-header-logo"
+          />
         </div>        
       </div>
 
       <div className="input-container">
         <div className="input-container-text">
-          Instantly break down any YouTube video into topics and insights you can explore
+          Instantly break down any YouTube video into detailed topics, fact-checkable claims, and actionable insights you can explore and verify
         </div>
         <input
           type="text"
