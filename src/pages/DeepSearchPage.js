@@ -115,7 +115,7 @@ const DeepSearchPage = () => {
                                 className="loading-hexagon" 
                                 isVisible={isLoading}
                             />
-                            <p>Performing deep search...</p>
+                            <p>Performing Deep Search....</p>
                         </div>
                     ) : error ? (
                         <div className="error-message">

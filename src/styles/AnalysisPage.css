@@ -64,8 +64,8 @@
   }
   
   .loading-hexagon {
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
   }
   .analysis-loading {
     display: flex;
@@ -78,12 +78,12 @@
   }
   
   .analysis-loading p {
-    color: #666; /* Default/Light theme */
-    font-size: 1.2em;
+    color: #ffffff !important; /* Force white for all themes */
+    font-size: 1.4rem !important;
   }
   
   .dark .analysis-loading p { /* Theme-specific loading text */
-    color: #999;
+    color: #ffffff !important;
   }
 
   /* ===== Error Message ===== */
