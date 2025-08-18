@@ -121,14 +121,23 @@ function Home() {
         <div className="input-container-text">
           Instantly break down any YouTube video into detailed topics, fact-checkable claims, and actionable insights you can explore and verify
         </div>
-        <input
-          type="text"
-          value={inputUrl}
-          onChange={handleInputChange}
-          placeholder="Enter YouTube video link here ..."
-          className="main-input dark"
-          disabled={isAnalyzing}
-        />
+        <div className="input-button-wrapper">
+          <input
+            type="text"
+            value={inputUrl}
+            onChange={handleInputChange}
+            placeholder="Enter YouTube video link here ..."
+            className="main-input dark"
+            disabled={isAnalyzing}
+          />
+          <button 
+            onClick={handleAnalyzeClick}
+            className={`analyze-button-inline dark ${isAnalyzing || rateLimitMessage || urlError ? 'disabled' : ''}`}
+            disabled={isAnalyzing || !apiStatus.success || !!rateLimitMessage || !!urlError}
+          >
+            {isAnalyzing ? 'Analyzing...' : 'Start Analysis'}
+          </button>
+        </div>  
         <div className="url-format-helper">
           <span>youtube.com/watch?v=VIDEO_ID</span>
           <span>youtu.be/VIDEO_ID</span>
@@ -144,15 +153,6 @@ function Home() {
           {rateLimitMessage}
         </div>
       )}
-      <div className="button-container">
-        <button 
-          onClick={handleAnalyzeClick}
-          className={`analyze-button dark ${isAnalyzing || rateLimitMessage || urlError ? 'disabled' : ''}`}
-          disabled={isAnalyzing || !apiStatus.success || !!rateLimitMessage || !!urlError}
-        >
-          {isAnalyzing ? 'Analyzing...' : 'Start Video Analysis'}
-        </button>
-      </div>  
       <Slideshow />
     </div>
   );
