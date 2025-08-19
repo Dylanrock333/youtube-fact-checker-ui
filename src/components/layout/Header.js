@@ -7,7 +7,11 @@ function Header() {
     <header className="main-header">
       <nav>
         <ul>
-          <li><Link to="/">Home</Link></li>
+          <li>
+            <Link to="/">
+              <img src="/hexagon-static.svg" alt="Home" className="nav-logo" />
+            </Link>
+          </li>
         </ul>
       </nav>
   
