@@ -67,7 +67,7 @@ const ClaimCard = ({
                 className="start-search-button"
                 onClick={() => onStartDeepSearch(claim.id)} 
               >
-                Start Deep Search
+                Deep Search
               </button>
             </div>
         </div>

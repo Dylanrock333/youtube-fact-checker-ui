@@ -224,7 +224,7 @@
   float: left;
   clear: both;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(147, 147, 147, 0.8);
 }
 
 .video-analysis.dark .claim-count {
@@ -684,8 +684,8 @@
 }
 
 .loading-hexagon {
-  width: 140px;
-  height: 140px;
+  width: 125px;
+  height: 125px;
 }
 
 

@@ -140,6 +140,7 @@ const SlideshowItemComponent = ({ item }) => {
 
     return (
         <div className="slideshow-item">
+            {/* VIDEO */}
             <div className="slideshow-item-left">
                 <div className="slideshow-item-left-image-container">
                     <img className="slideshow-item-left-image" src={item.thumbnail} alt={item.videoTitle} />
@@ -150,7 +151,7 @@ const SlideshowItemComponent = ({ item }) => {
                         </div>
                     </div>
                 </div>
-                <button className="slideshow-item-claim__button" onClick={() => handleAnalysisClick(item.videoUrl)}>Start Video Analysis</button>
+                <button className="slideshow-item-claim__button" onClick={() => handleAnalysisClick(item.videoUrl)}>Start Analysis</button>
             </div>
             <div className="slideshow-item-claims-container">
                 {item.claims.length > 3 ? (
@@ -159,6 +160,9 @@ const SlideshowItemComponent = ({ item }) => {
                             <ul className="glide__slides">
                                 {item.claims.map((claim, claimIndex) => (
                                     <li key={claimIndex} className="glide__slide">
+                                        {/* <div>
+                                            CLAIM
+                                        </div> */}
                                         <ClaimCard 
                                             claim={{
                                                 id: claimIndex,

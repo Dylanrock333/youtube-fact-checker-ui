@@ -98,9 +98,9 @@
 .progress-bar-container {
   width: 100%;
   max-width: 400px;
-  height: 8px;
+  height: 12px;
   background-color: #ffffff;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
   margin: 10px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
@@ -120,7 +120,7 @@
 .progress-bar {
   height: 100%;
   background: var(--accent-color);
-  border-radius: 4px;
+  border-radius: 6px;
   transition: width 0.3s ease;
   min-width: 2px; /* Ensure it's visible even at low percentages */
 }

@@ -9,7 +9,7 @@
   min-height: 350px;
   transition: transform 0.3s ease;
   background: rgba(32, 34, 37, 0.75);
-  border: 3px solid rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(129, 129, 129, 0.4);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   transform: translateZ(0);
