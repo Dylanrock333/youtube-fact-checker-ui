@@ -119,7 +119,7 @@ function Home() {
 
       <div className="input-container">
         <div className="input-container-text">
-          Instantly break down any YouTube video into detailed topics, fact-checkable claims, and actionable insights you can explore and verify
+          Explore topics, verify claims, and gain insights from any YouTube video instantly
         </div>
         <div className="input-button-wrapper">
           <input
@@ -139,8 +139,8 @@ function Home() {
           </button>
         </div>  
         <div className="url-format-helper">
-          <span>youtube.com/watch?v=VIDEO_ID</span>
-          <span>youtu.be/VIDEO_ID</span>
+          <span>youtube.com/watch?v=ID</span>
+          <span>youtu.be/ID</span>
         </div>
         {urlError && (
           <div className="url-error-message">
