@@ -208,9 +208,9 @@
 }
 
 @media (max-width: 768px) {
-  .claim-box, .results-box, .context-box {
+  /* .claim-box, .results-box, .context-box {
     padding: 10px;
-  }
+  } */
   
   h2 {
     font-size: 1.5rem;
@@ -220,9 +220,9 @@
     width: 100%;
   }
   
-  .results-box {
+  /* .results-box {
     padding: 16px;
-  }
+  } */
   
   .result-header {
     font-size: 1rem;
@@ -341,7 +341,7 @@
   margin: 0;
   line-height: 1.6;
   font-size: 1rem;
-  padding: 8px;
+  /* padding: 8px; */
   border-radius: 4px;
   background-color: inherit !important;
   white-space: normal;
@@ -447,10 +447,10 @@
   color: #000;
 }
 
-/* Paragraphs */
+/* Paragraphs
 .sonar-content p {
-  margin: 0.5em 0; /* reduce excessive spacing */
-}
+  margin: 0.5em 0; 
+} */
 
 /* Unordered Lists */
 .sonar-content ul {
@@ -513,12 +513,31 @@
 
 .loading-container p {
   color: #ffffff !important;
-  font-size: 1.4rem !important;
+  font-size: 1.12rem !important;
 }
 
 .loading-hexagon {
   width: 125px;
   height: 125px;
+}
+
+/* Responsive loading text sizes */
+@media (max-width: 768px) {
+  .loading-container p {
+    font-size: 1.04rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-container p {
+    font-size: 0.96rem !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .loading-container p {
+    font-size: 0.88rem !important;
+  }
 }
 
 /* ===== ERROR MESSAGE ===== */
@@ -634,6 +653,6 @@
   .sonar-content li { margin: 0.5em 0; }
   .sonar-content li > p { display: inline; margin: 0; }
   /* Reduce side padding of result box so text is closer to screen edge */
-  .results-box { padding: 20px; }
+  /* .results-box { padding: 20px; } */
 }
 
