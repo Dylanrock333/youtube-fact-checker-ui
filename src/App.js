@@ -15,10 +15,7 @@ function ScrollToTop() {
   const { pathname } = useLocation();
   
   useEffect(() => {
-    // Use smooth scrolling and only scroll to top for home page
-    if (pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    window.scrollTo(0, 0);
   }, [pathname]);
   
   return null;
