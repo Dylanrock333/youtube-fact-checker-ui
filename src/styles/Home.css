@@ -142,11 +142,12 @@
   margin-bottom: 5px;
   font-size: 1.45rem;
   line-height: 1.8;
-  font-weight: 600;
+  font-weight: 300; /* Match the @font-face weight */
+  font-style: italic; /* Match the @font-face style */
   text-align: center;
   max-width: 600px;
   box-sizing: border-box;
-  font-family: 'Exo 2', sans-serif;
+  font-family: 'Exo 2', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 .input-button-wrapper {
