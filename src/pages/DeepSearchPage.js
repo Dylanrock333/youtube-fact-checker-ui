@@ -8,6 +8,7 @@ import YouTubeVideo from '../components/items/YouTubeVideo';
 import HexagonLoader from '../components/items/hexagon-loading';
 // import { marked } from 'marked';
 import ReactMarkdown from 'react-markdown';
+import { processCitations } from '../utils/citationProcessor';
 
 const DeepSearchPage = () => {
     const location = useLocation();
@@ -121,7 +122,14 @@ const DeepSearchPage = () => {
                         <div className="result-content">
                             <div className="sonar-result">
                             <div className="sonar-content">
-                                <ReactMarkdown>{searchResult.choices[0].message.content}</ReactMarkdown>
+                                <div 
+                                    dangerouslySetInnerHTML={{ 
+                                        __html: processCitations(
+                                            searchResult.choices[0].message.content, 
+                                            searchResult.citations
+                                        ) 
+                                    }} 
+                                />
                             </div>
                                 
                                 {searchResult.citations && searchResult.citations.length > 0 && (
