@@ -27,8 +27,8 @@ export const processCitations = (content, citations = []) => {
     const citationIndex = parseInt(number) - 1; // Convert to 0-based index
     
     if (citations && citations[citationIndex]) {
-      // Create an HTML link that will be styled by our CSS
-      return `<a href="${citations[citationIndex]}" target="_blank" rel="noopener noreferrer" class="citation-link">${number}</a>`;
+      // Create an HTML link with tooltip functionality
+      return `<a href="${citations[citationIndex]}" target="_blank" rel="noopener noreferrer" class="citation-link citation-with-tooltip" data-tooltip="${citations[citationIndex]}">${number}</a>`;
     }
     
     // If no citation URL available, still style the citation number

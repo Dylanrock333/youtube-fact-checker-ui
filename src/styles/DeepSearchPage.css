@@ -673,6 +673,90 @@
   border-color: rgba(0, 0, 0, 0.5);
 }
 
+/* ===== CITATION TOOLTIP ===== */
+.citation-with-tooltip {
+  position: relative;
+}
+
+.citation-with-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 1);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", "Monaco", "Inconsolata", "Liberation Mono", "Menlo", monospace;
+  white-space: nowrap;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+  margin-bottom: 10px;
+}
+
+.citation-with-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(0, 0, 0, 0.9);
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+  margin-bottom: 4px;
+}
+
+.citation-with-tooltip:hover::after,
+.citation-with-tooltip:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Light theme tooltip */
+.deep-search-page.light .citation-with-tooltip::after {
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.deep-search-page.light .citation-with-tooltip::before {
+  border-top-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Mobile adjustments for citation tooltips */
+@media (max-width: 768px) {
+  .citation-with-tooltip::after {
+    max-width: 250px;
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .citation-with-tooltip::after {
+    max-width: 200px;
+    font-size: 0.75rem;
+    padding: 5px 8px;
+  }
+}
+
 /* --- Mobile optimizations for markdown content --- */
 @media (max-width: 480px) {
   /* Base text a bit smaller */
