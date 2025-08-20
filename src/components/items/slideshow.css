@@ -356,7 +356,7 @@
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     flex-wrap: wrap;
     padding: 0 30px;
     /* background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.08) 50%, rgba(0, 0, 0, 0.01) 70%, transparent 100%); */
