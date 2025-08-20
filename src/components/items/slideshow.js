@@ -144,14 +144,32 @@ const SlideshowItemComponent = ({ item }) => {
             <div className="slideshow-item-left">
                 <div className="slideshow-item-left-image-container">
                     <img className="slideshow-item-left-image" src={item.thumbnail} alt={item.videoTitle} />
-                    <div className="video-info-container dark">
-                        <h2>{item.videoTitle}</h2>
-                        <div className="video-info-container-bottom">
-                            <span>{item.channel}</span>
+                    <div className="video-info-container">
+                        <div className="video-info-title">
+                            <h2>{item.videoTitle}</h2>
                         </div>
+                        <div className="video-metadata-slideshow">
+                                <div className="metadata-item">
+                                    <span className="metadata-label">Channel</span>
+                                    <span className="metadata-value">{item.channel}</span>
+                                </div>
+                                <div className="metadata-item">
+                                    <span className="metadata-label">Views</span>
+                                    <span className="metadata-value">{item.view_count}</span>
+                                </div>
+                                <div className="metadata-item">
+                                    <span className="metadata-label">Published</span>
+                                    <span className="metadata-value">{item.published_at}</span>
+                                </div>
+                                <div className="metadata-item">
+                                    <span className="metadata-label">Duration</span>
+                                    <span className="metadata-value">{item.duration}</span>
+                                </div>
+                            </div>                        
                     </div>
+
                 </div>
-                <button className="slideshow-item-claim__button" onClick={() => handleAnalysisClick(item.videoUrl)}>Analyze</button>
+                <button className="slideshow-item-claim__button" onClick={() => handleAnalysisClick(item.videoUrl)}>⚡Analyze</button>
             </div>
             <div className="slideshow-item-claims-container">
                 {item.claims.length > 3 ? (
@@ -236,6 +254,9 @@ const Slideshow = () => {
             const items = apiData[selectedCategory].map(item => ({
                 videoTitle: item.title,
                 channel: item.channel_title,
+                published_at: item.published_at,
+                view_count: item.view_count,
+                duration: item.duration,
                 thumbnail: `https://i.ytimg.com/vi/${item.video_id}/hqdefault.jpg`,
                 videoUrl: `https://www.youtube.com/watch?v=${item.video_id}`,
                 claims: item.claims.map(claim => ({
