@@ -51,14 +51,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 25px;
+  /* margin-top: 25px; */
   width: 100%;
 }
 
 @media (max-width: 768px) {
-  .home-header-container{
+  /* .home-header-container{
     margin-top: 10px;
-  }
+  } */
 }
 
 .home-header{
