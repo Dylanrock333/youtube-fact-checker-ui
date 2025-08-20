@@ -513,7 +513,7 @@
 
 .loading-container p {
   color: #ffffff !important;
-  font-size: 1.12rem !important;
+  font-size: 1.4rem !important;
 }
 
 .loading-hexagon {
@@ -524,19 +524,19 @@
 /* Responsive loading text sizes */
 @media (max-width: 768px) {
   .loading-container p {
-    font-size: 1.04rem !important;
+    font-size: 1.3rem !important;
   }
 }
 
 @media (max-width: 480px) {
   .loading-container p {
-    font-size: 0.96rem !important;
+    font-size: 1.2rem !important;
   }
 }
 
 @media (max-width: 375px) {
   .loading-container p {
-    font-size: 0.88rem !important;
+    font-size: 1.1rem !important;
   }
 }
 

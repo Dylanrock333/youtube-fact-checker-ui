@@ -4,7 +4,6 @@
   align-items: center;
   min-height: 80vh;
   width: 97%;
-  overscroll-behavior-y: contain;
   /* background-color: var(--main-bg); */
   border-radius: 12px;
   margin: 0 auto;
