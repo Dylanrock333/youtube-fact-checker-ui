@@ -573,7 +573,7 @@
   padding: 8px 15px;
   border: none;
   border-radius: 6px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   background-color: var(--accent-color);
@@ -592,7 +592,7 @@
 
 .deep-search-page.dark .citations-toggle {
   background-color: var(--accent-color);
-  color: #030303;
+  color: #ffffff;
 }
 
 .deep-search-page.dark .citations-toggle:hover {
@@ -602,13 +602,15 @@
 .citations-list {
   border-radius: 8px;
   margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .citations-list h4 {
   margin-top: 0;
   margin-bottom: 10px;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .citations-list ol {

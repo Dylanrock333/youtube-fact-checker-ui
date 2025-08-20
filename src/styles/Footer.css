@@ -5,13 +5,13 @@
 }
 
 .main-footer a {
-  color: #0066cc;
+  color: var(--accent-color);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .main-footer a:hover {
-  color: #004499;
+  color: var(--accent-color);
   text-decoration: underline;
 }
 

@@ -135,7 +135,7 @@ function Home() {
             className={`analyze-button-inline ${isAnalyzing || rateLimitMessage || urlError ? 'disabled' : ''}`}
             disabled={isAnalyzing || !apiStatus.success || !!rateLimitMessage || !!urlError}
           >
-            {isAnalyzing ? 'Analyzing...' : 'Analyze'}
+            {isAnalyzing ? '⚡Analyzing...' : '⚡Analyze'}
           </button>
         </div>  
         <div className="url-format-helper">
