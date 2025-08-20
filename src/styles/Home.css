@@ -2,8 +2,9 @@
 @font-face {
   font-family: 'Exo 2';
   src: url('../assets/Exo2-LightItalic.otf') format('opentype');
-  font-weight: 500;
+  font-weight: 300; /* Changed from 500 to 300 for light weight */
   font-style: italic;
+  font-display: swap; /* Prevents FOIT, shows fallback immediately */
 }
 
 /* ===== Page Layout ===== */
