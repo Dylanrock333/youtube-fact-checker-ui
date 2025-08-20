@@ -267,6 +267,9 @@
     font-size: 1.3rem;
     margin-bottom: 15px;
     max-width: 400px;
+    font-family: 'Exo 2', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-weight: 300;
+    font-style: italic;
   }
   .main-input {
     max-height: 55px;
@@ -297,6 +300,9 @@
   .input-container-text {
     font-size: 1.2rem;
     max-width: 375px;
+    font-family: 'Exo 2', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-weight: 300;
+    font-style: italic;
   }
   .main-input {
     max-height: 52px;
@@ -315,6 +321,9 @@
   .input-container-text {
     font-size: 1.1rem;
     max-width: 350px;
+    font-family: 'Exo 2', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-weight: 300;
+    font-style: italic;
   }
   .main-input.dark {
     height: 48px;
@@ -346,6 +355,9 @@
   .input-container-text {
     font-size: 1.1rem;
     max-width: 350px;
+    font-family: 'Exo 2', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-weight: 300;
+    font-style: italic;
   }
   .main-input {
     max-height: 47px;
@@ -369,6 +381,9 @@
     font-size: 1rem;
     max-width: 350px;
     padding: 0 10px;
+    font-family: 'Exo 2', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-weight: 300;
+    font-style: italic;
   }
   .main-input {
     max-height: 45px;
