@@ -127,15 +127,15 @@ function Home() {
             value={inputUrl}
             onChange={handleInputChange}
             placeholder="Enter YouTube video link here ..."
-            className="main-input dark"
+            className="main-input"
             disabled={isAnalyzing}
           />
           <button 
             onClick={handleAnalyzeClick}
-            className={`analyze-button-inline dark ${isAnalyzing || rateLimitMessage || urlError ? 'disabled' : ''}`}
+            className={`analyze-button-inline ${isAnalyzing || rateLimitMessage || urlError ? 'disabled' : ''}`}
             disabled={isAnalyzing || !apiStatus.success || !!rateLimitMessage || !!urlError}
           >
-            {isAnalyzing ? 'Analyzing...' : 'Start Analysis'}
+            {isAnalyzing ? 'Analyzing...' : 'Analyze'}
           </button>
         </div>  
         <div className="url-format-helper">

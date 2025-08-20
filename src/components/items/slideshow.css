@@ -270,6 +270,7 @@
     margin: 0 auto;
     line-height: 1.6;
     font-weight: 450;
+    font-family: 'Exo 2', sans-serif;
 }
 
 /* ===== CATEGORY BUTTONS ===== */
@@ -280,7 +281,7 @@
     margin-bottom: 25px;
     flex-wrap: wrap;
     padding: 0 30px;
-    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.08) 50%, rgba(0, 0, 0, 0.01) 70%, transparent 100%);
+    /* background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.08) 50%, rgba(0, 0, 0, 0.01) 70%, transparent 100%); */
 }
 
 .category-button {
