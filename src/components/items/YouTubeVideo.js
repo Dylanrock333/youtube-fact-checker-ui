@@ -1,7 +1,7 @@
 import React from 'react';
 import YouTube from 'react-youtube';
 import './YouTubeVideo.css';
-const YouTubeVideo = ({ url, timestamp }) => {
+const YouTubeVideo = ({ url, timestamp, shouldAutoplay = false }) => {
   // Extract video ID from YouTube URL
   const getVideoId = (url) => {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -33,10 +33,16 @@ const YouTubeVideo = ({ url, timestamp }) => {
   const videoId = getVideoId(url);
   const startSeconds = convertTimestampToSeconds(timestamp);
   
+  // Detect mobile device
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+  // Determine autoplay based on user action and device
+  const autoplayValue = shouldAutoplay ? (isMobile ? 0 : 1) : 0;
+  
   // Options for the YouTube player
   const opts = {
     playerVars: {
-      autoplay: 0, // Never autoplay to respect mobile restrictions
+      autoplay: autoplayValue, // Only autoplay when user clicks timestamp (and on desktop)
       start: startSeconds, // This will make the video start at the specified timestamp
       rel: 0, // Don't show related videos
       modestbranding: 1, // Use modest branding

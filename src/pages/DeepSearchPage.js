@@ -20,6 +20,8 @@ const DeepSearchPage = () => {
     const [searchResult, setSearchResult] = useState(null);
     const [error, setError] = useState(null);
     const [showCitations, setShowCitations] = useState(false);
+    const [activeTimestamp, setActiveTimestamp] = useState(timestamp);
+    const [shouldAutoplay, setShouldAutoplay] = useState(false);
 
     useEffect(() => {
         console.log('useEffect triggered');
@@ -80,32 +82,13 @@ const DeepSearchPage = () => {
             const videoContainer = document.querySelector('.video-container');
             if (videoContainer) {
                 videoContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-                // Find the YouTube iframe
-                const iframe = videoContainer.querySelector('iframe');
-                if (iframe) {
-                    // Convert timestamp to seconds
-                    const timeInSeconds = convertTimestampToSeconds(timestamp);
-                    
-                    // Extract video ID from URL
-                    const videoId = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/)?.[1];
-                    
-                    if (videoId) {
-                        // Check if device is mobile to determine autoplay behavior
-                        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-                        
-                        // Desktop: use autoplay, Mobile: don't use autoplay
-                        const autoplayParam = isMobile ? '' : '&autoplay=1';
-                        const newSrc = `https://www.youtube.com/embed/${videoId}?start=${timeInSeconds}&rel=0&modestbranding=1${autoplayParam}`;
-                        iframe.src = newSrc;
-                        
-                        // Focus iframe for better UX
-                        setTimeout(() => {
-                            iframe.focus();
-                        }, 500);
-                    }
-                }
             }
+            
+            // Enable autoplay and update timestamp state
+            setShouldAutoplay(true);
+            // Update timestamp state - this will trigger YouTubeVideo component to remount
+            // Add a small random value to force re-render even if timestamp is the same
+            setActiveTimestamp(timestamp + Math.random().toString(36).substr(2, 5));
         }
     };
 
@@ -148,7 +131,7 @@ const DeepSearchPage = () => {
                 </div>
                 {videoUrl && (
                     <div className="video-container">
-                        <YouTubeVideo url={videoUrl} timestamp={timestamp} />
+                        <YouTubeVideo key={activeTimestamp} url={videoUrl} timestamp={timestamp} shouldAutoplay={shouldAutoplay} />
                     </div>
                 )}
                 
