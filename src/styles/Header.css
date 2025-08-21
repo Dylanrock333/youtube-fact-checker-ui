@@ -53,7 +53,7 @@
   transform: scale(1.1);
 }
 
-.main-header nav a::before {
+/* .main-header nav a::before {
   content: '';
   position: absolute;
   top: 0;
@@ -76,29 +76,8 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   color: white !important;
-}
+} */
 
-.light-mode .main-header {
-  background-color: #e0e0e0;
-  color: var(--light-text-color);
-}
-
-.light-mode .main-header nav a {
-  color: var(--light-text-color);
-}
-
-.dark-mode .main-header {
-  background-color: #282c34;
-  color: white;
-}
-
-.dark-mode .main-header nav a {
-  color: white;
-}
-
-.dark-mode .main-header nav a:hover {
-  color: white;
-}
 
 @media (max-width: 480px) {
   .main-header {
@@ -158,61 +137,8 @@
     width: 50px;
   }
   
-  .theme-toggle {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
-  }
-  
-  .theme-icon {
-    width: 16px;
-    height: 16px;
-  }
 }
 
-/*====== Theme Toggle ======*/
-.theme-toggle {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--light-component-bg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-
-.theme-icon {
-  width: 18px;
-  height: 18px;
-}
-
-/* Add these specific rules for the sun icon */
-.theme-toggle .theme-icon svg {
-  fill: currentColor;
-  stroke: currentColor;
-}
-
-.light-mode .theme-toggle .theme-icon svg,
-.dark-mode .theme-toggle .theme-icon svg {
-  fill: black;
-  stroke: black;
-}
-
-/* For mobile specifically */
-@media (max-width: 480px) {
-  .theme-toggle .theme-icon svg {
-    fill: black !important;
-    stroke: black !important;
-  }
-}
 
 .main-header nav li {
   display: flex;

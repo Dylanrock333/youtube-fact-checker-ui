@@ -64,9 +64,17 @@
   }
   
   .loading-hexagon {
-    width: 140px;
-    height: 140px;
+    width: 115px;
+    height: 115px;
   }
+
+  @media (max-width: 480px) {
+    .loading-hexagon {
+      width: 90px;
+      height: 90px;
+    }
+  }
+
   .analysis-loading {
     display: flex;
     flex-direction: column;
