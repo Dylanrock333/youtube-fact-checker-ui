@@ -14,7 +14,10 @@ const ClaimCard = ({
   return (
     <div key={claim.id} className={`claim-card`}>
       <div className="claim-header">
-        <span className="timestamp">Timestamp: {claim.timestamp}</span>
+        <span className="timestamp">
+          <span className="timestamp-emoji">⏱️</span>
+          {claim.timestamp}
+        </span>
         <span className="category">{claim.category}</span>
       </div>
 
@@ -54,7 +57,7 @@ const ClaimCard = ({
       </div>
       
       <div className="claim-context">          
-        <div className="claim-tabs">
+        <div className="context-container">
           Context
         </div>
         

@@ -38,7 +38,7 @@
     border: none;
     height: 3.5px;
     background-color: #FFFFFF;
-    margin: 15px auto;
+    margin: 10px auto;
     width: 95%;
 }
 
@@ -237,23 +237,28 @@
 
 .slideshow-item-claim__button {
     margin-top: 15px;
-    padding: 10px 18px;
-    border-radius: 6px;
+    padding: 12px 20px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 1.1rem;
+    font-weight: 700;
     align-self: center;
     background-color: var(--accent-color);
     color: white;
-    border: none;
-    transition: background-color 0.2s ease;
+    border: 2px solid white;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 8px;
+    box-shadow: 0 4px 15px rgba(66, 153, 225, 0.4);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .slideshow-item-claim__button:hover {
-    background-color: #12616b;
+    background-color: #18778a;
+    border-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.45);
+    transform: translateY(-2px) scale(1.02);
 }
 
 .dark .slideshow-item-claim__button {
@@ -347,8 +352,9 @@
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
-    font-weight: 450;
-    font-family: 'Exo 2', sans-serif;
+    font-weight: 300; /* Match the @font-face weight */
+    font-style: italic; /* Match the @font-face style */
+    font-family: 'Exo 2', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 /* ===== CATEGORY BUTTONS ===== */
@@ -365,7 +371,7 @@
 .category-button {
     padding: 0.5rem 1.2rem;
     border-radius: var(--border-radius);
-    border: 2px solid rgba(151, 151, 151, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.6);
     background-color: var(--component-bg);
     color: var(--text-color);
     font-family: inherit;
@@ -508,6 +514,8 @@
 
     .slideshow-item-claim__button{
         margin-top: 20px;
+        font-size: 1rem;
+        padding: 10px 18px;
     }
 
 
@@ -542,5 +550,19 @@
   }
   .section-subtext{
     font-size: 0.9rem;
+    font-family: 'Exo 2', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  .slideshow-item-claim__button{
+    font-size: 0.95rem;
+    padding: 9px 16px;
+  }
+}
+
+@media(max-width:420px){
+  .slideshow-item-claim__button{
+    font-size: 0.9rem;
+    padding: 8px 14px;
   }
 }

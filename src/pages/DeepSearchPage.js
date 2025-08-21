@@ -74,13 +74,58 @@ const DeepSearchPage = () => {
         setShowCitations(!showCitations);
     };
 
+    const handleTimestampClick = () => {
+        if (videoUrl && timestamp) {
+            // Scroll to video container
+            const videoContainer = document.querySelector('.video-container');
+            if (videoContainer) {
+                videoContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Find the YouTube iframe and play at timestamp
+                const iframe = videoContainer.querySelector('iframe');
+                if (iframe) {
+                    // Convert timestamp to seconds
+                    const timeInSeconds = convertTimestampToSeconds(timestamp);
+                    
+                    // Extract video ID from URL
+                    const videoId = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/)?.[1];
+                    
+                    if (videoId) {
+                        // Update iframe src to play at specific timestamp
+                        const newSrc = `https://www.youtube.com/embed/${videoId}?start=${timeInSeconds}&autoplay=1`;
+                        iframe.src = newSrc;
+                    }
+                }
+            }
+        }
+    };
+
+    const convertTimestampToSeconds = (timestamp) => {
+        // Handle formats like "1:23", "12:34", "1:23:45"
+        const parts = timestamp.split(':').map(Number);
+        if (parts.length === 2) {
+            return parts[0] * 60 + parts[1]; // MM:SS
+        } else if (parts.length === 3) {
+            return parts[0] * 3600 + parts[1] * 60 + parts[2]; // HH:MM:SS
+        }
+        return 0;
+    };
+
 
     return (
         <div className="deep-search-page dark">
 
             <div className="claim-box">
                 <div className="ds-claim-header">
-                    {timestamp && <span className="timestamp">Timestamp: {timestamp}</span>}
+                    {timestamp && (
+                        <button 
+                            className="timestamp-button" 
+                            onClick={handleTimestampClick}
+                            title="Click to open YouTube video at this timestamp"
+                        >
+                            ⏱️{timestamp}
+                        </button>
+                    )}
                 </div>
 
                 <div className="claim-title">

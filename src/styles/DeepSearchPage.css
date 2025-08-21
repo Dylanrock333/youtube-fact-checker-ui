@@ -61,6 +61,15 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 480px) {
+  .claim-box{
+    padding: 0 10px;
+  }
 }
 
 .results-box, .context-box {
@@ -90,7 +99,7 @@
 /* Box headers */
 .claim-box h3, .results-box h3, .context-box h3 {
   margin-top: 0;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
   /* font-size: 1.2rem;
   font-weight: 600; */
 }
@@ -104,11 +113,6 @@
 }
 
 /* ===== CLAIM BOX ===== */
-.claim-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .ds-claim-header {
   align-self: flex-start;
@@ -119,12 +123,35 @@
 .ds-claim-header .timestamp {
   font-size: 1.1rem;
   font-weight: 500;
-  padding: 8px 16px;
+  padding: 6px 12px;
   margin: 10px;
   border-radius: 6px;
   background-color: var(--accent-color);
   color: white;
   display: inline-block;
+}
+
+.timestamp-button {
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  margin: 10px;
+  border-radius: 8px;
+  background-color: var(--accent-color);
+  color: white;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(66, 153, 225, 0.4);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.timestamp-button:hover {
+  background-color: #18778a;
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.45);
+  transform: translateY(-2px) scale(1.02);
 }
 
 
@@ -238,6 +265,11 @@
     padding: 6px 12px !important;
   }
 
+  .timestamp-button {
+    font-size: 0.95rem !important;
+    padding: 6px 12px !important;
+  }
+
   /* Title font size for mobile */
   .deep-search-page .claim-title {
     font-size: 1.6rem !important;
@@ -274,6 +306,11 @@
     padding: 5px 10px !important;
   }
 
+  .timestamp-button {
+    font-size: 0.85rem !important;
+    padding: 5px 10px !important;
+  }
+
   /* Title font size for small mobile */
   .deep-search-page .claim-title {
     font-size: 1.4rem !important;
@@ -305,7 +342,7 @@
 /* ===== CONTEXT SECTION (NOW INSIDE CLAIM BOX) ===== */
 .context-section {
   margin-top: 16px;
-  padding-top: 16px;
+  /* padding-top: 16px; */
   border-top: 3px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -326,10 +363,12 @@
 
 .context-section h3 {
   margin-top: 0;
-  margin-bottom: 8px;
-  font-size: 1.8rem;
+  /* margin-bottom: 5px; */
+  font-size: 1.6rem;
   color: var(--accent-color);
-  font-weight: 700;
+  font-weight: 500;
+  font-style: italic;
+  /* -webkit-text-stroke: 0.2px white; */
 }
 
 
@@ -352,7 +391,7 @@
 .context-section p {
   line-height: 1.5;
   font-size: 1.5rem;
-  padding: 8px 0;
+  /* padding: 8px 0; */
   background-color: transparent !important;
   border-radius: 6px;
   font-weight: 500;
@@ -571,14 +610,17 @@
   align-items: center;
   gap: 8px;
   padding: 8px 15px;
-  border: none;
-  border-radius: 6px;
+  border: 2px solid white;
+  border-radius: 8px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
   background-color: var(--accent-color);
   color: white;
   margin-bottom: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(66, 153, 225, 0.4);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .deep-search-page.light .citations-toggle {
@@ -587,7 +629,10 @@
 }
 
 .deep-search-page.light .citations-toggle:hover {
-  background-color: #12616b;
+  background-color: #18778a;
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.45);
+  transform: translateY(-2px) scale(1.02);
 }
 
 .deep-search-page.dark .citations-toggle {
@@ -596,7 +641,10 @@
 }
 
 .deep-search-page.dark .citations-toggle:hover {
-  background-color: #12616b;
+  background-color: #18778a;
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.45);
+  transform: translateY(-2px) scale(1.02);
 }
 
 .citations-list {
