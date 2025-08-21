@@ -36,9 +36,11 @@ const YouTubeVideo = ({ url, timestamp }) => {
   // Options for the YouTube player
   const opts = {
     playerVars: {
-      autoplay: 0,
+      autoplay: 0, // Never autoplay to respect mobile restrictions
       start: startSeconds, // This will make the video start at the specified timestamp
-      origin: window.location.origin, // Add this line
+      rel: 0, // Don't show related videos
+      modestbranding: 1, // Use modest branding
+      origin: window.location.origin,
     },
   };
 

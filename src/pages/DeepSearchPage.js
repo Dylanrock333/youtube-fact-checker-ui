@@ -81,7 +81,7 @@ const DeepSearchPage = () => {
             if (videoContainer) {
                 videoContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 
-                // Find the YouTube iframe and play at timestamp
+                // Find the YouTube iframe
                 const iframe = videoContainer.querySelector('iframe');
                 if (iframe) {
                     // Convert timestamp to seconds
@@ -91,9 +91,18 @@ const DeepSearchPage = () => {
                     const videoId = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/)?.[1];
                     
                     if (videoId) {
-                        // Update iframe src to play at specific timestamp
-                        const newSrc = `https://www.youtube.com/embed/${videoId}?start=${timeInSeconds}&autoplay=1`;
+                        // Check if device is mobile to determine autoplay behavior
+                        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                        
+                        // Desktop: use autoplay, Mobile: don't use autoplay
+                        const autoplayParam = isMobile ? '' : '&autoplay=1';
+                        const newSrc = `https://www.youtube.com/embed/${videoId}?start=${timeInSeconds}&rel=0&modestbranding=1${autoplayParam}`;
                         iframe.src = newSrc;
+                        
+                        // Focus iframe for better UX
+                        setTimeout(() => {
+                            iframe.focus();
+                        }, 500);
                     }
                 }
             }
