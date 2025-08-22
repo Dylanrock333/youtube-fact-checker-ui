@@ -51,15 +51,11 @@
   font-family: var(--font-family-primary);
     display: flex;
     flex-direction: column;
-    /* gap: 30px;
-    margin-top: 5px; */
 }
 
 .slideshow-item {
     display: flex;
     align-items: stretch;
-    /* margin-bottom: 20px; */
-    /* padding: 0 20px; */
     border-radius: 10px;
 }
 
@@ -79,16 +75,8 @@
     padding: 15px;
     box-sizing: border-box;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, var(--theme-transition);
-    /* position: relative; */
-    /* z-index: 2; */
-    /* transform: translateZ(0); */
 }
 
-/* .slideshow-item-left:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-    border-color: rgba(23, 162, 184, 0.3);
-} */
 
 /* Light theme overrides for slideshow-item-left */
 .light .slideshow-item-left {
@@ -97,10 +85,6 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
-/* .light .slideshow-item-left:hover {
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
-    border-color: rgba(23, 162, 184, 0.4);
-} */
 
 .slideshow-item-left-image {
     width: 400px;
@@ -291,7 +275,6 @@
     flex-grow: 1;
     min-width: 0;
     position: relative;
-    /* Allow overflow to show cards sliding in from edge */
     overflow: visible;
     z-index: 1;
 }
@@ -306,7 +289,6 @@
 .glide__track {
     height: 100%;
     margin-left: 10px;
-    /* Allow cards to extend beyond track bounds */
     overflow: visible;
 }
 
@@ -367,7 +349,6 @@
     margin-bottom: 15px;
     flex-wrap: wrap;
     padding: 0 30px;
-    /* background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.08) 50%, rgba(0, 0, 0, 0.01) 70%, transparent 100%); */
 }
 
 .category-button {
@@ -504,7 +485,6 @@
         align-items: center;
         gap: 10px;
         margin-bottom: 0;
-        /* padding-bottom: 15px; */
     }
 
     .slideshow-item:last-child {

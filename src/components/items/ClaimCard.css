@@ -22,11 +22,6 @@
   }
 }
 
-/* @media (max-width: 480px) {
-  .claim-card{
-    min-height: 1px;
-  }
-} */
 
 
 .claim-card.light {
@@ -69,24 +64,6 @@
   margin-bottom: 2px;
 }
 
-/* @media (max-width: 768px) {
-  .timestamp {
-    font-size: 0.75rem;
-    padding: 2px 4px;
-  }
-}
-
-@media (max-width: 480px) {
-  .timestamp {
-    font-size: 0.7rem;
-    padding: 1px 3px;
-  }
-} */
-/* 
-.video-analysis.dark .timestamp {
-  background-color: rgba(66, 153, 225, 0.2);
-  color: #ffffff;
-} */
 
 .category {
   font-size: 1.0rem;
@@ -167,8 +144,6 @@
 .claim-text {
   font-size: 1.05rem;
   font-weight: 500;
-  /* margin-top: 6px;
-  margin-bottom: 6px; */
   line-height: 1.5;
   flex-grow: 0;
   position: relative;
@@ -291,9 +266,6 @@
   }
 }
 
-/* .video-analysis.dark .context-content {
-  background-color: rgba(255, 255, 255, 0.03);
-} */
 
 .context-content p {
   margin: 0;
@@ -304,11 +276,6 @@
   font-weight: 600;
 }
 
-/* .claim-context.expanded .context-content {
-  max-height: 0;
-  opacity: 0;
-  margin: 0;
-} */
 
 /* ===== TABS AND SEARCH ===== */
 .context-container {
@@ -326,7 +293,6 @@
   color: var(--accent-color);
   letter-spacing: 0.3px;
   font-style: italic;
-  /* -webkit-text-stroke: 0.1px white; */
 }
 
 .video-analysis.dark .context-container {
