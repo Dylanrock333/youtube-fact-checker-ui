@@ -7,7 +7,7 @@ import { useAnalysis } from '../context/AnalysisContext';
 import YouTubeVideo from '../components/items/YouTubeVideo';
 import HexagonLoader from '../components/items/hexagon-loading';
 // import { marked } from 'marked';
-import ReactMarkdown from 'react-markdown';
+// import ReactMarkdown from 'react-markdown';
 import { processCitations } from '../utils/citationProcessor';
 
 const DeepSearchPage = () => {
@@ -117,22 +117,22 @@ const DeepSearchPage = () => {
                 videoContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
             
-            // Update timestamp state - this will trigger YouTubeVideo component to remount
-            // Add a small random value to force re-render even if timestamp is the same
+            // Enable autoplay and update timestamp to trigger remount with autoplay
+            setShouldAutoplay(true);
             setActiveTimestamp(timestamp + Math.random().toString(36).substr(2, 5));
         }
     };
 
-    const convertTimestampToSeconds = (timestamp) => {
-        // Handle formats like "1:23", "12:34", "1:23:45"
-        const parts = timestamp.split(':').map(Number);
-        if (parts.length === 2) {
-            return parts[0] * 60 + parts[1]; // MM:SS
-        } else if (parts.length === 3) {
-            return parts[0] * 3600 + parts[1] * 60 + parts[2]; // HH:MM:SS
-        }
-        return 0;
-    };
+    // const convertTimestampToSeconds = (timestamp) => {
+    //     // Handle formats like "1:23", "12:34", "1:23:45"
+    //     const parts = timestamp.split(':').map(Number);
+    //     if (parts.length === 2) {
+    //         return parts[0] * 60 + parts[1]; // MM:SS
+    //     } else if (parts.length === 3) {
+    //         return parts[0] * 3600 + parts[1] * 60 + parts[2]; // HH:MM:SS
+    //     }
+    //     return 0;
+    // };
 
 
     return (
@@ -165,7 +165,7 @@ const DeepSearchPage = () => {
 
                 {videoUrl && (
                     <div className="video-container">
-                        <YouTubeVideo key={activeTimestamp} url={videoUrl} timestamp={timestamp} />
+                        <YouTubeVideo key={activeTimestamp} url={videoUrl} timestamp={timestamp} shouldAutoplay={shouldAutoplay} />
                     </div>
                 )}
                 
@@ -234,7 +234,7 @@ const DeepSearchPage = () => {
                             </div>
                         </div>
                     )}
-                </div>
+                </div> 
             </div>
         </div>
     );
