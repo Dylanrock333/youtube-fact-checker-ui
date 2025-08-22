@@ -48,6 +48,7 @@
 
 /* ===== SLIDESHOW CONTAINER & ITEM ===== */
 .slideshow-container {
+  font-family: var(--font-family-primary);
     display: flex;
     flex-direction: column;
     /* gap: 30px;
@@ -142,7 +143,7 @@
 }
 
 .video-info-title h2 {
-    color: white;
+    color: #FFFFFF;
     font-size: 1.0rem;
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
@@ -336,7 +337,7 @@
     font-size: 1.9rem;
     color: var(--accent-color);
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-family-bold-condensed-italic);
     font-style: italic;
     letter-spacing: 0.6px;
     text-transform: none;
