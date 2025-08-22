@@ -107,7 +107,7 @@ const DeepSearchPage = () => {
     }, [query, context, navigate, claimText, claimId, videodata, setDeepSearchResult, videoUrl]);
 
     useEffect(() => {
-        const id = setTimeout(() => setShowVideo(true), 1);
+        const id = setTimeout(() => setShowVideo(true), 100);
         return () => clearTimeout(id);
     }, []);
 
