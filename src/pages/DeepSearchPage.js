@@ -22,7 +22,8 @@ const DeepSearchPage = () => {
     const [showCitations, setShowCitations] = useState(false);
     const [activeTimestamp, setActiveTimestamp] = useState(timestamp);
     const [shouldAutoplay, setShouldAutoplay] = useState(false);
-
+    const [showVideo, setShowVideo] = useState(false);
+    
     useEffect(() => {
         console.log('useEffect triggered');
         
@@ -105,6 +106,11 @@ const DeepSearchPage = () => {
         }
     }, [query, context, navigate, claimText, claimId, videodata, setDeepSearchResult, videoUrl]);
 
+    useEffect(() => {
+        const id = setTimeout(() => setShowVideo(true), 1);
+        return () => clearTimeout(id);
+    }, []);
+
     const toggleCitations = () => {
         setShowCitations(!showCitations);
     };
@@ -163,7 +169,15 @@ const DeepSearchPage = () => {
                     </div>
                 </div>
 
-                {videoUrl && (
+                {/* {videoUrl && !showVideo && (
+                    <div className="video-container">
+                        <div className="video-placeholder-container">
+                            <div className="video-placeholder"></div>
+                        </div>
+                    </div>
+                )} */}
+
+                {videoUrl && showVideo && (
                     <div className="video-container">
                         <YouTubeVideo key={activeTimestamp} url={videoUrl} timestamp={timestamp} shouldAutoplay={shouldAutoplay} />
                     </div>

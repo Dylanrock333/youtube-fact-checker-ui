@@ -30,7 +30,29 @@
   width: 95%;
   max-width: calc(100vw - 40px);
 }
+/* ===== VIDEO PLACEHOLDER ===== */
+.video-placeholder-container {
+  position: relative;
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
 
+.video-placeholder {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.deep-search-page.light .video-placeholder {
+  background-color: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.1);
+}
 
 /* ===== PAGE TITLE ===== */
 .deep-search-page h2 {
