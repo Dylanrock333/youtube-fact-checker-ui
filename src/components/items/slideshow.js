@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import slideshowData from '../../config/res_slideshow.json';
 import './slideshow.css';
 import Glide from '@glidejs/glide';
 import '@glidejs/glide/dist/css/glide.core.min.css';
@@ -7,7 +6,7 @@ import '@glidejs/glide/dist/css/glide.core.min.css';
 import { useAnalysis } from '../../context/AnalysisContext';
 import { useNavigate } from 'react-router-dom';
 import ClaimCard from './ClaimCard';
-// import { getSlideshowItem } from '../../api/api';
+import { getSlideshowItem } from '../../api/api';
 import Analytics from '../../utils/analytics';
 
 
@@ -233,8 +232,7 @@ const Slideshow = () => {
     useEffect(() => {
         const fetchSlideshowData = async () => {
             try {
-                // const data = await getSlideshowItem();
-                const data = slideshowData;
+                const data = await getSlideshowItem();
                 setApiData(data);
                 const availableCategories = Object.keys(data);
                 setCategories(availableCategories);

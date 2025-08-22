@@ -266,8 +266,26 @@
   }
 
   .timestamp-button {
-    font-size: 0.95rem !important;
-    padding: 6px 12px !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    padding: 3px 6px !important;
+    border-radius: 8px !important;
+    background-color: rgba(32, 34, 37, 0.75) !important;
+    border: 3px solid rgba(129, 129, 129, 0.4) !important;
+    color: #ffffff !important;
+    cursor: default !important;
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    pointer-events: none !important;
+  }
+
+  .timestamp-button:hover {
+    background-color: rgba(32, 34, 37, 0.75) !important;
+    border-color: rgba(129, 129, 129, 0.4) !important;
+    box-shadow: none !important;
+    transform: none !important;
   }
 
   /* Title font size for mobile */
