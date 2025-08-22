@@ -157,7 +157,7 @@ export const performDeepSearch = async (query, videodata, context, claimText) =>
 
 
 export const getSlideshowItem = async () => {
-  const slideshowUrl = `${BASE_URL}/slideshow-videos`;
+  const slideshowUrl = `${BASE_URL}/slideshow`;
   const response = await fetch(slideshowUrl);
   const data = await response.json();
   return data;

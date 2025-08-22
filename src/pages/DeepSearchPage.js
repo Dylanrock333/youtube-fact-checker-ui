@@ -25,9 +25,32 @@ const DeepSearchPage = () => {
 
     useEffect(() => {
         console.log('useEffect triggered');
+        
+        const DEEP_SEARCH_CACHE_KEY = 'currentDeepSearch';
+        
         const performSearch = async () => {
             try {
                 setIsLoading(true);
+
+                // Check cache first
+                const cachedData = localStorage.getItem(DEEP_SEARCH_CACHE_KEY);
+                if (cachedData) {
+                    try {
+                        const { videoUrl: cachedVideoUrl, claimId: cachedClaimId, query: cachedQuery, result } = JSON.parse(cachedData);
+                        
+                        // Check if current search matches cached search
+                        if (cachedVideoUrl === videoUrl && cachedClaimId === claimId && cachedQuery === query) {
+                            console.log('Using cached deep search result');
+                            setSearchResult(result);
+                            setError(null);
+                            setIsLoading(false);
+                            return; // Use cached data, skip API call
+                        }
+                    } catch (e) {
+                        console.warn('Corrupted cache data, removing:', e);
+                        localStorage.removeItem(DEEP_SEARCH_CACHE_KEY);
+                    }
+                }
 
                 let attempts = 0;
                 const maxAttempts = 2; // Initial try + 2 retries
@@ -41,7 +64,17 @@ const DeepSearchPage = () => {
                             throw new Error(result);
                         }
                         
-                        // Store the result in localStorage
+                        // Cache the new result (overwrites previous)
+                        const cacheData = {
+                            videoUrl,
+                            claimId,
+                            query,
+                            result
+                        };
+                        localStorage.setItem(DEEP_SEARCH_CACHE_KEY, JSON.stringify(cacheData));
+                        console.log('Cached new deep search result');
+                        
+                        // Store the result in context (keeping existing functionality)
                         setDeepSearchResult(result);
                         console.log(`saved item id: search-${claimId}`);
                         
@@ -70,7 +103,7 @@ const DeepSearchPage = () => {
         } else {
             navigate('/');
         }
-    }, [query, context, navigate, claimText, claimId, videodata, setDeepSearchResult]);
+    }, [query, context, navigate, claimText, claimId, videodata, setDeepSearchResult, videoUrl]);
 
     const toggleCitations = () => {
         setShowCitations(!showCitations);
@@ -84,8 +117,6 @@ const DeepSearchPage = () => {
                 videoContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
             
-            // Enable autoplay and update timestamp state
-            setShouldAutoplay(true);
             // Update timestamp state - this will trigger YouTubeVideo component to remount
             // Add a small random value to force re-render even if timestamp is the same
             setActiveTimestamp(timestamp + Math.random().toString(36).substr(2, 5));
@@ -131,7 +162,7 @@ const DeepSearchPage = () => {
                 </div>
                 {videoUrl && (
                     <div className="video-container">
-                        <YouTubeVideo key={activeTimestamp} url={videoUrl} timestamp={timestamp} shouldAutoplay={shouldAutoplay} />
+                        <YouTubeVideo key={activeTimestamp} url={videoUrl} timestamp={timestamp} />
                     </div>
                 )}
                 
