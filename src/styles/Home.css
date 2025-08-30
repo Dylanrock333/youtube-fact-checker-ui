@@ -7,6 +7,14 @@
   font-display: swap; /* Prevents FOIT, shows fallback immediately */
 }
 
+@font-face {
+  font-family: 'EnfonixMonoPro';
+  src: url('../assets/EnfonixMonoPro.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ===== Page Layout ===== */
 .page-content {
   margin: 0 auto;
@@ -73,6 +81,18 @@
   max-width: none;
 }
 
+.home-header-title1 {
+  font-family: 'EnfonixMonoPro', monospace;
+  font-size: 4rem;
+  font-weight: normal;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin: 0;
+  padding: 20px 0;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+}
+
 /* SVG Logo styles */
 .home-header-logo {
   width: 700px !important;
@@ -117,6 +137,37 @@
     width: 420px !important;
     min-width: 420px !important;
     padding: 0 10px;
+  }
+}
+
+/* Responsive styles for home-header-title1 */
+@media (max-width: 768px) {
+  .home-header-title1 {
+    font-size: 3.2rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .home-header-title1 {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-header-title1 {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .home-header-title1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-header-title1 {
+    font-size: 2rem;
   }
 }
 
