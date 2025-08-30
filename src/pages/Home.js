@@ -106,14 +106,13 @@ function Home() {
     <div className="home">
       <div className="home-header-container">
         <div className="home-header">
-          {/* <h1 className="home-header-title1">Video Claim</h1>
-          <h1 className="home-header-title2">Catcher</h1>
-          <p>Transform Watching into Knowing</p> */}
-          <img 
+          {/* <img 
             src="/video claim logo.svg" 
-            alt="Video Claim Catcher - Transform Watching into Knowing"
+            alt="Verofyi - Transform Watching into Knowing"
             className="home-header-logo"
-          />
+          /> */}
+          <h1 className="home-header-title1">Verofyi</h1>
+          <p className="home-header-title2">Know What You Watch</p>
         </div>        
       </div>
 
