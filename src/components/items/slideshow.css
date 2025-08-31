@@ -336,9 +336,8 @@
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
-    font-weight: 300; /* Match the @font-face weight */
-    font-style: italic; /* Match the @font-face style */
-    font-family: 'Exo 2', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-weight: 500;
+    font-family: var(--font-family-primary);
 }
 
 /* ===== CATEGORY BUTTONS ===== */
