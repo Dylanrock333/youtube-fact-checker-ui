@@ -126,7 +126,7 @@
   font-size: clamp(1rem, 3.4vw, 1.5rem);
   max-width: 900px;
   padding: 30px 0 30px 0;
-  color: var(--accent-color);
+  color: white;
   font-weight: 700;
   font-family: var(--font-family-bold-condensed-italic);
   font-style: italic;
