@@ -111,15 +111,15 @@ function Home() {
             alt="Verofyi - Transform Watching into Knowing"
             className="home-header-logo"
           /> */}
-          <h1 className="home-header-title1">Verofyi</h1>
+          <h1 className="home-header-title1">VEROFYI</h1>
           <p className="home-header-title2">Know What You Watch</p>
+          <div className="home-header-title3">
+          Explore Topics, Verify Claims, and Gain Insights From Any YouTube Video Instantly
+        </div>
         </div>        
       </div>
 
       <div className="input-container">
-        <div className="input-container-text">
-          Explore topics, verify claims, and gain insights from any YouTube video instantly
-        </div>
         <div className="input-button-wrapper">
           <input
             type="text"
