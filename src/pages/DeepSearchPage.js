@@ -6,8 +6,6 @@ import { performDeepSearch } from '../api/api';
 import { useAnalysis } from '../context/AnalysisContext';
 import YouTubeVideo from '../components/items/YouTubeVideo';
 import HexagonLoader from '../components/items/hexagon-loading';
-// import { marked } from 'marked';
-// import ReactMarkdown from 'react-markdown';
 import { processCitations } from '../utils/citationProcessor';
 
 const DeepSearchPage = () => {

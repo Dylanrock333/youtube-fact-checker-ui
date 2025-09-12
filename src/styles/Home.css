@@ -15,13 +15,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'EnfonixStd';
-  src: url('../assets/EnfonixStd.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
 
 /* ===== Page Layout ===== */
 .page-content {
@@ -154,53 +147,6 @@
     max-width: calc(100vw - 40px);
     margin-left: auto;
     margin-right: auto;
-  }
-}
-
-/* SVG Logo styles */
-.home-header-logo {
-  width: 700px !important;
-  min-width: 700px !important;
-  max-width: none !important;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7));
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.08) 50%, rgba(0, 0, 0, 0.01) 70%, transparent 100%);
-  padding: 0 10px 0px 10px;
-  border-radius: 15px;
-}
-
-/* Responsive styles for SVG logo */
-@media (max-width: 768px) {
-  .home-header-logo {
-    width: 550px !important;
-    min-width: 550px !important;
-    padding: 0 10px;
-  }
-}
-
-@media (max-width: 580px) {
-  .home-header-logo {
-    width: 450px !important;
-    min-width: 450px !important;
-    padding: 0 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .home-header-logo {
-    width: 450px !important;
-    min-width: 450px !important;
-    padding: 0 10px;
-  }
-}
-
-@media (max-width: 400px) {
-  .home-header-logo {
-    width: 420px !important;
-    min-width: 420px !important;
-    padding: 0 10px;
   }
 }
 
