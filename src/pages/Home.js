@@ -106,11 +106,6 @@ function Home() {
     <div className="home">
       <div className="home-header-container">
         <div className="home-header">
-          {/* <img 
-            src="/video claim logo.svg" 
-            alt="Verofyi - Transform Watching into Knowing"
-            className="home-header-logo"
-          /> */}
           <h1 className="home-header-title1">VEROFYI</h1>
           <p className="home-header-title2">Know What You Watch</p>
           <div className="home-header-title3">
@@ -141,6 +136,50 @@ function Home() {
           <span>youtube.com/watch?v=ID</span>
           <span>youtu.be/ID</span>
         </div>
+
+        <div className="demo-video-container-wrapper">
+          <div className="demo-video-container">
+            <div className="demo-video-content">
+              <h3 className="demo-video-header">⚡Video Analysis</h3>
+              <div className="demo-video-container-text">
+                Get the most accurate insights by simply copying any YouTube video link and pasting it to Verofyi. Receive in-depth analysis in seconds with a clean, organized format that breaks down claims, facts, and key takeaways.
+              </div>
+            </div>
+            <div className="demo-video-element">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="demo-video"
+              >
+                <source src="/verofyi - video analysis.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div className="demo-video-container">
+            <div className="demo-video-element">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="demo-video-deepsearch"
+              >
+                <source src="/verofyi - deepsearch.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div className="demo-video-content">
+              <h3 className="demo-video-header">🔎Deep Search</h3>
+              <div className="demo-video-container-text">
+                Dive deeper with DeepSearch to investigate specific claims from any video. Get comprehensive fact-checking with verified sources, expert analysis, and detailed context to understand the complete story behind every statement.
+              </div>
+            </div>
+          </div>
+        </div>
+        
         {urlError && (
           <div className="url-error-message">
             {urlError}

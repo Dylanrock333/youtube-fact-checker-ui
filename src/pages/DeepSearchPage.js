@@ -182,7 +182,6 @@ const DeepSearchPage = () => {
                         <YouTubeVideo key={activeTimestamp} url={videoUrl} timestamp={timestamp} shouldAutoplay={shouldAutoplay} />
                     </div>
                 )}
-                
                 {context && (
                     <div className="context-section">
                         <h3>Context</h3>
