@@ -16,7 +16,7 @@ const ClaimCard = ({
       <div className="claim-header">
         <span className="timestamp">
           <span className="timestamp-emoji">⏱️</span>
-          {claim.timestamp}
+          {claim.timestamp.toString().split('.')[0]}
         </span>
         <span className="category">{claim.category}</span>
       </div>
