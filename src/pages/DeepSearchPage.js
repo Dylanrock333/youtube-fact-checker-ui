@@ -150,7 +150,7 @@ const DeepSearchPage = () => {
                             onClick={handleTimestampClick}
                             title="Click to open YouTube video at this timestamp"
                         >
-                            ⏱️{timestamp}
+                            ⏱️{timestamp.split('.')[0]}
                         </button>
                     )}
                 </div>
