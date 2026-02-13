@@ -19,7 +19,7 @@ async function performAnalysis(url, origin, videoID, selectedLanguage, baseUrl) 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Request-Source': 'user'
+                'request_header': 'user'
             },
             body: JSON.stringify({ url, origin, videoID, selectedLanguage }),
         });
