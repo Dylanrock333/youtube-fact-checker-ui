@@ -17,7 +17,10 @@ async function performAnalysis(url, origin, videoID, selectedLanguage, baseUrl) 
     try {
         const response = await fetch(request_url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Request-Source': 'user'
+            },
             body: JSON.stringify({ url, origin, videoID, selectedLanguage }),
         });
 
