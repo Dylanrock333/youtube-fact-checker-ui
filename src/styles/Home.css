@@ -27,7 +27,6 @@
   width: 100%;
   max-width: 1400px;
   overflow-x: hidden;
-  overscroll-behavior-y: contain;
   box-sizing: border-box;
   position: relative;
 }

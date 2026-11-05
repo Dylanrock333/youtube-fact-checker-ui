@@ -1,5 +1,6 @@
 import React from 'react';
 import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 
 /**
  * Processes text content and replaces citation patterns [number] with styled citation links
@@ -16,7 +17,7 @@ export const processCitations = (content, citations = []) => {
   marked.setOptions({
     breaks: true,
     gfm: true,
-    sanitize: false // Allow HTML since we're controlling the content
+    sanitize: false // deprecated no-op in marked; DOMPurify below does the real sanitizing
   });
 
   // Regular expression to find citations in the format [number]
@@ -37,8 +38,10 @@ export const processCitations = (content, citations = []) => {
 
   // Convert markdown to HTML
   const htmlContent = marked(processedContent);
-  
-  return htmlContent;
+
+  // Sanitize before this is ever injected via dangerouslySetInnerHTML —
+  // content originates from LLM/web search results, not trusted input.
+  return DOMPurify.sanitize(htmlContent, { ADD_ATTR: ['target'] });
 };
 
 /**

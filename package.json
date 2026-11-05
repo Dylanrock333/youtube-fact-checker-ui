@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@glidejs/glide": "^3.7.1",
+    "dompurify": "^3.4.17",
     "marked": "^15.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
